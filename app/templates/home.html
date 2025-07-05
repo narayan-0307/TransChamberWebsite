@@ -1,0 +1,2266 @@
+{% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
+content %}
+
+<style>
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+    display: flex;
+  }
+
+  .stop-ticker:hover .animate-scroll-left {
+    animation-play-state: paused;
+  }
+</style>
+
+<div>
+  <!-- tp-hero-area-start -->
+  <div class="tp-hero-area fix p-relative hero-container">
+    <div class="swiper tp-hero-slider-zoom">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="tp-hero-singles p-relative">
+            <div
+              class="tp-hero-bg bg-position"
+              data-background="/static/images/hero/banner.jpg"
+            ></div>
+            <div class="container">
+              <div class="row align-items-end">
+                <div class="col-lg-7 hero-spacing">
+                  <div class="tp-hero-content-wrapper hero-content-container">
+                    <h2
+                      class="tp-hero-title text fw-600 fs-70 fs-lg-50 fs-xs-34 ls-m-3 lh-1 mb-25"
+                      style="color: #fbfdfb;"
+                    >
+                      Accelerating Trade Expanding
+                      <span
+                        class="tp-ff-heading text-italic tp-text-theme-secondary fw-400"
+                      >
+                        Reach.</span
+                      >
+                    </h2>
+                    <p class="text2 mb-50 tp-text-grey-3" style="color: #fbfdfb;">
+                      We provide hands-on support for export promotion,
+                      regulatory navigation, and international market entry to
+                      help Indian businesses scale globally with confidence.
+                    </p>
+                    <div class="tp-hero-btn text3">
+                      <a
+                        href="contact.html"
+                        class="tp-btn-xl d-inline-block lh-0 tp-round-24 fs-16 tp-bg-common-white ls-0 tp-btn-switch-animation tp-text-theme-primary fw-500"
+                      >
+                        <span
+                          class="d-flex align-items-center justify-content-center"
+                        >
+                          <span class="btn-text"> Become A Member </span>
+                          <span class="btn-icon"
+                            ><i class="fa-solid fa-arrow-right"></i
+                          ></span>
+                          <span class="btn-icon"
+                            ><i class="fa-solid fa-arrow-right"></i
+                          ></span>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="tp-hero-singles p-relative">
+            <div
+              class="tp-hero-bg bg-position"
+              data-background="/static/images/hero/banner1.jpg"
+            ></div>
+            <div class="container">
+              <div class="row align-items-end">
+                <div class="col-lg-7 hero-spacing">
+                  <div class="tp-hero-content-wrapper hero-content-container">
+                    <h2
+                      class="tp-hero-title text fw-600 fs-70 fs-lg-50 fs-xs-34 ls-m-3 tp-text-common-white lh-1 mb-25"
+                    >
+                      Strength in Network Power in
+                      <span
+                        class="tp-ff-heading text-italic tp-text-theme-secondary fw-400"
+                        >Purpose.</span
+                      >
+                    </h2>
+                    <p class="text2 mb-50 tp-text-grey-3">
+                      Our diverse member base spans over 70 countries united by
+                      integrity, innovation, and a shared mission to drive
+                      responsible business growth across borders.
+                    </p>
+                    <div class="tp-hero-btn text3">
+                      <a
+                        href="contact.html"
+                        class="tp-btn-xl d-inline-block lh-0 tp-round-24 fs-16 tp-bg-common-white ls-0 tp-btn-switch-animation tp-text-theme-primary fw-500"
+                      >
+                        <span
+                          class="d-flex align-items-center justify-content-center"
+                        >
+                          <span class="btn-text"> Become A Member </span>
+                          <span class="btn-icon"
+                            ><i class="fa-solid fa-arrow-right"></i
+                          ></span>
+                          <span class="btn-icon"
+                            ><i class="fa-solid fa-arrow-right"></i
+                          ></span>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="tp-hero-singles p-relative">
+            <div
+              class="tp-hero-bg bg-position"
+              data-background="/static/images/hero/banner3.jpg"
+            ></div>
+            <div class="container">
+              <div class="row align-items-end">
+                <div class="col-lg-7 hero-spacing">
+                  <div class="tp-hero-content-wrapper hero-content-container">
+                    <h2
+                      class="tp-hero-title text fw-600 fs-70 fs-lg-50 fs-xs-34 ls-m-3 tp-text-common-white lh-1 mb-25"
+                    >
+                      Strength in Network Power in
+                      <span
+                        class="tp-ff-heading text-italic tp-text-theme-secondary fw-400"
+                        >Purpose.</span
+                      >
+                    </h2>
+                    <p class="text2 mb-50 tp-text-grey-3">
+                      Our diverse member base spans over 70 countries united by
+                      integrity, innovation, and a shared mission to drive
+                      responsible business growth across borders.
+                    </p>
+                    <div class="tp-hero-btn text3">
+                      <a
+                        href="contact.html"
+                        class="tp-btn-xl d-inline-block lh-0 tp-round-24 fs-16 tp-bg-common-white ls-0 tp-btn-switch-animation tp-text-theme-primary fw-500"
+                      >
+                        <span
+                          class="d-flex align-items-center justify-content-center"
+                        >
+                          <span class="btn-text"> Become A Member </span>
+                          <span class="btn-icon"
+                            ><i class="fa-solid fa-arrow-right"></i
+                          ></span>
+                          <span class="btn-icon"
+                            ><i class="fa-solid fa-arrow-right"></i
+                          ></span>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- tp-hero-area-end -->
+
+  <!-- -----------------------------------------Event Section Start------------------------------------------------------------------------------- -->
+  {% if events %}
+  <div
+    class="ticker-wrap stop-ticker overflow-hidden border rounded bg-blue-800 shadow relative h-[50px] flex items-center"
+  >
+    <div class="ticker flex whitespace-nowrap animate-scroll-left text-white">
+      {% for repeat in "12" %} {# Repeat twice to loop #} {% for event in events
+      %}
+      <span class="ticker__item flex items-center mx-6 gap-2">
+        Upcoming: {{ event.title }} - {{ event.date }}
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 17 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style="margin-right: 1rem; margin-left: 1rem"
+        >
+          <path
+            d="M1.7 10.2C1.2325 10.2 0.832431 10.0334 0.4998 9.7002C0.1666 9.36759 0 8.9675 0 8.5C0 8.0325 0.1666 7.63215 0.4998 7.29895C0.832431 6.96635 1.2325 6.8 1.7 6.8C2.1675 6.8 2.56757 6.96635 2.9002 7.29895C3.2334 7.63215 3.4 8.0325 3.4 8.5C3.4 8.9675 3.2334 9.36759 2.9002 9.7002C2.56757 10.0334 2.1675 10.2 1.7 10.2ZM3.1025 15.045L1.9125 13.855L5.61 10.1575L6.8 11.3475L3.1025 15.045ZM5.6525 6.8L1.955 3.1025L3.145 1.9125L6.8425 5.61L5.6525 6.8ZM8.5 17C8.0325 17 7.63241 16.8337 7.2998 16.5011C6.9666 16.1679 6.8 15.7675 6.8 15.3C6.8 14.8325 6.9666 14.4321 7.2998 14.099C7.63241 13.7663 8.0325 13.6 8.5 13.6C8.9675 13.6 9.36785 13.7663 9.70105 14.099C10.0337 14.4321 10.2 14.8325 10.2 15.3C10.2 15.7675 10.0337 16.1679 9.70105 16.5011C9.36785 16.8337 8.9675 17 8.5 17ZM8.5 3.4C8.0325 3.4 7.63241 3.2334 7.2998 2.9002C6.9666 2.56757 6.8 2.1675 6.8 1.7C6.8 1.2325 6.9666 0.83215 7.2998 0.49895C7.63241 0.166319 8.0325 0 8.5 0C8.9675 0 9.36785 0.166319 9.70105 0.49895C10.0337 0.83215 10.2 1.2325 10.2 1.7C10.2 2.1675 10.0337 2.56757 9.70105 2.9002C9.36785 3.2334 8.9675 3.4 8.5 3.4ZM11.3475 6.8425L10.1575 5.61L13.8975 1.9125L15.0875 3.1025L11.3475 6.8425ZM13.8975 15.045L10.2 11.3475L11.39 10.1575L15.0875 13.855L13.8975 15.045ZM15.3 10.2C14.8325 10.2 14.4321 10.0334 14.099 9.7002C13.7663 9.36759 13.6 8.9675 13.6 8.5C13.6 8.0325 13.7663 7.63215 14.099 7.29895C14.4321 6.96635 14.8325 6.8 15.3 6.8C15.7675 6.8 16.1679 6.96635 16.5011 7.29895C16.8337 7.63215 17 8.0325 17 8.5C17 8.9675 16.8337 9.36759 16.5011 9.7002C16.1679 10.0334 15.7675 10.2 15.3 10.2Z"
+            fill="#FFF"
+          />
+        </svg>
+      </span>
+      {% endfor %} {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- -----------------------------------------Event Section End------------------------------------------------------------------------------- -->
+
+  <!-- tp-feature-area-start -->
+  <div class="tp-feature-area tp-bg-grey-3 pt-35">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div
+            class="tp-feature-item tpshake-wrap mb-30 wow fadeInLeft"
+            data-wow-delay=".3s"
+            data-wow-duration=".9s"
+          >
+            <div class="tp-feature-title d-flex align-items-center mb-20">
+              <span class="tp-feature-icon tpshake mr-30">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 60 60"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="28.8108"
+                    height="28.8108"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                  <rect
+                    x="30.1892"
+                    y="30.1895"
+                    width="28.8108"
+                    height="28.8108"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                  <rect
+                    x="36.8919"
+                    y="9.32411"
+                    width="22.7027"
+                    height="0.810811"
+                    stroke="#354C4C"
+                    stroke-width="0.810811"
+                  />
+                  <rect
+                    x="36.8919"
+                    y="15.0001"
+                    width="11.3514"
+                    height="0.810811"
+                    stroke="#354C4C"
+                    stroke-width="0.810811"
+                  />
+                  <rect
+                    x="36.8919"
+                    y="20.6755"
+                    width="17.027"
+                    height="0.810811"
+                    stroke="#354C4C"
+                    stroke-width="0.810811"
+                  />
+                  <rect
+                    x="10.7297"
+                    y="39.9187"
+                    width="10.973"
+                    height="10.973"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                </svg>
+              </span>
+              <h4 class="ls-m-2 lh-32">
+                Agile Business <br />
+                Solutions
+              </h4>
+            </div>
+            <p class="tp-text-grey-2">
+              We help businesses pivot and grow by offering adaptive aligned
+              with global market trends.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div
+            class="tp-feature-item tpshake-wrap mb-30 wow fadeInLeft"
+            data-wow-delay=".5s"
+            data-wow-duration=".9s"
+          >
+            <div class="tp-feature-title d-flex align-items-center mb-20">
+              <span class="tp-feature-icon tpshake mr-30">
+                <svg
+                  width="61"
+                  height="60"
+                  viewBox="0 0 61 60"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="1"
+                    y="20.4595"
+                    width="38.5405"
+                    height="38.5405"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                  <rect
+                    x="21.2703"
+                    y="1"
+                    width="38.5405"
+                    height="38.5405"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                </svg>
+              </span>
+              <h4 class="ls-m-2 lh-32">
+                Member-First <br />
+                Engagement
+              </h4>
+            </div>
+            <p class="tp-text-grey-2">
+              Our dedicated support ensures every member receives strategic
+              assistance tailored to their growth goals.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div
+            class="tp-feature-item tpshake-wrap mb-30 wow fadeInLeft"
+            data-wow-delay=".7s"
+            data-wow-duration=".9s"
+          >
+            <div class="tp-feature-title d-flex align-items-center mb-20">
+              <span class="tp-feature-icon tpshake mr-30">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 60 60"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="29.5946"
+                    y="0.405405"
+                    width="0.810811"
+                    height="59.1892"
+                    stroke="#354C4C"
+                    stroke-width="0.810811"
+                  />
+                  <rect
+                    x="0.405405"
+                    y="30.4054"
+                    width="0.810811"
+                    height="59.1892"
+                    transform="rotate(-90 0.405405 30.4054)"
+                    stroke="#354C4C"
+                    stroke-width="0.810811"
+                  />
+                  <path
+                    d="M10.1351 22.2973H21.4865V10.9459"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M10.1351 38.5135H21.4865V49.8649"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M49.8649 22.2973H38.5135V10.9459"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M49.8649 38.5135H38.5135V49.8649"
+                    stroke="#354C4C"
+                    stroke-width="2"
+                  />
+                </svg>
+              </span>
+              <h4 class="ls-m-2 lh-32">Global Reach & <br />Partnerships</h4>
+            </div>
+            <p class="tp-text-grey-2">
+              Unlock cross-border opportunities with our expansive international
+              chamber network across 70+ countries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- tp-feature-area-end -->
+
+  <!-- tp-about-area-start -->
+  <div class="tp-about-area p-relative fix mt-20">
+    <div class="container-fluid gx-0">
+      <div class="row gx-20">
+        <div class="col-lg-6">
+          <div class="tp-about-thumb-wrap">
+            <div class="row gx-20">
+              <div class="col-lg-7 col-md-7 col-sm-7 mb-20">
+                <div class="tp-about-thumb mr-15 p-relative">
+                  <img
+                    class="thumb w-100"
+                    src="static/images/about/image1.jpg"
+                    alt=""
+                  />
+                  <img
+                    class="tp-about-shape p-absolute d-none d-sm-block"
+                    src=""
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-5 mb-20">
+                <div class="tp-about-thumb-2 h-100 fix tp-round-4">
+                  <img
+                    class="w-100 tp-round-4 mb-20"
+                    src="static/images/about/image.jpg"
+                    alt=""
+                  />
+                  <div
+                    class="tp-bg-theme-secondary text-center pt-60 pb-35 tp-round-4 h-100"
+                  >
+                    <span class="mb-30 d-inline-block">
+                      <svg
+                        width="57"
+                        height="60"
+                        viewBox="0 0 57 60"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11.022 11.9088C10.4883 11.2221 10.5203 10.5034 10.8938 9.91278C11.4134 9.09439 12.4487 8.55364 13.4379 8.36862V13.1222C12.3633 12.7984 11.4312 12.4354 11.022 11.9088ZM17.9923 18.9716C18.3659 18.3809 18.3943 17.6623 17.8606 16.9756C17.4551 16.4491 16.5228 16.086 15.4447 15.7623V20.5159C16.4338 20.3309 17.4693 19.79 17.9923 18.9718V18.9716ZM4.22966 24.6539C-1.40989 19.0143 -1.40989 9.86998 4.22966 4.23044C9.8692 -1.4091 19.0135 -1.4091 24.6531 4.23044C30.2961 9.86998 30.2961 19.0143 24.6531 24.6539C19.0135 30.2969 9.8692 30.2969 4.22966 24.6539ZM9.43866 13.1328C10.2891 14.2287 11.819 14.7553 13.4379 15.2071V20.4375C12.3526 20.1493 11.2817 19.4234 10.4491 18.0963C10.1538 17.6266 9.5382 17.4879 9.0685 17.7831C8.60244 18.0748 8.4601 18.694 8.75545 19.1636C10.0292 21.1916 11.7336 22.2022 13.4379 22.5011V23.9492C13.4379 24.5042 13.8863 24.9526 14.4413 24.9526C14.9964 24.9526 15.4447 24.5042 15.4447 23.9492V22.5437C19.0029 22.0847 21.771 18.7544 19.4441 15.7514C18.5972 14.6555 17.0672 14.1289 15.4447 13.677V8.4467C16.53 8.73489 17.6009 9.46078 18.4335 10.7879C18.7289 11.2576 19.3479 11.3963 19.8141 11.1011C20.2838 10.8094 20.4225 10.1902 20.1308 9.72061C18.857 7.69257 17.1492 6.68199 15.4448 6.38313V4.93851C15.4448 4.38345 14.9965 3.93509 14.4414 3.93509C13.8864 3.93509 13.438 4.38345 13.438 4.93851V6.34045C9.87635 6.80651 7.11514 10.1333 9.43866 13.1328ZM54.0179 57.9895H51.3208V15.5986H56.3519L47.3464 0L38.3409 15.5986H43.372V57.9895H38.6433V26.1163H30.6945V57.9897H25.9659V36.6376H18.0172V57.9897H13.2885V47.1553H5.33977V57.9897H2.64269C2.08764 57.9897 1.63576 58.4415 1.63576 58.9966C1.63576 59.5516 2.08764 60 2.64269 60H54.0179C54.5729 60 55.0248 59.5516 55.0248 58.9966C55.0248 58.4415 54.5729 57.9897 54.0179 57.9897V57.9895Z"
+                          fill="#1F3130"
+                        />
+                      </svg>
+                    </span>
+                    <h2 class="fs-70">
+                      <span
+                        data-purecounter-duration="1"
+                        data-purecounter-end="26"
+                        class="purecounter"
+                        >0</span
+                      >+
+                    </h2>
+                    <p class="fw-500 fs-18 ls-m-2 tp-text-grey-2">
+                      Strategic Insights to Elevate <br />
+                      Your Consulting Firm
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-20">
+          <div class="tp-about-content d-flex align-items-center p-relative">
+            <span
+              class="tp-about-shape-2 d-none d-xxl-block wow zoomIn"
+              data-wow-delay=".3s"
+              data-wow-duration=".9s"
+            >
+              <svg
+                width="180"
+                height="180"
+                viewBox="0 0 180 180"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M100 100H180V180H100V100Z" fill="#F6F6F6" />
+                <path
+                  d="M40 40H96C98.2091 40 100 41.7909 100 44V100H44C41.7909 100 40 98.2091 40 96V40Z"
+                  fill="#F6F6F6"
+                />
+                <path
+                  d="M0 0H36C38.2091 0 40 1.79086 40 4V40H4C1.79086 40 0 38.2091 0 36V0Z"
+                  fill="#F6F6F6"
+                />
+              </svg>
+            </span>
+            <div>
+              <span
+                class="tp-section-subtitle fw-500 tp-text-grey-1 d-flex align-items-center gap-2 mb-10"
+              >
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 17 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.7 10.2C1.2325 10.2 0.832431 10.0334 0.4998 9.7002C0.1666 9.36759 0 8.9675 0 8.5C0 8.0325 0.1666 7.63215 0.4998 7.29895C0.832431 6.96635 1.2325 6.8 1.7 6.8C2.1675 6.8 2.56757 6.96635 2.9002 7.29895C3.2334 7.63215 3.4 8.0325 3.4 8.5C3.4 8.9675 3.2334 9.36759 2.9002 9.7002C2.56757 10.0334 2.1675 10.2 1.7 10.2ZM3.1025 15.045L1.9125 13.855L5.61 10.1575L6.8 11.3475L3.1025 15.045ZM5.6525 6.8L1.955 3.1025L3.145 1.9125L6.8425 5.61L5.6525 6.8ZM8.5 17C8.0325 17 7.63241 16.8337 7.2998 16.5011C6.9666 16.1679 6.8 15.7675 6.8 15.3C6.8 14.8325 6.9666 14.4321 7.2998 14.099C7.63241 13.7663 8.0325 13.6 8.5 13.6C8.9675 13.6 9.36785 13.7663 9.70105 14.099C10.0337 14.4321 10.2 14.8325 10.2 15.3C10.2 15.7675 10.0337 16.1679 9.70105 16.5011C9.36785 16.8337 8.9675 17 8.5 17ZM8.5 3.4C8.0325 3.4 7.63241 3.2334 7.2998 2.9002C6.9666 2.56757 6.8 2.1675 6.8 1.7C6.8 1.2325 6.9666 0.83215 7.2998 0.49895C7.63241 0.166319 8.0325 0 8.5 0C8.9675 0 9.36785 0.166319 9.70105 0.49895C10.0337 0.83215 10.2 1.2325 10.2 1.7C10.2 2.1675 10.0337 2.56757 9.70105 2.9002C9.36785 3.2334 8.9675 3.4 8.5 3.4ZM11.3475 6.8425L10.1575 5.61L13.8975 1.9125L15.0875 3.1025L11.3475 6.8425ZM13.8975 15.045L10.2 11.3475L11.39 10.1575L15.0875 13.855L13.8975 15.045ZM15.3 10.2C14.8325 10.2 14.4321 10.0334 14.099 9.7002C13.7663 9.36759 13.6 8.9675 13.6 8.5C13.6 8.0325 13.7663 7.63215 14.099 7.29895C14.4321 6.96635 14.8325 6.8 15.3 6.8C15.7675 6.8 16.1679 6.96635 16.5011 7.29895C16.8337 7.63215 17 8.0325 17 8.5C17 8.9675 16.8337 9.36759 16.5011 9.7002C16.1679 10.0334 15.7675 10.2 15.3 10.2Z"
+                    fill="#1F3130"
+                  />
+                </svg>
+                Know about our Trans Asian Chamber of Commerce & industry
+              </span>
+              <h2
+                class="mb-25 fs-xl-37 wow img-custom-anim-left"
+                data-wow-duration="1.5s"
+                data-wow-delay="0.2s"
+              >
+                Empowering Your Vision,
+                <span class="tp-text-grey-1 text-italic fw-400 tp-ff-heading"
+                  >Fueling Your Growth</span
+                >
+              </h2>
+              <p class="mb-30">
+                The Trans Asian Chamber of Commerce & Industry (TACCI), was
+                founded in 1999 with the express purpose of promoting best
+                business practices, building mutual respect and trust among the
+                trade community for the good of the society, the country, and
+                the entire world. TACCI offers a forum for networking and
+                reaching agreements between industries. It is a
+                non-governmental, non-profit organization that firmly adheres to
+              </p>
+              <p class="mb-55">
+                Vasudhaiva Kutumbakaam ॥ वसुधैव कुटुंबकम् ॥ 'All people are
+                members of one global family'
+              </p>
+              <a
+                href="about.html"
+                class="tp-btn-xl d-inline-block lh-0 tp-round-24 fs-16 tp-bg-theme-primary ls-0 tp-btn-switch-animation tp-text-common-white hover-text-white fw-500"
+              >
+                <span class="d-flex align-items-center justify-content-center">
+                  <span class="btn-text"> Discover more us</span>
+                  <span class="btn-icon"
+                    ><i class="fa-solid fa-arrow-right"></i
+                  ></span>
+                  <span class="btn-icon"
+                    ><i class="fa-solid fa-arrow-right"></i
+                  ></span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- tp-about-area-end -->
+
+  <!-- tp-service-area-start -->
+  <div class="tp-service-area">
+    <div class="container container-1690">
+      <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-8 col-md-10">
+          <div class="tp-service-section-title-wrap text-center">
+            <span
+              class="tp-section-subtitle fw-500 tp-text-grey-1 d-flex align-items-center justify-content-center gap-2 mb-10 mt-5"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.7 10.2C1.2325 10.2 0.832431 10.0334 0.4998 9.7002C0.1666 9.36759 0 8.9675 0 8.5C0 8.0325 0.1666 7.63215 0.4998 7.29895C0.832431 6.96635 1.2325 6.8 1.7 6.8C2.1675 6.8 2.56757 6.96635 2.9002 7.29895C3.2334 7.63215 3.4 8.0325 3.4 8.5C3.4 8.9675 3.2334 9.36759 2.9002 9.7002C2.56757 10.0334 2.1675 10.2 1.7 10.2ZM3.1025 15.045L1.9125 13.855L5.61 10.1575L6.8 11.3475L3.1025 15.045ZM5.6525 6.8L1.955 3.1025L3.145 1.9125L6.8425 5.61L5.6525 6.8ZM8.5 17C8.0325 17 7.63241 16.8337 7.2998 16.5011C6.9666 16.1679 6.8 15.7675 6.8 15.3C6.8 14.8325 6.9666 14.4321 7.2998 14.099C7.63241 13.7663 8.0325 13.6 8.5 13.6C8.9675 13.6 9.36785 13.7663 9.70105 14.099C10.0337 14.4321 10.2 14.8325 10.2 15.3C10.2 15.7675 10.0337 16.1679 9.70105 16.5011C9.36785 16.8337 8.9675 17 8.5 17ZM8.5 3.4C8.0325 3.4 7.63241 3.2334 7.2998 2.9002C6.9666 2.56757 6.8 2.1675 6.8 1.7C6.8 1.2325 6.9666 0.83215 7.2998 0.49895C7.63241 0.166319 8.0325 0 8.5 0C8.9675 0 9.36785 0.166319 9.70105 0.49895C10.0337 0.83215 10.2 1.2325 10.2 1.7C10.2 2.1675 10.0337 2.56757 9.70105 2.9002C9.36785 3.2334 8.9675 3.4 8.5 3.4ZM11.3475 6.8425L10.1575 5.61L13.8975 1.9125L15.0875 3.1025L11.3475 6.8425ZM13.8975 15.045L10.2 11.3475L11.39 10.1575L15.0875 13.855L13.8975 15.045ZM15.3 10.2C14.8325 10.2 14.4321 10.0334 14.099 9.7002C13.7663 9.36759 13.6 8.9675 13.6 8.5C13.6 8.0325 13.7663 7.63215 14.099 7.29895C14.4321 6.96635 14.8325 6.8 15.3 6.8C15.7675 6.8 16.1679 6.96635 16.5011 7.29895C16.8337 7.63215 17 8.0325 17 8.5C17 8.9675 16.8337 9.36759 16.5011 9.7002C16.1679 10.0334 15.7675 10.2 15.3 10.2Z"
+                  fill="#1F3130"
+                />
+              </svg>
+              Check our services
+            </span>
+            <h2
+              class="mb-25 fs-sm-30 wow img-custom-anim-top"
+              data-wow-duration="1.5s"
+              data-wow-delay="0.2s"
+            >
+              Premium business solutions for
+              <span class="tp-text-grey-1 text-italic fw-400 tp-ff-heading"
+                >global growth and success.</span
+              >
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="row gx-30">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-lg-6 col-md-6">
+          <div
+            class="tp-service-item border-full-1 p-relative tp-round-4 mb-30 wow fadeInLeft"
+            data-wow-delay=".3s"
+            data-wow-duration=".9s"
+          >
+            <div class="tp-service-shape p-absolute">
+              <svg
+                width="90"
+                height="90"
+                viewBox="0 0 90 90"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M50 50H90V86C90 88.2091 88.2091 90 86 90H50V50Z"
+                  fill="white"
+                />
+                <path
+                  d="M20 20H46C48.2091 20 50 21.7909 50 24V50H24C21.7909 50 20 48.2091 20 46V20Z"
+                  fill="white"
+                />
+                <path
+                  d="M0 0H16C18.2091 0 20 1.79086 20 4V20H4C1.79086 20 0 18.2091 0 16V0Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <div class="tp-service-thumb p-relative mb-35 tp-round-4 fix">
+              <img
+                class="tp-round-4 w-100"
+                src="static/images/about/image.jpg"
+                alt=""
+              />
+              <!-- <span class="tp-service-icon p-absolute">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21.7707 0C9.73877 0 0 9.73713 0 21.7707C0 22.4186 0.525157 22.9437 1.17297 22.9437H21.7707C22.4186 22.9437 22.9437 22.4186 22.9437 21.7707V1.17297C22.9437 0.525157 22.4186 0 21.7707 0Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M13.4255 26.335C13.2197 25.9592 12.8253 25.7256 12.3968 25.7256H5.45978C5.08642 25.7256 4.73525 25.9033 4.51431 26.2044C4.29329 26.5055 4.22892 26.8936 4.34072 27.2499C6.55002 34.2865 12.9224 39.5181 20.5978 40.0001V31.2079C17.5873 30.8343 14.9067 29.0392 13.4255 26.335Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M27.2498 4.34089C26.8937 4.22917 26.5053 4.29363 26.2044 4.51449C25.9033 4.7355 25.7255 5.0866 25.7255 5.46003V12.397C25.7255 12.8254 25.9592 13.2197 26.3349 13.4256C29.039 14.907 30.8341 17.5875 31.2077 20.5979H40C39.5169 12.9058 34.2698 6.54504 27.2498 4.34089Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M31.2092 22.9436C30.6771 27.252 27.2522 30.677 22.9437 31.2091V39.9991C32.0963 39.423 39.4223 32.1087 39.9991 22.9436H31.2092Z"
+                    fill="white"
+                  />
+                </svg>
+              </span> -->
+            </div>
+            <div class="tp-service-content">
+              <h3 class="mb-15">
+                <a class="underline-black" href="service-details.html"
+                  >Business Assistance</a
+                >
+              </h3>
+              <p class="mb-40">
+                Business assistance involves providing strategic advice and
+                support to help companies grow, streamline operations, and
+                achieve long-term goals.
+              </p>
+              <h5 class="fs-16 fw-500 mb-10">Business strategy consulting</h5>
+              <span class="tp-border-bottom d-block mb-20"></span>
+              <ul>
+                <li>
+                  <i class="fa-sharp fa-solid fa-check"></i> Operational
+                  efficiency consulting
+                </li>
+                <li>
+                  <i class="fa-sharp fa-solid fa-check"></i>SME advisory
+                  services
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+          <div
+            class="tp-service-item border-full-1 p-relative tp-round-4 mb-30 wow fadeInUp"
+            data-wow-delay=".3s"
+            data-wow-duration=".9s"
+          >
+            <div class="tp-service-shape p-absolute">
+              <svg
+                width="90"
+                height="90"
+                viewBox="0 0 90 90"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M50 50H90V86C90 88.2091 88.2091 90 86 90H50V50Z"
+                  fill="white"
+                />
+                <path
+                  d="M20 20H46C48.2091 20 50 21.7909 50 24V50H24C21.7909 50 20 48.2091 20 46V20Z"
+                  fill="white"
+                />
+                <path
+                  d="M0 0H16C18.2091 0 20 1.79086 20 4V20H4C1.79086 20 0 18.2091 0 16V0Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <div class="tp-service-thumb p-relative mb-35 tp-round-4 fix">
+              <img
+                class="tp-round-4 w-100"
+                src="static/images/about/image.jpg"
+                alt=""
+              />
+              <!-- <span class="tp-service-icon p-absolute">
+                <svg
+                  width="36"
+                  height="40"
+                  viewBox="0 0 36 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M34.1355 16.6077L18.5348 1.00475C17.6148 0.0869379 16.1264 0.0977973 15.2184 1.00358C14.3051 1.91913 14.3051 3.4057 15.2184 4.32007L30.8213 19.9219C31.7353 20.836 33.2214 20.836 34.1355 19.9219C35.0521 19.0053 35.0521 17.5241 34.1355 16.6077Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M14.0609 6.47705L13.9434 7.06565C13.1163 11.203 11.1062 15.1336 8.38733 18.3193L16.8754 26.8073C20.0607 24.089 23.9371 22.0249 28.0746 21.1968L28.6643 21.0793L14.0609 6.47705Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M6.8312 20.0774L1.03017 25.8772C-0.340537 27.248 -0.34624 29.4733 1.03017 30.8497L4.3444 34.1639C5.7151 35.5346 7.94042 35.5402 9.31683 34.1639L15.1173 28.3634L6.8312 20.0774ZM7.65979 29.1926C7.20206 29.6504 6.46042 29.6504 6.00268 29.1926C5.54495 28.7349 5.54495 27.9933 6.00268 27.5355L7.65979 25.8784C8.11753 25.4207 8.85917 25.4207 9.31691 25.8784C9.77464 26.3362 9.77464 27.0778 9.31691 27.5355L7.65979 29.1926Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M20.0103 34.7874L21.6044 33.1932C22.9809 31.817 22.9764 29.5916 21.6045 28.222L20.4204 27.0371C19.766 27.4767 19.141 27.9544 18.5333 28.4641L19.9474 29.8802C20.404 30.3345 20.4072 31.0739 19.9474 31.5362L18.3269 33.1567L15.9455 30.8494L12.6311 34.1638L17.9481 39.3159C18.8554 40.2256 20.3452 40.2307 21.2611 39.3147C22.1755 38.4003 22.1755 36.9138 21.2611 35.9993L20.0103 34.7874Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M24.7444 0C24.0967 0 23.5725 0.524142 23.5725 1.17188V3.51563C23.5725 4.16337 24.0967 4.68751 24.7444 4.68751C25.3921 4.68751 25.9163 4.16337 25.9163 3.51563V1.17188C25.9163 0.524142 25.3921 0 24.7444 0Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M34.1195 9.375H31.7758C31.128 9.375 30.6039 9.89914 30.6039 10.5469C30.6039 11.1946 31.128 11.7188 31.7758 11.7188H34.1195C34.7673 11.7188 35.2914 11.1946 35.2914 10.5469C35.2914 9.89914 34.7673 9.375 34.1195 9.375Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M32.6042 2.68705C32.1464 2.22932 31.4048 2.22932 30.9471 2.68705L28.6033 5.03081C28.1456 5.48854 28.1456 6.23018 28.6033 6.68792C29.061 7.14566 29.8027 7.14573 30.2604 6.68792L32.6042 4.34416C33.0619 3.88643 33.0619 3.14479 32.6042 2.68705Z"
+                    fill="white"
+                  />
+                </svg>
+              </span> -->
+            </div>
+            <div class="tp-service-content">
+              <h3 class="mb-15">
+                <a class="underline-black" href="service-details.html"
+                  >Exports & Imports Promotion</a
+                >
+              </h3>
+              <p class="mb-40">
+                Exports and imports promotion focuses on helping businesses
+                expand into international markets and navigate global trade
+                effectively.
+              </p>
+              <h5 class="fs-16 fw-500 mb-10">International trade advisory</h5>
+              <span class="tp-border-bottom d-block mb-20"></span>
+              <ul>
+                <li>
+                  <i class="fa-sharp fa-solid fa-check"></i>Trade documentation
+                  & compliance
+                </li>
+                <li>
+                  <i class="fa-sharp fa-solid fa-check"></i>Market entry support
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+          <div
+            class="tp-service-item border-full-1 p-relative tp-round-4 mb-30 wow fadeInRight"
+            data-wow-delay=".3s"
+            data-wow-duration=".9s"
+          >
+            <div class="tp-service-shape p-absolute">
+              <svg
+                width="90"
+                height="90"
+                viewBox="0 0 90 90"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M50 50H90V86C90 88.2091 88.2091 90 86 90H50V50Z"
+                  fill="white"
+                />
+                <path
+                  d="M20 20H46C48.2091 20 50 21.7909 50 24V50H24C21.7909 50 20 48.2091 20 46V20Z"
+                  fill="white"
+                />
+                <path
+                  d="M0 0H16C18.2091 0 20 1.79086 20 4V20H4C1.79086 20 0 18.2091 0 16V0Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <div class="tp-service-thumb p-relative mb-35 tp-round-4 fix">
+              <img
+                class="tp-round-4 w-100"
+                src="static/images/about/image.jpg"
+                alt=""
+              />
+              <!-- <span class="tp-service-icon p-absolute">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.9993 0.00136655C8.96189 0.00136655 0 8.96325 0 20.0007C0 31.0381 8.96189 40 19.9993 40C31.0367 40 39.9986 31.0381 39.9986 20.0007C39.9986 16.9329 39.3045 14.0259 38.0677 11.4267L36.0821 13.4123C35.7072 13.7894 35.1959 14.002 34.6642 14.0021H34.1121C34.898 15.8454 35.3334 17.8724 35.3334 20.0007C35.3334 28.4609 28.4595 35.3347 19.9993 35.3347C11.5391 35.3347 4.66521 28.4609 4.66521 20.0007C4.66521 11.5405 11.5391 4.66648 19.9993 4.66648C22.128 4.66648 24.1555 5.1017 25.9991 5.88784V5.33575C25.9992 4.80402 26.2119 4.29281 26.5889 3.91786L28.5732 1.93228C25.974 0.69551 23.067 0.00136655 19.9993 0.00136655ZM32.6473 0.00136655C32.4767 0.00645421 32.3145 0.0767255 32.1942 0.197826L27.529 4.86302C27.4667 4.92497 27.4173 4.99867 27.3835 5.07978C27.3498 5.16089 27.3324 5.24783 27.3324 5.33568V9.72752L18.5293 18.5306C17.7223 19.3376 17.7223 20.6675 18.5293 21.4745C19.3363 22.2815 20.6623 22.2775 21.4693 21.4694L30.2711 12.6676H34.6642C34.752 12.6676 34.839 12.6503 34.9201 12.6166C35.0012 12.5829 35.0749 12.5335 35.1368 12.4712L39.802 7.80591C39.8948 7.71252 39.9579 7.59378 39.9833 7.46459C40.0087 7.33539 39.9953 7.20155 39.9448 7.07997C39.8942 6.9584 39.8088 6.8545 39.6993 6.7814C39.5898 6.7083 39.4611 6.66926 39.3294 6.66922H36.2696L36.8008 6.13804C37.6078 5.33107 37.6117 4.00498 36.8049 3.198C36.4014 2.79451 35.8665 2.59255 35.3323 2.59255C34.798 2.59255 34.2644 2.79461 33.861 3.198L33.331 3.72794V0.664253C33.3307 0.575487 33.3126 0.48767 33.2779 0.405973C33.2432 0.324275 33.1925 0.250373 33.1288 0.188522C33.0652 0.126671 32.9898 0.0781414 32.9071 0.0458102C32.8245 0.0134789 32.7361 -0.000878684 32.6473 0.00136655ZM19.9993 9.33176C14.1164 9.33176 9.33041 14.1177 9.33041 20.0007C9.33041 25.8836 14.1164 30.6644 19.9993 30.6644C25.8823 30.6644 30.663 25.8836 30.663 20.0007C30.663 18.3034 30.256 16.7029 29.5485 15.2768L25.8962 18.929C25.9595 19.2773 25.9978 19.6345 25.9978 20.0007C25.9978 23.3064 23.305 25.9991 19.9993 25.9991C16.6936 25.9991 14.0008 23.3064 14.0008 20.0007C14.0008 16.695 16.6936 14.0021 19.9993 14.0021C20.3655 14.0021 20.7226 14.0404 21.0709 14.1037L24.7244 10.4502C23.2983 9.74119 21.6977 9.33176 19.9993 9.33176Z"
+                    fill="white"
+                  />
+                </svg>
+              </span> -->
+            </div>
+            <div class="tp-service-content">
+              <h3 class="mb-15">
+                <a class="underline-black" href="service-details.html"
+                  >Joint Ventures & Collaborations</a
+                >
+              </h3>
+              <p class="mb-40">
+                Joint ventures and collaborations help companies create
+                strategic alliances that drive innovation, growth, and global
+                reach.
+              </p>
+              <h5 class="fs-16 fw-500 mb-10">
+                Partnership development consulting
+              </h5>
+              <span class="tp-border-bottom d-block mb-20"></span>
+              <ul>
+                <li>
+                  <i class="fa-sharp fa-solid fa-check"></i>M&A and alliance
+                  structuring
+                </li>
+                <li>
+                  <i class="fa-sharp fa-solid fa-check"></i>Cross-border
+                  collaboration advisory
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+          <div
+            class="tp-service-item border-full-1 p-relative tp-round-4 mb-30 wow fadeInRight"
+            data-wow-delay=".3s"
+            data-wow-duration=".9s"
+          >
+            <div class="tp-service-shape p-absolute">
+              <svg
+                width="90"
+                height="90"
+                viewBox="0 0 90 90"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M50 50H90V86C90 88.2091 88.2091 90 86 90H50V50Z"
+                  fill="white"
+                />
+                <path
+                  d="M20 20H46C48.2091 20 50 21.7909 50 24V50H24C21.7909 50 20 48.2091 20 46V20Z"
+                  fill="white"
+                />
+                <path
+                  d="M0 0H16C18.2091 0 20 1.79086 20 4V20H4C1.79086 20 0 18.2091 0 16V0Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <div class="tp-service-thumb p-relative mb-35 tp-round-4 fix">
+              <img
+                class="tp-round-4 w-100"
+                src="static/images/about/image.jpg"
+                alt=""
+              />
+              <!-- <span class="tp-service-icon p-absolute">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.9993 0.00136655C8.96189 0.00136655 0 8.96325 0 20.0007C0 31.0381 8.96189 40 19.9993 40C31.0367 40 39.9986 31.0381 39.9986 20.0007C39.9986 16.9329 39.3045 14.0259 38.0677 11.4267L36.0821 13.4123C35.7072 13.7894 35.1959 14.002 34.6642 14.0021H34.1121C34.898 15.8454 35.3334 17.8724 35.3334 20.0007C35.3334 28.4609 28.4595 35.3347 19.9993 35.3347C11.5391 35.3347 4.66521 28.4609 4.66521 20.0007C4.66521 11.5405 11.5391 4.66648 19.9993 4.66648C22.128 4.66648 24.1555 5.1017 25.9991 5.88784V5.33575C25.9992 4.80402 26.2119 4.29281 26.5889 3.91786L28.5732 1.93228C25.974 0.69551 23.067 0.00136655 19.9993 0.00136655ZM32.6473 0.00136655C32.4767 0.00645421 32.3145 0.0767255 32.1942 0.197826L27.529 4.86302C27.4667 4.92497 27.4173 4.99867 27.3835 5.07978C27.3498 5.16089 27.3324 5.24783 27.3324 5.33568V9.72752L18.5293 18.5306C17.7223 19.3376 17.7223 20.6675 18.5293 21.4745C19.3363 22.2815 20.6623 22.2775 21.4693 21.4694L30.2711 12.6676H34.6642C34.752 12.6676 34.839 12.6503 34.9201 12.6166C35.0012 12.5829 35.0749 12.5335 35.1368 12.4712L39.802 7.80591C39.8948 7.71252 39.9579 7.59378 39.9833 7.46459C40.0087 7.33539 39.9953 7.20155 39.9448 7.07997C39.8942 6.9584 39.8088 6.8545 39.6993 6.7814C39.5898 6.7083 39.4611 6.66926 39.3294 6.66922H36.2696L36.8008 6.13804C37.6078 5.33107 37.6117 4.00498 36.8049 3.198C36.4014 2.79451 35.8665 2.59255 35.3323 2.59255C34.798 2.59255 34.2644 2.79461 33.861 3.198L33.331 3.72794V0.664253C33.3307 0.575487 33.3126 0.48767 33.2779 0.405973C33.2432 0.324275 33.1925 0.250373 33.1288 0.188522C33.0652 0.126671 32.9898 0.0781414 32.9071 0.0458102C32.8245 0.0134789 32.7361 -0.000878684 32.6473 0.00136655ZM19.9993 9.33176C14.1164 9.33176 9.33041 14.1177 9.33041 20.0007C9.33041 25.8836 14.1164 30.6644 19.9993 30.6644C25.8823 30.6644 30.663 25.8836 30.663 20.0007C30.663 18.3034 30.256 16.7029 29.5485 15.2768L25.8962 18.929C25.9595 19.2773 25.9978 19.6345 25.9978 20.0007C25.9978 23.3064 23.305 25.9991 19.9993 25.9991C16.6936 25.9991 14.0008 23.3064 14.0008 20.0007C14.0008 16.695 16.6936 14.0021 19.9993 14.0021C20.3655 14.0021 20.7226 14.0404 21.0709 14.1037L24.7244 10.4502C23.2983 9.74119 21.6977 9.33176 19.9993 9.33176Z"
+                    fill="white"
+                  />
+                </svg>
+              </span> -->
+            </div>
+            <div class="tp-service-content">
+              <h3 class="mb-15">
+                <a class="underline-black" href="service-details.html"
+                  >Technology Transfers</a
+                >
+              </h3>
+              <p class="mb-40">
+                Technology transfers enable businesses to adopt, adapt, and
+                integrate new technologies that enhance efficiency and
+                competitiveness.
+              </p>
+              <h5 class="fs-16 fw-500 mb-10">Tech sourcing & acquisition</h5>
+              <span class="tp-border-bottom d-block mb-20"></span>
+              <ul>
+                <li>
+                  <i class="fa-sharp fa-solid fa-check"></i>Implementation &
+                  integration consulting
+                </li>
+                <li>
+                  <i class="fa-sharp fa-solid fa-check"></i>IP & licensing
+                  advisory
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 col-lg-6 col-md-6 mb-30">
+          <div
+            class="tp-service-3-wrap-2 tpshake-wrap tp-round-4 h-100 bg-position d-flex align-items-end w-[70vw]"
+            data-background="static/images/about/image.jpg"
+          >
+            <div>
+              <span class="d-inline-block mb-25">
+                <svg
+                  class="tpshake"
+                  width="36"
+                  height="36"
+                  viewBox="0 0 36 36"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M36 10.4999L25.5015 0V10.4999H36Z" fill="#F8D0B3" />
+                  <path
+                    d="M12.0006 10.4998C7.8579 10.4998 4.5 13.8572 4.5 17.9999C4.5 19.5277 4.9617 20.9452 5.7465 22.1309L0.4374 27.4396C-0.1458 28.0223 -0.1458 28.9777 0.4374 29.5604C1.0206 30.1468 1.97505 30.1468 2.5587 29.5604L7.86735 24.2518C9.0531 25.0366 10.4719 25.4996 12.001 25.4996C16.1429 25.4996 19.4999 22.1422 19.4999 17.9995C19.4994 13.8572 16.1429 10.4998 12.0006 10.4998ZM12.0006 22.4999C9.51435 22.4999 7.4997 20.4853 7.4997 17.9999C7.4997 15.5155 9.51435 13.5004 12.0006 13.5004C14.4855 13.5004 16.4997 15.5159 16.4997 17.9999C16.5002 20.4853 14.486 22.4999 12.0006 22.4999Z"
+                    fill="#F8D0B3"
+                  />
+                  <path
+                    d="M25.5015 13.5C23.8428 13.5 22.5009 12.1554 22.5009 10.4994V0H12.0006C10.3432 0 9 1.3419 9 2.997V8.7336C12.3727 7.6482 16.2216 8.433 18.8928 11.1064C20.9844 13.1971 21.9199 16.0096 21.7098 18.7497H31.5V20.9997H21.2661C20.9232 22.0658 20.3949 23.0809 19.6753 23.9994H31.5V26.2503H17.1823C14.7159 27.7996 11.7072 28.1381 9 27.2682V32.9994C9 34.6554 10.345 36 12.0006 36H32.9994C34.6554 36 36 34.6554 36 32.9994V13.5H25.5015ZM31.5 31.5H13.5V29.25H31.5V31.5Z"
+                    fill="#F8D0B3"
+                  />
+                </svg>
+              </span>
+              <h3 class="fw-500 fs-26 ls-m-3 mb-15 tp-text-common-white">
+                <a href="service.html" class="underline-white d-inline-block"
+                  >Looking more?</a
+                >
+              </h3>
+              <p class="tp-text-grey-3 mb-30">
+                We listen, we care what people find and then we analysis to find
+                the problem
+              </p>
+              <a
+                href="service.html"
+                class="tp-btn-md d-inline-block lh-0 tp-round-24 fs-16 tp-bg-common-white ls-0 tp-btn-switch-animation tp-text-theme-primary hover-text-primary fw-500"
+              >
+                <span class="d-flex align-items-center justify-content-center">
+                  <span class="btn-text">View more</span>
+                  <span class="btn-icon"
+                    ><i class="fa-solid fa-arrow-right"></i
+                  ></span>
+                  <span class="btn-icon"
+                    ><i class="fa-solid fa-arrow-right"></i
+                  ></span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- tp-service-area-end -->
+
+  <!-- Future Milestones-start -->
+  <div class="tp-industry-area tp-bg-grey-3 pt-20 pb-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="tp-industry-section-title-wrap text-center mb-50">
+            <span
+              class="tp-section-subtitle fw-500 tp-text-grey-1 d-flex align-items-center justify-content-center gap-2 mb-10"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.7 10.2C1.2325 10.2 0.832431 10.0334 0.4998 9.7002C0.1666 9.36759 0 8.9675 0 8.5C0 8.0325 0.1666 7.63215 0.4998 7.29895C0.832431 6.96635 1.2325 6.8 1.7 6.8C2.1675 6.8 2.56757 6.96635 2.9002 7.29895C3.2334 7.63215 3.4 8.0325 3.4 8.5C3.4 8.9675 3.2334 9.36759 2.9002 9.7002C2.56757 10.0334 2.1675 10.2 1.7 10.2ZM3.1025 15.045L1.9125 13.855L5.61 10.1575L6.8 11.3475L3.1025 15.045ZM5.6525 6.8L1.955 3.1025L3.145 1.9125L6.8425 5.61L5.6525 6.8ZM8.5 17C8.0325 17 7.63241 16.8337 7.2998 16.5011C6.9666 16.1679 6.8 15.7675 6.8 15.3C6.8 14.8325 6.9666 14.4321 7.2998 14.099C7.63241 13.7663 8.0325 13.6 8.5 13.6C8.9675 13.6 9.36785 13.7663 9.70105 14.099C10.0337 14.4321 10.2 14.8325 10.2 15.3C10.2 15.7675 10.0337 16.1679 9.70105 16.5011C9.36785 16.8337 8.9675 17 8.5 17ZM8.5 3.4C8.0325 3.4 7.63241 3.2334 7.2998 2.9002C6.9666 2.56757 6.8 2.1675 6.8 1.7C6.8 1.2325 6.9666 0.83215 7.2998 0.49895C7.63241 0.166319 8.0325 0 8.5 0C8.9675 0 9.36785 0.166319 9.70105 0.49895C10.0337 0.83215 10.2 1.2325 10.2 1.7C10.2 2.1675 10.0337 2.56757 9.70105 2.9002C9.36785 3.2334 8.9675 3.4 8.5 3.4ZM11.3475 6.8425L10.1575 5.61L13.8975 1.9125L15.0875 3.1025L11.3475 6.8425ZM13.8975 15.045L10.2 11.3475L11.39 10.1575L15.0875 13.855L13.8975 15.045ZM15.3 10.2C14.8325 10.2 14.4321 10.0334 14.099 9.7002C13.7663 9.36759 13.6 8.9675 13.6 8.5C13.6 8.0325 13.7663 7.63215 14.099 7.29895C14.4321 6.96635 14.8325 6.8 15.3 6.8C15.7675 6.8 16.1679 6.96635 16.5011 7.29895C16.8337 7.63215 17 8.0325 17 8.5C17 8.9675 16.8337 9.36759 16.5011 9.7002C16.1679 10.0334 15.7675 10.2 15.3 10.2Z"
+                  fill="#1F3130"
+                />
+              </svg>
+              Future Milestones
+            </span>
+            <h2
+              class="mb-25 wow img-custom-anim-left"
+              data-wow-duration="1.5s"
+              data-wow-delay="0.2s"
+            >
+              Industries We Foster for
+              <span class="tp-text-grey-1 text-italic fw-400 tp-ff-heading"
+                >Global Collaboration</span
+              >
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-6 col-md-6">
+          <a
+            href="#"
+            class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+            style="height: 26vh; width: 21vw; padding: 9px 4px"
+          >
+            <span class="tp-industry-icon d-inline-block tp-text-theme-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-12"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
+                />
+              </svg>
+            </span>
+            <div class="border-right"></div>
+            <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+              Global<br />
+              Expansion
+            </h5> -->
+            <div class="text-center flex flex-col items-center justify-center">
+              <h5 class="text-lg font-semibold">Global Expansion</h5>
+              <span class="hover:text-white text-sm">
+                Establish presence in new countries or regions to broaden the
+                international network and reach
+              </span>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+          <a
+            href="#"
+            class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+            style="height: 26vh; width: 21vw; padding: 9px 4px"
+          >
+            <span class="tp-industry-icon d-inline-block tp-text-theme-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-12"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                />
+              </svg>
+            </span>
+            <div class="border-right"></div>
+            <div class="text-center flex flex-col items-center justify-center">
+              <h5 class="text-lg font-semibold">Membership Growth</h5>
+              <span class="hover:text-white text-sm">
+                Increase membership base by attracting businesses from diverse
+                industries and geographical locations
+              </span>
+            </div>
+            <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+              Membership<br />
+              Growth
+            </h5> -->
+          </a>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+          <a
+            href="#"
+            class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+            style="height: 26vh; width: 21vw; padding: 9px 4px"
+          >
+            <span class="tp-industry-icon d-inline-block tp-text-theme-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-handshake-icon lucide-handshake"
+              >
+                <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                <path
+                  d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"
+                />
+                <path d="m21 3 1 11h-2" />
+                <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                <path d="M3 4h8" />
+              </svg>
+            </span>
+            <div class="border-right"></div>
+            <div class="text-center flex flex-col items-center justify-center">
+              <h5 class="text-lg font-semibold">Trade Facilitation</h5>
+              <span class="hover:text-white text-sm">
+                Facilitate an increase in international trade agreements and
+                partnerships to promote cross-border business opportunities
+              </span>
+            </div>
+            <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+              Trade<br />
+              Facilitation
+            </h5> -->
+          </a>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+          <a
+            href="#"
+            class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+            style="height: 26vh; width: 21vw; padding: 9px 4px"
+          >
+            <span class="tp-industry-icon d-inline-block tp-text-theme-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-12"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205 12 12m6.894 5.785-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+                />
+              </svg>
+            </span>
+            <div class="border-right"></div>
+            <div class="text-center flex flex-col items-center justify-center">
+              <h5 class="text-lg font-semibold">Technology Integration</h5>
+              <span class="hover:text-white text-sm">
+                Implement advanced technologies to enhance communication,
+                collaboration, and services for members
+              </span>
+            </div>
+            <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+              Technology<br />
+              Integration
+            </h5> -->
+          </a>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-xl-9">
+          <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-6 col-md-6">
+              <a
+                href="#"
+                class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+                style="height: 26vh; width: 21vw; padding: 9px 4px"
+              >
+                <span
+                  class="tp-industry-icon d-inline-block tp-text-theme-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="50"
+                    height="50"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-scale-icon lucide-scale"
+                  >
+                    <path
+                      d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"
+                    />
+                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                    <path d="M7 21h10" />
+                    <path d="M12 3v18" />
+                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                  </svg>
+                </span>
+                <div class="border-right"></div>
+                <div
+                  class="text-center flex flex-col items-center justify-center"
+                >
+                  <h5 class="text-lg font-semibold">Policy Advocacy</h5>
+                  <span class="hover:text-white text-sm">
+                    Successfully advocate for policies that foster international
+                    trade, economic growth, and business-friendly environments
+                  </span>
+                </div>
+                <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+                  Policy<br />Advocacy
+                </h5> -->
+              </a>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6">
+              <a
+                href="#"
+                class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+                style="height: 26vh; width: 21vw; padding: 9px 4px"
+              >
+                <span
+                  class="tp-industry-icon d-inline-block tp-text-theme-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-12"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                    />
+                  </svg>
+                </span>
+                <div class="border-right"></div>
+                <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+                  Innovation<br />
+                  Hub
+                </h5> -->
+                <div
+                  class="text-center flex flex-col items-center justify-center"
+                >
+                  <h5 class="text-lg font-semibold">Innovation Hub</h5>
+                  <span class="hover:text-white text-sm">
+                    Create an innovation hub or platform that encourages
+                    research, development, and collaboration among member
+                    businesses
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6">
+              <a
+                href="#"
+                class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+                style="height: 26vh; width: 21vw; padding: 9px 4px"
+              >
+                <span
+                  class="tp-industry-icon d-inline-block tp-text-theme-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="50"
+                    height="50"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-graduation-cap-icon lucide-graduation-cap"
+                  >
+                    <path
+                      d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
+                    />
+                    <path d="M22 10v6" />
+                    <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+                  </svg>
+                </span>
+                <div class="border-right"></div>
+                <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+                  Educational Training<br />
+                  Programs
+                </h5> -->
+                <div
+                  class="text-center flex flex-col items-center justify-center"
+                >
+                  <h5 class="text-lg font-semibold">
+                    Educational Training Programs
+                  </h5>
+                  <span class="hover:text-white text-sm">
+                    Develop and expand educational programs to provide members
+                    with the necessary knowledge and skills for global business
+                    success.
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6">
+              <a
+                href="#"
+                class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+                style="height: 26vh; width: 21vw; padding: 9px 4px"
+              >
+                <span
+                  class="tp-industry-icon d-inline-block tp-text-theme-primary"
+                >
+                  <svg
+                    width="44"
+                    height="44"
+                    viewBox="0 0 44 44"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.82294 18.1524C0.923578 18.2983 0.227861 19.0193 0.114273 19.9234C-0.036743 21.2927 -0.0382633 22.6744 0.109857 24.044C0.213093 24.962 0.913081 25.7 1.82439 25.8516L4.15783 26.2337C4.60581 28.1418 5.36205 29.9641 6.39665 31.6288L5.02317 33.5472C4.47586 34.2892 4.48911 35.3048 5.05546 36.0324C5.49258 36.5672 5.95772 37.0786 6.44877 37.5644C6.89907 38.0154 7.39693 38.4686 7.99463 38.9709C8.71648 39.526 9.71814 39.5376 10.4527 38.9995L12.3806 37.6164C14.0436 38.6509 15.8641 39.4073 17.7706 39.856L18.1534 42.1931C18.2989 43.0927 19.0201 43.7888 19.9244 43.9025C20.3424 43.9494 20.767 43.9824 21.1945 44H21.2568C21.639 43.9997 22.0066 43.8527 22.2835 43.5893C22.5714 43.3142 22.7338 42.933 22.733 42.5348V36.6579C22.7286 35.8726 22.1088 35.2289 21.3242 35.1949C14.3053 34.8285 8.80212 29.0305 8.80212 22.002C8.80212 14.9735 14.3053 9.17556 21.3242 8.80909C22.11 8.77463 22.7302 8.12901 22.733 7.34244V1.46852C22.7341 1.06984 22.5713 0.688314 22.2827 0.413285C21.9945 0.130582 21.6012 -0.0186246 21.1981 0.00186322C20.7713 0.0187313 20.3481 0.0494992 19.914 0.0935154C19.0102 0.209999 18.2925 0.91035 18.154 1.81094L17.7719 4.14583C15.8655 4.59483 14.045 5.3515 12.382 6.38617L10.4541 5.00603C9.71271 4.46386 8.70135 4.48001 7.97769 5.04563C7.44602 5.48087 6.93715 5.94319 6.45312 6.43091C5.95424 6.91857 5.48462 7.43525 5.04663 7.97821C4.48708 8.70101 4.47275 9.70665 5.01144 10.4451L6.39375 12.3753C5.36002 14.0398 4.6048 15.8619 4.15783 17.7697L1.82294 18.1524ZM5.48447 18.5616C5.91081 16.4904 6.72873 14.5196 7.89422 12.7551C8.06123 12.5014 8.0545 12.171 7.87735 11.9243L6.20466 9.58864C6.05002 9.38456 6.04553 9.10381 6.19365 8.89488C6.59559 8.39673 7.02685 7.9229 7.48504 7.47586C7.93012 7.02629 8.39758 6.59938 8.88567 6.19693C9.09576 6.03679 9.38693 6.03679 9.59702 6.19693L11.929 7.87042C12.176 8.04713 12.5064 8.05322 12.7599 7.88584C14.5229 6.71991 16.4925 5.9017 18.5627 5.47537C18.8603 5.41405 19.0893 5.17544 19.1384 4.8755L19.5996 2.05144C19.6328 1.79813 19.8273 1.59615 20.0793 1.55351C20.4671 1.51318 20.8603 1.48459 21.2665 1.46844L21.2504 7.34309C13.4431 7.74184 7.31867 14.1906 7.32302 22.0081C7.32729 29.8256 13.4588 36.2676 21.2665 36.6578L21.2563 42.5346C20.8624 42.5185 20.4724 42.4877 20.0874 42.4444C19.8343 42.4075 19.6359 42.2079 19.6004 41.9545L19.1384 39.129C19.0893 38.8291 18.8604 38.5906 18.5627 38.5292C16.4925 38.1025 14.5229 37.2841 12.7599 36.118C12.5063 35.9507 12.176 35.9572 11.929 36.1341L9.59485 37.8091C9.39576 37.9638 9.11921 37.9713 8.91209 37.8274C8.37311 37.3735 7.90594 36.9474 7.48504 36.5272C7.03539 36.0829 6.60877 35.6159 6.20683 35.128C6.04865 34.9167 6.04865 34.6265 6.20683 34.4152L7.87807 32.0817C8.05501 31.8349 8.06145 31.5045 7.89422 31.2509C6.72865 29.4867 5.91073 27.5161 5.48447 25.4451C5.42322 25.1477 5.18497 24.9188 4.88533 24.8694L2.06199 24.4067C1.7992 24.3633 1.59743 24.1501 1.56847 23.8853C1.43114 22.624 1.43259 21.3513 1.57289 20.0904C1.60938 19.837 1.80861 19.6381 2.06199 19.602L4.88453 19.1399C5.18533 19.0907 5.42417 18.8604 5.48447 18.5616Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M41.7996 19.8012C40.8707 19.8051 40.0443 20.392 39.7346 21.2679H22.7331V19.0679H34.4664C35.6814 19.0679 36.6663 18.0829 36.6663 16.8679V13.0664C37.6765 12.7093 38.2825 11.6763 38.1013 10.6202C37.92 9.5642 37.0044 8.79225 35.9329 8.79225C34.8615 8.79225 33.9458 9.5642 33.7646 10.6202C33.5834 11.6763 34.1894 12.7093 35.1996 13.0664V16.8679C35.1996 17.2729 34.8713 17.6013 34.4662 17.6013H22.7331V15.4013H30.7997C31.2047 15.4013 31.533 15.073 31.533 14.6679C31.533 14.2629 31.2047 13.9345 30.7997 13.9345H22.7331V12.4679H27.1331C28.3481 12.4679 29.3331 11.483 29.3331 10.2679V5.73312C30.3433 5.37599 30.9493 4.34299 30.7681 3.28696C30.5869 2.23093 29.6712 1.45898 28.5998 1.45898C27.5283 1.45898 26.6127 2.23093 26.4314 3.28696C26.2502 4.34299 26.8562 5.37599 27.8664 5.73312V10.268C27.8664 10.673 27.5381 11.0014 27.133 11.0014H22.5395C22.2872 10.5325 21.7837 10.2548 21.2525 10.2916C15.0728 10.683 10.261 15.8092 10.261 22.0013C10.261 28.1934 15.0728 33.3196 21.2525 33.7111H21.3383C21.8393 33.7153 22.3015 33.4421 22.5395 33.0012H27.133C27.538 33.0012 27.8664 33.3296 27.8664 33.7346V38.2695C26.8562 38.6266 26.2502 39.6596 26.4314 40.7157C26.6127 41.7717 27.5283 42.5436 28.5998 42.5436C29.6712 42.5436 30.5869 41.7717 30.7681 40.7157C30.9493 39.6596 30.3433 38.6266 29.3331 38.2695V33.7346C29.3331 32.5196 28.3482 31.5346 27.1331 31.5346H22.7331V30.0679H30.7997C31.2047 30.0679 31.533 29.7396 31.533 29.3347C31.533 28.9297 31.2047 28.6013 30.7997 28.6013H22.7331V26.4013H34.4664C34.8713 26.4013 35.1997 26.7297 35.1997 27.1346V30.9362C34.1895 31.2933 33.5836 32.3263 33.7648 33.3823C33.946 34.4384 34.8616 35.2103 35.9331 35.2103C37.0045 35.2103 37.9202 34.4384 38.1014 33.3823C38.2826 32.3263 37.6767 31.2933 36.6665 30.9362V27.1346C36.6665 25.9196 35.6815 24.9347 34.4665 24.9347H22.7331V22.7345H39.7346C40.1093 23.7866 41.2138 24.3898 42.3015 24.1366C43.3892 23.8834 44.1137 22.8543 43.9853 21.7449C43.8568 20.6357 42.9163 19.7993 41.7996 19.8012ZM35.933 10.268C36.338 10.268 36.6663 10.5963 36.6663 11.0014C36.6663 11.4064 36.338 11.7347 35.933 11.7347C35.528 11.7347 35.1997 11.4064 35.1997 11.0014C35.1997 10.5963 35.528 10.268 35.933 10.268ZM28.5998 2.93476C29.0047 2.93476 29.3331 3.26307 29.3331 3.66812C29.3331 4.07317 29.0048 4.40141 28.5998 4.40141C28.1947 4.40141 27.8665 4.0731 27.8665 3.66812C27.8665 3.26314 28.1947 2.93476 28.5998 2.93476ZM28.5998 41.0677C28.1948 41.0677 27.8665 40.7394 27.8665 40.3344C27.8665 39.9293 28.1948 39.601 28.5998 39.601C29.0047 39.601 29.3331 39.9293 29.3331 40.3344C29.3331 40.7394 29.0047 41.0677 28.5998 41.0677ZM35.933 33.7345C35.528 33.7345 35.1997 33.4062 35.1997 33.0011C35.1997 32.5961 35.528 32.2678 35.933 32.2678C36.338 32.2678 36.6663 32.5961 36.6663 33.0011C36.6663 33.4061 36.338 33.7345 35.933 33.7345ZM11.7332 22.0012C11.7394 16.6182 15.8976 12.1517 21.2665 11.7611V32.2415C15.8976 31.8508 11.7394 27.3843 11.7332 22.0012ZM41.7996 22.7345C41.3947 22.7345 41.0663 22.4062 41.0663 22.0012C41.0663 21.5961 41.3946 21.2679 41.7996 21.2679C42.2047 21.2679 42.533 21.5962 42.533 22.0012C42.533 22.4061 42.2046 22.7345 41.7996 22.7345Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <div class="border-right"></div>
+                <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+                  Cross-Cultural Training<br />
+                  Programs
+                </h5> -->
+                <div
+                  class="text-center flex flex-col items-center justify-center"
+                >
+                  <h5 class="text-lg font-semibold">
+                    Cross-Cultural Training Programs
+                  </h5>
+                  <span class="hover:text-white text-sm">
+                    Offer cross-cultural training programs to help businesses
+                    navigate cultural differences and conduct successful
+                    international negotiations
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6">
+              <a
+                href="#"
+                class="tp-industry-content d-flex align-items-center tp-round-4 mb-30"
+                style="height: 26vh; width: 21vw; padding: 9px 4px"
+              >
+                <span
+                  class="tp-industry-icon d-inline-block tp-text-theme-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-12"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"
+                    />
+                  </svg>
+                </span>
+                <div class="border-right"></div>
+                <!-- <h5 class="fw-500 fs-18 mb-0 ml-25 pt-10 pb-10 pr-10">
+                  Digital Trade<br />
+                  Platforms
+                </h5> -->
+                <div
+                  class="text-center flex flex-col items-center justify-center"
+                >
+                  <h5 class="text-lg font-semibold">International Events</h5>
+                  <span class="hover:text-white text-sm">
+                    Host international conferences, trade fairs, and events to
+                    showcase members, attract investment, and foster global
+                    partnerships
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Future Milestones-end -->
+
+  <div
+    class="w-full min-h-[40vh] font-sans py-12 md:py-16 lg:py-20"
+    style="
+      background-image: url('static/images/hero/banner.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    "
+  >
+    <!-- Content Wrapper -->
+    <div class="flex flex-col justify-center h-full py-4 px-4">
+      <!-- Project Facts Section -->
+      <div class="flex flex-wrap justify-center">
+        <!-- Item 1 -->
+        <div
+          class="w-full sm:w-1/2 lg:w-1/4 p-2"
+          data-aos="fade-right"
+          data-aos-delay="900"
+        >
+          <div
+            class="h-full bg-gradient-to-br from-black/40 to-black/60 shadow-xl rounded-xl flex flex-col justify-center items-center p-6 md:p-8 text-center transition-all duration-300 hover:scale-105 hover:from-black/50 hover:to-black/70 cursor-pointer transform-gpu"
+          >
+            <i class="fa fa-briefcase text-5xl mb-3 text-white"></i>
+            <h2
+              class="number text-5xl font-extrabold mb-3 text-white"
+              data-target="12"
+            >
+              0+
+            </h2>
+            <div class="h-0.5 w-16 bg-white mb-2"></div>
+            <h3 class="text-lg font-medium text-white">Projects done</h3>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div
+          class="w-full sm:w-1/2 lg:w-1/4 p-2"
+          data-aos="fade-right"
+          data-aos-delay="1000"
+        >
+          <div
+            class="h-full bg-gradient-to-br from-black/40 to-black/60 shadow-xl rounded-xl flex flex-col justify-center items-center p-6 md:p-8 text-center transition-all duration-300 hover:scale-105 hover:from-black/50 hover:to-black/70 cursor-pointer transform-gpu"
+          >
+            <i class="fa fa-smile-o text-5xl mb-3 text-white"></i>
+            <h2
+              class="number text-5xl font-extrabold mb-3 text-white"
+              data-target="55"
+            >
+              0
+            </h2>
+            <div class="h-0.5 w-16 bg-white mb-2"></div>
+            <h3 class="text-lg font-medium text-white">Happy clients</h3>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div
+          class="w-full sm:w-1/2 lg:w-1/4 p-2"
+          data-aos="fade-right"
+          data-aos-delay="1100"
+        >
+          <div
+            class="h-full bg-gradient-to-br from-black/40 to-black/60 shadow-xl rounded-xl flex flex-col justify-center items-center p-6 md:p-8 text-center transition-all duration-300 hover:scale-105 hover:from-black/50 hover:to-black/70 cursor-pointer transform-gpu"
+          >
+            <i class="fa fa-coffee text-5xl mb-3 text-white"></i>
+            <h2
+              class="number text-5xl font-extrabold mb-3 text-white"
+              data-target="359"
+            >
+              0
+            </h2>
+            <div class="h-0.5 w-16 bg-white mb-2"></div>
+            <h3 class="text-lg font-medium text-white">Cups of coffee</h3>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div
+          class="w-full sm:w-1/2 lg:w-1/4 p-2"
+          data-aos="fade-right"
+          data-aos-delay="1200"
+        >
+          <div
+            class="h-full bg-gradient-to-br from-black/40 to-black/60 shadow-xl rounded-xl flex flex-col justify-center items-center p-6 md:p-8 text-center transition-all duration-300 hover:scale-105 hover:from-black/50 hover:to-black/70 cursor-pointer transform-gpu"
+          >
+            <i class="fa fa-camera text-5xl mb-3 text-white"></i>
+            <h2
+              class="number text-5xl font-extrabold mb-3 text-white"
+              data-target="246"
+            >
+              0
+            </h2>
+            <div class="h-0.5 w-16 bg-white mb-2"></div>
+            <h3 class="text-lg font-medium text-white">Photos taken</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- tp-project-area-start -->
+  <div class="tp-project-area pt-10 pb-5 p-relative fix">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="tp-project-content pb-50">
+            <div class="d-sm-flex align-items-sm-center">
+              <h2 class="fs-80 tp-text-grey-2 mr-40">293+</h2>
+              <p class="fw-500 ls-m-2 mb-0">
+                Successful consulting<br />
+                projects complete
+              </p>
+            </div>
+            <div class="tp-border-bottom mt-25 mb-70"></div>
+            <div>
+              <h2
+                class="mb-20 wow img-custom-anim-left"
+                data-wow-duration="1.5s"
+                data-wow-delay="0.2s"
+              >
+                We've helped numerous of businesses get
+                <span class="tp-text-grey-1 text-italic fw-400 tp-ff-heading"
+                  >back on track.</span
+                >
+              </h2>
+              <p class="mb-40">
+                Our team is dedicated to crafting strategies that align with
+                vision, consulting services that address challenges, & driving
+                business development for expansion. We monitor your operations
+                with precision, ensuring continuous
+              </p>
+              <a
+                href="project.html"
+                class="tp-btn-xl d-inline-block lh-0 tp-round-24 fs-16 tp-bg-theme-primary ls-0 tp-btn-switch-animation tp-text-common-white hover-text-white fw-500"
+              >
+                <span class="d-flex align-items-center justify-content-center">
+                  <span class="btn-text"> View all case studies</span>
+                  <span class="btn-icon"
+                    ><i class="fa-solid fa-arrow-right"></i
+                  ></span>
+                  <span class="btn-icon"
+                    ><i class="fa-solid fa-arrow-right"></i
+                  ></span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="tp-project-thumb-wrap mb-40">
+            <div class="row gx-60 justify-content-center">
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <div
+                  class="tp-project-thumb"
+                  data-parallax='{"y": 20, "smoothness": 30}'
+                >
+                  <img
+                    class="w-100 tp-round-4 h-[50vh]"
+                    src="static/images/certifications/transService.jpeg"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <div
+                  class="tp-project-thumb"
+                  data-parallax='{"y": 20, "smoothness": 30}'
+                >
+                  <img
+                    class="w-100 tp-round-4"
+                    src="static/images/certifications/hargartiranga.jpeg"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <div
+                  class="tp-project-thumb-3"
+                  data-parallax='{"y": -20, "smoothness": 30}'
+                >
+                  <img
+                    class="w-100 tp-round-4"
+                    src="static/images/certifications/IEEE.jpeg"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- tp-project-area-end -->
+
+  <!-- Benefits of chamber start -->
+  <div class="tp-about-bottom-wrap p-relative fix tp-bg-common-white-2">
+    <div class="container-fluid p-0">
+      <div class="row align-items-center">
+        <div class="col-xl-6 col-lg-6 col-md-12 mb-4 mb-lg-0">
+          <div class="tp-about-bottom-content">
+            <h3 class="mb-35">
+              Benefits of joining the
+              <span class="tp-ff-heading tp-text-grey-1 text-italic fw-400"
+                >Trans Asian Chamber of Commerce & Industry</span
+              >
+            </h3>
+            <div class="tp-about-bottom-feature">
+              <ul>
+                <li>
+                  <span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8.83978 13.3222C8.93603 13.4075 9.08096 13.4093 9.17933 13.3242C11.3246 11.4628 13.2802 9.51058 15.6136 7.54059C15.8149 7.37056 15.9349 7.13292 15.9516 6.87085C16.0031 6.05639 15.0333 5.52305 14.3742 6.06824C12.9134 7.27471 11.6328 8.39908 10.4443 9.52112C9.73071 10.1947 8.61299 10.1908 7.95651 9.46142C7.56824 9.03024 6.86751 8.95563 6.39614 9.42126C5.98212 9.82993 5.96237 10.4859 6.35079 10.915C7.28829 11.9497 7.87687 12.4661 8.83978 13.3222Z"
+                        fill="#506767"
+                      />
+                      <path
+                        d="M3.80072 17.9489C7.08864 20.504 12.0632 20.705 15.508 18.3658C18.4679 16.3559 20.2041 12.4913 19.8901 8.90896C19.7028 3.58402 16.2428 0.268657 10.552 0.0095998C8.87823 -0.0697239 7.25166 0.344299 5.81753 1.18649C3.4219 2.31409 1.44101 4.35173 0.547132 6.85056C-0.855382 10.7713 0.512784 15.3939 3.80072 17.9489ZM2.65816 5.3857C4.2663 2.37732 7.13492 0.366469 10.5286 0.523028C16.157 0.779408 19.385 4.00323 19.385 9.36812C19.385 14.245 15.4174 18.2129 10.5403 18.2129C3.82042 18.2129 -0.336386 10.9882 2.65816 5.3857Z"
+                        fill="#506767"
+                      />
+                    </svg>
+                  </span>
+                  Genuine partnerships for Export, Import, and Technology
+                  Transfers
+                </li>
+                <li>
+                  <span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8.83978 13.3222C8.93603 13.4075 9.08096 13.4093 9.17933 13.3242C11.3246 11.4628 13.2802 9.51058 15.6136 7.54059C15.8149 7.37056 15.9349 7.13292 15.9516 6.87085C16.0031 6.05639 15.0333 5.52305 14.3742 6.06824C12.9134 7.27471 11.6328 8.39908 10.4443 9.52112C9.73071 10.1947 8.61299 10.1908 7.95651 9.46142C7.56824 9.03024 6.86751 8.95563 6.39614 9.42126C5.98212 9.82993 5.96237 10.4859 6.35079 10.915C7.28829 11.9497 7.87687 12.4661 8.83978 13.3222Z"
+                        fill="#506767"
+                      />
+                      <path
+                        d="M3.80072 17.9489C7.08864 20.504 12.0632 20.705 15.508 18.3658C18.4679 16.3559 20.2041 12.4913 19.8901 8.90896C19.7028 3.58402 16.2428 0.268657 10.552 0.0095998C8.87823 -0.0697239 7.25166 0.344299 5.81753 1.18649C3.4219 2.31409 1.44101 4.35173 0.547132 6.85056C-0.855382 10.7713 0.512784 15.3939 3.80072 17.9489ZM2.65816 5.3857C4.2663 2.37732 7.13492 0.366469 10.5286 0.523028C16.157 0.779408 19.385 4.00323 19.385 9.36812C19.385 14.245 15.4174 18.2129 10.5403 18.2129C3.82042 18.2129 -0.336386 10.9882 2.65816 5.3857Z"
+                        fill="#506767"
+                      />
+                    </svg>
+                  </span>
+                  Establishing international connections.
+                </li>
+                <li>
+                  <span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8.83978 13.3222C8.93603 13.4075 9.08096 13.4093 9.17933 13.3242C11.3246 11.4628 13.2802 9.51058 15.6136 7.54059C15.8149 7.37056 15.9349 7.13292 15.9516 6.87085C16.0031 6.05639 15.0333 5.52305 14.3742 6.06824C12.9134 7.27471 11.6328 8.39908 10.4443 9.52112C9.73071 10.1947 8.61299 10.1908 7.95651 9.46142C7.56824 9.03024 6.86751 8.95563 6.39614 9.42126C5.98212 9.82993 5.96237 10.4859 6.35079 10.915C7.28829 11.9497 7.87687 12.4661 8.83978 13.3222Z"
+                        fill="#506767"
+                      />
+                      <path
+                        d="M3.80072 17.9489C7.08864 20.504 12.0632 20.705 15.508 18.3658C18.4679 16.3559 20.2041 12.4913 19.8901 8.90896C19.7028 3.58402 16.2428 0.268657 10.552 0.0095998C8.87823 -0.0697239 7.25166 0.344299 5.81753 1.18649C3.4219 2.31409 1.44101 4.35173 0.547132 6.85056C-0.855382 10.7713 0.512784 15.3939 3.80072 17.9489ZM2.65816 5.3857C4.2663 2.37732 7.13492 0.366469 10.5286 0.523028C16.157 0.779408 19.385 4.00323 19.385 9.36812C19.385 14.245 15.4174 18.2129 10.5403 18.2129C3.82042 18.2129 -0.336386 10.9882 2.65816 5.3857Z"
+                        fill="#506767"
+                      />
+                    </svg>
+                  </span>
+                  Legitimate overseas business trade inquiries facilitated by
+                  diplomatic offices worldwide
+                </li>
+                <li>
+                  <span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8.83978 13.3222C8.93603 13.4075 9.08096 13.4093 9.17933 13.3242C11.3246 11.4628 13.2802 9.51058 15.6136 7.54059C15.8149 7.37056 15.9349 7.13292 15.9516 6.87085C16.0031 6.05639 15.0333 5.52305 14.3742 6.06824C12.9134 7.27471 11.6328 8.39908 10.4443 9.52112C9.73071 10.1947 8.61299 10.1908 7.95651 9.46142C7.56824 9.03024 6.86751 8.95563 6.39614 9.42126C5.98212 9.82993 5.96237 10.4859 6.35079 10.915C7.28829 11.9497 7.87687 12.4661 8.83978 13.3222Z"
+                        fill="#506767"
+                      />
+                      <path
+                        d="M3.80072 17.9489C7.08864 20.504 12.0632 20.705 15.508 18.3658C18.4679 16.3559 20.2041 12.4913 19.8901 8.90896C19.7028 3.58402 16.2428 0.268657 10.552 0.0095998C8.87823 -0.0697239 7.25166 0.344299 5.81753 1.18649C3.4219 2.31409 1.44101 4.35173 0.547132 6.85056C-0.855382 10.7713 0.512784 15.3939 3.80072 17.9489ZM2.65816 5.3857C4.2663 2.37732 7.13492 0.366469 10.5286 0.523028C16.157 0.779408 19.385 4.00323 19.385 9.36812C19.385 14.245 15.4174 18.2129 10.5403 18.2129C3.82042 18.2129 -0.336386 10.9882 2.65816 5.3857Z"
+                        fill="#506767"
+                      />
+                    </svg>
+                  </span>
+                  Delegations from various nations actively advocating for trade
+                  prospects
+                </li>
+                <li>
+                  <span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8.83978 13.3222C8.93603 13.4075 9.08096 13.4093 9.17933 13.3242C11.3246 11.4628 13.2802 9.51058 15.6136 7.54059C15.8149 7.37056 15.9349 7.13292 15.9516 6.87085C16.0031 6.05639 15.0333 5.52305 14.3742 6.06824C12.9134 7.27471 11.6328 8.39908 10.4443 9.52112C9.73071 10.1947 8.61299 10.1908 7.95651 9.46142C7.56824 9.03024 6.86751 8.95563 6.39614 9.42126C5.98212 9.82993 5.96237 10.4859 6.35079 10.915C7.28829 11.9497 7.87687 12.4661 8.83978 13.3222Z"
+                        fill="#506767"
+                      />
+                      <path
+                        d="M3.80072 17.9489C7.08864 20.504 12.0632 20.705 15.508 18.3658C18.4679 16.3559 20.2041 12.4913 19.8901 8.90896C19.7028 3.58402 16.2428 0.268657 10.552 0.0095998C8.87823 -0.0697239 7.25166 0.344299 5.81753 1.18649C3.4219 2.31409 1.44101 4.35173 0.547132 6.85056C-0.855382 10.7713 0.512784 15.3939 3.80072 17.9489ZM2.65816 5.3857C4.2663 2.37732 7.13492 0.366469 10.5286 0.523028C16.157 0.779408 19.385 4.00323 19.385 9.36812C19.385 14.245 15.4174 18.2129 10.5403 18.2129C3.82042 18.2129 -0.336386 10.9882 2.65816 5.3857Z"
+                        fill="#506767"
+                      />
+                    </svg>
+                  </span>
+                  The chamber arranges delegations to explore trade prospects in
+                  various countries
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12">
+          <div class="row justify-content-center">
+            <div class="col-lg-12 col-md-10 col-sm-12 mt-40 pb-40">
+              <div
+                class="tp-about-bottom-video bg-position"
+                style="
+                  min-height: 400px;
+                  width: 100%;
+                  min-width: 600px;
+                  object-fit: cover;
+                  background-size: cover;
+                  background-position: center;
+                "
+                data-background="static/images/hero/banner.jpg"
+              >
+                <a
+                  class="tp-about-bottom-video-btn popup-video"
+                  href="static/videos/video1.mp4"
+                >
+                  <span>
+                    <svg
+                      width="14"
+                      height="16"
+                      viewBox="0 0 14 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="margin: 28px 28px"
+                    >
+                      <path
+                        d="M13.5 8.86603C14.1667 8.48113 14.1667 7.51887 13.5 7.13397L1.5 0.205772C0.833333 -0.179129 -1.01328e-06 0.301995 -1.01328e-06 1.0718L-1.01328e-06 14.9282C-1.01328e-06 15.698 0.833332 16.1791 1.5 15.7942L13.5 8.86603Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Benefits of chamber end -->
+
+  <!-- tp-blog-area-start -->
+  <div class="tp-blog-area pt-20 pb-20">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-9 col-md-10">
+          <div class="tp-success-section-title-wrap text-center mb-25">
+            <span
+              class="tp-section-subtitle fw-500 tp-text-grey-1 d-flex align-items-center justify-content-center gap-2 mb-10"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.7 10.2C1.2325 10.2 0.832431 10.0334 0.4998 9.7002C0.1666 9.36759 0 8.9675 0 8.5C0 8.0325 0.1666 7.63215 0.4998 7.29895C0.832431 6.96635 1.2325 6.8 1.7 6.8C2.1675 6.8 2.56757 6.96635 2.9002 7.29895C3.2334 7.63215 3.4 8.0325 3.4 8.5C3.4 8.9675 3.2334 9.36759 2.9002 9.7002C2.56757 10.0334 2.1675 10.2 1.7 10.2ZM3.1025 15.045L1.9125 13.855L5.61 10.1575L6.8 11.3475L3.1025 15.045ZM5.6525 6.8L1.955 3.1025L3.145 1.9125L6.8425 5.61L5.6525 6.8ZM8.5 17C8.0325 17 7.63241 16.8337 7.2998 16.5011C6.9666 16.1679 6.8 15.7675 6.8 15.3C6.8 14.8325 6.9666 14.4321 7.2998 14.099C7.63241 13.7663 8.0325 13.6 8.5 13.6C8.9675 13.6 9.36785 13.7663 9.70105 14.099C10.0337 14.4321 10.2 14.8325 10.2 15.3C10.2 15.7675 10.0337 16.1679 9.70105 16.5011C9.36785 16.8337 8.9675 17 8.5 17ZM8.5 3.4C8.0325 3.4 7.63241 3.2334 7.2998 2.9002C6.9666 2.56757 6.8 2.1675 6.8 1.7C6.8 1.2325 6.9666 0.83215 7.2998 0.49895C7.63241 0.166319 8.0325 0 8.5 0C8.9675 0 9.36785 0.166319 9.70105 0.49895C10.0337 0.83215 10.2 1.2325 10.2 1.7C10.2 2.1675 10.0337 2.56757 9.70105 2.9002C9.36785 3.2334 8.9675 3.4 8.5 3.4ZM11.3475 6.8425L10.1575 5.61L13.8975 1.9125L15.0875 3.1025L11.3475 6.8425ZM13.8975 15.045L10.2 11.3475L11.39 10.1575L15.0875 13.855L13.8975 15.045ZM15.3 10.2C14.8325 10.2 14.4321 10.0334 14.099 9.7002C13.7663 9.36759 13.6 8.9675 13.6 8.5C13.6 8.0325 13.7663 7.63215 14.099 7.29895C14.4321 6.96635 14.8325 6.8 15.3 6.8C15.7675 6.8 16.1679 6.96635 16.5011 7.29895C16.8337 7.63215 17 8.0325 17 8.5C17 8.9675 16.8337 9.36759 16.5011 9.7002C16.1679 10.0334 15.7675 10.2 15.3 10.2Z"
+                  fill="#1F3130"
+                />
+              </svg>
+              Our News & Updates
+            </span>
+            <h2
+              class="mb-25 fs-sm-40 wow img-custom-anim-top"
+              data-wow-duration="1.5s"
+              data-wow-delay="0.2s"
+            >
+              Latest news and announcements from the
+              <span class="tp-text-grey-1 text-italic fw-400 tp-ff-heading"
+                >Trans Asian Chamber network.</span
+              >
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto my-8 px-2">
+        <div class="swiper myNewsSwiper">
+          <div class="swiper-wrapper">
+            <!-- ---------------------Card 1------------------------- -->
+
+            <div class="swiper-slide h-full">
+              <div
+                class="bg-white border border-gray-200 rounded-[10px] overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full min-h-[550px]"
+              >
+                <!-- 🖼️ Image Section -->
+                <a href="/news/kabul-trade-fair">
+                  <img
+                    src="/static/images/news/news.jpeg"
+                    alt="Kabul Trade Fair"
+                    class="w-full h-56 object-cover"
+                  />
+                </a>
+
+                <!-- 📄 Content Section -->
+                <div class="flex flex-col flex-grow p-6">
+                  <!-- 📝 Title -->
+                  <a
+                    href="/news/kabul-trade-fair"
+                    class="text-2xl font-bold text-gray-800 hover:text-blue-700 transition-colors leading-snug mb-3"
+                    style="padding: 7px 11px"
+                  >
+                    MSMEs Drive 'Make in Maharashtra' Vision Forward
+                  </a>
+
+                  <!-- 📚 Description -->
+                  <p
+                    class="text-sm text-gray-600 leading-relaxed text-justify mb-4"
+                    style="padding: 5px 13px; text-align: justify"
+                  >
+                    Maharashtra’s MSME sector is playing a central role in the
+                    state's industrial push. Business leaders and entrepreneurs
+                    discussed the initiative’s potential to generate employment
+                    and encourage innovation.
+                  </p>
+
+                  <!-- 📌 Footer CTA -->
+                  <div
+                    class="mt-auto pt-4 flex justify-between items-center"
+                    style="margin: 11px 17px"
+                  >
+                    <span
+                      class="text-xs font-medium text-gray-500 uppercase tracking-wide"
+                      style="padding: 9px"
+                    >
+                      Maharashtra · Economy
+                    </span>
+                    <a
+                      href="/news/kabul-trade-fair"
+                      class="text-sm font-medium text-blue-700 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition"
+                      style="padding: -2px 7px; color: blue"
+                    >
+                      Read Full Story
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------------Card 2------------------------- -->
+
+            <!-- Inside your .swiper-slide -->
+            <div class="swiper-slide h-full">
+              <div
+                class="bg-white border border-gray-200 rounded-[10px] overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full min-h-[550px]"
+              >
+                <!-- 🖼️ Image Section -->
+                <a href="/news/kabul-trade-fair">
+                  <img
+                    src="/static/images/news/news1.jpeg"
+                    alt="Kabul Trade Fair"
+                    class="w-full h-56 object-cover"
+                  />
+                </a>
+
+                <!-- 📄 Content Section -->
+                <div class="flex flex-col flex-grow p-6">
+                  <!-- 📝 Title -->
+                  <a
+                    href="/news/kabul-trade-fair"
+                    class="text-2xl font-bold text-gray-800 hover:text-blue-700 transition-colors leading-snug mb-3"
+                    style="padding: 7px 11px"
+                  >
+                    Kabul Beckons Indian Investors
+                  </a>
+
+                  <!-- 📚 Description -->
+                  <p
+                    class="text-sm text-gray-600 leading-relaxed text-justify mb-4"
+                    style="padding: 5px 13px; text-align: justify"
+                  >
+                    The Afghanistan Trade Fair opened new doors for Indo-Afghan
+                    collaboration. With a $5.5 billion trade landscape, leaders
+                    urged Indian businesses to tap into textile, fruit, and
+                    carpet exports.
+                  </p>
+
+                  <!-- 📌 Footer CTA -->
+                  <div
+                    class="mt-auto pt-4 flex justify-between items-center"
+                    style="margin: 11px 17px"
+                  >
+                    <span
+                      class="text-xs font-medium text-gray-500 uppercase tracking-wide"
+                      style="padding: 9px"
+                    >
+                      Afghanistan · Trade
+                    </span>
+                    <a
+                      href="/news/kabul-trade-fair"
+                      class="text-sm font-medium text-blue-700 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition"
+                      style="padding: -2px 7px; color: blue"
+                    >
+                      Read Full Story
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------------Card 3------------------------- -->
+
+            <div class="swiper-slide h-full">
+              <div
+                class="bg-white border border-gray-200 rounded-[10px] overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full min-h-[550px]"
+              >
+                <!-- 🖼️ Image Section -->
+                <a href="/news/kabul-trade-fair">
+                  <img
+                    src="/static/images/news/news2.jpeg"
+                    alt="Kabul Trade Fair"
+                    class="w-full h-56 object-cover"
+                  />
+                </a>
+
+                <!-- 📄 Content Section -->
+                <div class="flex flex-col flex-grow p-6">
+                  <!-- 📝 Title -->
+                  <a
+                    href="/news/kabul-trade-fair"
+                    class="text-2xl font-bold text-gray-800 hover:text-blue-700 transition-colors leading-snug mb-3"
+                    style="padding: 7px 11px"
+                  >
+                    Ethiopia Beckons Indian Agri-Investors
+                  </a>
+
+                  <!-- 📚 Description -->
+                  <p
+                    class="text-sm text-gray-600 leading-relaxed text-justify mb-4"
+                    style="padding: 5px 13px; text-align: justify"
+                  >
+                    Ethiopia’s pro-investment land policies are attracting major
+                    Indian agribusiness firms. Delegates discussed the future of
+                    pulses, oilseeds, and cotton farming across leased farmlands
+                    in the region.
+                  </p>
+
+                  <!-- 📌 Footer CTA -->
+                  <div
+                    class="mt-auto pt-4 flex justify-between items-center"
+                    style="margin: 11px 17px"
+                  >
+                    <span
+                      class="text-xs font-medium text-gray-500 uppercase tracking-wide"
+                      style="padding: 9px"
+                    >
+                      Ethiopia · Agriculture
+                    </span>
+                    <a
+                      href="/news/kabul-trade-fair"
+                      class="text-sm font-medium text-blue-700 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition"
+                      style="padding: -2px 7px; color: blue"
+                    >
+                      Read Full Story
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------------Card 4------------------------- -->
+
+            <div class="swiper-slide h-full">
+              <div
+                class="bg-white border border-gray-200 rounded-[10px] overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full min-h-[550px]"
+              >
+                <!-- 🖼️ Image Section -->
+                <a href="/news/kabul-trade-fair">
+                  <img
+                    src="/static/images/news/news3.jpeg"
+                    alt="Kabul Trade Fair"
+                    class="w-full h-56 object-cover"
+                  />
+                </a>
+
+                <!-- 📄 Content Section -->
+                <div class="flex flex-col flex-grow p-6">
+                  <!-- 📝 Title -->
+                  <a
+                    href="/news/kabul-trade-fair"
+                    class="text-2xl font-bold text-gray-800 hover:text-blue-700 transition-colors leading-snug mb-3"
+                    style="padding: 7px 11px"
+                  >
+                    Indo-Iran Cultural & Tourism Ties Strengthen
+                  </a>
+
+                  <!-- 📚 Description -->
+                  <p
+                    class="text-sm text-gray-600 leading-relaxed text-justify mb-4"
+                    style="padding: 5px 13px; text-align: justify"
+                  >
+                    Iran and India reaffirm their cultural bonds through tourism
+                    pacts and exchange programs. Iranian leaders praised India’s
+                    support and discussed new bilateral tourism routes and trade
+                    potential.
+                  </p>
+
+                  <!-- 📌 Footer CTA -->
+                  <div
+                    class="mt-auto pt-4 flex justify-between items-center"
+                    style="margin: 11px 17px"
+                  >
+                    <span
+                      class="text-xs font-medium text-gray-500 uppercase tracking-wide"
+                      style="padding: 9px"
+                    >
+                      Iran · Culture
+                    </span>
+                    <a
+                      href="/news/kabul-trade-fair"
+                      class="text-sm font-medium text-blue-700 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition"
+                      style="padding: -2px 7px; color: blue"
+                    >
+                      Read Full Story
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------------Card 5------------------------- -->
+
+            <div class="swiper-slide h-full">
+              <div
+                class="bg-white border border-gray-200 rounded-[10px] overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full min-h-[550px]"
+              >
+                <!-- 🖼️ Image Section -->
+                <a href="/news/kabul-trade-fair">
+                  <img
+                    src="/static/images/news/news4.jpeg"
+                    alt="Kabul Trade Fair"
+                    class="w-full h-56 object-cover"
+                  />
+                </a>
+
+                <!-- 📄 Content Section -->
+                <div class="flex flex-col flex-grow p-6">
+                  <!-- 📝 Title -->
+                  <a
+                    href="/news/kabul-trade-fair"
+                    class="text-2xl font-bold text-gray-800 hover:text-blue-700 transition-colors leading-snug mb-3"
+                    style="padding: 7px 11px"
+                  >
+                    TACC & IMCCI Celebrate Years of Global Diplomacy
+                  </a>
+
+                  <!-- 📚 Description -->
+                  <p
+                    class="text-sm text-gray-600 leading-relaxed text-justify mb-4"
+                    style="padding: 5px 13px; text-align: justify"
+                  >
+                    On their 15th and 20th anniversaries, TACC and IMCCI honored
+                    diplomatic efforts to strengthen India's presence in Asia.
+                    The event saw participation from ambassadors and global
+                    dignitaries.
+                  </p>
+
+                  <!-- 📌 Footer CTA -->
+                  <div
+                    class="mt-auto pt-4 flex justify-between items-center"
+                    style="margin: 11px 17px"
+                  >
+                    <span
+                      class="text-xs font-medium text-gray-500 uppercase tracking-wide"
+                      style="padding: 9px"
+                    >
+                      Asia · Diplomacy
+                    </span>
+                    <a
+                      href="/news/kabul-trade-fair"
+                      class="text-sm font-medium text-blue-700 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition"
+                      style="padding: -2px 7px; color: blue"
+                    >
+                      Read Full Story
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center gap-4 mt-20">
+            <button
+              class="tp-btn-lg d-inline-block lh-0 fs-14 tp-bg-theme-primary ls-0 tp-btn-switch-animation tp-text-common-white hover-text-white fw-500 px-4 py-2"
+              style="border-radius: 15px"
+              id="customNextBtn"
+            >
+              <span class="d-flex items-center justify-center gap-1">
+                <span class="btn-text">Next</span>
+                <span class="btn-icon"
+                  ><i class="fa-solid fa-arrow-right"></i
+                ></span>
+                <span class="btn-icon"
+                  ><i class="fa-solid fa-arrow-right"></i
+                ></span>
+              </span>
+            </button>
+
+            <button
+              class="tp-btn-lg d-inline-block lh-0 fs-14 tp-bg-theme-primary ls-0 tp-btn-switch-animation tp-text-common-white hover-text-white fw-500 px-4 py-2"
+              style="border-radius: 15px"
+              id="customPrevBtn"
+            >
+              <span class="d-flex items-center justify-center gap-1">
+                <span class="btn-text">Prev</span>
+                <span class="btn-icon"
+                  ><i class="fa-solid fa-arrow-left"></i
+                ></span>
+                <span class="btn-icon"
+                  ><i class="fa-solid fa-arrow-left"></i
+                ></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- tp-blog-area-end -->
+
+  <!-- Member joining section start -->
+  <div
+    class="tp-cta-area bg-position pt-145 pb-120 jarallax p-relative"
+    data-background="static/images/hero/banner.jpg"
+  >
+    <div class="container">
+      <div
+        class="row align-items-center"
+        style="display: flex; justify-content: space-between"
+      >
+        <div
+          class="main-text"
+          style="width: 50vw; display: flex; justify-content: space-between"
+        >
+          <div class="tp-cta-title">
+            <h2
+              class="mb-20 fs-sm-40 wow img-custom-anim-left"
+              style="color: #fbfdfb;"
+              data-wow-duration="1.5s"
+              data-wow-delay="0.2s"
+            >
+              Partner with us to turn global opportunities into lasting
+              <span
+                class="tp-text-theme-secondary text-italic fw-400 tp-ff-heading"
+                >success.</span
+              >
+            </h2>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="tp-cta-btn text-lg-end mb-20">
+            <a
+              href="contact.html"
+              class="tp-btn-xl d-inline-block lh-0 tp-round-26 fs-16 tp-bg-common-white ls-0 tp-btn-switch-animation tp-text-tp-text-theme-primary hover-text-black fw-500"
+            >
+              <span class="d-flex align-items-center justify-content-center">
+                <span class="btn-text">Become a Member</span>
+                <span class="btn-icon"
+                  ><i class="fa-solid fa-arrow-right"></i
+                ></span>
+                <span class="btn-icon"
+                  ><i class="fa-solid fa-arrow-right"></i
+                ></span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Member joining section end -->
+
+  <!-- https://gist.github.com/goodreds/3d044027175954984fb96c7407a955ab -->
+
+  <!-- Container -->
+  <!-- Hero Section Wrapper with Background -->
+
+  <!-- Popup Form Modal -->
+  <!-- <div class="popup-form-modal" id="popupFormModal">
+    <div class="popup-form-content">
+      <span class="close-popup">&times;</span>
+      <h3>Join Our Trans Chamber</h3>
+      <p>Stay updated with the latest business insights and opportunities</p>
+      <form id="popupForm" class="popup-form">
+        <div class="form-group">
+          <input type="text" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <input
+            type="tel"
+            placeholder="Your Mobile Number"
+            required
+            pattern="[0-9]{10}"
+          />
+        </div>
+        <div class="form-group">
+          <select required>
+            <option value="">Select membership type</option>
+            <option value="business">Life Members</option>
+            <option value="networking">Patron Members</option>
+            <option value="events">Corporate Patron Members</option>
+            <option value="news">Corporate Life Members</option>
+            <option value="news">Yearly Associates</option>
+            <option value="news">Corporate Yearly Associates</option>
+            <option value="news">Associates Members</option>
+            <option value="news">Senior Life Members</option>
+            <option value="news">Honorary Members</option>
+          </select>
+        </div>
+
+      
+        <div class="flex items-center space-x-2 mb-4">
+          <input type="checkbox" id="termsCheckbox" class="form-checkbox" />
+          <label for="termsCheckbox" class="text-sm w-[80rem]">
+            I agree to the
+            <a href="/terms" target="_blank" class="text-blue-600 underline">
+              Terms and Conditions
+            </a>
+          </label>
+        </div>
+
+      
+        <button
+          id="submitBtn"
+          type="submit"
+          disabled
+          class="tp-btn-xl d-inline-block lh-0 tp-round-24 fs-16 tp-bg-theme-primary ls-0 tp-btn-switch-animation tp-text-common-white hover-text-white fw-500 opacity-50 cursor-not-allowed"
+        >
+          Subscribe Now
+        </button>
+      </form>
+    </div>
+  </div> -->
+</div>
+
+{% endblock %}

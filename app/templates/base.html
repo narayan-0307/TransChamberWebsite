@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{% block title %}TACCI{% endblock %}</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Place favicon.ico in the root directory -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/static/images/logo/transLogo.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/output.css') }}"
+    />
+
+    <!-- Font Awesome CDN -->
+    <!-- Font Awesome CDN (v6) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-TFzN+3HkW2x6UAgAlrC8k5iYZv5hS6RJKLkYoN0Kq1G7s7fTtWqj93B35KkA0GfQ3Iez+zV2YBJ2r3x+AKL2sw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Google Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/static/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/css/animate.css" />
+    <link rel="stylesheet" href="/static/css/swiper-bundle.css" />
+    <link rel="stylesheet" href="/static/css/slick.css" />
+    <link rel="stylesheet" href="/static/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome-pro.css" />
+    <link rel="stylesheet" href="/static/css/spacing.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/chatbot.css" />
+    <script src="/static/js/popup-form.js"></script>
+
+    <link rel="stylesheet" href="/static/css/font-awesome-pro.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- -------------------------------------------------Banner Area Start---------------------------------------------- -->
+    {% include 'includes/Navbar.html' %}
+
+    <!-- Page Content -->
+    <main>
+      {% block content %}
+      <!-- Page-specific content here -->
+      {% endblock %}
+    </main>
+
+    <!-- Chatbot -->
+    {% include 'includes/chatbot.html' %}
+
+    <!-- Cookie Consent Banner -->
+    {% from 'cookie_consent.html' import cookie_consent %} {{ cookie_consent()
+    }}
+
+    <!-- Optional: Footer -->
+    {% include 'includes/footer.html' %}
+    <!-- -------------------------------------------------Banner Area End---------------------------------------------- -->
+
+    <!-- JS here -->
+    <script src="/static/js/vendor/jquery.js"></script>
+    <script src="/static/js/bootstrap-bundle.js"></script>
+    <script src="/static/js/swiper-bundle.js"></script>
+    <script src="/static/js/magnific-popup.js"></script>
+    <script src="/static/js/nice-select.js"></script>
+    <script src="/static/js/purecounter.js"></script>
+    <script src="/static/js/wow.js"></script>
+    <script src="/static/js/isotope-pkgd.js"></script>
+    <script src="/static/js/imagesloaded-pkgd.js"></script>
+    <script src="/static/js/ajax-form.js"></script>
+    <script src="/static/js/jarallax.js"></script>
+    <script src="/static/js/parallax.js"></script>
+    <script src="/static/js/parallax-scrool.js"></script>
+    <script src="/static/js/slider-init.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/chatbot.js"></script>
+    <script src="/static/js/mobile-menu.js"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
+    <script
+      src="https://kit.fontawesome.com/97346fd324.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- SwiperJS Script -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

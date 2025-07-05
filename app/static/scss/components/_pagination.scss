@@ -1,0 +1,42 @@
+@use '../utils' as *;
+/*----------------------------------------*/
+/*  2.8 Pagination
+/*----------------------------------------*/
+
+.tp-pagination{
+    &-wrap{
+        & nav{
+            & ul{
+                display: flex;
+                justify-content: center;
+                & li{
+                    list-style: none;
+                    & a{
+                        font-weight: 500;
+                        font-size: 16px;
+                        border-radius: 4px;
+                        padding: 8px 16px;
+                        color: #506767;
+                        border: 1px solid rgba(31, 49, 48, 0.1);
+                        margin: 3px 3px;
+                        display: inline-block;
+                        width: 44px;
+                        height: 44px;
+                        &:hover{
+                            box-shadow: 0 1px 3px 0 rgba(32, 33, 36, 0.08);
+                            background: var(--tp-common-white);
+                            border-color: var(--tp-common-white);
+                        }
+                        &.text{
+                            font-weight: 600;
+                            font-size: 16px;
+                            color: #1f3130;
+                            width: auto;
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

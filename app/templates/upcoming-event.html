@@ -1,0 +1,145 @@
+{% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
+content %}
+
+<main>
+  <!-- tp-comeing-soon-area-start -->
+  <div class="relative h-screen overflow-hidden" style="margin-top: -7rem">
+    <!-- Blurred Background Image -->
+    <div
+      class="absolute inset-0 bg-cover bg-center blur-[2px]"
+      style="background-image: url('/static/images/hero/banner.jpg')"
+    ></div>
+
+    <!-- Foreground Content -->
+    <div
+      class="relative z-10 tp-comeingsoon-wrap bg-opacity-80 bg-black/20 d-flex align-items-center justify-content-center h-100"
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8">
+            <div class="tp-comeingsoon-wrap">
+              <div class="tp-comeingsoon-content text-center">
+                <h1
+                  class="tp-text-common-white fw-600 ls-m-3 mb-50 text-[8rem] coming-soon-title"
+                >
+                  Coming soon!
+                </h1>
+                <p
+                  class="tp-comeingsoon-para tp-text-grey-3 mb-80 coming-soon-desc"
+                >
+                  We had a Master class session with Budgeto. From the outset
+                  and initial contact with<br />
+                  Budgeto we found her to be incredibly responsive and
+                  personable.
+                </p>
+                <div class="tp-comeingsoon-form">
+                  <form
+                    action="#"
+                    class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-2 gap-sm-3"
+                  >
+                    <input
+                      class="mb-20 form-control w-100 w-sm-auto mb-sm-0"
+                      type="text"
+                      placeholder="Your email address"
+                      style="max-width: 300px; min-width: 0"
+                    />
+                    <button
+                      type="submit"
+                      class="tp-btn-lg d-inline-block lh-0 tp-round-24 fs-16 mb-20 mb-sm-0 tp-bg-theme-secondary ls-0 tp-btn-switch-animation tp-text-theme-primary fw-500"
+                      style="background: #fff"
+                    >
+                      <span
+                        class="d-flex align-items-center justify-content-center"
+                      >
+                        <span class="btn-text">Subscribe</span>
+                        <span class="btn-icon">
+                          <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                        <span class="btn-icon">
+                          <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                      </span>
+                    </button>
+                  </form>
+                </div>
+                <div class="tp-comeingsoon-countdown mb-40 mt-30">
+                  <ul class="deal-counter" id="timer">
+                    <li class="list-inline-item days"></li>
+                    <li class="list-inline-item hours"></li>
+                    <li class="list-inline-item minutes"></li>
+                    <li class="list-inline-item seconds"></li>
+                  </ul>
+                </div>
+                <a
+                  href="/"
+                  type="submit"
+                  class="tp-btn-lg d-inline-block lh-0 tp-round-24 fs-16 mb-20 tp-bg-theme-secondary ls-0 tp-btn-switch-animation tp-text-theme-primary fw-500"
+                  style="background: #fff"
+                >
+                  <span
+                    class="d-flex align-items-center justify-content-center"
+                  >
+                    <span class="btn-text">Go To Home Page</span>
+                    <span class="btn-icon">
+                      <i class="fa-solid fa-house"></i>
+                    </span>
+                    <span class="btn-icon">
+                      <i class="fa-solid fa-house"></i>
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- tp-comeing-soon-area-end -->
+  <style>
+    @media (max-width: 991.98px) {
+      .coming-soon-title {
+        font-size: 4rem !important;
+      }
+
+      .coming-soon-desc {
+        font-size: 1rem;
+        margin-bottom: 2rem !important;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .coming-soon-title {
+        font-size: 2.2rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .coming-soon-desc {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .tp-comeingsoon-form form {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+      }
+
+      .tp-comeingsoon-form input {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .tp-btn-lg {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .coming-soon-title {
+        font-size: 1.3rem !important;
+      }
+    }
+  </style>
+</main>
+
+{% endblock %}

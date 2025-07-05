@@ -1,0 +1,141 @@
+
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.5 instagram
+/*----------------------------------------*/
+
+.tp-instagram{
+    &-wrap{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 10px;
+        column-gap: 10px;
+    }
+    &-link{
+        & a{
+            position: relative;
+            display: block;
+            overflow: hidden;
+            border-radius: 4px;
+            & svg{
+                position: absolute;
+                color: var(--tp-common-white);
+                font-size: 16px;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                opacity: 0;
+                transition: all .4s ease;
+                z-index: 2;
+            }
+            &::before{
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 100%;
+                background-color: rgba(31, 49, 48, 0.8);
+                opacity: 0.902;
+                transform: scale(0);
+                border-radius: 4px;
+                transition: all .4s ease;
+                z-index: 1;
+            }
+            & img{
+                transition: all .4s ease;
+            }
+            &:hover{
+                & img{
+                    transform: scale(1.1);
+                }
+                & svg{
+                    opacity: 1;
+                }
+                &::before{
+                    transform: scale(1);
+                }
+            }
+        }
+        & img{
+            width: 100%;
+            border-radius: 4px;
+        }
+    }
+    &-title{
+        font-size: 18px;
+        color: var(--tp-theme-primary);
+        font-weight: 500;
+        margin-bottom: 25px;
+        display: block;
+    }
+    &-mrg{
+        &-icon{
+            & a{
+                font-size: 24px;
+                color: var(--tp-theme-primary);
+                width: 80px;
+                height: 80px;
+                border-radius: 40px;
+                background-color: var(--tp-common-white);
+                display: inline-block;
+                line-height: 90px;
+                position: absolute;
+                top: 40%;
+                transform: translateY(-50%);
+                left: 0;
+                right: 0;
+                margin: auto;
+                text-align: center;
+                transform: scale(0);
+                transition: all .4s linear;
+                &:hover{
+                    color: var(--tp-theme-primary);
+                }
+            }
+        }
+        &-thumb{
+            & img{
+                transition: all .4s linear;
+            }
+            &:hover{
+                & .tp-instagram-mrg-bg{
+                    left: 0;
+                    right: 0;
+                    opacity: 0;
+                    transition: all .4s linear;
+                }
+                & img{
+                    transform: scale(1.2) rotate(-2deg);
+                }
+                & .tp-instagram-mrg-icon a{
+                    transform: scale(1);
+                }
+            }
+        }
+        &-bg{
+            background: hsla(0, 0%, 100%, .3);
+            opacity: 0.651;
+            bottom: 0;
+            left: 50%;
+            position: absolute;
+            right: 51%;
+            top: 0;
+            opacity: 1;
+            pointer-events: none;
+            transition: all .4s linear;
+            z-index: 1;
+        }
+        &-pd{
+            height: 180px;
+            width: 100%;
+            background-color: #f8e7d6;
+            display: block;
+            position: relative;
+            z-index: 1;
+            margin-bottom: -180px;
+        }
+    }
+}

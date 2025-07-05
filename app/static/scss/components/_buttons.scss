@@ -1,0 +1,152 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.4 Buttons
+/*----------------------------------------*/
+
+.#{$theme-prifix}-btn{
+	&-xs{
+		padding: 8px 10px;
+	}
+	&-md{
+        padding: 13px 28px;
+    }
+    &-lg{
+        padding: 16px 27px;
+		@media #{$xl}{
+			padding: 16px 22px;
+		}
+    }
+    &-xl{
+        padding: 18px 38px;
+    }
+	&-xxl{
+		padding: 23px 38px;
+	}
+    &-switch{
+		&-animation{
+			-webkit-transition: all .3s ease-in-out;
+			transition: all .3s ease-in-out;
+			& .btn-text{
+				margin-left: -13px;
+				position: relative;
+				z-index: 3;
+				transition: transform .6s 125ms cubic-bezier(.1,.75,.25,1);
+			}
+			& .btn-icon{
+				margin-left: 6px;
+				position: relative;
+				transition: opacity .4s .25s, transform .6s .25s;
+				transition-timing-function: cubic-bezier(.1,.75,.25,1);
+				line-height: 0;
+				z-index: 3;
+			}
+			& .btn-icon+.btn-icon {
+				order: -2;
+				opacity: 0;
+				transition-delay: 0s;
+				margin-left: 0;
+				-webkit-transform: translateX(-10px);
+				transform: translateX(-10px);
+			}
+			&:hover{
+				& .btn-text {
+					transition-delay: .1s;
+					transform: translateX(23px);
+				}
+				& .btn-icon {
+					transition-delay: 0s;
+					transform: translateX(10px);
+					opacity: 0;
+				}
+				& .btn-icon+.btn-icon {
+					opacity: 1;
+					transform: translateX(0);
+					transition-delay: 225ms;
+				}
+			}  
+		}
+		&-text{
+			& > span{
+				display: inline-flex;
+				align-items: center;
+				position: relative;
+				overflow: hidden;
+			}
+			&.btn-lg{
+				& > span{
+					padding: 15px 31px;
+				}
+			}
+			& .btn-double-text{
+				transition: opacity .65s, transform .85s;
+				transition-timing-function: cubic-bezier(.15,.85,.31,1);
+				position: relative;
+				&::before{
+					content: attr(data-text);
+					display: inline-block;
+					position: absolute;
+					white-space: nowrap;
+					top: 50%;
+					opacity: 0;
+					left: 50%;
+					transform: translate(-50%, 100%);
+					transition: opacity .5s, transform .8s;
+					transition-timing-function: cubic-bezier(.15,.85,.31,1);
+				}
+			}
+			&:hover{
+				&.bg-hover-black{
+					background: var(--tp-common-black-4);
+				}
+				&.bg-hover-theme-1{
+					background: var(--tp-theme-1);
+				}
+				& .btn-double-text{
+					transform: translateY(-200%);
+					&::before{
+						transform: translate(-50%, 150%);
+						opacity: 1;
+					}
+				}
+			}
+		}  
+	}
+	&-border{
+		border: 1px solid rgba(255, 255, 255, 0.25);
+	}
+}
+  
+
+
+.tp-arrow-angle {
+	--qode-hover-move-x: 110%;
+	--qode-hover-move-y: 100%;
+}
+.tp-arrow-svg-top-right {
+	fill: currentColor;
+	stroke: none;
+}
+.tp-arrow-angle path {
+	transition: transform .38s cubic-bezier(.37,.08,.02,.93),opacity .18s ease-out;
+}
+.tp-arrow-angle path:nth-of-type(1) {
+	transform: translateX(0) translateY(0);
+	opacity: 1;
+	transition-delay: .15s,.15s;
+}
+.tp-arrow-angle path:nth-of-type(2) {
+	transform: translateX(calc(-1 * var(--qode-hover-move-x))) translateY(var(--qode-hover-move-y));
+	opacity: .5;
+	transition-delay: 0s,0s;
+}
+.tp-left-right:hover .tp-arrow-angle path:nth-of-type(2) {
+	transform: translateX(0) translateY(0);
+	opacity: 1;
+	transition-delay: .15s,.15s;
+}
+.tp-left-right:hover .tp-arrow-angle path:nth-of-type(1) {
+	transform: translateX(var(--qode-hover-move-x)) translateY(calc(-1 * var(--qode-hover-move-y)));
+	opacity: 0;
+	transition-delay: 0s,0s;
+}

@@ -1,0 +1,303 @@
+{% extends 'base.html' %} {% block title %} TACCI - About {% endblock %} {%
+block content %}
+
+<!-- tp-breadcrumb-area-start -->
+<div
+  class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200 h-[60vh]"
+  data-background="static/images/hero/banner.jpg"
+  style="margin-top: -7rem"
+></div>
+<!-- tp-breadcrumb-area-end -->
+{% include 'partials/breadcrumb.html' %}
+
+<!-- tp-project-area-start -->
+<section class="pt-5">
+  <div class="container">
+    <div
+      class="tp-project-2-tab tp-project-5-tab text-center mb-65 mt-20 custom-tab-center"
+    >
+      <ul role="tablist">
+        <li>
+          <a href="#advisor" class="active" data-bs-toggle="tab">Advisor</a>
+        </li>
+        <li>
+          <a href="#workingTeam" data-bs-toggle="tab">Working Team</a>
+        </li>
+        <li>
+          <a href="#officeBearers" data-bs-toggle="tab"
+            >International Office-Bearers</a
+          >
+        </li>
+        <li>
+          <a href="#committees" data-bs-toggle="tab">Committee</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="tab-content">
+      <div class="tab-pane active show" id="advisor" role="tabpanel">
+        <div class="row justify-content-center g-4">
+          {% for member in members['advisor'] %}
+          <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+            <div class="tp-team-2-wrap text-center mb-30">
+              <div class="tp-team-2-thumb fix tp-round-4 mb-25 p-relative">
+                <img
+                  class="w-[300px] h-[300px] object-cover tp-round-4"
+                  src="{{ member.image }}"
+                  alt="{{ member.name }}"
+                />
+                <div class="tp-team-2-social">
+                  <ul class="list-wrap">
+                    <li>
+                      <a href="{{ member.social.facebook }}"
+                        ><i class="fa-brands fa-facebook"></i><span></span
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.twitter }}">
+                        <svg
+                          width="19"
+                          height="19"
+                          viewBox="0 0 19 19"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M13.8678 1.42407H16.4381L10.8227 7.8421L17.4288 16.5756H12.2563L8.20503 11.2788L3.56944 16.5756H0.997567L7.00378 9.71078L0.666565 1.42407H5.97037L9.63238 6.26556L13.8678 1.42407ZM12.9657 15.0371H14.39L5.19648 2.88173H3.66812L12.9657 15.0371Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.linkedin }}"
+                        ><i class="fa-brands fa-linkedin"></i><span></span
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.instagram }}"
+                        ><i class="fa-brands fa-instagram"></i><span></span
+                      ></a>
+                    </li>
+                  </ul>
+                  <div class="social-toggle-icon">
+                    <i class="fa-sharp fa-light fa-share-nodes"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="tp-team-2-content">
+                <h4 class="fw-500 fs-24 mb-0">
+                  <a class="underline-black" href="team-details.html"
+                    >{{ member.name }}</a
+                  >
+                </h4>
+                <span class="tp-text-grey-1">{{ member.role }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="tab-pane" id="workingTeam" role="tabpanel">
+        <div class="row justify-content-center g-4">
+          {% for member in members['workingTeam'] %}
+          <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+            <div class="tp-team-2-wrap text-center mb-30">
+              <div class="tp-team-2-thumb fix tp-round-4 mb-25 p-relative">
+                <img
+                  class="w-[300px] h-[300px] object-cover tp-round-4"
+                  src="{{ member.image }}"
+                  alt="{{ member.name }}"
+                />
+                <div class="tp-team-2-social">
+                  <ul class="list-wrap">
+                    <li>
+                      <a href="{{ member.social.facebook }}"
+                        ><i class="fa-brands fa-facebook"></i><span></span
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.twitter }}">
+                        <svg
+                          width="19"
+                          height="19"
+                          viewBox="0 0 19 19"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M13.8678 1.42407H16.4381L10.8227 7.8421L17.4288 16.5756H12.2563L8.20503 11.2788L3.56944 16.5756H0.997567L7.00378 9.71078L0.666565 1.42407H5.97037L9.63238 6.26556L13.8678 1.42407ZM12.9657 15.0371H14.39L5.19648 2.88173H3.66812L12.9657 15.0371Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.linkedin }}"
+                        ><i class="fa-brands fa-linkedin"></i><span></span
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.instagram }}"
+                        ><i class="fa-brands fa-instagram"></i><span></span
+                      ></a>
+                    </li>
+                  </ul>
+                  <div class="social-toggle-icon">
+                    <i class="fa-sharp fa-light fa-share-nodes"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="tp-team-2-content">
+                <h4 class="fw-500 fs-24 mb-0">
+                  <a class="underline-black" href="team-details.html"
+                    >{{ member.name }}</a
+                  >
+                </h4>
+                <span class="tp-text-grey-1">{{ member.role }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="tab-pane" id="officeBearers" role="tabpanel">
+        <div class="row justify-content-center g-4">
+          {% for member in members['officeBearers'] %}
+          <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+            <div class="tp-team-2-wrap text-center mb-30">
+              <div class="tp-team-2-thumb fix tp-round-4 mb-25 p-relative">
+                <img
+                  class="w-[300px] h-[300px] object-cover tp-round-4"
+                  src="{{ member.image }}"
+                  alt="{{ member.name }}"
+                />
+                <div class="tp-team-2-social">
+                  <ul class="list-wrap">
+                    <li>
+                      <a href="{{ member.social.facebook }}"
+                        ><i class="fa-brands fa-facebook"></i><span></span
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.twitter }}">
+                        <svg
+                          width="19"
+                          height="19"
+                          viewBox="0 0 19 19"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M13.8678 1.42407H16.4381L10.8227 7.8421L17.4288 16.5756H12.2563L8.20503 11.2788L3.56944 16.5756H0.997567L7.00378 9.71078L0.666565 1.42407H5.97037L9.63238 6.26556L13.8678 1.42407ZM12.9657 15.0371H14.39L5.19648 2.88173H3.66812L12.9657 15.0371Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.linkedin }}"
+                        ><i class="fa-brands fa-linkedin"></i><span></span
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.instagram }}"
+                        ><i class="fa-brands fa-instagram"></i><span></span
+                      ></a>
+                    </li>
+                  </ul>
+                  <div class="social-toggle-icon">
+                    <i class="fa-sharp fa-light fa-share-nodes"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="tp-team-2-content">
+                <h4 class="fw-500 fs-24 mb-0">
+                  <a class="underline-black" href="team-details.html"
+                    >{{ member.name }}</a
+                  >
+                </h4>
+                <span class="tp-text-grey-1">{{ member.role }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="tab-pane" id="committees" role="tabpanel">
+        <div class="row justify-content-center g-4">
+          {% for member in members['committees'] %}
+          <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+            <div class="tp-team-2-wrap text-center mb-30">
+              <div class="tp-team-2-thumb fix tp-round-4 mb-25 p-relative">
+                <img
+                  class="w-[300px] h-[300px] object-cover tp-round-4"
+                  src="{{ member.image }}"
+                  alt="{{ member.name }}"
+                />
+                <div class="tp-team-2-social">
+                  <ul class="list-wrap">
+                    <li>
+                      <a href="{{ member.social.facebook }}"
+                        ><i class="fa-brands fa-facebook"></i><span></span
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.twitter }}">
+                        <svg
+                          width="19"
+                          height="19"
+                          viewBox="0 0 19 19"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M13.8678 1.42407H16.4381L10.8227 7.8421L17.4288 16.5756H12.2563L8.20503 11.2788L3.56944 16.5756H0.997567L7.00378 9.71078L0.666565 1.42407H5.97037L9.63238 6.26556L13.8678 1.42407ZM12.9657 15.0371H14.39L5.19648 2.88173H3.66812L12.9657 15.0371Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.linkedin }}"
+                        ><i class="fa-brands fa-linkedin"></i><span></span
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="{{ member.social.instagram }}"
+                        ><i class="fa-brands fa-instagram"></i><span></span
+                      ></a>
+                    </li>
+                  </ul>
+                  <div class="social-toggle-icon">
+                    <i class="fa-sharp fa-light fa-share-nodes"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="tp-team-2-content">
+                <h4 class="fw-500 fs-24 mb-0">
+                  <a class="underline-black" href="team-details.html"
+                    >{{ member.name }}</a
+                  >
+                </h4>
+                <span class="tp-text-grey-1">{{ member.role }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- tp-project-area-end -->
+{% endblock %}

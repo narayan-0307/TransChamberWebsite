@@ -1,0 +1,106 @@
+<style>
+  .main-container {
+    margin-top: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .logo-container {
+    gap: 4px;
+    min-width: 40vw;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+  }
+
+  .name-font {
+    font-size: 20px;
+  }
+
+  .name-font:hover {
+    text-decoration: underline;
+  }
+
+  .sub-logo {
+    gap: 10px;
+  }
+
+  @media (max-width: 933px) {
+    .logo-container {
+      min-width: 55vw;
+    }
+
+    @media (max-width: 680px) {
+      .logo-container {
+        min-width: 100vw;
+      }
+    }
+  }
+
+  /* Responsive styles */
+
+  @media (max-width: 480px) {
+    .main-container {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      justify-content: flex-start;
+    }
+
+    .logo-container {
+      gap: 1px;
+      padding-bottom: 6px;
+    }
+
+    .name-font {
+      font-size: 14px;
+    }
+
+    .sub-logo {
+      gap: 2px;
+    }
+
+    .main-container nav,
+    .main-container ol {
+      width: 100%;
+    }
+  }
+</style>
+
+<nav class="flex mb-5 main-container" aria-label="Breadcrumb">
+  <ol class="inline-flex items-center space-x-1 md:space-x-2 logo-container">
+    {% for name, url in crumbs %} {% if loop.first %}
+    <!-- First item (usually Home with icon) -->
+    <li class="inline-flex items-center name-font">
+      <a href="{{ url }}" class="text-gray-700 hover:text-gray-900 inline-flex items-center sub-logo">
+        <svg class="w-7 h-7 mr-2.5" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+        </svg>
+        {{ name }}
+      </a>
+    </li>
+    {% else %}
+    <li>
+      <div class="flex items-center">
+        <!-- Arrow Icon -->
+        <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clip-rule="evenodd" />
+        </svg>
+        {% if url %}
+        <a href="{{ url }}"
+          class="text-gray-700 hover:text-gray-900 ml-1 md:ml-2 text-sm font-bold tracking-wider name-font">
+          {{ name }}
+        </a>
+        {% else %}
+        <span class="text-gray-400 ml-1 md:ml-2 text-sm font-bold tracking-wider name-font" aria-current="page">
+          {{ name }}
+        </span>
+        {% endif %}
+      </div>
+    </li>
+    {% endif %} {% endfor %}
+  </ol>
+</nav>

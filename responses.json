@@ -1,0 +1,41 @@
+{
+  "greetings": {
+    "hello": "Welcome to Trans Asian Chamber! How can I assist you today?",
+    "hi": "Hello! Welcome to Trans Asian Chamber. How may I help you?",
+    "hey": "Hi there! Welcome to Trans Asian Chamber. What can I do for you?"
+  },
+  "about": {
+    "what is trans asian chamber": "Trans Asian Chamber is a leading business organization that promotes trade and economic cooperation between Asian countries and the rest of the world. We facilitate business connections, provide networking opportunities, and support economic development.",
+    "mission": "Our mission is to promote international trade, foster economic cooperation, and create business opportunities between Asian countries and global markets.",
+    "vision": "We envision becoming the premier platform for international business collaboration and economic growth in the Asian region."
+  },
+  "membership": {
+    "how to join": "To become a member, you can visit our website's membership section, fill out the application form, and submit the required documents. Our team will review your application and get back to you shortly.",
+    "membership benefits": "Our members enjoy exclusive benefits including networking events, business matchmaking, market insights, trade missions, and access to our global business network.",
+    "membership fees": "Membership fees vary based on the category and type of membership. Please contact our membership department for detailed information.",
+    "membership types": "We offer various membership types including Corporate, Individual, and Associate memberships. Each type has specific benefits and requirements."
+  },
+  "events": {
+    "upcoming events": "We regularly host business conferences, networking events, trade shows, and seminars. Please check our events calendar on the website for the latest updates.",
+    "how to register": "You can register for events through our website's events section. Members get priority registration and special rates.",
+    "event calendar": "Our event calendar is available on the website. It includes both virtual and in-person events throughout the year."
+  },
+  "services": {
+    "what services": "We offer various services including business matchmaking, market research, trade facilitation, networking events, and business consulting.",
+    "business matchmaking": "Our business matchmaking service connects companies with potential partners, investors, and clients across Asia and globally.",
+    "market research": "We provide comprehensive market research and analysis for businesses looking to expand into Asian markets."
+  },
+  "contact": {
+    "how to contact": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Friday, 9 AM to 5 PM.",
+    "office location": "Our main office is located in [City, Country]. We also have regional offices across Asia.",
+    "email": "You can email us at info@transasianchamber.org",
+    "phone": "For general inquiries, please call our main office at [Phone Number]"
+  },
+  "general": {
+    "thank you": "You're welcome! Is there anything else I can help you with?",
+    "bye": "Thank you for chatting with us! Have a great day!",
+    "help": "I can help you with information about our services, membership, events, and general inquiries. What would you like to know?",
+    "not sure": "No problem! I can help you learn more about Trans Asian Chamber. Would you like to know about our services, membership, or upcoming events?",
+    "default": "I'm not sure I understand. Could you please rephrase your question? I can help you with information about our services, membership, events, or general inquiries."
+  }
+}

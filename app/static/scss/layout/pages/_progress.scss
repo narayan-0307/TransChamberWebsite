@@ -1,0 +1,75 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.18 progress start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-progress{
+    &-thumb{
+        max-width: 608px;
+        height: 100%;
+        & img{
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &-content{
+        padding: 100px 80px 100px 70px;
+        max-width: 530px;
+        margin-left: -33px;
+        margin-right: -40px;
+        @media #{$xl,$lg,$md,$sm}{
+            padding: 70px 40px 70px 40px;
+        }
+        @media #{$md,$xs}{
+            margin-left: 0;
+            margin-right: 0;
+            max-width: 100%;
+        }
+        @media #{$xs}{
+            padding: 50px 12px 50px 12px; 
+        }
+    }
+    &-bar{
+        &-wrap{
+            padding: 100px 80px 100px 70px;
+            @media #{$xl,$lg,$md,$sm}{
+                padding: 60px 30px 60px 30px; 
+            }
+            @media #{$xs}{
+                padding: 50px 12px 50px 12px; 
+            }
+            & .progress-bar {
+                overflow: visible;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 10px;
+                border-radius: 9px;
+                text-align: center;
+                white-space: nowrap;
+                background-color: var(--tp-theme-primary);
+                transition: width 0.6s ease;
+                position: relative;
+                margin-top: 3px;
+                margin-left: 4px;
+            }
+        }
+    }
+    &-counter{
+        position: absolute;
+        top: -31px;
+        right: 0;
+    }
+    &-wrapper{
+        padding-bottom: 4px;
+    }
+    &-inner{
+        border: 1px solid var(--tp-border-1);
+        width: 100%;
+        height: 18px;
+        position: relative;
+        border-radius: 9px;
+        line-height: 18px;
+    }
+}

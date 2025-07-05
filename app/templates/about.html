@@ -1,0 +1,245 @@
+{% extends 'base.html' %} {% block title %} TACCI - About {% endblock %} {%
+block content %}
+
+<!-- Responsive style for commandments list -->
+<style>
+  @media (max-width: 767.98px) {
+    .tacci-commandments-list {
+      column-count: 1 !important;
+    }
+  }
+  .list-container {
+    border: 2px solid #dcf0fa;
+    padding: 14px 15px;
+    border-radius: 14px;
+    background-color: #edf7fc;
+  }
+</style>
+
+<!-- tp-breadcrumb-area-start -->
+<div
+  class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200"
+  data-background="static/images/hero/banner.jpg"
+  style="
+    margin-top: -7rem;
+    min-height: 40vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+  "
+></div>
+<!-- tp-breadcrumb-area-end -->
+{% include 'partials/breadcrumb.html' %}
+
+<div class="tp-project-details-area pt-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="tp-project-details-content">
+          <div class="row align-items-center">
+            <!-- Image Column -->
+            <div class="col-lg-5 mb-4 mb-lg-0 d-flex justify-content-center">
+              <div
+                class="tp-project-details-thumb wow img-custom-anim-top d-flex justify-content-center"
+                data-wow-duration="1.5s"
+                data-wow-delay="0.2s"
+              >
+                <img
+                  src="static/images/about/logo-bg.png"
+                  alt="TACCI Logo"
+                  class="img-fluid"
+                  style="max-width: 400px; height: auto; object-fit: contain"
+                />
+              </div>
+            </div>
+            <!-- Content Column -->
+            <div class="col-lg-7">
+              <div class="tp-project-details-content">
+                <h3
+                  class="fs-32 fw-600 mb-3 text-center text-lg-left"
+                  style="font-family: 'Poppins', sans-serif; color: #0a0eae"
+                >
+                  About Us
+                </h3>
+                <div class="tp-project-details-content pb-3">
+                  <p
+                    class="fs-18 text-justify mb-0"
+                    style="font-family: 'Poppins', sans-serif; line-height: 1.8"
+                  >
+                    Trans Asian Chamber of Commerce & Industry (TACCI), a
+                    non-governmental, non-profit organization is dedicated to
+                    promoting fair business practices between developed and
+                    developing nations. TACCI offers business promotions and
+                    global opportunities across various countries. With
+                    authentic connections spanning 70 countries and a membership
+                    exceeding 1,200, particularly in Hindustaan and numerous
+                    other nations, TACCI has led delegations and participated
+                    actively in events worldwide, including Ethiopia, Namibia,
+                    Egypt, Iran, Palestine, Nepal, China, Thailand, Hong Kong,
+                    Kazakhstan, South Korea, Spain, Poland, and the USA. At its
+                    core, TACCI serves as a dynamic networking platform which
+                    brings together diplomats, entrepreneurs, and thought
+                    leaders from Asia and beyond, fostering meaningful
+                    connections. Through regular meetings, seminars, and
+                    networking events, the chamber cultivates an environment
+                    conducive to establishing enduring business relationships.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overview Section -->
+          <div class="row mt-5">
+            <div
+              class="col-12 text-center d-flex justify-content-center align-items-center"
+            >
+              <h2
+                class="fs-40 fw-600 ls-m-2 mb-4"
+                style="font-family: 'Poppins', sans-serif; color: #0a0eae"
+              >
+                Ten Commandments or Dashaadnaa of TACCI
+              </h2>
+            </div>
+
+            <div class="col-12">
+              <div class="tp-project-details-list">
+                <ul
+                  class="mb-4 list-unstyled tacci-commandments-list"
+                  style="column-count: 2; column-gap: 40px"
+                >
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      1
+                    </div>
+                    <span class="text-dark ml-15">
+                      To promote exports and Imports from Hindustan, all over
+                      the world particularly in new markets.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      2
+                    </div>
+                    <span class="text-dark ml-15">
+                      To encourage Hindustani's to travel to new countries to
+                      seek new markets.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      3
+                    </div>
+                    <span class="text-dark ml-15">
+                      To monitor fair business practice in business transactions
+                      between developed and developing countries to avoid
+                      unethical exploitation in the financial transactions.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      4
+                    </div>
+                    <span class="text-dark ml-15">
+                      To take up environmental issues in developing countries
+                      with pragmatic approach.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      5
+                    </div>
+                    <span class="text-dark ml-15">
+                      To promote awareness towards ecology and environment among
+                      professionals, Industrialists in developing countries with
+                      active support of developed countries.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      6
+                    </div>
+                    <span class="text-dark ml-15">
+                      To promote quality conscious attitude among manufacturers
+                      and industrialists in developing countries.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      7
+                    </div>
+                    <span class="text-dark ml-15">
+                      To promote work-culture among manufacturers and
+                      industrialists in developing countries.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      8
+                    </div>
+                    <span class="text-dark ml-15">
+                      To acknowledge the talents of the people related to
+                      Research and Development in Eco - related sciences,
+                      Industrial Growth, Public welfare social cause offering
+                      them proper support and platform.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      9
+                    </div>
+                    <span class="text-dark ml-15">
+                      To promote Trans Asian Bank for development projects in
+                      developing countries under the guidelines of World Bank &
+                      IMF.
+                    </span>
+                  </li>
+                  <li class="mb-3 d-flex align-items-start list-container">
+                    <div
+                      class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white mr-3"
+                      style="width: 32px; height: 32px; min-width: 32px"
+                    >
+                      10
+                    </div>
+                    <span class="text-dark ml-15">
+                      To promote population control in Hindustan and other
+                      developing countries with other health priorities.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

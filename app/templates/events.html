@@ -1,0 +1,113 @@
+{% extends "base.html" %} {% block title %}TACCI{% endblock %} {% block content
+%}
+<main>
+  <!-- tp-breadcrumb-area-start -->
+  <div
+    class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200"
+    style="
+      margin-top: -7rem;
+      min-height: 40vh;
+      height: 60vh;
+      background-image: url('/static/images/hero/banner.jpg');
+      background-size: cover;
+      background-position: center;
+    "
+  ></div>
+  <!-- tp-breadcrumb-area-end -->
+  {% include 'partials/breadcrumb.html' %}
+
+  <div class="tp-postbox-area pt-35">
+    <div class="container">
+      <div class="row">
+        <!-- Left column -->
+        {% if selected_event %}
+        <div class="col-lg-8">
+          <div class="tp-postbox-details-wrapper mr-50 mb-50">
+            <article class="tp-postbox-details-item mb-50">
+              <div class="tp-postbox-thumb mb-30">
+                <img
+                  class="w-100 tp-round-4"
+                  src="{{ selected_event.thumbnail }}"
+                  alt="Event image"
+                />
+              </div>
+              <div class="tp-postbox-content">
+                <h3>{{ selected_event.title }}</h3>
+                <p><strong>Author:</strong> {{ selected_event.author }}</p>
+                <p>
+                  <strong>Published:</strong> {{ selected_event.published }}
+                </p>
+                <p><strong>Views:</strong> {{ selected_event.views }}</p>
+
+                {% for section in selected_event.sections %} {% if
+                section.heading %}
+                <h4>{{ section.heading }}</h4>
+                {% endif %} {% for p in section.paragraphs %}
+                <p>{{ p }}</p>
+                {% endfor %} {% if section.features %}
+                <ul>
+                  {% for feature in section.features %}
+                  <li>{{ feature }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %} {% if section.images %}
+                <div class="row">
+                  {% for image in section.images %}
+                  <div class="col-sm-6">
+                    <img
+                      class="w-100 tp-round-4"
+                      src="{{ image }}"
+                      alt="Section image"
+                    />
+                  </div>
+                  {% endfor %}
+                </div>
+                {% endif %} {% endfor %}
+              </div>
+            </article>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Right column -->
+        <div class="col-lg-4">
+          <div class="tp-sidebar-wrapper">
+            <div class="tp-sidebar-widget mb-45">
+              <div class="tp-sidebar-post">
+                <h3 class="tp-sidebar-widget-title">Latest event post</h3>
+                {% if events %} {% for event in events %}
+                <div class="tp-sidebar-rc-post d-flex align-items-center mb-10">
+                  <div class="tp-sidebar-rc-post-thumb mr-25">
+                    <a
+                      href="{{ url_for('main.event_detail_page', event_id=event.id) }}"
+                    >
+                      <img
+                        src="{{ event.thumbnail }}"
+                        style="height: 70px"
+                        alt="{{ event.title }}"
+                      />
+                    </a>
+                  </div>
+                  <div class="tp-sidebar-rc-post-content">
+                    <h6>
+                      <a
+                        href="{{ url_for('main.event_detail_page', event_id=event.id) }}"
+                      >
+                        <h6 class="underline-black">{{ event.title }}</h6>
+                      </a>
+                    </h6>
+                    <span>{{ event.published }}</span>
+                  </div>
+                </div>
+                {% endfor %} {% else %}
+                <p>No events available.</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

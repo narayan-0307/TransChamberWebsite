@@ -1,0 +1,537 @@
+{% extends "base.html" %}
+
+{% block title %}TACCI{% endblock title %}
+
+{% block content %}
+
+<style>
+  .step-active {
+    background-color: #bbf7d0 !important;
+    /* green-200 */
+    color: #16a34a !important;
+    /* green-600 */
+  }
+</style>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div
+  class="fixed top-4 right-4 px-4 py-3 rounded {% if category == 'success' %}bg-green-100 border-green-400 text-green-700{% else %}bg-red-100 border-red-400 text-red-700{% endif %} border"
+  role="alert">
+  <span class="block sm:inline">{{ message }}</span>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<section>
+  <div class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200"
+    data-background="/static/images/hero/banner.jpg" style="margin-top: -7rem">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 col-lg-6 col-md-9">
+          <div class="tp-breadcrumb-content mr-80">
+            <h2 class="tp-breadcrumb-title fw-600 fs-60 fs-xs-40 ls-m-3 tp-text-common-white lh-1">
+              {% if is_edit %}Edit{% else %}Membership{% endif %} Form
+            </h2>
+            <div class="tp-breadcrumb-dvdr">
+              <ul>
+                <li><a href="{{ url_for('main.home') }}">Main Home</a></li>
+                <li class="dvdr">/</li>
+                <li>{% if is_edit %}Edit{% else %}Our{% endif %} Membership Form</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flex items-center justify-center h-screen bg-[#fdfbfb]">
+  <div class="flex h-[90vh] w-[90vw] bg-white shadow-xl rounded-lg overflow-hidden">
+    <!-- Left Side Stepper -->
+    <div class="w-1/4 bg-[#fdfdff] border-r overflow-y-auto" style="padding: 5rem 4rem">
+      <ol class="relative text-gray-600">
+        <li class="mb-10 ms-6 cursor-pointer step-item" data-step="1">
+          <span
+            class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white transition">
+            <svg class="w-3.5 h-3.5 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M1 5.917 5.724 10.5 15 1.5" />
+            </svg>
+          </span>
+          <h5 class="font-semibold leading-tight">Personal Info</h5>
+          <p class="text-sm">Step details here</p>
+        </li>
+        <li class="mb-10 ms-6 cursor-pointer step-item" data-step="2">
+          <span
+            class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white transition">
+            <svg class="w-3.5 h-3.5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 20 16">
+              <path
+                d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" />
+            </svg>
+          </span>
+          <h5 class="font-semibold leading-tight">Membership Details</h5>
+          <p class="text-sm">Step details here</p>
+        </li>
+        <li class="mb-10 ms-6 cursor-pointer step-item" data-step="3">
+          <span
+            class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white transition">
+            <svg class="w-3.5 h-3.5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 18 20">
+              <path
+                d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Z" />
+            </svg>
+          </span>
+          <h5 class="font-semibold leading-tight">Review</h5>
+          <p class="text-sm">Step details here</p>
+        </li>
+        <li class="ms-6 cursor-pointer step-item" data-step="4">
+          <span
+            class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white transition">
+            <svg class="w-3.5 h-3.5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 18 20">
+              <path
+                d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Z" />
+            </svg>
+          </span>
+          <h5 class="font-semibold leading-tight">Confirmation</h5>
+          <p class="text-sm">Step details here</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Right Side Form -->
+    <div class="w-3/4 p-12 bg-[#fdfdff] overflow-y-auto transition duration-500" style="padding: 3rem 2rem">
+      <!-- Step 1 -->
+      <div class="step-content" data-step="1">
+        {% if step == 1 %}
+        <form method="POST"
+          action="{{ url_for('main.membership_form', step=1, member_id=request.args.get('member_id')) }}"
+          class="space-y-6">
+          <h5 class="text-3xl font-bold mb-6 text-gray-800">Personal Information</h5>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Name Of Application</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your name" name="application_name" value="{{ personalData.application_name }}"
+                required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Qualification</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your qualification" name="qualification" value="{{ personalData.qualification }}"
+                required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Birth of place (country)</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your birth place (country)" name="birth_place" value="{{ personalData.birth_place }}"
+                required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Date of Birth</label>
+              <input type="date"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                name="date_of_birth" value="{{ personalData.date_of_birth }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Email</label>
+              <input type="email"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your email" name="email" value="{{ personalData.email }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Website</label>
+              <input type="url"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your website" name="website" value="{{ personalData.website }}" />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Nationality</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your nationality" name="nationality" value="{{ personalData.nationality }}"
+                required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Passport No.</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your passport number" name="passport_number"
+                value="{{ personalData.passport_number }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Name of Company</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your company name" name="company_name" value="{{ personalData.company_name }}"
+                required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Designation/Occupation</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your designation/occupation" name="designation"
+                value="{{ personalData.designation }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Phone Number</label>
+              <input type="tel"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your phone number" name="phone_number" value="{{ personalData.phone_number }}"
+                required />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block mb-2 text-sm font-medium text-gray-700">Address / Street</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your address / street" name="address" value="{{ personalData.address }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">City</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your city" name="city" value="{{ personalData.city }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Country / region</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your country / region" name="country" value="{{ personalData.country }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">State / province</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your state / province" name="state" value="{{ personalData.state }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Zipcode</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your zipcode" name="zipcode" value="{{ personalData.zipcode }}" required />
+            </div>
+          </div>
+          <div class="flex justify-end mt-6">
+            <button type="submit" class="bg-blue-600 text-gray-500 px-4 py-2 rounded hover:bg-blue-700">
+              Next
+              <svg width="15" height="15" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linejoin="round" stroke-linecap="round"></path>
+              </svg>
+            </button>
+          </div>
+          {% endif %}
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-content" data-step="2" style="padding: 30px 25px;">
+        {% if step == 2 %}
+        <form method="POST"
+          action="{{ url_for('main.membership_form', step=2, member_id=request.args.get('member_id')) }}">
+          <h4 class="text-3xl font-bold mb-6 text-gray-800">Step2: Membership Details</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Type Of Membership</label>
+              <select
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                name="membership_type" required>
+                <option value="" disabled {% if not membershipDetails.membership_type %}selected{% endif %}>
+                  Select membership type
+                </option>
+                <option value="life" {% if membershipDetails.membership_type=='life' %}selected{% endif %}>Life Members
+                </option>
+                <option value="patron" {% if membershipDetails.membership_type=='patron' %}selected{% endif %}>Patron
+                  Members</option>
+                <option value="corporate_patron" {% if membershipDetails.membership_type=='corporate_patron'
+                  %}selected{% endif %}>
+                  Corporate Patron Members
+                </option>
+                <option value="corporate_life" {% if membershipDetails.membership_type=='corporate_life' %}selected{%
+                  endif %}>Corporate Life Members</option>
+                <option value="yearly" {% if membershipDetails.membership_type=='yearly' %}selected{% endif %}>Yearly
+                  Associates</option>
+                <option value="corporate_yearly" {% if membershipDetails.membership_type=='corporate_yearly'
+                  %}selected{% endif %}>
+                  Corporate Yearly Associates
+                </option>
+                <option value="associate" {% if membershipDetails.membership_type=='associate' %}selected{% endif %}>
+                  Associates Members</option>
+                <option value="senior_life" {% if membershipDetails.membership_type=='senior_life' %}selected{% endif
+                  %}>Senior Life Members</option>
+                <option value="honorary" {% if membershipDetails.membership_type=='honorary' %}selected{% endif %}>
+                  Honorary Members</option>
+              </select>
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Amount to be paid</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter the amount to be paid" name="amount_paid" value="{{ membershipDetails.amount_paid }}"
+                required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Residence Phone</label>
+              <input type="tel"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your residence phone" name="residence_phone"
+                value="{{ membershipDetails.residence_phone }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Name of Spouse</label>
+              <input type="text"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter your spouse's name" name="spouse_name" value="{{ membershipDetails.spouse_name }}"
+                required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Number of children</label>
+              <input type="number"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                placeholder="Enter the number of children" name="number_of_children"
+                value="{{ membershipDetails.number_of_children }}" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium text-gray-700">Birth Date of Spouse</label>
+              <input type="date"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                name="spouse_birth_date" value="{{ membershipDetails.spouse_birth_date }}" required />
+            </div>
+          </div>
+          <div class="flex justify-between mt-6">
+            <!-- <button id="prevBtn" type="button"
+              class="px-8 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 focus:ring-4 focus:ring-gray-200 focus:ring-opacity-50 transition-colors flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                  clip-rule="evenodd" />
+              </svg>
+              Previous
+            </button> -->
+            <a href="{{ url_for('main.membership_form', step=1, member_id=request.args.get('member_id')) }}"
+              class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+               ← Previous
+            </a>
+            <button type="submit"
+              class="px-8 py-3 bg-blue-600 text-gray-700 font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 transition-colors flex items-center gap-2">
+              Next
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3 -->
+      {% elif step == 3 %}
+      <div class="">
+        <h4 class="text-xl font-bold mb-6">Step 3: Review Your Information</h4>
+        <p class="mb-4">Please review your details before {% if is_edit %}updating{% else %}submission{% endif %}:</p>
+
+        <!-- Personal Info -->
+        <div class="mb-6">
+          <h5 class="font-semibold text-lg text-gray-800 mb-2">Personal Info</h5>
+          <div class="space-y-2">
+            {% for key, value in personalData.items() %}
+            <div>
+              <span class="font-bold text-gray-700">{{ key.replace("_", " ").title() }}</span>
+              <p class="text-gray-600">{{ value }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Membership Info -->
+        <div class="mb-6">
+          <h5 class="font-semibold text-lg text-gray-800 mb-2">Membership Info</h5>
+          <div class="space-y-2">
+            {% for key, value in membershipDetails.items() %}
+            <div>
+              <span class="font-bold text-gray-700">{{ key.replace("_", " ").title() }}</span>
+              <p class="text-gray-600">{{ value }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-between mt-6">
+          <a href="{{ url_for('main.membership_form', step=2, member_id=request.args.get('member_id')) }}"
+            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+             ← Previous
+          </a>
+
+          <form method="POST"
+            action="{{ url_for('main.membership_form', step=3, member_id=request.args.get('member_id')) }}">
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-gray-500 rounded hover:bg-blue-700">
+              Submit Application →
+            </button>
+          </form>
+        </div>
+      </div>
+      {% elif step == 4 %}
+      <div class="bg-white p-8 rounded shadow-md text-center">
+        <h2 class="text-2xl font-bold text-green-700 mb-4">🎉 Thank You!</h2>
+        <p class="text-gray-700 text-lg mb-6">Your membership form has been {% if is_edit %}updated{% else %}submitted{%endif %} successfully.</p>
+        <a href="{{ url_for('main.home') }}"
+          class="inline-block bg-blue-600 text-gray-600 px-6 py-3 rounded hover:bg-blue-700 transition">
+          Go to Homepage
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+<!-- Success message div -->
+<div id="successMessage"
+  class="fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded hidden" role="alert">
+  <strong class="font-bold">Success!</strong>
+  <span class="block sm:inline">Your form has been submitted successfully.</span>
+</div>
+
+
+<script>
+  const stepItems = document.querySelectorAll(".step-item");
+  const stepContents = document.querySelectorAll(".step-content");
+  let currentStep = 1;
+
+  function goToStep(step) {
+    currentStep = step;
+    const stepElement = document.querySelector(
+      `.step-item[data-step="${step}"]`
+    );
+    stepElement.click();
+  }
+
+  function validateStep(step) {
+    const currentStepContent = document.querySelector(`[data-step="${step}"]`);
+    const requiredInputs = currentStepContent.querySelectorAll(
+      "input[required], select[required]"
+    );
+    let isValid = true;
+
+    requiredInputs.forEach((input) => {
+      if (!input.value) {
+        isValid = false;
+        input.classList.add("border-red-500");
+      } else {
+        input.classList.remove("border-red-500");
+      }
+    });
+
+    return isValid;
+  }
+
+  function handleNext() {
+    if (validateStep(currentStep)) {
+      if (currentStep < 4) {
+        goToStep(currentStep + 1);
+      }
+    } else {
+      alert("Please fill in all required fields");
+    }
+  }
+
+  function handlePrevious() {
+    if (currentStep > 1) {
+      goToStep(currentStep - 1);
+    }
+  }
+
+  // Event listeners for next buttons
+  document.querySelectorAll("#nextBtn").forEach((button) => {
+    button.addEventListener("click", handleNext);
+  });
+
+  // Event listeners for previous buttons
+  document.querySelectorAll("#prevBtn").forEach((button) => {
+    button.addEventListener("click", handlePrevious);
+  });
+
+  // Sidebar step click handling
+  stepItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const step = item.getAttribute("data-step");
+      currentStep = parseInt(step);
+
+      // Update stepper active style
+      stepItems.forEach((i) => {
+        i.querySelector("span").classList.remove("step-active");
+      });
+      item.querySelector("span").classList.add("step-active");
+
+      // Show the current step content only
+      stepContents.forEach((content) => {
+        if (content.getAttribute("data-step") === step) {
+          content.classList.remove("hidden");
+        } else {
+          content.classList.add("hidden");
+        }
+      });
+    });
+  });
+
+  // Initialize first step active
+  document
+    .querySelector('.step-item[data-step="1"] span')
+    .classList.add("step-active");
+
+document.querySelectorAll('.step-item').forEach(item => {
+    item.addEventListener('click', function () {
+      const step = this.getAttribute('data-step');
+
+      // If you're using query parameters in Flask route
+      window.location.href = `/membership-form?step=${step}`;
+      
+      // OR if you're using JavaScript to dynamically show/hide steps on the same page:
+      // showStepContent(step);
+    });
+  });
+
+
+   document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      const successMessage = document.getElementById('successMessage');
+      successMessage.classList.remove('hidden');
+
+      setTimeout(() => {
+        successMessage.classList.add('hidden');
+      }, 5000);
+
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  });
+</script>
+
+
+<!-- Form content -->
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      const successMessage = document.getElementById('successMessage');
+      successMessage.classList.remove('hidden');
+
+      setTimeout(() => {
+        successMessage.classList.add('hidden');
+      }, 5000);
+
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  });
+</script> -->
+{% endblock %}

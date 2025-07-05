@@ -1,0 +1,229 @@
+@use '../utils' as *;
+/*----------------------------------------*/
+/*  2.1 Animations
+/*----------------------------------------*/
+
+/* zoom effect animation */
+
+@keyframes zoom {
+	0% {
+			-webkit-transform: scale(1);
+			transform: scale(1)
+	}
+
+	50% {
+			-webkit-transform: scale(1.1);
+			transform: scale(1.1)
+	}
+
+	100% {
+			-webkit-transform: scale(1);
+			transform: scale(1)
+	}
+}
+
+/* animate-pulse */
+@keyframes animate-pulse{
+    0%{
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8),  0 0 0 0 rgba(255, 255, 255, 0.8);
+    }
+    40%{
+        box-shadow: 0 0 0 50px rgba(255,109,74,0.0),  0 0 0 0 rgba(255, 255, 255, 0.8);
+    }
+    80%{
+        box-shadow: 0 0 0 50px rgba(255,109,74,0.0),  0 0 0 30px rgba(255,109,74,0);
+    }
+    100%{
+        box-shadow: 0 0 0 0 rgba(255,109,74,0.0),  0 0 0 30px rgba(255,109,74,0);
+    }
+}
+
+@keyframes slide-progress {
+	0% {
+		transform: translateX(-100%);
+		width: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		width: 100%;
+	}
+}
+@include keyframes(tpshake){
+    10% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: skew(15deg);
+    }
+    80% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+.tpshake{
+	transition: all .4s ease;
+}
+.tpshake-wrap{
+	&:hover{
+		& .tpshake{
+			animation-name: tpshake;
+			animation-timing-function: ease-in-out;
+			animation-duration: 0.4s;
+			animation-iteration-count: 1;
+		}
+	}
+}
+
+@keyframes wobble_vertical {
+    16.65% {
+        transform: translateY(8px)
+    }
+
+    33.3% {
+        transform: translateY(-6px)
+    }
+
+    49.95% {
+        transform: translateY(4px)
+    }
+
+    66.6% {
+        transform: translateY(-2px)
+    }
+
+    83.25% {
+        transform: translateY(1px)
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}
+.tpshake-wrap-2{
+	&:hover{
+		& .tpshake-2{
+			animation-name: wobble_vertical;
+			animation-duration: 1s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: 1;
+		}
+	}
+}
+
+@include keyframes(rotate-infinite){
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+.rotate-infinite{
+	-webkit-animation: rotate-infinite 15s linear infinite;
+	animation: rotate-infinite 15s linear infinite;
+}
+
+ /*img-animation**********************/
+ .img-custom-anim-right {
+    animation: img-anim-right 1.3s forwards cubic-bezier(0.645, 0.045, 0.355, 1) 0.4s;
+    opacity: 0;
+  }
+  
+  @keyframes img-anim-right {
+    0% {
+      transform: translateX(5%);
+      clip-path: inset(0 0 0 100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+  }
+  .img-custom-anim-left {
+    animation: img-anim-left 1.3s forwards cubic-bezier(0.645, 0.045, 0.355, 1) 0.4s;
+    opacity: 0;
+  }
+  
+  @keyframes img-anim-left {
+    0% {
+      transform: translateX(-5%);
+      clip-path: inset(0 100% 0 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+  }
+  .img-custom-anim-top {
+    animation: img-anim-top 1.3s forwards cubic-bezier(0.645, 0.045, 0.355, 1);
+    opacity: 0;
+  }
+  
+  @keyframes img-anim-top {
+    0% {
+      transform: translateY(-5%);
+      clip-path: inset(0 0 100% 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+  }
+
+  @include keyframes(tpSwing){
+    0% {
+        @include transform(rotate(6deg));
+    }
+    100% {
+        @include transform(rotate(-6deg));
+    }
+  }
+  .tpswing{
+    animation: tpSwing 2s linear infinite alternate;
+  }
+
+
+// tptranslateX2
+@keyframes tptranslateX2 {
+  0% {
+      transform: translateX(-30px)
+  }
+
+  to {
+      transform: translateX(20px)
+  }
+}
+.tptranslateX2{
+  animation: tptranslateX2 4s infinite alternate;
+}
+// tptranslateY2
+@keyframes tptranslateY2 {
+  0% {
+    transform: translateY(-30px)
+  }
+
+  to {
+    transform: translateY(20px)
+  }
+}
+.tptranslateY2{
+  animation: tptranslateY2 4s infinite alternate forwards;
+}
+
+@keyframes headerSlideDown {
+    0% {
+    margin-top:-150px
+  }
+    100% {
+    margin-top:0
+  }
+}

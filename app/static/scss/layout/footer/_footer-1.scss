@@ -1,0 +1,179 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  6.1 Footer Style 1
+/*----------------------------------------*/
+
+.#{$theme-prifix}-footer{
+    &-widget{
+        @media #{$lg,$md,$sm,$xs}{
+            margin-left: 0;
+        }
+        & .tp-benifits-form-content .tp-icon {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        & .tp-footer-input{
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 4px;
+            color: var(--tp-common-white);
+            border: none;
+            &::placeholder{
+                font-size: 14px;
+                color: #e5ebea;
+            }
+        }
+    }
+    &-menu{
+        & ul{
+            & li{
+                list-style: none;
+                &:not(:last-child){
+                    margin-bottom: 12px;
+                }
+                & a{
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: var(--tp-grey-3);
+                    &:hover{
+                        color: var(--tp-theme-secondary);
+                    }  
+                }
+            }
+        }
+    }
+    &-meinus{
+        margin-left: -20px;
+        @media #{$lg,$md,$sm,$xs}{
+            margin-left: 0;
+        }
+    }
+    &-bottom{
+        &-social{
+            & ul{
+                gap: 23px;
+                & li{
+                    list-style: none;
+                    & a{
+                        color: var(--tp-common-white);
+                        transition: all .4s ease;
+                        &:hover{
+                            color: var(--tp-theme-secondary);
+                        }
+                    }
+                }
+            }
+        }
+        &-border{
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 20px 30px 0px 30px;
+        }
+    }
+    &-3{
+        &-top{
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            &-content{
+                & .tp-benifits-form-content{
+                    & .tp-icon{
+                        width: 52px;
+                        height: 52px;
+                        line-height: 52px;
+                        background: var(--tp-theme-secondary);
+                        border-radius: 4px;
+                    }
+                }
+            }
+        }
+        &-form{
+            @media #{$lg,$md,$sm,$xs}{
+                margin-left: 0;
+            }
+            & .footer-3-btn{
+                width: 44px;
+                height: 44px;
+                line-height: 44px;
+                position: absolute;
+                top: 50%;
+                right: 4px;
+                transform: translateY(-50%);
+                border-radius: 2px;
+            }
+            & .tp-footer-input{
+                font-size: 14px;
+                padding-right: 70px;
+            }
+        }
+        &-widget{
+            & .tp-footer-bottom-social ul {
+                gap: 4px;
+            }
+            & .tp-footer-bottom-social ul li a {
+                width: 48px;
+                height: 48px;
+                border-radius: 100%;
+                background: rgba(255, 255, 255, 0.06);
+                backdrop-filter: blur(30px);
+                display: inline-block;
+                text-align: center;
+                line-height: 48px;
+                &:hover{
+                    color: var(--tp-theme-secondary);
+                }
+            }
+        }
+        &-bottom{
+            backdrop-filter: blur(40px);
+            background: linear-gradient(209deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
+            border-radius: 40px;
+            padding: 29px 20px;
+            @media #{$xs}{
+                padding: 13px 20px;
+            }
+        }
+    }
+    &-8{
+        &-border{
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        &-location {
+            & a{
+                font-weight: 400;
+                font-size: 16px;
+                color: var(--tp-grey-3);
+                display: block;
+                display: flex;
+                margin-bottom: 10px;
+                & span{
+                    width: 20px;
+                    display: inline-block;
+                    margin-right: 10px;
+                    transform: translateY(-2px);
+                }
+            }
+        }
+        &-form{
+            & .tp-input{
+                background: none;
+                border: none;
+                font-weight: 400;
+                font-size: 16px;
+                color: var(--tp-common-white);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 0;
+                padding: 0;
+                height: 30px;
+                &:focus{
+                    border-color: var(--tp-common-white);
+                }
+                &::placeholder{
+                    color: #e5ebea;
+                }
+            }
+            & .footer-3-btn{
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+}

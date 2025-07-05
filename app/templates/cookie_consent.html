@@ -1,0 +1,185 @@
+{% macro cookie_consent() %}
+<div id="cookie-consent-banner" class="cookie-banner" style="display: none;">
+    <div class="cookie-content">
+        <h3>Cookie Settings</h3>
+        <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.
+            Please select which cookies you're willing to store on your browser.</p>
+
+        <div class="cookie-options">
+            <div class="cookie-option">
+                <input type="checkbox" id="necessary-cookies" checked disabled>
+                <label for="necessary-cookies">Necessary Cookies (Required)</label>
+                <p class="cookie-description">Essential cookies that enable basic functionality of the website.</p>
+            </div>
+
+            <div class="cookie-option">
+                <input type="checkbox" id="analytics-cookies">
+                <label for="analytics-cookies">Analytics Cookies</label>
+                <p class="cookie-description">Help us understand how visitors interact with our website.</p>
+            </div>
+
+            <div class="cookie-option">
+                <input type="checkbox" id="marketing-cookies">
+                <label for="marketing-cookies">Marketing Cookies</label>
+                <p class="cookie-description">Used to track visitors across websites to display relevant advertisements.
+                </p>
+            </div>
+        </div>
+
+        <div class="cookie-buttons">
+            <button id="accept-all-cookies" class="btn btn-primary">Accept All</button>
+            <button id="accept-selected-cookies" class="btn btn-secondary">Accept Selected</button>
+            <button id="reject-all-cookies" class="btn btn-outline">Reject All</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 20px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .cookie-banner.hidden {
+        transform: translateY(100%);
+    }
+
+    .cookie-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .cookie-options {
+        margin: 20px 0;
+    }
+
+    .cookie-option {
+        margin: 15px 0;
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+    }
+
+    .cookie-description {
+        font-size: 0.9em;
+        color: #666;
+        margin: 5px 0 0 25px;
+    }
+
+    .cookie-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+
+    .btn-primary {
+        background: #007bff;
+        color: white;
+    }
+
+    .btn-secondary {
+        background: #6c757d;
+        color: white;
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 1px solid #6c757d;
+        color: #6c757d;
+    }
+
+    .btn-outline:hover {
+        background: #f8f9fa;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const banner = document.getElementById('cookie-consent-banner');
+        const acceptAllBtn = document.getElementById('accept-all-cookies');
+        const acceptSelectedBtn = document.getElementById('accept-selected-cookies');
+        const rejectAllBtn = document.getElementById('reject-all-cookies');
+
+        // Check if user has already made a choice
+        const cookieChoice = localStorage.getItem('cookieChoice');
+        if (!cookieChoice) {
+            banner.style.display = 'block';
+        }
+
+        async function setCookiePreferences(preferences) {
+            try {
+                // Send preferences to server
+                const response = await fetch('/api/cookie-consent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(preferences)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to set cookie preferences');
+                }
+
+                // Store preferences in localStorage
+                localStorage.setItem('cookieChoice', JSON.stringify(preferences));
+
+                // Hide the banner with animation
+                banner.classList.add('hidden');
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                }, 300); // Wait for animation to complete
+
+            } catch (error) {
+                console.error('Error setting cookie preferences:', error);
+                alert('Failed to set cookie preferences. Please try again.');
+            }
+        }
+
+        acceptAllBtn.addEventListener('click', function () {
+            setCookiePreferences({
+                necessary: true,
+                analytics: true,
+                marketing: true
+            });
+        });
+
+        acceptSelectedBtn.addEventListener('click', function () {
+            setCookiePreferences({
+                necessary: true,
+                analytics: document.getElementById('analytics-cookies').checked,
+                marketing: document.getElementById('marketing-cookies').checked
+            });
+        });
+
+        rejectAllBtn.addEventListener('click', function () {
+            setCookiePreferences({
+                necessary: true,
+                analytics: false,
+                marketing: false
+            });
+        });
+    });
+</script>
+{% endmacro %}

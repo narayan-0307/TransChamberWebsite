@@ -1,0 +1,128 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.16 pricing start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-pricing{
+    &-thumb{
+        & img{
+            border-radius: 4px 4px 0px 0px;
+        }
+    }
+    &-content{
+        padding: 35px 55px 48px 60px;
+        @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+            padding: 30px 28px 30px 30px;
+        }
+    }
+    &-wrap{
+        border: 1px solid rgba(31, 49, 48, 0.1);
+        border-radius: 4px;
+        &-2{
+            padding: 60px 60px 60px 60px;
+            @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+                padding: 30px 28px 30px 30px;
+            }
+            & .tp-service-content {
+                padding: 0px;
+            }
+            & .tp-service-content ul li i {
+                background: var(--tp-common-white);
+            }
+        }
+        &-3{
+            padding: 60px 48px 60px 60px;
+            @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+                padding: 30px 28px 30px 30px;
+            }
+            & .tp-service-content {
+                padding: 0px;
+            }
+            & .tp-border-bottom {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            }
+        }
+    }
+    &-icon{
+        border-radius: 4px;
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        line-height: 120px;
+        &-2{
+            width: 120px; 
+        }
+    }
+    &-5{
+        &-btn{
+            padding: 13px 10px;
+            border: 1px solid transparent;
+            &:hover{
+                border: 1px solid rgba(31, 49, 48, 0.1);
+            }
+            &.btn-transparent{
+                border: 1px solid rgba(31, 49, 48, 0.1);
+            }
+            &-bottom{
+                border-top: 1px solid rgba(31, 49, 48, 0.1);
+                padding-top: 22px;
+            }
+        }
+        &-item{
+            border: 1px solid rgba(31, 49, 48, 0.1);
+            padding: 45px 50px 40px 50px;
+            @media #{$md,$sm,$xs}{
+                padding: 25px 30px 20px 30px;
+            }
+            &.active{
+                & .btn-transparent{
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                }
+                & .tp-pricing-5-list ul li {
+                    color: var(--tp-common-white);
+                    & i{
+                        background: rgba(255, 255, 255, 0.1);
+                        color: var(--tp-common-white);
+                    }
+                }
+                & .tp-pricing-5-btn-bottom {
+                    border-top: 1px solid rgba(255, 255, 255, 0.2);
+                }
+            }
+        }
+        &-list{
+            & ul{
+                & li{
+                    font-weight: 400;
+                    font-size: 16px;
+                    color: var(--tp-theme-primary);
+                    list-style: none;
+                    margin-bottom: 12px;
+                    display: flex;
+                    & i{
+                        width: 20px;
+                        height: 20px;
+                        text-align: center;
+                        line-height: 20px;
+                        font-size: 14px;
+                        background: var(--tp-common-white);
+                        border-radius: 30px;
+                        color: var(--tp-theme-primary);
+                        margin-right: 10px;
+                        flex: 0 0 auto;
+                        transform: translateY(5px);
+                    }
+                }
+            }
+        }
+    }
+    &-8{
+        &-item{
+            padding: 30px 40px 30px 40px;
+            @media #{$xl,$md,$xs}{
+                padding: 20px 20px 20px 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+
+# IDE/editor folders
+.vscode/
+*.swp
+*.swo
+
+# __init__.py compiled files
+*.pyc
+
+# Flask migration files (keep migrations folder, ignore SQLite if not used)
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db

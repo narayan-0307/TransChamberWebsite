@@ -1,0 +1,38 @@
+@use './mixins' as *;
+
+%include-bg{
+	@include background();
+}
+
+%transition{
+	@include transition();
+}
+
+
+// font
+
+%ff-fontawesome{
+	font-family: var(--tp-ff-fontawesome);
+}
+
+
+/* transform */
+%translateY2{
+	@include transform(translateY(-50%));
+}
+%translateX2{
+	@include transform(translateX(-50%));
+}
+%translate2{
+	@include transform(translate(-50%, -50%));
+}
+
+
+// bg thumbnails
+%bg-thumb{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

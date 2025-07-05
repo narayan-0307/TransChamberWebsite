@@ -1,0 +1,526 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.10 faq start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-faq{
+    &-right{
+        border-radius: 4px 0px 0px 4px;
+        margin-left: -20px;
+    }
+    &-content{
+        padding-left: 60px;
+        @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+            padding-left: 30px; 
+        }
+    }
+    &-height{
+        @media #{$md,$sm,$xs}{
+            height: auto!important;
+        }
+    }
+    &-thumb{
+        margin-right: 20px;
+        height: 100%;
+        @media #{$md,$sm,$xs}{
+            margin-right: 0;
+        }
+        & img{
+            border-radius: 0px 4px 4px 0px;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &-wrapper{
+        padding-right: 130px;
+        margin-left: 20px;
+        @media #{$xxl,$xl}{
+            padding-right: 30px;
+            margin-left: 0;
+        }
+        @media #{$lg,$md,$sm,$xs}{
+            padding-right: 12px;
+            padding-left: 12px;
+        }
+        @media #{$md,$xs}{
+            padding-left: 12px;
+        }
+        & .accordion-button.tp-faq-btn-2 {
+            font-weight: 500;
+            font-size: 18px;
+            letter-spacing: -0.02em;
+            color: var(--tp-common-white);
+            background: transparent;
+            padding: 20px 30px;
+            padding-right: 53px;
+            &:focus{
+                box-shadow: none;
+            }
+        }
+        & .accordion-button:not(.collapsed) {
+            box-shadow: none;
+            color: var(--tp-theme-secondary);
+            & .accordion-btn{
+                &::before{
+                    @include transform(translateX(-50%) rotate(90deg));
+                    background-color: var(--tp-theme-secondary);
+                }
+                &::after{
+                    background-color: var(--tp-theme-secondary);
+                }
+            }
+        }
+        & .accordion-button::after {
+            display: none;
+        }
+        & .accordion-body {
+            padding: 0px 120px 35px 30px;
+            @media #{$xl,$xs}{
+                padding: 0px 30px 35px 30px;
+            }
+        }
+        & .accordion-btn{
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            &::after{
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 2px;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: var(--tp-common-white);
+                border-radius: 2px;
+                transition: all .4s ease;
+            }
+            &::before{
+                position: absolute;
+                content: "";
+                width: 2px;
+                height: 100%;
+                left: 50%;
+                top: 0;
+                background-color: var(--tp-common-white);
+                transform: translateX(-50%);
+                border-radius: 2px;
+                transition: all .4s ease;
+            }
+        }
+        & .accordion-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 4px;
+            border: none;
+        }
+        & .tp-faq-details-para {
+            & p{
+                color: var(--tp-grey-3);
+                margin-bottom: 0;
+                font-size: 14px;
+            }
+        }
+    }
+    &-2{
+        &-author{
+            &-ratings{
+                backdrop-filter: blur(40px);
+                background: linear-gradient(140deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+                display: inline-block;
+                border-radius: 15px;
+                padding: 2px 12px;
+                & span{
+                    & i{
+                        color: #fdc93a;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        &-wrap{
+            & .tp-border{
+                border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            }
+            & .tp-faq-wrapper {
+                margin-left: 0;
+            }
+            & .tp-faq-content {
+                padding: 43px 60px 43px 60px;
+                margin-right: 10px;
+                margin-left: 30px;
+                @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+                    margin-right:0;
+                    margin-left: 0;
+                    padding: 43px 30px 43px 30px; 
+                }
+                @media #{$xl}{
+                    margin-right: -35px;
+                }
+            }
+            & .tp-faq-thumb {
+                margin-right: 0;
+            }
+            & .tp-faq-wrapper .accordion-button {
+                border: 1px solid rgba(31, 49, 48, 0.08);
+                border-radius: 4px;
+                color: var(--tp-theme-primary);
+            }
+            & .tp-faq-wrapper .accordion-button:not(.collapsed) {
+                background: var(--tp-common-white);
+                color: var(--tp-theme-primary);
+                border-color: var(--tp-common-white);
+            }
+            & .tp-faq-wrapper .accordion-body {
+                background: var(--tp-common-white);
+            }
+            & .tp-faq-wrapper .tp-faq-details-para{
+                border-radius: 0px 0px 4px 4px;
+            }
+            & .tp-faq-wrapper .tp-faq-details-para p {
+                color: #506767;
+            }
+            & .tp-faq-wrapper .accordion-btn::before {
+                background-color:  var(--tp-theme-primary);
+            }
+            & .tp-faq-wrapper .accordion-btn::after {
+                background-color:  var(--tp-theme-primary);
+            }
+            & .tp-faq-wrapper .accordion-button:not(.collapsed) .accordion-btn::before {
+                background-color:  var(--tp-theme-primary);
+            }
+            & .tp-faq-wrapper .accordion-button:not(.collapsed) .accordion-btn::after {
+                background-color:  var(--tp-theme-primary);
+            }
+        }
+    }
+    &-3{
+        &-links{
+            &-inner{
+                border-radius: 4px;
+                width: 260px;
+                backdrop-filter: blur(40px);
+                background: linear-gradient(209deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
+                padding: 30px 30px 12px 30px;
+            }
+        }
+        &-wrapper{
+            padding-right: 0;
+            margin-left: 65px!important;
+            @media #{$lg,$md,$sm,$xs}{
+                margin-left: 0!important;
+            }
+            @media #{$md,$sm,$xs}{
+                padding-left: 0;
+            }
+            & .accordion-button{
+                padding-right: 27px!important;
+                z-index: 1;
+                &::after {
+                    display: inline-block;
+                    content: "\f107";
+                    font-family: var(--tp-ff-fontawesome);
+                    background-image: none;
+                    width: auto;
+                    height: auto;
+                }
+                &::before{
+                    position: absolute;
+                    content: "";
+                    width: 40px;
+                    right: 15px;
+                    height: 40px;
+                    background: #f8d0b3;
+                    color: var(--tp-common-black);
+                    z-index: -1;
+                    border-radius: 50px;
+                }
+            }
+            & .accordion-button:not(.collapsed)::after {
+                color: var(--tp-common-white);
+            }
+            & .accordion-button:not(.collapsed)::before {
+                background: var(--tp-theme-primary);
+            }
+        }
+        &-subtitle{
+            position: absolute;
+            top: -12px;
+            left: 40px;
+            padding: 3px 10px;
+            display: inline-block;
+            background: #f6f6f6;
+            &-2{
+                position: absolute;
+                top: -12px;
+                left: 40px;
+                padding: 3px 10px;
+                display: inline-block;
+                background: #f6f6f6;
+            }
+        }
+        &-wrap{
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                margin-right: 0;
+            }
+            & .tp-faq-wrapper .accordion-button {
+                border: none;
+            }
+            & .tp-faq-wrapper .accordion-button:not(.collapsed) {
+                background: none;
+            }
+            & .tp-faq-wrapper .accordion-body {
+                background: none;
+            }
+            & .tp-faq-wrapper .accordion-item {
+                border: 1px solid rgba(31, 49, 48, 0.1);
+            }
+            & .tp-faq-wrapper .accordion-button.tp-faq-btn-2 {
+                padding: 25px 30px;
+                font-size: 20px;
+            }
+            & .tp-faq-wrapper .accordion-button:not(.collapsed) {
+                & .tp-faq-3-subtitle{
+                    display: inline-block!important;
+                }
+                & .tp-faq-3-subtitle-2{
+                    display: none;
+                }
+            }
+        }
+        &-title{
+            &-wrap{
+                @media #{$xs}{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    &-4{
+        &-thumb{
+            & .thumb{
+                @media #{$lg,$md,$sm,$xs}{
+                    margin-right: 0;
+                }
+                @media #{$md,$sm,$xs}{
+                    margin-bottom: 100px;
+                }
+            }
+            &-shape{
+                border-radius: 4px;
+                width: 82%;
+                height: 100%;
+                display: inline-block;
+                background: var(--tp-theme-secondary);
+                z-index: -1;
+                left: 0;
+                bottom: -30px;
+            }
+        }
+        &-wrapper{
+            padding-right: 0;
+            margin-left: 0;
+            @media #{$sm,$xs}{
+                padding-left: 0;
+            }
+            & .accordion-button.tp-faq-btn-2 {
+                font-size: 24px;
+                color: var(--tp-theme-primary);
+                padding: 24px 30px;
+                @media #{$xs}{
+                    padding: 24px 15px;
+                }
+                & span{
+                    color: var(--tp-grey-1);
+                    display: inline-block;
+                    margin-right: 40px;
+                    @media #{$xs}{
+                        margin-right: 10px;
+                    }
+                }
+            }
+            & .tp-faq-details-para p {
+                color: var(--tp-grey-1);
+                font-size: 16px;
+            }
+            & .accordion-body {
+                padding: 0px 40px 35px 97px;
+                @media #{$xs}{
+                    padding: 0px 20px 35px 40px;
+                }
+            }
+            & .accordion-item {
+                border-bottom: 1px solid rgba(31, 49, 48, 0.1);
+                border-radius: 0;
+                &.expand{
+                    background: linear-gradient(180deg, #e5ebea 0%, #f6f6f6 100%);
+                    border-radius: 4px;
+                    border: transparent;
+                }
+            }
+        }
+    }
+    &-5{
+        &-wrapper{
+            border: 1px solid rgba(31, 49, 48, 0.08);
+            padding: 60px 60px 60px 60px;
+            margin-right: -60px;
+            margin-left: 60px;
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                margin-left: 0;
+                margin-right: 0;
+            }
+            @media #{$lg,$md,$sm}{
+                padding: 30px 30px 30px 30px;
+            }
+            @media #{$xs}{
+                border: none;
+                padding: 0;
+            }
+            .tp-faq-wrapper {
+                padding-right: 0;
+                margin-left: 0;
+                @media #{$xs}{
+                    padding-left: 0;
+                }
+            }
+            & .tp-faq-wrapper .accordion-button {
+                border-left: 0;
+                border-radius: 0;
+                border-right: 0;
+                margin-top: -1px;
+                padding-right: 30px;
+                padding-left: 53px;
+                font-size: 20px;
+                @media #{$xs}{
+                    padding-left: 25px; 
+                    padding-right: 10px;
+                }
+                &:hover{
+                    background: var(--tp-common-white-2);
+                }
+            }
+            & .tp-faq-wrapper .accordion-button:not(.collapsed) {
+                border-top: 1px solid rgba(31, 49, 48, 0.08);
+            }
+            & .tp-faq-wrapper .accordion-btn {
+                right: auto;
+                left: 25px;
+                @media #{$xs}{
+                    left: 0;
+                }
+            }
+            & .tp-faq-wrapper .accordion-body {
+                padding: 0px 50px 35px 55px;
+                @media #{$xs}{
+                    padding: 0px 20px 25px 25px;
+                }
+            }
+            & .tp-faq-wrapper .accordion-btn::before {
+                background-color: var(--tp-grey-1);
+            }
+            & .tp-faq-wrapper .accordion-btn::after {
+                background-color: var(--tp-grey-1);
+            }
+        }
+    }
+    &-6{
+        &-wrap{
+            & .tp-faq-3-subtitle {
+                background: var(--tp-grey-3);
+            }
+            & .tp-faq-3-subtitle-2 {
+                background: var(--tp-grey-3);
+            }
+            & .accordion-button.tp-faq-btn-2 {
+                padding: 23px 30px!important;
+            }
+            & .accordion-button::before {
+                position: absolute;
+                content: "";
+                width: 40px;
+                right: 17px;
+                height: 40px;
+                background: #f8d0b3;
+                color: var(--tp-common-black);
+                z-index: -1;
+                border-radius: 50px;
+            }
+        }
+    }
+    &-details{
+        &-wrapper{
+            & .tp-faq-3-subtitle-2 {
+                background: var(--tp-common-white-2);
+            }
+            & .tp-faq-3-subtitle {
+                background: var(--tp-common-white-2);
+            }
+        }
+        &-item{
+            display: flex;
+            align-items: center;
+        }
+        &-icon{
+            border-radius: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+            flex: 0 0 auto;
+        }
+        &-thumb{
+            padding: 50px 60px 60px 60px;
+            @media #{$xs}{
+                padding: 20px 20px 20px 20px;
+            }
+        }
+        &-main{
+            & .tp-success-btn span::before {
+                background: var(--tp-common-white-2);
+            }
+        }
+    }
+    &-check{
+        margin-left: 65px;
+        @media #{$lg,$md,$sm,$xs}{
+            margin-left: 0;
+        }
+        & .tp-faq-5-wrapper{
+            margin-left: 0;
+            margin-right: 0;
+        }
+        & .tp-faq-2-wrap .tp-faq-wrapper .accordion-body {
+            background: var(--tp-common-white-2);
+        }
+        & .tp-faq-2-wrap .tp-faq-wrapper .accordion-button:not(.collapsed) {
+            background: var(--tp-common-white-2);
+            border-color: var(--tp-common-white-2);
+        }
+        & .tp-faq-5-wrapper .tp-faq-wrapper .accordion-button:not(.collapsed) {
+            border-top: 1px solid rgba(31, 49, 48, 0.08);
+        }
+    }
+}
+.tp-border-middle{
+    position: relative;
+    &::before{
+        position: absolute;
+        content: "";
+        width: 1px;
+        height: 100%;
+        background: rgba(31, 49, 48, 0.1);
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        @media #{$lg,$md,$sm,$xs}{
+            display: none;
+        }
+    }
+}

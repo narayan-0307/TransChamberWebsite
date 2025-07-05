@@ -1,0 +1,163 @@
+{% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
+content %}
+<div
+  class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200 h-[60vh]"
+  data-background="static/images/hero/banner.jpg"
+  style="margin-top: -7rem"
+></div>
+
+{% include 'partials/breadcrumb.html' %}
+
+<section
+  class="bg-cover bg-center bg-no-repeat"
+  style="background-image: url('/static/images/benefit-bg.png')"
+>
+  <div class="max-w-6xl mx-auto px-6 py-16" style="margin-bottom: 2rem">
+    <!-- Header -->
+    <div class="mb-12 mt-8 text-center" style="margin-top: 2rem">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-lg font-semibold text-gray-900 mb-2">
+          Company OF TACCI
+        </h2>
+        <p class="text-sm text-gray-600">
+          Benefits of joining the Trans Asian Chamber of Commerce & Industry
+        </p>
+      </div>
+    </div>
+
+    <!-- Benefits Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm">
+      <!-- 1. Genuine partnerships for Export, Import, and Technology Transfers -->
+      <div
+        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
+        style="padding: 10px 15px"
+      >
+        <div>
+          <p class="mt-1 text-gray-600">
+            Genuine partnerships for Export, Import, and Technology Transfers
+          </p>
+        </div>
+        <div class="text-blue-500 mt-1">
+          <!-- Globe/Exchange icon -->
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM2.05 11h19.9M12 2.05v19.9"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- 2. Establishing international connections -->
+      <div
+        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
+        style="padding: 10px 15px"
+      >
+        <div>
+          <p class="mt-1 text-gray-600">
+            Establishing international connections.
+          </p>
+        </div>
+        <div class="text-blue-500 mt-1 ml-auto">
+          <!-- Link/network icon -->
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            style="margin-left: 12rem"
+          >
+            <path
+              d="M10 14a5 5 0 017.07 0l1.41 1.41a5 5 0 01-7.07 7.07l-1.41-1.41M14 10a5 5 0 00-7.07 0L5.5 11.5a5 5 0 007.07 7.07l1.43-1.43"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- 3. Legitimate overseas business trade inquiries -->
+      <div
+        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
+        style="padding: 10px 15px"
+      >
+        <div>
+          <p class="mt-1 text-gray-600">
+            Legitimate overseas business trade inquiries facilitated by
+            diplomatic offices worldwide
+          </p>
+        </div>
+        <div class="text-blue-500 mt-1">
+          <!-- Document/Search icon -->
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21 21l-4.35-4.35M11 4h10M4 7h16M4 10h10M4 13h10M4 16h10M4 19h6"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- 4. Delegations from various nations advocating for trade -->
+      <div
+        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
+        style="padding: 10px 15px"
+      >
+        <div>
+          <p class="mt-1 text-gray-600">
+            Delegations from various nations actively advocating for trade
+            prospects
+          </p>
+        </div>
+        <div class="text-blue-500 mt-1">
+          <!-- Flag/people icon -->
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M9 3v18M9 3h10l-2 4 2 4H9M5 9h.01M5 13h.01M5 17h.01" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- 5. Chamber arranges delegations to explore trade -->
+      <div
+        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
+        style="padding: 10px 15px"
+      >
+        <div>
+          <p class="mt-1 text-gray-600">
+            The chamber arranges delegations to explore trade prospects in
+            various countries
+          </p>
+        </div>
+        <div class="text-blue-500 mt-1">
+          <!-- Airplane/navigation icon -->
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M10.5 13.5l7-7M9 21l1.5-7.5 7-7L3 10.5 9 21z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

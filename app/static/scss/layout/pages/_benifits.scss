@@ -1,0 +1,152 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.3 benifits start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-benifits{
+    &-content{
+        padding-left: 225px;
+        @media #{$x3l,$xxl}{
+            padding-left: 125px;
+        }
+        @media #{$xl,$lg,$md,$xs}{
+            padding-left: 0;
+        }
+    }
+    &-list{
+        & ul{
+            & li{
+                font-weight: 400;
+                font-size: 18px;
+                color: var(--tp-grey-3);
+                line-height: 26px;
+                list-style: none;
+                position: relative;
+                padding-left: 30px;
+                margin-bottom: 16px;
+                &::before{
+                    position: absolute;
+                    content: "";
+                    background: rgba(255, 255, 255, 0.35);
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    left: 0;
+                    top: 9px;
+                }
+            }
+        }
+    }
+    &-textarea{
+        height: 100%;
+        & textarea{
+            height: 100%;
+        }
+    }
+    &-form{
+        &-wrap{
+            padding: 53px 60px 53px 60px;
+            margin-left: 115px;
+            @media #{$xl}{
+                margin-left: 15px;
+            }
+            @media #{$lg,$md,$xs}{
+                margin-left: 0;
+            }
+            @media #{$xs}{
+                padding: 50px 12px 50px 12px; 
+            }
+        }
+        &-content{
+            & .tp-icon{
+                width: 32px;
+                height: 32px;
+                display: inline-block;
+                line-height: 32px;
+                text-align: center;
+                flex: 0 0 auto;
+            }
+            & p{
+                @media #{$xl,$lg,$md,$xs}{
+                    & br{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    &-btn{
+        padding: 13px 20px;
+        &:hover{
+            background: var(--tp-theme-secondary);
+            color: var(--tp-theme-primary);
+        }
+    }
+    &-shape{
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+    &-4{
+        &-year{
+            border-radius: 4px;
+            width: 150px;
+            height: 148px;
+            display: inline-block;
+            padding: 25px 10px 10px 10px;
+            position: absolute;
+            top: 60px;
+            right: 85px;
+            z-index: 2;
+            @media #{$xs}{
+                top: 20px;
+                right: 15px; 
+            }
+        }
+        &-shape{
+            right: 130px;
+            bottom: 130px;
+            @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+                right: 0;
+                bottom: 0;
+            }
+        }
+        &-thumb{
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                margin-right: 0;
+            }
+            & .thumb{
+                &-2{
+                    float: right;
+                    margin-top: -270px;
+                    z-index: 1;
+                    position: relative;
+                    @media #{$xs}{
+                        position: inherit;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+        &-job{
+            & .icon{
+                margin-top: 8px;
+            }
+        }
+    }
+    &-6{
+        &-thumb{
+            margin-left: -115px;
+            @media #{$lg,$md,$sm,$xs}{
+                margin-left: 0;
+            }
+        }
+        &-shape{
+            position: absolute;
+            bottom: -140px;
+            left: 80px;
+            mix-blend-mode: luminosity;
+        }
+    }
+}

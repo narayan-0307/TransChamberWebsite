@@ -1,0 +1,41 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.11 Section Title
+/*----------------------------------------*/
+
+.#{$theme-prifix}-section{
+    &-title{
+        @media #{$xl,$lg,$md,$xs}{
+            font-size: 45px;
+        }
+    }
+    &-5{
+        &-subtitle{
+            &::before{
+                position: absolute;
+                content: "";
+                width: 5px;
+                height: 5px;
+                left: 0;
+                top: 10px;
+                background: var(--tp-grey-1);
+                border-radius: 30px;
+            }
+        }
+    }
+    &-x{
+        &-spacing{
+            padding-left: 50px;
+            padding-right: 50px;
+            @media #{$lg,$md}{
+                padding-left: 30px;
+                padding-right: 30px; 
+            }
+            @media #{$sm,$xs}{
+                padding-left: 15px;
+                padding-right: 15px; 
+            }
+        }
+    }
+}

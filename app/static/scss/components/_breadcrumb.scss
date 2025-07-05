@@ -1,0 +1,42 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.3 Breadcrumb
+/*----------------------------------------*/
+
+.tp-breadcrumb{
+    &-content{
+        backdrop-filter: blur(20px);
+        background: linear-gradient(209deg, rgba(255, 255, 255, 0.1) 0%, rgb(255 255 255 / 1%) 100%);
+        border-radius: 4px 4px 0 0;
+        padding: 52px 30px 52px 60px;
+        @media #{$xs}{
+            margin-right: 0;
+            padding: 32px 30px 32px 30px;
+        }
+    }
+    &-spacing{
+        @media #{$md,$sm,$xs}{
+            padding-top: 120px;
+        }
+    }
+    &-dvdr{
+        & ul{
+            & li{
+                font-weight: 500;
+                font-size: 18px;
+                color: var(--tp-common-white);
+                list-style: none;
+                display: inline-block;
+                &.dvdr{
+                    margin: 0 5px;
+                }
+                & a{
+                    &:hover{
+                        color: var(--tp-common-white-2);
+                    }
+                }
+            }
+        }
+    }
+}

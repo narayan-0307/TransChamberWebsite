@@ -1,0 +1,72 @@
+.tp-blog {
+    &-slider-active {
+        position: relative;
+        padding: 0 50px;
+
+        .swiper-slide {
+            height: auto;
+        }
+    }
+
+    &-item {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-thumb {
+        position: relative;
+        width: 100%;
+        height: 300px; // Fixed height for thumb container
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // This ensures the image covers the area without distortion
+            object-position: center; // Centers the image
+        }
+    }
+
+    &-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-navigation {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+
+        .tp-blog-button-prev,
+        .tp-blog-button-next {
+            width: 50px;
+            height: 50px;
+            background: var(--tp-common-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+            &:hover {
+                background: var(--tp-theme-primary);
+                color: var(--tp-common-white);
+            }
+
+            i {
+                font-size: 16px;
+            }
+        }
+    }
+}

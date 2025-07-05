@@ -1,0 +1,62 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.13 industry start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-industry{
+    &-content{
+        border: 1px solid var(--tp-border-2);
+        transition: all .4s ease;
+        &:hover{
+            background: var(--tp-theme-primary);
+            & h5{
+                color: var(--tp-common-white);
+            }
+            & .tp-industry-icon{
+                color: var(--tp-common-white);
+            }
+            & .border-right{
+                background: rgba(255, 255, 255, 0.12);
+            }
+        }
+        & .border-right{
+            background: var(--tp-border-2);
+            width: 1px;
+            height: 98px;
+        }
+    }
+    &-icon{
+        padding: 20px;
+        width: 100px;
+        text-align: center;
+        transition: all .4s ease;
+    }
+    &-7{
+        &-content{
+            &:hover{
+                background: var(--tp-common-white);
+                border-color: var(--tp-common-white);
+                & .border-right{
+                    background: rgba(31, 49, 48, 0.12);
+                }
+                & .tp-industry-icon{
+                    color: var(--tp-theme-primary);
+                }
+                & h5{
+                    color: var(--tp-theme-primary);
+                }
+            }
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            & .border-right{
+                background: rgba(255, 255, 255, 0.12);;
+            }
+        }
+        &-spacing{
+            padding-bottom: 430px;
+            @media #{$lg,$md,$sm,$xs}{
+                padding-bottom: 90px;
+            }
+        }
+    }
+}

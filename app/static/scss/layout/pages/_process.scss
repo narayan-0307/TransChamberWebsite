@@ -1,0 +1,291 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.17 progress start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-process{
+    &-3{
+        &-tab{
+            &-wrap{
+                border-top: 1px solid rgba(31, 49, 48, 0.1);
+                border-bottom: 1px solid rgba(31, 49, 48, 0.1);
+                padding-top: 10px;
+            }
+            & ul{
+                & li{
+                    list-style: none;
+                    display: inline-block;
+                    margin-bottom: 10px;
+                   & a{
+                        font-weight: 500;
+                        font-size: 18px;
+                        letter-spacing: -0.02em;
+                        color: var(--tp-theme-primary);
+                        border-radius: 4px;
+                        display: inline-block;
+                        padding: 17px 59px;
+                        transition: all .4s ease;
+                        @media #{$xl,$lg,$md,$sm,$xs}{
+                            padding: 17px 40px;
+                        }
+                        &.active{
+                            background: #e5ebea;
+                        }
+                        &:hover{
+                            background: #e5ebea;
+                        }
+                   }
+                }
+            }
+        }
+        &-counter{
+            padding: 65px 80px 45px 80px;
+            @media #{$xl}{
+                margin-right: 20px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                margin-right: 0;
+                margin-bottom: 0;
+            }
+            @media #{$sm,$xs}{
+                padding: 35px 30px 25px 30px;
+            }
+        }
+        &-thumb{
+            @media #{$xl}{
+                margin-left: 20px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                margin-left: 0;
+            }
+            @media #{$xs}{
+                margin-top: 40px;
+            }
+            & .thumb{
+                width: 220px;
+                flex: 0 0 auto;
+                overflow: hidden;
+                border-radius: 50%;
+                @media #{$xs}{
+                    margin-bottom: 30px;
+                }
+            }
+            & img{
+                border-radius: 50%;
+                transition: all .4s ease;
+            }
+            &:hover{
+                & .tp-process-3-counts{
+                    background: var(--tp-theme-primary);
+                }
+                & .thumb{
+                    & img{
+                        transform: scale(1.07);
+                    }
+                }
+            }
+        }
+        &-counts{
+            font-weight: 500;
+            font-size: 26px;
+            letter-spacing: -0.02em;
+            color: var(--tp-common-white);
+            border-radius: 40px;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            transform: translateY(-50%);
+            backdrop-filter: blur(40px);
+            transition: all .4s ease;
+            background: linear-gradient(209deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.4) 100%);
+        }
+    }
+    &-4{
+        &-wrap{
+            padding: 55px 60px 60px 60px;
+            @media #{$lg,$md,$sm,$xs}{
+                padding: 35px 20px 20px 20px;
+            }
+        }
+        &-thumb{
+            @media #{$md,$sm,$xs}{
+                & img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    &-5{
+        &-border{
+            border-top: 1px solid rgba(31, 49, 48, 0.1);
+            border-bottom: 1px solid rgba(31, 49, 48, 0.1);
+            padding-top: 10px;
+        }
+        &-tab{
+            & ul{
+                & li{
+                    & a{
+                        &.active{
+                            background: var(--tp-common-white-2);
+                        }
+                        &:hover{
+                            background: var(--tp-common-white-2);
+                        }
+                    }
+                }
+            }
+        }
+        &-wrap{
+            @media #{$xs}{
+                & .tp-process-3-thumb {
+                    margin-top: 0;
+                }
+                & .tp-process-3-tab-bottom {
+                    padding-top: 40px;
+                }
+            }
+        }
+    }
+    &-7{
+        &-content{
+            padding-right: 350px;
+            padding-left: 100px;
+            @media #{$x4l}{
+                padding-right: 200px;
+            }
+            @media #{$x3l}{
+                padding-right: 150px;
+            }
+            @media #{$xxl}{
+                padding-right: 100px;
+            }
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                padding-right: 20px;
+                padding-left: 50px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                padding-left: 0px;
+            }
+            @media #{$md,$sm,$xs}{
+                padding-left: 30px;
+            }
+        }
+        &-thumb{
+            & img{
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        &-list{
+            direction: ltr;
+            @media #{$md,$sm,$xs}{
+                padding-left: 30px;
+            }
+            &-wrap{
+                height: 580px;
+                overflow-y: scroll ;
+                direction: rtl;
+                &::-webkit-scrollbar {
+                    width: 9px;
+                }
+                &::-webkit-scrollbar-track {
+                    background: #f6f6f6;
+                    border-radius: 10px;
+                    width: 3px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: #506767;
+                    border-radius: 10px;
+                    width: 3px;
+                }
+                &::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                    border-radius: 10px;
+                    width: 3px;
+                }
+            }
+        }
+        &-icon{
+            @media #{$xs}{
+                flex-direction: column;
+                & span{
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+    &-8{
+        &-icon{
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            border-radius: 100px;
+            line-height: 95px;
+            transition: all .4s ease;
+            position: relative;
+            &::before{
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 100%;
+                border: 2px solid var(--tp-grey-1);
+                top: 0;
+                left: 0;
+                -webkit-animation: rotate-infinite 15s linear infinite;
+                animation: rotate-infinite 15s linear infinite;
+                z-index: 2;
+                border-radius: 100px;
+            }
+        }
+        &-number{
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: -0.02em;
+            color: var(--tp-common-white);
+            border-radius: 100%;
+            background: var(--tp-theme-primary);
+            width: 38px;
+            height: 38px;
+            display: inline-block;
+            line-height: 30px;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            border: 4px solid var(--tp-common-white);
+            z-index: 3;
+        }
+        &-item{
+            @media #{$lg,$md,$sm,$xs}{
+                & p{
+                    & br{
+                        display: none;
+                    }
+                }
+            }
+            &:hover{
+                & .tp-process-8-icon{
+                    &::before{
+                        opacity: 1;
+                        border: 2px dashed var(--tp-grey-1);
+                    }
+                }
+            }
+        }
+        &-angle{
+            position: absolute;
+            right: -29px;
+            top: 30px;
+            @media #{$md,$sm,$xs}{
+                display: none;
+            }
+        }
+    }
+}

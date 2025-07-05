@@ -1,0 +1,45 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.8 cta start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-cta{
+    &-6{
+        &-call{
+            & .icon{
+                border: 1px solid rgba(31, 49, 48, 0.1);
+                display: inline-block;
+                width: 52px;
+                height: 52px;
+                text-align: center;
+                line-height: 52px;
+                border-radius: 50%;
+            }
+            & a{
+                font-weight: 500;
+                font-size: 16px;
+                color: var(--tp-theme-primary);
+            }
+        }
+        &-btn{
+            flex-wrap: wrap;
+        }
+    }
+    &-3{
+        &-title{
+            &-wrap{
+                @media #{$xs}{
+                    margin-right: 0;
+                }
+                & p{
+                    @media #{$xl,$lg,$md,$sm,$xs}{
+                        & br{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

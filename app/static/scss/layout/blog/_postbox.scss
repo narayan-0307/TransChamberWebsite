@@ -1,0 +1,185 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  5.2 Postbox css
+/*----------------------------------------*/
+
+.#{$theme-prifix}-postbox{
+    &-item{
+        border: 1px solid rgba(31, 49, 48, 0.15);
+        border-radius: 4px;
+        padding: 40px 40px 40px 40px;
+        @media #{$xs}{
+            padding: 20px 20px 20px 20px;
+        }
+    }
+    &-meta{
+        &-single{
+            @media #{$lg,$md,$sm,$xs}{
+                &.mr-50{
+                    margin-right: 25px;
+                }
+            }
+        }
+        &-item{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(31, 49, 48, 0.15);
+            padding-bottom: 10px;
+        }
+    }
+    &-video{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+    &-slider{
+        &-arrow{
+            & button{
+                font-size: 30px;
+                position: absolute;
+                top: 50%;
+                left: 40px;
+                z-index: 2;
+                transform: translateY(-50%);
+                color: var(--tp-common-white);
+                &.postbox-arrow-next {
+                    left: auto;
+                    right: 40px;
+                }
+            }
+        }
+    }
+    &-wrapper{
+        @media #{$xl,$lg,$md,$sm,$xs}{
+            margin-right: 0;
+        }
+    }
+    &-details{
+        &-feature{
+            &-list{
+                & ul{
+                    & li{
+                        list-style: none;
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: var(--tp-grey-1);
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 10px;
+                        & i{
+                            width: 20px;
+                            height: 20px;
+                            background: var(--tp-common-white);
+                            border-radius: 40px;
+                            text-align: center;
+                            font-size: 12px;
+                            line-height: 20px;
+                            margin-right: 15px;
+                        }
+                    }
+                }
+            }
+        }
+        &-author{
+            &-avatar{
+                flex: 0 0 auto;
+                & img{
+                    border-radius: 100px;
+                    width: 72px;
+                    flex: 0 0 auto;
+                    height: 70px;
+                }
+            }
+            &-social{
+                & ul{
+                    display: flex;
+                    & li{
+                        list-style: none;
+                        margin-right: 8px;
+                        & a{
+                            width: 36px;
+                            height: 36px;
+                            display: inline-block;
+                            text-align: center;
+                            line-height: 36px;
+                            border: 1px solid rgba(31, 49, 48, 0.1);
+                            border-radius: 4px;
+                            &:hover{
+                                background: var(--tp-theme-primary);
+                                color: var(--tp-common-white);
+                                border-color: var(--tp-theme-primary);
+                            }
+                        }
+                    }
+                }
+            }
+            &-box{
+                padding: 34px 120px 40px 33px;
+                @media #{$xs}{
+                    padding: 34px 30px 40px 33px;
+                }
+            }
+            &-qoute{
+                position: absolute;
+                bottom: 0;
+                right: 40px;
+                @media #{$xs}{
+                    display: none;
+                }
+            }
+        }
+        &-wrapper{
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                margin-right: 0;
+            }
+        }
+    }
+    &-comment{
+        & ul{
+            & li{
+                list-style: none;
+                margin-bottom: 40px;
+                padding-bottom: 40px;
+                &:not(:last-child){
+                    border-bottom: 1px solid rgba(31, 49, 48, 0.1);
+                }
+                &.ckildren{
+                    padding-left: 115px;
+                    @media #{$sm,$xs}{
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+        &-avater{
+            flex: 0 0 auto;
+            & img{
+                width: 80px;
+                height: 80px;
+                flex: 0 0 auto;
+            }
+        }
+        &-reply{
+            & a{
+                font-weight: 500;
+                font-size: 14px;
+                color: var(--tp-theme-primary);
+                display: inline-block;
+                padding: 2px 17px;
+                border: 1px solid rgba(31, 49, 48, 0.1);
+                border-radius: 4px;
+                &:hover{
+                    background: var(--tp-theme-primary);
+                    color: var(--tp-common-white);
+                    border-color: var(--tp-theme-primary);
+                }
+            }
+        }
+    }
+}
+

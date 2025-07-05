@@ -1,0 +1,169 @@
+@use '../../utils' as *;
+/*----------------------------------------*/
+/*  5.3 Sidebar css
+/*----------------------------------------*/
+
+.#{$theme-prifix}-sidebar{
+    &-search{
+        &-input{
+            & input{
+                font-weight: 400;
+                font-size: 16px;
+                color: var(--tp-grey-1);
+                box-shadow: 0 1px 3px 0 rgba(3, 4, 28, 0.1);
+                background: var(--tp-common-white);
+                border-radius: 4px;
+                &::placeholder{
+                    font-size: 16px;
+                    color: var(--tp-grey-1);
+                }
+                &:focus{
+                   border-color: var(--tp-common-black);
+                }
+            }
+            & button{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 25px;
+                color: var(--tp-common-black);
+            }
+        }
+    }
+    &-author{
+        box-shadow: 0 1px 3px 0 rgba(3, 4, 28, 0.1);
+        border-radius: 4px;
+        &-main{
+            border-radius: 4px 4px 10px 10px;
+            padding: 40px 40px 30px 40px;
+        }
+        &-active{
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            border-radius: 30px;
+            background: #42ce0f;
+            position: absolute;
+            top: 0;
+            right: 3px;
+            border: 3px solid var(--tp-common-white);        
+        }
+    }
+    &-social{
+        & ul{
+            display: flex;
+            justify-content: center;
+            & li{
+                list-style: none;
+                margin: 0 15px;
+                & a{
+                    color: #506767;
+                    transition: all .4s ease;
+                    &:hover{
+                        color: #1f3130;
+                    }
+                }
+            }
+        }
+    }
+    &-call{
+        padding: 32px 40px 32px 40px;
+        & a{
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: -0.02em;
+            color: var(--tp-grey-1);
+            display: block;
+            margin-bottom: 3px;
+            &.links{
+                text-decoration: underline;
+            }
+            &:hover{
+                color: var(--tp-theme-primary);
+            }
+            & span{
+                margin-right: 10px;
+            }
+        }
+    }
+    &-border{
+        border: 1px solid rgba(31, 49, 48, 0.1);
+        border-radius: 4px;
+    }
+    &-widget{
+        &-content{
+            padding: 35px 40px 30px 40px;
+            @media #{$lg,$xs}{
+                padding: 25px 15px 20px 15px;
+            }
+            & ul{
+                & li{
+                    list-style: none;
+                    margin-bottom: 10px;
+                    & a{
+                        font-weight: 500;
+                        font-size: 16px;
+                        letter-spacing: -0.02em;
+                        color: var(--tp-grey-1);
+                        padding: 19px 20px;
+                        display: inline-block;
+                        box-shadow: 0 1px 3px 0 rgba(32, 33, 36, 0.08);
+                        background: var(--tp-common-white);
+                        border-radius: 2px;
+                        &:hover{
+                            color: var(--tp-theme-primary);
+                        }
+                        & svg{
+                            margin-right: 8px;
+                        }
+                    }
+                }
+            }
+        }
+        & .tagcloud{
+            & a{
+                font-weight: 400;
+                font-size: 16px;
+                letter-spacing: -0.02em;
+                color: var(--tp-theme-primary);
+                border: 1px solid rgba(31, 49, 48, 0.1);
+                border-radius: 4px;
+                padding: 2px 16px;
+                display: inline-block;
+                margin-bottom: 8px;
+                margin-right: 4px;
+                &:hover{
+                    background: var(--tp-theme-primary);
+                    border-color: var(--tp-theme-primary);
+                    color: var(--tp-common-white);
+                }
+            }
+        }
+    }
+    &-rc{
+        &-post{
+            box-shadow: 0 1px 3px 0 rgba(3, 4, 28, 0.1);
+            background: var(--tp-common-white);
+            padding: 12px 70px 12px 12px;
+            border-radius: 4px;
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                padding: 12px 20px 12px 12px;
+            }
+            &-thumb{
+                & img{
+                    border-radius: 2px;
+                }
+            }
+        }
+        &-meta{
+            & span{
+                font-weight: 400;
+                font-size: 14px;
+                color: var(--tp-grey-1);
+                & svg{
+                    margin-right: 4px;
+                }
+            }
+        }
+    }
+}

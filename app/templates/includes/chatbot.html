@@ -1,0 +1,74 @@
+<!-- Chat Button -->
+<div class="chat-button">
+  <img
+    src="/static/images/chatbot/chatbot-3.png"
+    alt="Chat with us"
+    onclick="toggleChat()"
+    class="bounce-animation"
+  />
+</div>
+
+<!-- Chat Window -->
+<div id="chatWindow" class="chat-window bg-[#abb3ba]">
+  <!-- Header -->
+  <div
+    class="border-b border-gray-200 bg-[#36454f] rounded-t-xl flex justify-between items-center"
+    style="padding: 5px 23px"
+  >
+    <div>
+      <h5 class="text-xl font-semibold text-white">Chat with Us</h5>
+      <p class="text-sm text-white">Online</p>
+    </div>
+    <button onclick="toggleChat()" class="text-white hover:text-gray-700">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Chat Messages -->
+  <div id="chatbox" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+    <!-- Messages will appear here -->
+  </div>
+
+  <!-- Input Area -->
+  <div class="p-4 border-t border-gray-200 bg-[#cfd6dc] rounded-b-xl">
+    <div class="flex items-center space-x-2">
+      <input
+        id="userInput"
+        type="text"
+        class="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        placeholder="Type your message..."
+        onkeypress="if(event.key === 'Enter') sendMessage()"
+      />
+      <button
+        onclick="sendMessage()"
+        class="bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center space-x-2"
+      >
+        <!-- <span>Send</span> -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          style="margin: 0px 10px"
+        >
+          <path
+            d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.2 banner start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-banner{
+    &-content{
+        padding: 70px 50px 50px 75px;
+        @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+            padding: 70px 50px 50px 35px;
+        }
+        & ul{
+            & li{
+                list-style: none;
+                font-size: 16px;
+                color: var(--tp-grey-1);
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                & i{
+                    width: 20px;
+                    height: 20px;
+                    color: var(--tp-grey-1);
+                    border: 1px solid rgba(31, 49, 48, 0.15);
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 20px;
+                    font-size: 12px;
+                    flex: 0 0 auto;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
