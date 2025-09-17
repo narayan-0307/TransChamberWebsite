@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block title %}TACCI{% endblock %}
+{% block content %}
+
+<style>
+    .past-events-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* ✅ Banner with overlay */
+    .event-banner-wrapper {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        margin-bottom: 20px;
+    }
+
+    .event-banner {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+    }
+
+    .event-banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(17, 24, 39, 0.55);
+        /* dark overlay */
+        border-radius: 10px;
+    }
+
+    .event-banner-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 36px;
+        font-weight: 700;
+        text-align: center;
+        max-width: 90%;
+    }
+
+    .event-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 20px 0;
+        color: #111827;
+        text-align: center;
+    }
+
+    .event-description {
+        font-size: 16px;
+        color: #6b7280;
+        margin-bottom: 30px;
+    }
+
+    .budget-card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .card {
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border: none;
+    }
+
+    .card img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+    }
+
+    .budget-card-content {
+        position: relative;
+        margin: -60px 10px 0 10px;
+        background: #fff;
+        padding: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        z-index: 10;
+        border: 1px solid rgba(0, 0, 0, 0.33);
+    }
+
+    .budget-description {
+        font-size: 14px;
+        color: #374151;
+        margin: 0;
+        text-align: justify;
+    }
+
+    /* fallback card (when no images uploaded) */
+    .card.no-image .budget-card-content {
+        margin: 0;
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
+    }
+</style>
+
+<div class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200 h-[70vh]"
+    data-background="/static/images/hero/banner.jpg" style="margin-top: 0rem"></div>
+
+<div class="past-events-container pb-10">
+    <!-- Title (optional, if you want separate heading below banner) -->
+    <h1 class="event-title">{{ event.title }}</h1>
+
+    <!-- ✅ Banner with overlay text -->
+    <div class="event-banner-wrapper">
+        <img class="event-banner" src="{{ event.banner_image_path or '/static/images/hero/banner.jpg' }}"
+            alt="Event Banner" onerror="this.src='/static/images/hero/banner.jpg'">
+        <div class="event-banner-overlay"></div>
+
+    </div>
+
+    <!-- 3-Card Grid -->
+    <div class="budget-card-container">
+        {% for img in images %}
+        <div class="card">
+            <a href="{{ img.image_path }}" target="_blank">
+                <img src="{{ img.image_path }}" alt="{{ img.description or 'Budget Image' }}"
+                    onerror="this.src='/static/images/hero/banner.jpg'">
+            </a>
+            <div class="budget-card-content">
+                <p class="budget-description">{{ img.description or '' }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% if not images or images|length == 0 %}
+        <div class="card no-image" style="grid-column: span 3;">
+            <div class="budget-card-content">
+                <p class="budget-description">No images uploaded for this event.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

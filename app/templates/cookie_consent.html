@@ -1,38 +1,4 @@
 {% macro cookie_consent() %}
-<div id="cookie-consent-banner" class="cookie-banner" style="display: none;">
-    <div class="cookie-content">
-        <h3>Cookie Settings</h3>
-        <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.
-            Please select which cookies you're willing to store on your browser.</p>
-
-        <div class="cookie-options">
-            <div class="cookie-option">
-                <input type="checkbox" id="necessary-cookies" checked disabled>
-                <label for="necessary-cookies">Necessary Cookies (Required)</label>
-                <p class="cookie-description">Essential cookies that enable basic functionality of the website.</p>
-            </div>
-
-            <div class="cookie-option">
-                <input type="checkbox" id="analytics-cookies">
-                <label for="analytics-cookies">Analytics Cookies</label>
-                <p class="cookie-description">Help us understand how visitors interact with our website.</p>
-            </div>
-
-            <div class="cookie-option">
-                <input type="checkbox" id="marketing-cookies">
-                <label for="marketing-cookies">Marketing Cookies</label>
-                <p class="cookie-description">Used to track visitors across websites to display relevant advertisements.
-                </p>
-            </div>
-        </div>
-
-        <div class="cookie-buttons">
-            <button id="accept-all-cookies" class="btn btn-primary">Accept All</button>
-            <button id="accept-selected-cookies" class="btn btn-secondary">Accept Selected</button>
-            <button id="reject-all-cookies" class="btn btn-outline">Reject All</button>
-        </div>
-    </div>
-</div>
 
 <style>
     .cookie-banner {
@@ -113,6 +79,48 @@
         background: #f8f9fa;
     }
 </style>
+
+
+<div id="cookie-consent-banner" class="cookie-banner" style="display: none;">
+    <div class="cookie-content">
+        <h3>Cookie Settings</h3>
+        <p>We use cookies to improve your browsing experience, provide essential website functionality, analyze traffic,
+            and help us tailor services relevant to your interests and industry. You can choose which categories of
+            cookies you want to allow below.</p>
+
+        <div class="cookie-options">
+            <div class="cookie-option">
+                <input type="checkbox" id="necessary-cookies" checked disabled>
+                <label for="necessary-cookies">Necessary Cookies (Required)</label>
+                <p class="cookie-description">These cookies are essential for the core functionality of the website.
+                    They enable secure login, language preferences, and smooth navigation. These cannot be disabled.</p>
+            </div>
+
+            <div class="cookie-option">
+                <input type="checkbox" id="analytics-cookies">
+                <label for="analytics-cookies">Analytics Cookies</label>
+                <p class="cookie-description">These help us understand how visitors interact with our content and
+                    services. We use this information to improve our offerings and better support businesses and
+                    delegates across regions.</p>
+            </div>
+
+            <div class="cookie-option">
+                <input type="checkbox" id="marketing-cookies">
+                <label for="marketing-cookies">Marketing Cookies</label>
+                <p class="cookie-description">Used to track visitors across websites to display relevant advertisements.
+                </p>
+            </div>
+        </div>
+
+        <div class="cookie-buttons">
+            <button id="accept-all-cookies" class="btn btn-primary">Accept All</button>
+            <button id="accept-selected-cookies" class="btn btn-secondary">Accept Selected</button>
+            <button id="reject-all-cookies" class="btn btn-outline">Reject All</button>
+        </div>
+    </div>
+</div>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

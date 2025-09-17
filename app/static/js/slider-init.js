@@ -355,9 +355,7 @@
       nextEl: "#customNextBtn",
       prevEl: "#customPrevBtn",
     },
-    autoplay: {
-      delay: 2000,
-    },
+   
     // ❌ Disable pagination
     pagination: false,
     breakpoints: {

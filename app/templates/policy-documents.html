@@ -1,0 +1,162 @@
+{% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
+content %}
+
+<style>
+    /* Keep a max width wrapper consistent with site wide large containers */
+    .membership-type-container {
+        max-width: 1500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .policy-card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+    }
+
+    .policy-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+    @media (max-width: 1200px) {
+        .policy-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 992px) {
+        .policy-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 576px) {
+        .policy-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+
+<!-- tp-breadcrumb-area-start -->
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+    data-background="static/images/hero/banner.jpg" style="
+    min-height: 40vh;
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
+  "></div>
+
+{% include 'partials/breadcrumb.html' %}
+
+<section class="tp-policy-area pt-10 pb-10">
+    <div class="membership-type-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-9 text-center">
+                    <h2 class="tp-section-title mb-10">Policy Documents</h2>
+                    <p class="mb-0 text-muted">Access TACCI's key policies, guidelines, and governance documents. These
+                        resources outline our standards, processes, and commitments to transparency and member service.
+                    </p>
+                </div>
+            </div>
+
+            <div class="policy-grid mt-40">
+                <article class="policy-card h-100 rounded-3 border bg-white p-4">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="fa-light fa-file-pdf" style="font-size:22px; color:#cf2e2e;"></i>
+                        <h3 class="h6 mb-0">TACCI Brochure</h3>
+                    </div>
+                    <p class="text-muted small mb-2">Overview of TACCI's mission, benefits, and programs.</p>
+                    <div class="d-flex justify-content-between align-items-center text-muted small mb-3">
+                        <span>Format: PDF</span>
+                        <span>Updated: 2025</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-outline-secondary"
+                            href="{{ url_for('static', filename='brochures/TACCI_Brochure.pdf') }}" target="_blank">
+                            <i class="fa-regular fa-eye"></i> View
+                        </a>
+                        <a class="btn btn-dark" href="{{ url_for('static', filename='brochures/TACCI_Brochure.pdf') }}"
+                            download>
+                            <i class="fa-regular fa-arrow-down-to-line"></i> Download
+                        </a>
+                    </div>
+                </article>
+
+                <article class="policy-card h-100 rounded-3 border bg-white p-4 opacity-75">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="fa-light fa-file-lines" style="font-size:22px; color:#0ea5e9;"></i>
+                        <h3 class="h6 mb-0">Code of Conduct</h3>
+                    </div>
+                    <p class="text-muted small mb-2">Standards for member engagement and event participation.</p>
+                    <div class="d-flex justify-content-between align-items-center text-muted small mb-3">
+                        <span>Coming soon</span>
+                        <span>ETA: Q4 2025</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" disabled>View</button>
+                        <button class="btn btn-dark" disabled>Download</button>
+                    </div>
+                </article>
+
+                <article class="policy-card h-100 rounded-3 border bg-white p-4 opacity-75">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="fa-light fa-shield-check" style="font-size:22px; color:#10b981;"></i>
+                        <h3 class="h6 mb-0">Privacy & Data Protection Policy</h3>
+                    </div>
+                    <p class="text-muted small mb-2">How we collect, use, and protect member data.</p>
+                    <div class="d-flex justify-content-between align-items-center text-muted small mb-3">
+                        <span>Coming soon</span>
+                        <span>ETA: Q4 2025</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" disabled>View</button>
+                        <button class="btn btn-dark" disabled>Download</button>
+                    </div>
+                </article>
+
+                <article class="policy-card h-100 rounded-3 border bg-white p-4 opacity-75">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="fa-light fa-handshake" style="font-size:22px; color:#f59e0b;"></i>
+                        <h3 class="h6 mb-0">Membership Terms & Conditions</h3>
+                    </div>
+                    <p class="text-muted small mb-2">Membership eligibility, benefits, fees, and obligations.</p>
+                    <div class="d-flex justify-content-between align-items-center text-muted small mb-3">
+                        <span>Coming soon</span>
+                        <span>ETA: Q4 2025</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" disabled>View</button>
+                        <button class="btn btn-dark" disabled>Download</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="row mt-50">
+                <div class="col-12">
+                    <div class="alert alert-info d-flex align-items-start gap-3 mb-0" role="alert">
+                        <i class="fa-regular fa-circle-info" style="font-size:20px; margin-top:2px;"></i>
+                        <div>
+                            <strong>Need a specific document?</strong>
+                            <p class="mb-2 text-muted">If you're looking for a policy not listed here, please contact
+                                the TACCI office and we'll be happy to assist.</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="{{ url_for('main.contact_page') }}" class="btn btn-primary">
+                                    <i class="fa-regular fa-envelope"></i> Contact Us
+                                </a>
+                                <a href="mailto:info@tacci.org" class="btn btn-outline-secondary">
+                                    <i class="fa-regular fa-at"></i> info@tacci.org
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

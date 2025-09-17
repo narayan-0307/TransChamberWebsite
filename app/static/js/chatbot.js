@@ -1,19 +1,12 @@
 let responses = null;
-let hasAutoOpened = false; // Add flag to track if auto-open has happened
+// Removed hasAutoOpened and auto-open logic
 
 // Load responses when the page loads
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     const response = await fetch('/static/data/chatbot_responses.json');
     responses = await response.json();
-
-    // Auto-open chat after 2 seconds only if it hasn't been opened before
-    setTimeout(() => {
-      if (!hasAutoOpened && !document.getElementById("chatWindow").classList.contains("active")) {
-        toggleChat();
-        hasAutoOpened = true; // Set flag to true after auto-opening
-      }
-    }, 10000);
+    // Removed setTimeout for auto-opening chat
   } catch (error) {
     console.error('Error loading chatbot responses:', error);
   }

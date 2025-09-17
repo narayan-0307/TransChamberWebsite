@@ -1,0 +1,261 @@
+{% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
+content %}
+
+<style>
+    .whitepaper-container {
+        max-width: 1500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .wp-grid-2 {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 32px;
+    }
+
+    @media (max-width: 992px) {
+        .wp-grid-2 {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .wp-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .wp-card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .wp-topics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    @media (max-width: 1200px) {
+        .wp-topics {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 576px) {
+        .wp-topics {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .wp-topic {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        background: #ffffff;
+        padding: 16px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .wp-topic i {
+        font-size: 20px;
+        color: #1d4ed8;
+        margin-top: 2px;
+    }
+
+    .wp-steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    @media (max-width: 992px) {
+        .wp-steps {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .wp-step {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 16px;
+    }
+</style>
+
+<!-- tp-breadcrumb-area-start -->
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+    data-background="static/images/hero/banner.jpg" style="
+        min-height: 40vh;
+        height: 70vh;
+        background-size: cover;
+        background-position: center;
+      "></div>
+
+{% include 'partials/breadcrumb.html' %}
+
+<section class="pt-10 pb-10">
+    <div class="whitepaper-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-9 text-center">
+                    <h2 class="tp-section-title mb-10">White Papers</h2>
+                    <p class="mb-0 text-muted">Evidence-backed insights and policy recommendations from TACCI on trade,
+                        industry, MSME growth, investment, and inclusive entrepreneurship. Explore highlights below and
+                        request the
+                        full white papers relevant to your needs.</p>
+                </div>
+            </div>
+
+            <div class="wp-grid-2 mt-40">
+                <!-- Left: Topics & Highlights -->
+                <div class="wp-card">
+                    <h3 class="h5 mb-3">Key Focus Areas</h3>
+                    <p class="text-muted mb-4">Our white papers synthesize data, stakeholder feedback, and international
+                        best
+                        practices to help business leaders and policymakers make informed decisions.</p>
+
+                    <div class="wp-topics">
+                        <div class="wp-topic">
+                            <i class="fa-light fa-chart-line"></i>
+                            <div>
+                                <h4 class="h6 mb-1">MSME Competitiveness</h4>
+                                <p class="text-muted medium mb-0">Productivity, quality systems, market linkages, and
+                                    export readiness.</p>
+                            </div>
+                        </div>
+
+                        <div class="wp-topic">
+                            <i class="fa-light fa-earth-asia"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Trade & Market Access</h4>
+                                <p class="text-muted medium mb-0">Tariffs, NTBs, standards harmonization, and logistics
+                                    efficiency.</p>
+                            </div>
+                        </div>
+
+                        <div class="wp-topic">
+                            <i class="fa-light fa-leaf"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Sustainability & ESG</h4>
+                                <p class="text-muted medium mb-0">Green supply chains, compliance pathways, and financing
+                                    models.</p>
+                            </div>
+                        </div>
+
+                        <div class="wp-topic">
+                            <i class="fa-light fa-handshake"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Public–Private Partnerships</h4>
+                                <p class="text-muted medium mb-0">Policy pilots, cluster development, and local value
+                                    addition.</p>
+                            </div>
+                        </div>
+
+                        <div class="wp-topic">
+                            <i class="fa-light fa-user-tie"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Skills & Workforce</h4>
+                                <p class="text-muted medium mb-0">Industry 4.0 capabilities, certifications, and
+                                    inclusive hiring.</p>
+                            </div>
+                        </div>
+
+                        <div class="wp-topic">
+                            <i class="fa-light fa-shield-check"></i>
+                            <div>
+                                <h4 class="h6 mb-1">Compliance & Standards</h4>
+                                <p class="text-muted medium mb-0">Quality norms, export documentation, and risk
+                                    mitigation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Featured White Paper -->
+                <aside class="wp-card">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="fa-light fa-file-lines" style="font-size:22px; color:#0ea5e9;"></i>
+                        <h3 class="h6 mb-0">Featured: MSME Export Readiness 2025</h3>
+                    </div>
+                    <p class="text-muted medium mb-2">A practical roadmap for first-time exporters: capability
+                        assessment,
+                        documentation, buyer outreach, and funding options.</p>
+                    <ul class="text-muted medium mb-3" style="padding-left: 18px;">
+                        <li>Diagnostic checklist and maturity model</li>
+                        <li>Sector-specific case studies</li>
+                        <li>Policy and scheme navigator</li>
+                    </ul>
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-outline-secondary" href="#request-whitepaper">
+                            <i class="fa-regular fa-eye"></i> Preview
+                        </a>
+                        <a class="btn btn-dark" href="#request-whitepaper">
+                            <i class="fa-regular fa-arrow-down-to-line"></i> Request Copy
+                        </a>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- How to get a white paper -->
+            <div id="request-whitepaper" class="mt-40 wp-card">
+                <h3 class="h5 mb-3">How to Access TACCI White Papers</h3>
+                <div class="wp-steps">
+                    <div class="wp-step">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="fa-light fa-list-check" style="color:#1d4ed8;"></i>
+                            <strong>Select a topic</strong>
+                        </div>
+                        <p class="text-muted medium mb-0">Choose the focus area most relevant to your business or policy
+                            goals.</p>
+                    </div>
+                    <div class="wp-step">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="fa-light fa-envelope-open-text" style="color:#0ea5e9;"></i>
+                            <strong>Submit a request</strong>
+                        </div>
+                        <p class="text-muted medium mb-0">Use the contact options below to request access or a briefing.
+                        </p>
+                    </div>
+                    <div class="wp-step">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="fa-light fa-user-group" style="color:#10b981;"></i>
+                            <strong>Get support</strong>
+                        </div>
+                        <p class="text-muted medium mb-0">Our team can provide summaries, presentations, and
+                            implementation guidance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="row mt-40">
+                <div class="col-12">
+                    <div class="alert alert-info d-flex align-items-start gap-3 mb-0" role="alert">
+                        <i class="fa-regular fa-circle-info" style="font-size:20px; margin-top:2px;"></i>
+                        <div>
+                            <strong>Request a white paper or schedule a briefing</strong>
+                            <p class="mb-2 text-muted">Tell us your sector and objectives. We'll share the most relevant
+                                insights and
+                                resources.</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="{{ url_for('main.contact_page') }}" class="btn btn-primary">
+                                    <i class="fa-regular fa-envelope"></i> Contact Us
+                                </a>
+                                <a href="mailto:info@tacci.org" class="btn btn-outline-secondary">
+                                    <i class="fa-regular fa-at"></i> info@tacci.org
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

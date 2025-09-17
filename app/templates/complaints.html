@@ -1,0 +1,506 @@
+{% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
+content %}
+
+<style>
+    .export-enqury-container {
+        max-width: 1500px;
+        margin: 0.5rem auto;
+        background: #fff;
+        box-shadow: 0 8px 32px 0 rgba(31, 49, 48, 0.12);
+        border-radius: 1.25rem;
+        overflow: hidden;
+        border: 1px solid #98a9ca;
+    }
+
+    .title {
+        margin-top: 2.5rem;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: var(--tp-theme-primary);
+        font-family: var(--tp-ff-body);
+    }
+
+    .subtitle {
+        margin-top: 0.75rem;
+        text-align: center;
+        font-size: 2.25rem;
+        font-weight: 600;
+        color: var(--tp-theme-primary);
+        font-family: var(--tp-ff-body);
+        margin-bottom: 1rem;
+    }
+
+    .form-section {
+        padding: 2rem;
+    }
+
+    @media (min-width: 768px) {
+        .form-section {
+            padding: 3rem;
+        }
+    }
+
+    .flex {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .form-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .form-grid-span-2 {
+        grid-column: span 2;
+    }
+
+    .input {
+        width: 100%;
+        border: 2px solid var(--tp-theme-primary);
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        background: #f8fafc;
+        transition: border 0.2s, box-shadow 0.2s;
+        outline: none;
+        font-family: var(--tp-ff-body);
+        color: var(--tp-theme-primary);
+    }
+
+    .input:focus {
+        border-color: var(--tp-theme-secondary);
+        box-shadow: 0 0 0 2px rgba(248, 208, 179, 0.2);
+        background: #fff;
+    }
+
+    .input::placeholder {
+        color: var(--tp-grey-2);
+        opacity: 1;
+        font-style: italic;
+    }
+
+    .select {
+        width: 100%;
+        border: 2px solid var(--tp-theme-primary);
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        background: #f8fafc;
+        transition: border 0.2s, box-shadow 0.2s;
+        outline: none;
+        font-family: var(--tp-ff-body);
+        color: var(--tp-theme-primary);
+        cursor: pointer;
+    }
+
+    .select:focus {
+        border-color: gray;
+        box-shadow: 0 0 0 2px rgba(248, 208, 179, 0.2);
+        background: #fff;
+    }
+
+    .textarea {
+        width: 100%;
+        border: 2px solid var(--tp-theme-primary);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        background: #f8fafc;
+        transition: border 0.2s, box-shadow 0.2s;
+        outline: none;
+        font-family: var(--tp-ff-body);
+        color: var(--tp-theme-primary);
+        resize: vertical;
+        min-height: 120px;
+        line-height: 1.5;
+    }
+
+    .textarea:focus {
+        border-color: gray;
+        box-shadow: 0 0 0 2px rgba(248, 208, 179, 0.2);
+        background: #fff;
+    }
+
+    .textarea::placeholder {
+        color: var(--tp-grey-2);
+        opacity: 1;
+        font-style: italic;
+    }
+
+    .submit-btn {
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        background: linear-gradient(90deg, var(--tp-theme-primary) 0%, #2a4a49 100%);
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
+        border: none;
+        text-align: center;
+        transition: all 0.2s;
+        font-family: var(--tp-ff-body);
+        box-shadow: 0 2px 8px 0 rgba(31, 49, 48, 0.08);
+    }
+
+    .submit-btn:hover {
+        background: linear-gradient(90deg, #2a4a49 0%, var(--tp-theme-primary) 100%);
+        box-shadow: 0 4px 16px 0 rgba(31, 49, 48, 0.13);
+        transform: translateY(-1px);
+    }
+
+    .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .text-center {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .form-row-full {
+        grid-column: span 2;
+    }
+
+    @media (max-width: 767px) {
+        .form-row-full {
+            grid-column: span 1;
+        }
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--tp-theme-primary);
+        font-family: var(--tp-ff-body);
+        font-size: 0.95rem;
+    }
+
+    .required {
+        color: #ef4444;
+    }
+
+    /* Honeypot field - hidden from users */
+    .honeypot {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Consent checkbox styles */
+    .consent-section {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: #f8fafc;
+        border-radius: 0.5rem;
+        border: 1px solid #e2e8f0;
+    }
+
+    .consent-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .consent-checkbox input[type="checkbox"] {
+        margin-top: 0.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        accent-color: var(--tp-theme-primary);
+    }
+
+    .consent-checkbox label {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: var(--tp-grey-1);
+        font-family: var(--tp-ff-body);
+    }
+
+    .consent-checkbox a {
+        color: var(--tp-theme-primary);
+        text-decoration: underline;
+    }
+
+    .consent-checkbox a:hover {
+        color: var(--tp-theme-secondary);
+    }
+
+    /* Error message styles */
+    .error-message {
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        font-family: var(--tp-ff-body);
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .modal-content {
+        background: #fff;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        position: relative;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .modal-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background: var(--tp-theme-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+    }
+
+    .modal-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: var(--tp-theme-primary);
+    }
+
+    .modal-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--tp-theme-primary);
+        font-family: var(--tp-ff-body);
+    }
+
+    .modal-message {
+        color: var(--tp-grey-1);
+        font-family: var(--tp-ff-body);
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--tp-grey-2);
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+        color: var(--tp-theme-primary);
+    }
+
+    .modal-btn {
+        background: linear-gradient(90deg, var(--tp-theme-primary) 0%, #2a4a49 100%);
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: var(--tp-ff-body);
+    }
+
+    .modal-btn:hover {
+        background: linear-gradient(90deg, #2a4a49 0%, var(--tp-theme-primary) 100%);
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 900px) {
+        .flex {
+            flex-direction: column;
+        }
+
+        .input,
+        .select,
+        .textarea {
+            width: 100%;
+        }
+
+        .export-enqury-container {
+            margin: 1rem;
+        }
+    }
+</style>
+
+
+
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+    data-background="static/images/hero/banner.jpg" style="
+    min-height: 40vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+  "></div>
+
+
+{% if show_modal %}
+<div id="confirmationModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <div class="modal-message">
+            {{ message }}
+        </div>
+        <div style="text-align: center;">
+            <button onclick="closeModal()" class="modal-btn">OK</button>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% include 'partials/breadcrumb.html' %}
+
+
+<div class="export-enqury-container">
+    <div class="title">Complaints</div>
+    <div class="subtitle">Submit Your Complaints</div>
+    <div class="form-section">
+        <form id="export-inquiry-form" method="POST" action="">
+            <!-- Honeypot field to catch bots -->
+            <input type="text" name="website" class="honeypot" autocomplete="off" tabindex="-1">
+
+            <div class="form-row">
+                <div>
+                    <label class="form-label">Full Name <span class="required">*</span></label>
+                    <input type="text" name="name" class="input" placeholder="Enter your full name" required />
+                </div>
+                <div>
+                    <label class="form-label">Email Address <span class="required">*</span></label>
+                    <input type="email" name="email" class="input" placeholder="Enter your email address" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label class="form-label">Phone Number <span class="required">*</span></label>
+                    <input type="tel" name="phoneNumber" class="input" placeholder="Enter your phone number" required />
+                </div>
+            </div>
+
+            <div class="form-row form-row-full">
+                <div>
+                    <label class="form-label">Complaints <span class="required">*</span></label>
+                    <textarea name="complaints" class="textarea" placeholder="Complaints" required></textarea>
+                </div>
+            </div>
+
+            <!-- Consent Section -->
+            <div class="consent-section">
+                <div class="consent-checkbox">
+                    <input type="checkbox" id="terms_consent" name="terms_consent" required>
+                    <label for="terms_consent">
+                        I agree to the <a href="#" target="_blank">Terms and Conditions</a> and
+                        <a href="#" target="_blank">Privacy Policy</a> of TACCI. I consent to the processing of my
+                        personal data for the purpose of handling my export inquiry.
+                    </label>
+                </div>
+                <div class="consent-checkbox">
+                    <input type="checkbox" id="marketing_consent" name="marketing_consent">
+                    <label for="marketing_consent">
+                        I agree to receive marketing communications from TACCI about trade opportunities, events, and
+                        services.
+                        You can unsubscribe at any time.
+                    </label>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="submit-btn" id="submit-btn">Submit Inquiry</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function closeModal() {
+        document.getElementById("confirmationModal").style.display = "none";
+    }
+
+    // Form validation and submission
+    document.getElementById('export-inquiry-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('submit-btn');
+        const form = this;
+
+        // Disable submit button to prevent double submission
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        // Check honeypot field
+        const honeypot = form.querySelector('input[name="website"]').value;
+        if (honeypot) {
+            alert('Form submission blocked due to suspicious activity.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Inquiry';
+            return;
+        }
+
+        // Check consent
+        const termsConsent = form.querySelector('input[name="terms_consent"]').checked;
+        if (!termsConsent) {
+            alert('Please agree to the Terms and Conditions to continue.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Inquiry';
+            return;
+        }
+
+        // If all validations pass, submit the form
+        form.submit();
+    });
+
+</script>
+
+{% endblock %}

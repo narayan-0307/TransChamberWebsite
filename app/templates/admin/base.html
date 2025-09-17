@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %} - TACCI</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/logo/transLogo.png" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        /* Common CSS Variables */
+        :root {
+            --tp-common-white: #fff;
+            --tp-common-black: #000;
+            --tp-common-yellow: #fdc93a;
+            --tp-grey-1: #506767;
+            --tp-grey-2: #354c4c;
+            --tp-grey-3: #e5ebea;
+            --tp-grey-4: #f3f4f4;
+            --tp-theme-primary: #1f3130;
+            --tp-theme-secondary: #f8d0b3;
+            --tp-border-1: rgba(31, 49, 48, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+        }
+
+        /* Common Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        /* Text truncation */
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Admin Dashboard Styles */
+        .admin-dashboard {
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .admin-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 280px;
+            background: #ffffff;
+            color: #333;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
+            border-right: 1px solid #e9ecef;
+        }
+
+        .admin-sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+
+        .admin-main {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .admin-main.expanded {
+            margin-left: 0;
+        }
+
+        .admin-header {
+            background: #ffffff;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .admin-content {
+            padding: 2rem;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            text-align: center;
+            background: linear-gradient(135deg, #003366 0%, #004080 100%);
+            color: white;
+        }
+
+        .sidebar-header img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-header h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .sidebar-header p {
+            color: #e3f2fd;
+            margin: 0.5rem 0 0 0;
+            font-size: 0.85rem;
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Auth Form Styles */
+        .auth-container {
+            background: var(--tp-common-white);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(31, 49, 48, 0.15);
+            overflow: hidden;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .auth-header {
+            background: linear-gradient(135deg, var(--tp-theme-primary) 0%, var(--tp-grey-2) 100%);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .auth-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .logo-section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: var(--tp-common-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .auth-title {
+            color: var(--tp-common-white);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-subtitle {
+            color: #e3f2fd;
+            font-size: 0.9rem;
+            margin: 0.5rem 0 0 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-body {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--tp-grey-1);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--tp-grey-3);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: var(--tp-common-white);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--tp-theme-primary);
+            box-shadow: 0 0 0 3px rgba(31, 49, 48, 0.1);
+        }
+
+        .form-input.error {
+            border-color: #dc3545;
+        }
+
+        .form-error {
+            color: #dc3545;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 48px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--tp-theme-primary) 0%, var(--tp-grey-2) 100%);
+            color: var(--tp-common-white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(31, 49, 48, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--tp-grey-3);
+            color: var(--tp-grey-1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--tp-grey-2);
+            color: var(--tp-common-white);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--tp-grey-3);
+        }
+
+        .auth-footer a {
+            color: var(--tp-theme-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                width: 100%;
+                transform: translateX(-100%);
+            }
+
+            .admin-sidebar.active {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .auth-container {
+                margin: 1rem;
+                max-width: 100%;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    {% block content %}{% endblock %}
+
+    {% block extra_js %}{% endblock %}
+
+    <!-- Debug Information (remove in production) -->
+    {% if config.DEBUG %}
+    <div id="debug-info"
+        style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 5px; font-size: 12px; z-index: 9999;">
+        <strong>Debug Info:</strong><br>
+        Secret Key: {{ 'Set' if config.SECRET_KEY else 'Not Set' }}<br>
+        Database URI: {{ 'Set' if config.SQLALCHEMY_DATABASE_URI else 'Not Set' }}<br>
+        Session Lifetime: {{ config.PERMANENT_SESSION_LIFETIME }}<br>
+        <button onclick="this.parentElement.remove()"
+            style="background: none; border: none; color: white; cursor: pointer;">×</button>
+    </div>
+    {% endif %}
+</body>
+
+</html>

@@ -1,225 +1,253 @@
-{% extends "base.html" %} {% block title %}TACCI{% endblock %} {% block content
-%}
+{% extends "base.html" %} {% block title %}TACCI{% endblock %} {% block content %}
+<style>
+  @media (max-width: 992px) {
+    .custom-hero {
+      margin-top: -30px;
+      min-height: 40vh;
+      height: 70vh;
+      background-size: cover;
+      background-position: center;
+    }
+  }
 
-<div
-  class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200"
-  data-background="/static/images/hero/banner.jpg"
-  style="margin-top: -7rem"
->
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-6 col-lg-7 col-md-10">
-        <div class="tp-breadcrumb-content mr-80">
-          <h2
-            class="tp-breadcrumb-title fw-600 fs-60 fs-xs-40 ls-m-3 tp-text-common-white lh-1"
-          >
-            Mission, Vission & History Page
-          </h2>
-          <div class="tp-breadcrumb-dvdr">
-            <ul>
-              <li><a href="/">Main Home</a></li>
-              <li class="dvdr">/</li>
-              <li>Mission, Vission & History</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  /* Responsive image sizing for vision-mission */
+  .vision-mission-img {
+    width: 70%;
+    max-width: 600px;
+    margin-top: 2rem;
+    /* min-width only for xl and up */
+  }
+
+  @media (min-width: 1200px) {
+    .vision-mission-img {
+      min-width: 650px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .vision-mission-img {
+      width: 80%;
+      max-width: 450px;
+      min-width: 500px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .vision-mission-img {
+      width: 90%;
+      max-width: 350px;
+      margin-top: 1.5rem;
+      min-width: 600px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .vision-mission-img {
+      width: 100%;
+      max-width: 250px;
+      margin-top: 1rem;
+      min-width: 500px;
+    }
+  }
+
+  .section {
+    overflow: hidden;
+    background: #fff;
+    padding: 2rem 0 2rem 0;
+  }
+
+  .container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem !important;
+  }
+
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: start;
+    }
+  }
+
+  .image-box {
+    width: 100%;
+    max-width: 50rem;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1rem;
+    box-shadow: 0 10px 24px 0 rgba(31, 41, 55, 0.15);
+    border: 1px solid rgba(156, 163, 175, 0.25);
+    display: block;
+    margin: 0 auto;
+  }
+
+  .content-col {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #4b5563;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card {
+    position: relative;
+    padding: 2rem;
+    padding-left: 2.5rem;
+    background: #fff;
+    border: 2px solid #bfdbfe;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 16px 0 rgba(31, 41, 55, 0.10);
+    margin-bottom: 1.5rem;
+  }
+
+  .card:last-child {
+    margin-bottom: 0;
+  }
+
+  .card-title {
+    font-weight: 600;
+    color: #111827;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .card p {
+    margin: 0.5rem 0 0 0;
+  }
+
+  .card ul {
+    margin: 0.5rem 0 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .card li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .card li:last-child {
+    margin-bottom: 0;
+  }
+
+  .icon-check {
+    margin-right: 0.5rem;
+    margin-top: 0.25rem;
+    color: #16a34a;
+    min-width: 1.25rem;
+  }
+
+  .icon-cross {
+    margin-right: 0.5rem;
+    margin-top: 0.25rem;
+    color: #dc2626;
+    min-width: 1.25rem;
+  }
+
+  @media (max-width: 1023px) {
+    .image-box {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 2rem;
+    }
+
+    .content-col {
+      gap: 1.5rem;
+    }
+  }
+</style>
 
 
-
-<div
-  class="tp-about-area p-relative fix mt-20"
-  style="
-    background-image: url(/static/images/about/bg-about.png);
+<!-- tp-breadcrumb-area-start -->
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+  data-background="static/images/hero/banner.jpg" style="
+    min-height: 40vh;
+    height: 70vh;
     background-size: cover;
     background-position: center;
-    margin-top: -20px;
-  "
->
-  <div class="container-fluid gx-0">
-    <div class="row gx-20">
-      <div class="col-lg-6">
-        <div class="tp-about-thumb-wrap">
-          <div class="row gx-20">
-            <div class="col-lg-7 col-md-7 col-sm-7 mb-20">
-              <div class="tp-about-thumb mr-15 p-relative">
-                <img
-                  class="thumb ml-70"
-                  style="min-width: 40vw; margin-top: 5rem"
-                  src="static/images/certifications/mission-vision.png"
-                  alt=""
-                />
-                <img
-                  class="tp-about-shape p-absolute d-none d-sm-block"
-                  src=""
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6" style="margin-bottom: 4rem">
-        <div class="tp-about-content d-flex align-items-center p-relative">
-          <div class="" style="margin-top: 4rem">
-            <h4
-              class="mb-25 fs-xl-37 wow img-custom-anim-left font-poppins text-center"
-              data-wow-duration="1.5s"
-              data-wow-delay="0.2s"
-            >
-              Vision
-            </h4>
-            <p class="mb-30" style="font-family: 'Poppins', sans-serif;">
-              To create an environment where Business Confidence is built through
-              Best Business Practices and is fostered in an atmosphere of trust
-              and respect between providers of goods and services and their
-              users for the ultimate benefit of society and the nation.
-            </p>
-            <h4
-              class="mb-25 fs-xl-37 wow img-custom-anim-left text-center"
-              data-wow-duration="1.5s"
-              data-wow-delay="0.2s"
-            >
-              Mision
-            </h4>
-            <p class="mb-30" style="font-family: 'Poppins', sans-serif;">
-              To promote the highest ethical practices, by business and
-              professionals, in order to provide complete satisfaction to
-              consumers and other stakeholders.
-            </p>
-            <h4
-              class="mb-25 fs-xl-37 wow img-custom-anim-left text-center"
-              data-wow-duration="1.5s"
-              data-wow-delay="0.2s"
-            >
-              Code of Conduct
-            </h4>
-            <h4
-              class="mb-25 fs-xl-37 wow img-custom-anim-left text-center"
-              data-wow-duration="1.5s"
-              data-wow-delay="0.2s"
-            >
-              To
-            </h4>
-            <ul
-              class="mb-30 list-none text-[#506767]"
-              style="font-family: 'Poppins', sans-serif"
-            >
-              <li>
-                <i class="fas fa-check mr-10"></i>Maintain the highest ethical
-                standards in business and professions;
-              </li>
-              <li>
-                <i class="fas fa-check mr-10"></i>Ensure maximum transparency to
-                the satisfaction of consumers and other stakeholders;
-              </li>
-              <li>
-                <i class="fas fa-check mr-10"></i>Consider objectively the
-                viewpoint of the consumers;
-              </li>
-              <li>
-                <i class="fas fa-check mr-10"></i>Satisfy the consumer with
-                prompt, efficient and friendly service at a reasonable price.
-              </li>
-            </ul>
-            <h4
-              class="mb-25 fs-xl-37 wow img-custom-anim-left text-center"
-              data-wow-duration="1.5s"
-              data-wow-delay="0.2s"
-            >
-              To Not
-            </h4>
-            <ul
-              class="mb-30 list-none text-[#506767]"
-              style="font-family: 'Poppins', sans-serif"
-            >
-              <li>
-                <i class="fas fa-check mr-10"></i>Use media to mislead
-                consumers;
-              </li>
+  "></div>
 
-              <li>
-                <i class="fas fa-check mr-10"></i>Knowingly support activities
-                which are against the laws of the land;
-              </li>
-              <li>
-                <i class="fas fa-check mr-10"></i>Misuse an advantageous market
-                position to the detriment of consumers.
-              </li>
-            </ul>
-          </div>
+{% include 'partials/breadcrumb.html' %}
+
+<section class="section">
+  <div class="container">
+    <div class="grid">
+      <img src="static/images/certifications/mission-vision.png" alt="Product screenshot" class="image-box"
+        data-aos="fade-right">
+      <div class="content-col">
+        <div class="card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+          <span class="card-title">Vision</span>
+          <p>To create an environment where Business Confidence is built through Best Business Practices and is
+            fostered in an atmosphere of trust and respect between providers of goods and services and their users for
+            the ultimate benefit of society and the nation.</p>
         </div>
-      </div>
-      <div
-        class="tp-cta-area bg-position pt-135 pb-120"
-        data-background="static/images/hero/banner2.jpg"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-7 col-lg-9">
-              <div class="tp-cta-3-title-wrap mr-100">
-                <h2
-                  class="mb-15 fs-xl-40 fs-sm-36 wow img-custom-anim-left text-white"
-                  data-wow-duration="1.5s"
-                  data-wow-delay="0.2s"
-                >
-                  Let’s join hands and make it happen with
-                  <span class="text-italic fw-400 tp-ff-heading"
-                    >the team!</span
-                  >
-                </h2>
-                <p class="mb-40">
-                  Success is never a solo journey—it’s a collective effort
-                  driven by teamwork,<br />
-                  collaboration, and shared vision. When we come together.
-                </p>
-                <div class="tp-cta-6-btn d-flex align-items-center">
-                  <a
-                    href="contact.html"
-                    class="tp-btn-xl mb-20 mr-20 d-inline-block lh-0 tp-round-26 fs-16 tp-bg-theme-primary ls-0 tp-btn-switch-animation tp-text-common-white hover-text-white fw-500"
-                  >
-                    <span
-                      class="d-flex align-items-center justify-content-center"
-                    >
-                      <span class="btn-text"> Schedule a free consultant</span>
-                      <span class="btn-icon"
-                        ><i class="fa-solid fa-arrow-right"></i
-                      ></span>
-                      <span class="btn-icon"
-                        ><i class="fa-solid fa-arrow-right"></i
-                      ></span>
-                    </span>
-                  </a>
-                  <div class="tp-cta-6-call mb-20">
-                    <span class="icon mr-15">
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.2811 17.9971C7.18994 18.2031 -3.78322 7.31835 1.31157 1.41675L2.17306 0.667624C2.60914 0.246066 3.19368 0.0131721 3.80018 0.0193408C4.40667 0.0255096 4.98635 0.270245 5.41377 0.700585C5.43687 0.724111 5.45839 0.749136 5.47819 0.775498L6.82662 2.5277C7.2364 2.96132 7.46409 3.5357 7.4627 4.13232C7.46131 4.72894 7.23093 5.30225 6.81912 5.73395L5.95164 6.82468C6.43192 7.99112 7.13782 9.05123 8.02883 9.94417C8.91984 10.8371 9.97842 11.5453 11.1438 12.0281L12.2405 11.1554C12.6778 10.7537 13.2498 10.5305 13.8435 10.5296C14.4373 10.5288 15.0098 10.7505 15.4483 11.1509L17.2012 12.4993C17.2274 12.519 17.2524 12.5403 17.2761 12.563C17.7084 12.9993 17.951 13.5886 17.951 14.2028C17.951 14.817 17.7084 15.4063 17.2761 15.8426L16.5937 16.6292C16.1608 17.0668 15.6447 17.4133 15.0757 17.6483C14.5068 17.8832 13.8966 18.0018 13.2811 17.9971ZM3.77394 1.51638C3.66628 1.5163 3.55967 1.53743 3.46018 1.57856C3.36069 1.61969 3.27028 1.68002 3.19412 1.7561L2.33187 2.50523C-1.89768 7.59028 11.0449 19.8122 15.497 15.6059L16.1802 14.8186C16.2614 14.7463 16.3275 14.6587 16.3747 14.5607C16.4219 14.4628 16.4492 14.3565 16.4551 14.2479C16.4611 14.1393 16.4454 14.0307 16.4092 13.9282C16.3729 13.8257 16.3167 13.7314 16.2438 13.6507L14.5006 12.312C14.4739 12.2924 14.4489 12.2706 14.4257 12.2468C14.2694 12.0979 14.0618 12.0148 13.8459 12.0148C13.63 12.0148 13.4224 12.0979 13.2661 12.2468C13.2462 12.267 13.2252 12.286 13.2032 12.3038L11.7364 13.4724C11.6345 13.5535 11.5134 13.6066 11.3848 13.6265C11.2562 13.6465 11.1246 13.6326 11.003 13.5863C9.49284 13.0237 8.12126 12.1431 6.98116 11.0042C5.84106 9.86524 4.95908 8.49455 4.39496 6.98499C4.34502 6.86166 4.32883 6.72726 4.34805 6.59559C4.36727 6.46393 4.42122 6.33977 4.50433 6.23587L5.66847 4.77058C5.68579 4.74838 5.70456 4.72736 5.72466 4.70765C5.87768 4.55332 5.96353 4.34479 5.96353 4.12745C5.96353 3.91012 5.87768 3.70159 5.72466 3.54726C5.70131 3.52396 5.67977 3.49892 5.66023 3.47235L4.32454 1.73138C4.17362 1.59502 3.97734 1.51971 3.77394 1.52013V1.51638ZM16.8784 9.43912C20.6165 3.9368 14.0317 -2.64126 8.53537 1.09612C8.45248 1.15146 8.38147 1.22278 8.32649 1.30591C8.27152 1.38904 8.23368 1.4823 8.2152 1.58024C8.19672 1.67817 8.19797 1.77881 8.21887 1.87625C8.23977 1.9737 8.27991 2.06599 8.33692 2.14773C8.39394 2.22947 8.4667 2.29902 8.55093 2.35228C8.63516 2.40555 8.72918 2.44148 8.82747 2.45796C8.92576 2.47444 9.02635 2.47114 9.12335 2.44825C9.22035 2.42537 9.3118 2.38336 9.39236 2.32469C13.4931 -0.491272 18.4642 4.48516 15.6498 8.58287C15.5898 8.66336 15.5467 8.75508 15.5229 8.85257C15.4991 8.95006 15.4951 9.05134 15.5112 9.1504C15.5273 9.24946 15.5631 9.34428 15.6165 9.42923C15.67 9.51417 15.7399 9.58751 15.8223 9.6449C15.9046 9.70228 15.9976 9.74254 16.0958 9.76327C16.194 9.78401 16.2954 9.7848 16.3939 9.76561C16.4924 9.74641 16.586 9.70762 16.6693 9.65154C16.7525 9.59545 16.8236 9.52322 16.8784 9.43912ZM13.9882 8.042C14.1287 7.90152 14.2076 7.71101 14.2076 7.51237C14.2076 7.31373 14.1287 7.12322 13.9882 6.98274L12.7102 5.70399V3.76375C12.7102 3.56507 12.6313 3.37453 12.4908 3.23404C12.3503 3.09356 12.1598 3.01463 11.9611 3.01463C11.7624 3.01463 11.5719 3.09356 11.4314 3.23404C11.2909 3.37453 11.212 3.56507 11.212 3.76375V6.01113C11.212 6.20979 11.291 6.4003 11.4315 6.54076L12.9297 8.03901C13.0702 8.17945 13.2607 8.25834 13.4594 8.25834C13.658 8.25834 13.8485 8.17945 13.989 8.03901L13.9882 8.042Z"
-                          fill="#1F3130"
-                        />
-                      </svg>
-                    </span>
-                    <a href="tel:+9992131432659" class="text-white"
-                      >+999 21314 32659</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
+          <span class="card-title">Mission</span>
+          <p>To promote the highest ethical practices, by business and professionals, in order to provide complete
+            satisfaction to consumers and other stakeholders.</p>
+        </div>
+        <div class="card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
+          <span class="card-title">Code of Conduct To</span>
+          <ul>
+            <li><span class="icon-check"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg></span>Maintain the highest ethical standards in business and professions;</li>
+            <li><span class="icon-check"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg></span>Ensure maximum transparency to the satisfaction of consumers and other stakeholders;</li>
+            <li><span class="icon-check"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg></span>Consider objectively the viewpoint of the consumers;</li>
+            <li><span class="icon-check"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg></span>Satisfy the consumer with prompt, efficient and friendly service at a reasonable price.
+            </li>
+          </ul>
+        </div>
+        <div class="card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">
+          <span class="card-title">Code of Conduct To Not</span>
+          <ul>
+            <li><span class="icon-cross"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg></span>Use media to mislead consumers;</li>
+            <li><span class="icon-cross"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg></span>Knowingly support activities which are against the laws of the land;</li>
+            <li><span class="icon-cross"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg></span>Misuse an advantageous market position to the detriment of consumers.</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true
+  });
+</script>
+{% include 'includes/cta.html' %}
 
 {% endblock %}

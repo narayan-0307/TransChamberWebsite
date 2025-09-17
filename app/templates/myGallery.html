@@ -40,6 +40,7 @@
   }
 
   @keyframes flash {
+
     0%,
     100% {
       opacity: 1;
@@ -59,11 +60,13 @@
       min-width: 100vw;
     }
   }
+
   @media (min-width: 1024px) and (max-width: 1280px) {
     .folders {
       gap: 15rem;
     }
   }
+
   @media (min-width: 768px) and (max-width: 1024px) {
     .folders {
       gap: 8rem;
@@ -80,6 +83,7 @@
     .folder {
       width: 340px;
     }
+
     .folders {
       gap: 0rem;
     }
@@ -89,6 +93,7 @@
     .folder {
       width: 340px;
     }
+
     .folders {
       gap: 0rem;
     }
@@ -96,17 +101,13 @@
 </style>
 
 <!-- Breadcrumb Section -->
-<div
-  class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200"
-  data-background="static/images/hero/banner.jpg"
-  style="
-    margin-top: -7rem;
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+  data-background="static/images/hero/banner.jpg" style="
     min-height: 40vh;
     height: 60vh;
     background-size: cover;
     background-position: center;
-  "
-></div>
+  "></div>
 
 {% include 'partials/breadcrumb.html' %}
 
@@ -114,13 +115,11 @@
   <!-- Heading Section -->
   <div class="py-16 bg-gray-50 text-center">
     <div class="max-w-3xl mx-auto px-4 mb-30">
-      <span class="uppercase text-sm text-cyan-600 tracking-wide"
-        >Relive Our Journey Through Time</span
-      >
-      <h2 class="text-4xl font-bold mb-4">
+      <span class="uppercase text-sm text-cyan-600 tracking-wide tp-ff-p">Relive Our Journey Through Time</span>
+      <h2 class="fs-sm-30 mb-4 tp-ff-heading">
         Cherished Memories That Last Forever
       </h2>
-      <p class="text-lg text-gray-600 mb-8">
+      <p class="text-lg text-gray-600 mb-8 tp-ff-p">
         Rediscover the Past — Explore Our Gallery
       </p>
     </div>
@@ -128,42 +127,29 @@
 
   <!-- Video Section -->
   <!-- Video Section -->
-  <div
-    x-data="{ open: false }"
+  <div x-data="{ open: false }"
     class="banner-container relative w-[70vw] h-[70vh] bg-fixed bg-center bg-cover flex items-center justify-center mx-auto rounded-xl overflow-hidden"
-    style="background-image: url('/static/images/hero/banner.jpg')"
-  >
+    style="background-image: url('/static/images/hero/banner.jpg')">
     <div class="absolute inset-0 bg-opacity-40"></div>
 
     <!-- Play Button -->
-    <button
-      @click="open = true; $refs.eventVideo.play()"
+    <button @click="open = true; $refs.eventVideo.play()"
       class="z-10 w-20 h-20 flex items-center justify-center text-white text-3xl rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flash"
-      style="background-color: #0066cc; border-radius: 50%"
-    >
+      style="background-color: #0066cc; border-radius: 50%">
       <i class="fas fa-play"></i>
     </button>
 
     <!-- Modal Section -->
-    <div
-      x-show="open"
-      x-transition
-      x-cloak
-      class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-    >
-      <div
-        class="relative w-[90%] md:w-[60%] aspect-video bg-black rounded-xl overflow-hidden"
-      >
+    <div x-show="open" x-transition x-cloak class="fixed inset-0 bg-opacity-80 flex items-center justify-center z-50">
+      <div class="relative w-[90%] md:w-[60%] aspect-video bg-black rounded-xl overflow-hidden">
         <video x-ref="eventVideo" controls class="w-full h-full">
           <source src="/static/videos/video1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
         <!-- Close Button -->
-        <button
-          @click="open = false; $refs.eventVideo.pause(); $refs.eventVideo.currentTime = 0"
-          class="absolute top-2 right-2 text-white text-2xl bg-black bg-opacity-50 rounded-full px-3 py-1 hover:bg-opacity-80"
-        >
+        <button @click="open = false; $refs.eventVideo.pause(); $refs.eventVideo.currentTime = 0"
+          class="absolute top-2 right-2 text-white text-2xl bg-black bg-opacity-50 rounded-full px-3 py-1 hover:bg-opacity-80">
           &times;
         </button>
       </div>
@@ -172,19 +158,12 @@
 </section>
 
 <section style="display: flex; flex-direction: column; align-items: center">
-  <h1>Old Folders</h1>
+  <h1 class="fs-sm-30 mb-4 tp-ff-heading">Old Folders</h1>
 
   <div class="folders">
     {% for folder in folders %}
-    <a
-      href="{{ url_for('main.show_folder', folder_name=folder) }}"
-      class="folder"
-    >
-      <img
-        src="{{ url_for('static', filename='images/folder-icon.png') }}"
-        alt="folder"
-        class="folder-img"
-      />
+    <a href="{{ url_for('main.show_folder', folder_name=folder) }}" class="folder">
+      <img src="{{ url_for('static', filename='images/folder-icon.png') }}" alt="folder" class="folder-img" />
       <div class="folder-name" style="margin-bottom: 2rem">{{ folder }}</div>
     </a>
     {% endfor %}

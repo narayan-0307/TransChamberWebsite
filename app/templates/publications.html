@@ -1,0 +1,284 @@
+{% extends "base.html" %} {% block title %} Publications | TACCI {% endblock %} {% block
+content %}
+
+<style>
+  .pubs-container {
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pubs-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .pubs-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .pubs-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .pubs-grid-2 {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 16px;
+  }
+
+  .pubs-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .pubs-item i {
+    font-size: 20px;
+    color: #1d4ed8;
+    margin-top: 2px;
+  }
+
+  .pubs-meta {
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  @media (max-width: 1200px) {
+    .pubs-grid-3 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 992px) {
+    .pubs-grid-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .pubs-grid-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<!-- tp-breadcrumb-area-start -->
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+  data-background="static/images/hero/banner.jpg" style="
+    min-height: 40vh;
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
+  "></div>
+
+{% include 'partials/breadcrumb.html' %}
+
+<section class="pt-10 pb-10">
+  <div class="pubs-container">
+    <div class="container">
+      <!-- Intro -->
+      <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-9 text-center">
+          <h2 class="tp-section-title mb-10">Publications</h2>
+          <p class="mb-0 text-muted">Research reports, policy briefs, sector insights, and market updates from
+            TACCI. Replace sample content with your official publications as they are released.</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="pubs-card mt-40">
+        <div class="row g-2 align-items-end">
+          <div class="col-lg-6">
+            <label class="form-label small text-muted">Search</label>
+            <input type="text" class="form-control" placeholder="Search publications (title, sector, year)" />
+          </div>
+          <div class="col-6 col-lg-3">
+            <label class="form-label small text-muted">Category</label>
+            <select class="form-select">
+              <option value="">All</option>
+              <option>Policy Brief</option>
+              <option>Research Report</option>
+              <option>Market Insight</option>
+              <option>Guideline</option>
+            </select>
+          </div>
+          <div class="col-6 col-lg-3">
+            <label class="form-label small text-muted">Year</label>
+            <select class="form-select">
+              <option value="">Any</option>
+              <option>2025</option>
+              <option>2024</option>
+              <option>2023</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content: list + featured -->
+      <div class="pubs-grid-2 mt-40">
+        <!-- Left: Grid -->
+        <div class="pubs-card">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="fa-light fa-books" style="font-size:22px; color:#0ea5e9;"></i>
+            <h3 class="h6 mb-0">Latest Publications</h3>
+          </div>
+          <div class="pubs-grid-3 mt-3">
+            <!-- Item 1 -->
+            <article class="pubs-item">
+              <i class="fa-regular fa-file-lines"></i>
+              <div>
+                <h4 class="h6 mb-1">Facilitating Cross-Border Trade for MSMEs</h4>
+                <p class="text-muted medium mb-2">Policy pathways to reduce friction in export
+                  documentation, logistics, and standards recognition.</p>
+                <div class="pubs-meta">Policy Brief · 2024 · Trade & Market Access</div>
+                <div class="mt-2 d-flex gap-2">
+                  <a class="btn btn-outline-secondary btn-sm" href="#"><i class="fa-regular fa-eye"></i> Preview</a>
+                  <a class="btn btn-dark btn-sm" href="#"><i class="fa-regular fa-arrow-down-to-line"></i> Download</a>
+                </div>
+              </div>
+            </article>
+            <!-- Item 2 -->
+            <article class="pubs-item">
+              <i class="fa-regular fa-file-lines"></i>
+              <div>
+                <h4 class="h6 mb-1">MSME Competitiveness & Cluster Development 2025</h4>
+                <p class="text-muted medium mb-2">A data-led review of productivity enablers across
+                  priority sectors with case studies.</p>
+                <div class="pubs-meta">Research Report · 2025 · MSME & Industry</div>
+                <div class="mt-2 d-flex gap-2">
+                  <a class="btn btn-outline-secondary btn-sm" href="#"><i class="fa-regular fa-eye"></i> Preview</a>
+                  <a class="btn btn-dark btn-sm" href="#"><i class="fa-regular fa-arrow-down-to-line"></i> Download</a>
+                </div>
+              </div>
+            </article>
+            <!-- Item 3 -->
+            <article class="pubs-item">
+              <i class="fa-regular fa-file-lines"></i>
+              <div>
+                <h4 class="h6 mb-1">Sustainable Supply Chains: Compliance to Competitiveness</h4>
+                <p class="text-muted medium mb-2">Practical ESG adoption for suppliers: traceability,
+                  certifications, and financing models.</p>
+                <div class="pubs-meta">Guideline · 2024 · Sustainability & ESG</div>
+                <div class="mt-2 d-flex gap-2">
+                  <a class="btn btn-outline-secondary btn-sm" href="#"><i class="fa-regular fa-eye"></i> Preview</a>
+                  <a class="btn btn-dark btn-sm" href="#"><i class="fa-regular fa-arrow-down-to-line"></i> Download</a>
+                </div>
+              </div>
+            </article>
+            <!-- Item 4 -->
+            <article class="pubs-item">
+              <i class="fa-regular fa-file-lines"></i>
+              <div>
+                <h4 class="h6 mb-1">Digital Readiness for Exporters</h4>
+                <p class="text-muted medium mb-2">E-commerce enablement, digital documentation, and
+                  cross-border payments for SMEs.</p>
+                <div class="pubs-meta">Market Insight · 2025 · Digital Trade</div>
+                <div class="mt-2 d-flex gap-2">
+                  <a class="btn btn-outline-secondary btn-sm" href="#"><i class="fa-regular fa-eye"></i> Preview</a>
+                  <a class="btn btn-dark btn-sm" href="#"><i class="fa-regular fa-arrow-down-to-line"></i> Download</a>
+                </div>
+              </div>
+            </article>
+            <!-- Item 5 -->
+            <article class="pubs-item">
+              <i class="fa-regular fa-file-lines"></i>
+              <div>
+                <h4 class="h6 mb-1">Investment Zones: Opportunities & Incentives</h4>
+                <p class="text-muted medium mb-2">Snapshot of priority zones, sector focus, and investor
+                  facilitation mechanisms.</p>
+                <div class="pubs-meta">Research Report · 2023 · Investment</div>
+                <div class="mt-2 d-flex gap-2">
+                  <a class="btn btn-outline-secondary btn-sm" href="#"><i class="fa-regular fa-eye"></i> Preview</a>
+                  <a class="btn btn-dark btn-sm" href="#"><i class="fa-regular fa-arrow-down-to-line"></i> Download</a>
+                </div>
+              </div>
+            </article>
+            <!-- Item 6 -->
+            <article class="pubs-item">
+              <i class="fa-regular fa-file-lines"></i>
+              <div>
+                <h4 class="h6 mb-1">Quality Standards Navigator for Exporters</h4>
+                <p class="text-muted medium mb-2">Step-by-step path to meet product standards and
+                  certification requirements.</p>
+                <div class="pubs-meta">Guideline · 2023 · Compliance & Standards</div>
+                <div class="mt-2 d-flex gap-2">
+                  <a class="btn btn-outline-secondary btn-sm" href="#"><i class="fa-regular fa-eye"></i> Preview</a>
+                  <a class="btn btn-dark btn-sm" href="#"><i class="fa-regular fa-arrow-down-to-line"></i> Download</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Pagination (static placeholder) -->
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <small class="text-muted">Showing 1–6 of 24</small>
+            <nav aria-label="Publications navigation">
+              <ul class="pagination mb-0">
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Right: Featured Publication -->
+        <aside class="pubs-card">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="fa-light fa-star" style="font-size:22px; color:#0ea5e9;"></i>
+            <h3 class="h6 mb-0">Featured Publication</h3>
+          </div>
+          <h4 class="h5">Trans-Asian Trade Outlook 2025</h4>
+          <p class="text-muted medium mb-2">Quarterly analysis of demand trends, tariff changes, logistics
+            corridors, and buyer sentiment across key markets.</p>
+          <ul class="text-muted medium mb-3" style="padding-left: 18px;">
+            <li>Sector snapshots and growth signals</li>
+            <li>Tariff/NTB tracker and standards watch</li>
+            <li>Opportunities for MSMEs and suppliers</li>
+          </ul>
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-secondary" href="#"><i class="fa-regular fa-eye"></i> Preview</a>
+            <a class="btn btn-dark" href="#"><i class="fa-regular fa-arrow-down-to-line"></i> Download</a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- CTA -->
+      <div class="row mt-40">
+        <div class="col-12">
+          <div class="alert alert-info d-flex align-items-start gap-3 mb-0" role="alert">
+            <i class="fa-regular fa-circle-info" style="font-size:20px; margin-top:2px;"></i>
+            <div>
+              <strong>Want to feature your publication or request a brief?</strong>
+              <p class="mb-2 text-muted">Share your sector, objective, and target audience. We'll recommend the most
+                relevant resources.</p>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="{{ url_for('main.contact_page') }}" class="btn btn-primary">
+                  <i class="fa-regular fa-envelope"></i> Contact Us
+                </a>
+                <a href="mailto:info@tacci.org" class="btn btn-outline-secondary">
+                  <i class="fa-regular fa-at"></i> info@tacci.org
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

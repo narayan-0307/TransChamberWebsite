@@ -1,0 +1,584 @@
+{% extends "base.html" %}
+{% block title %}TACCI{% endblock %}
+{% block content %}
+
+<style>
+    /* Custom Scrollbar Styling */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f3f4f4;
+        border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1f3130;
+        border-radius: 4px;
+        transition: background 0.3s ease;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #354c4c;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:active {
+        background: #506767;
+    }
+
+    /* Firefox scrollbar styling */
+    .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #1f3130 #f3f4f4;
+    }
+
+    /* Professional Past Events Layout Styles */
+    .past-events-hero {
+        min-height: 65vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .past-events-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("{{ url_for('static', filename='images/hero/banner.jpg') }}") center/cover;
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .past-events-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px 20px;
+    }
+
+    .events-layout {
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        gap: 40px;
+        margin-top: -50px;
+        position: relative;
+        z-index: 3;
+    }
+
+    .main-content {
+        transition: transform 0.3s ease;
+    }
+
+    .main-content:hover {
+        transform: translateY(-5px);
+    }
+
+    .event-image {
+        width: 100%;
+        height: 450px;
+        object-fit: inherit;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .event-content {
+        padding: 0;
+    }
+
+    .event-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #1e3c72;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .event-meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: rgba(248, 249, 250, 0.7);
+        border-radius: 10px;
+        border-left: 4px solid #1e3c72;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .meta-item i {
+        color: #1e3c72;
+        font-size: 1.2rem;
+        width: 20px;
+    }
+
+    .meta-label {
+        font-weight: 600;
+        color: #495057;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+        color: #212529;
+        font-weight: 500;
+    }
+
+    .event-summary {
+        background: rgba(40, 167, 69, 0.1);
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        border-left: 4px solid #28a745;
+    }
+
+    .event-summary h4 {
+        color: #28a745;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .gallery-section {
+        margin-top: 30px;
+    }
+
+    .gallery-section h4 {
+        color: #1e3c72;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .gallery-item {
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.05);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .sidebar {
+        padding: 30px;
+        height: fit-content;
+        position: sticky;
+        top: 20px;
+    }
+
+    .sidebar-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1e3c72;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #e9ecef;
+        position: relative;
+    }
+
+    .sidebar-title::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: #1e3c72;
+    }
+
+    .event-card {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+        border: 1px solid #e9ecef;
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .event-card:hover {
+        background: rgba(248, 249, 250, 0.9);
+        transform: translateX(5px);
+        border-color: #1e3c72;
+    }
+
+    .event-card.active {
+        background: #1e3c72;
+        color: white;
+        border-color: #1e3c72;
+    }
+
+    .event-card.active .event-card-title,
+    .event-card.active .event-card-date {
+        color: white;
+    }
+
+    .event-card-thumb {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .event-card-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .event-card-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .event-card-title {
+        font-weight: 600;
+        color: #1e3c72;
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .event-card-date {
+        color: #6c757d;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .no-events {
+        text-align: center;
+        padding: 40px 20px;
+        color: #6c757d;
+    }
+
+    .no-events i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        opacity: 0.5;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .events-layout {
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .events-layout {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            position: static;
+            order: -1;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .event-content {
+            padding: 0;
+        }
+
+        .event-meta {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .past-events-container {
+            padding: 0 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+        }
+
+        .event-title {
+            font-size: 1.8rem;
+        }
+
+        .event-content {
+            padding: 0;
+        }
+
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .event-card {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .event-card-thumb {
+            width: 100%;
+            height: 150px;
+        }
+
+        .event-meta {
+            padding: 15px;
+        }
+
+        .meta-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 5px;
+        }
+    }
+
+    /* Loading and empty states */
+    .loading-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+    }
+
+    .loading-spinner {
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #1e3c72;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .demo-card-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px 0px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        align-items: start;
+    }
+
+    .card {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        border: none;
+    }
+
+    .card img {
+        width: 100%;
+        height: 220px;
+        display: block;
+        object-fit: inherit;
+    }
+
+    .demo-card-content {
+        position: relative;
+        margin: -20px 8px 0px 5px;
+        background: #fff;
+        padding: 10px 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.33);
+        border-radius: 5px;
+    }
+
+    .demo-card-content .title {
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: #222;
+        display: inline-block;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+    }
+
+    .demo-card-content .title:hover {
+        color: #4f46e5;
+        /* indigo-600 */
+    }
+
+    .demo-description {
+        color: #555;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        text-align: justify;
+    }
+
+    .demo-meta {
+        margin-top: 15px;
+        font-size: 0.75rem;
+        color: #777;
+    }
+
+    .demo-meta a {
+        text-decoration: none;
+        color: #4f46e5;
+        margin-right: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .demo-meta a:hover {
+        color: #222;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .demo-card-container {
+            padding: 15px;
+        }
+
+        .card {
+            max-width: 100%;
+        }
+
+        .demo-card-content {
+            margin: -40px 15px 15px 15px;
+            padding: 15px 20px;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="past-events-hero">
+</div>
+
+{% include 'partials/breadcrumb.html' %}
+
+<div class="past-events-container pb-10">
+    <div class="events-layout">
+        <!-- Main Content -->
+        <div class="main-content">
+            <img class="event-image"
+                src="{{ past_event.banner_image_path or url_for('static', filename='images/hero/banner.jpg') }}"
+                alt="Image" />
+
+            <div class="event-content">
+                <h1 class="event-title">{{ past_event.title or '' }}</h1>
+                <div class="gallery-section">
+                    <div class="demo-card-container">
+                        {% if past_event_images %}
+                        {% for img in past_event_images %}
+                        <div class="card">
+                            <a href="#">
+                                <img src="{{ img.image_path }}" alt="image">
+                            </a>
+                            <div class="demo-card-content">
+                                <p class="demo-description">{{ img.description or '' }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">
+                <i class="fas fa-history"></i> Past Events
+            </h3>
+            <div class="custom-scrollbar" style="overflow-y: auto; max-height: 500px; width: 300px;">
+                {% if sidebar_events %}
+                {% for ev in sidebar_events %}
+                <a href="{{ url_for('main.past_event_detail', past_event_id=ev.id) }}" class="event-card-link">
+                    <div class="event-card {% if past_event and past_event.id == ev.id %}active{% endif %}">
+                        <div class="event-card-thumb">
+                            <img src="{{ ev.banner_image_path or url_for('static', filename='images/hero/banner.jpg') }}"
+                                alt="image" />
+                        </div>
+                        <div class="event-card-content">
+                            <h6 class="event-card-title">{{ ev.title }}</h6>
+                            <div class="event-card-date">
+                                <i class="fas fa-calendar"></i>
+                                {% if ev.event_date %} {{ ev.event_date.strftime('%d %b %Y') }} {% else %} N/A {% endif
+                                %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+                {% else %}
+                <div class="no-events">
+                    <i class="fas fa-calendar-times"></i>
+                    <p>No past events available.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

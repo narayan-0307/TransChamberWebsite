@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member Dashboard - TACCI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50" x-data="{
+    activeTab: 'overview',
+    showModal: false,
+    selectedComplaint: {},
+    viewDetails(type, data) {
+        this.selectedComplaint = {
+            full_name: data.full_name || 'No Name',
+            email: data.email || 'No Email',
+            phone_number: data.phone_number || 'No Phone',
+            submitted_at: data.submitted_at || 'No Date',
+            complaints: data.details || 'No details available'
+        };
+        this.showModal = true;
+    }
+}">
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto" src="/static/images/logo/transLogo.png" alt="TACCI Logo">
+                    <h1 class="ml-3 text-xl font-semibold text-gray-900">Member Dashboard</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-gray-700">Welcome, Member</span>
+                            <a href="{{ url_for('main.logout') }}"
+                                class="text-sm font-medium text-gray-700 hover:text-red-600 px-3 py-1 rounded transition-colors">
+                                <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-file-alt text-blue-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500">Total Inquiries</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ export_inquiries|length +
+                            import_inquiries|length }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-clock text-yellow-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500">Business Opportunities</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ business_opportunities|length }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-green-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500">Suggestions</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ suggestions|length }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle text-red-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500">Complaints</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ complaints|length }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="flex space-x-8 px-6" aria-label="Tabs">
+                    <button @click="activeTab = 'overview'"
+                        :class="activeTab === 'overview' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                        class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-home mr-2"></i>Overview
+                    </button>
+                    <button @click="activeTab = 'inquiries'"
+                        :class="activeTab === 'inquiries' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                        class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-file-alt mr-2"></i>Inquiries ({{ export_inquiries|length +
+                        import_inquiries|length }})
+                    </button>
+                    <button @click="activeTab = 'opportunities'"
+                        :class="activeTab === 'opportunities' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                        class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-briefcase mr-2"></i>Opportunities ({{ business_opportunities|length }})
+                    </button>
+                    <button @click="activeTab = 'feedback'"
+                        :class="activeTab === 'feedback' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                        class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-comments mr-2"></i>Feedback ({{ suggestions|length + complaints|length }})
+                    </button>
+                    <a href="{{ url_for('main.admin_past_events') }}"
+                        class="py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        <i class="fas fa-history mr-2"></i>Past Events
+                    </a>
+                    <button @click="activeTab = 'settings'"
+                        :class="activeTab === 'settings' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                        class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-cog mr-2"></i>Settings
+                    </button>
+                </nav>
+            </div>
+
+            <div class="p-6">
+
+                <div x-show="activeTab === 'overview'" x-cloak class="space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Activities</h3>
+                            <div class="space-y-4">
+                                {% if export_inquiries %}
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-file-alt text-blue-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900">New export inquiry received</p>
+                                        <p class="text-sm text-gray-500">From: {{ export_inquiries[0].full_name }} •
+                                            {{ export_inquiries[0].submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if import_inquiries %}
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div
+                                            class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-download text-purple-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900">New import inquiry received</p>
+                                        <p class="text-sm text-gray-500">From: {{ import_inquiries[0].full_name }} •
+                                            {{ import_inquiries[0].submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if business_opportunities %}
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-briefcase text-green-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900">Business opportunity submitted
+                                        </p>
+                                        <p class="text-sm text-gray-500">From: {{
+                                            business_opportunities[0].full_name }} • {{
+                                            business_opportunities[0].submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if suggestions %}
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div
+                                            class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-lightbulb text-yellow-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900">New suggestion received</p>
+                                        <p class="text-sm text-gray-500">From: {{ suggestions[0].full_name }} • {{
+                                            suggestions[0].submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if complaints %}
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-exclamation-triangle text-red-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900">New complaint received</p>
+                                        <p class="text-sm text-gray-500">From: {{ complaints[0].full_name }} • {{
+                                            complaints[0].submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if not export_inquiries and not import_inquiries and not business_opportunities
+                                and not suggestions and not complaints %}
+                                <div class="text-center py-4">
+                                    <i class="fas fa-inbox text-2xl text-gray-400 mb-2"></i>
+                                    <p class="text-gray-500">No recent activities</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <a href="{{ url_for('main.export_enqury') }}"
+                                    class="bg-blue-600 text-white p-4 rounded-lg hover:bg-blue-700 transition-colors text-center">
+                                    <i class="fas fa-plus text-lg mb-2"></i>
+                                    <p class="text-sm font-medium">Export Inquiry</p>
+                                </a>
+                                <a href="{{ url_for('main.import_enqury') }}"
+                                    class="bg-purple-600 text-white p-4 rounded-lg hover:bg-purple-700 transition-colors text-center">
+                                    <i class="fas fa-download text-lg mb-2"></i>
+                                    <p class="text-sm font-medium">Import Inquiry</p>
+                                </a>
+                                <a href="{{ url_for('main.business_opportunity') }}"
+                                    class="bg-green-600 text-white p-4 rounded-lg hover:bg-green-700 transition-colors text-center">
+                                    <i class="fas fa-briefcase text-lg mb-2"></i>
+                                    <p class="text-sm font-medium">Business Opportunity</p>
+                                </a>
+                                <a href="{{ url_for('main.suggestions') }}"
+                                    class="bg-yellow-600 text-white p-4 rounded-lg hover:bg-yellow-700 transition-colors text-center">
+                                    <i class="fas fa-lightbulb text-lg mb-2"></i>
+                                    <p class="text-sm font-medium">Suggestion</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg border border-gray-200">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Recent Submissions Summary</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Type</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            From</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Date</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    {% for inquiry in export_inquiries[:3] %}
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div
+                                                    class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                    <i class="fas fa-file-alt text-blue-600 text-sm"></i>
+                                                </div>
+                                                <span class="text-sm font-medium text-gray-900">Export
+                                                    Inquiry</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{
+                                            inquiry.full_name }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                            inquiry.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">New</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                    {% for inquiry in import_inquiries[:3] %}
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div
+                                                    class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                                    <i class="fas fa-download text-purple-600 text-sm"></i>
+                                                </div>
+                                                <span class="text-sm font-medium text-gray-900">Import
+                                                    Inquiry</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{
+                                            inquiry.full_name }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                            inquiry.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">New</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                    {% for opportunity in business_opportunities[:3] %}
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div
+                                                    class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                                    <i class="fas fa-briefcase text-green-600 text-sm"></i>
+                                                </div>
+                                                <span class="text-sm font-medium text-gray-900">Business
+                                                    Opportunity</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{
+                                            opportunity.full_name }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{
+                                            opportunity.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">New</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                    {% if not export_inquiries and not import_inquiries and not
+                                    business_opportunities %}
+                                    <tr>
+                                        <td colspan="4" class="px-6 py-8 text-center text-gray-500">
+                                            <i class="fas fa-inbox text-2xl mb-2"></i>
+                                            <p>No recent submissions</p>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="activeTab === 'inquiries'" x-cloak class="space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">All Inquiries</h3>
+                        <div class="flex space-x-2">
+                            <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                                <option>All Types</option>
+                                <option>Export</option>
+                                <option>Import</option>
+                            </select>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                <i class="fas fa-filter mr-2"></i>Filter
+                            </button>
+                        </div>
+                    </div>
+
+                    {% if export_inquiries %}
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h4 class="text-md font-semibold text-gray-900">Export Inquiries ({{
+                                export_inquiries|length }})</h4>
+                        </div>
+                        <div class="divide-y divide-gray-200">
+                            {% for inquiry in export_inquiries %}
+                            <div class="px-6 py-4 hover:bg-gray-50">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div
+                                            class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-file-alt text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900">{{ inquiry.full_name }}</p>
+                                            <p class="text-sm text-gray-500">{{ inquiry.email }} • {{
+                                                inquiry.phone_number }}</p>
+                                            <p class="text-xs text-gray-400 mt-1">{{
+                                                inquiry.submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                            <p class="text-xs text-gray-600 mt-1"><strong>Company:</strong> {{
+                                                inquiry.company_name }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span
+                                            class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Export</span>
+                                        <button @click="viewDetails('export', {
+                                            full_name: '{{ inquiry.full_name|escape }}',
+                                            email: '{{ inquiry.email|escape }}',
+                                            phone_number: '{{ inquiry.phone_number|escape }}',
+                                            submitted_at: '{{ inquiry.submitted_at.strftime('%Y-%m-%d %H:%M')|escape }}',
+                                            details: `Company: {{ inquiry.company_name|escape }}
+                                        Country: {{ inquiry.country|escape }}
+                                        Product Quantity: {{ inquiry.product_quantity|escape }}
+                                        Product Details: {{ inquiry.product_details|escape }}
+                                        Sender Details: {{ inquiry.sender_details|escape }}
+                                        Export Requirements: {{ inquiry.export_requirements|escape }}`
+                                        })" class="text-blue-600 hover:text-blue-800 text-sm">
+                                            <i class="fas fa-eye mr-1"></i>View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if import_inquiries %}
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden mt-6">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h4 class="text-md font-semibold text-gray-900">Import Inquiries ({{
+                                import_inquiries|length }})</h4>
+                        </div>
+                        <div class="divide-y divide-gray-200">
+                            {% for inquiry in import_inquiries %}
+                            <div class="px-6 py-4 hover:bg-gray-50">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div
+                                            class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-download text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900">{{ inquiry.full_name }}</p>
+                                            <p class="text-sm text-gray-500">{{ inquiry.email }} • {{
+                                                inquiry.phone_number }}</p>
+                                            <p class="text-xs text-gray-400 mt-1">{{
+                                                inquiry.submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                            <p class="text-xs text-gray-600 mt-1"><strong>Company:</strong> {{
+                                                inquiry.company_name }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span
+                                            class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Import</span>
+                                        <button @click="viewDetails('import', {
+                                            full_name: '{{ inquiry.full_name|e }}',
+                                            email: '{{ inquiry.email|e }}',
+                                            phone_number: '{{ inquiry.phone_number|e }}',
+                                            submitted_at: '{{ inquiry.submitted_at.strftime('%Y-%m-%d %H:%M')|e }}',
+                                            details: 'Company: {{ inquiry.company_name|e }}\\nCountry: {{ inquiry.country|e }}\\nProduct Quantity: {{ inquiry.product_quantity|e }}\\nProduct Details: {{ inquiry.product_details|e }}\\nSender Details: {{ inquiry.sender_details|e }}'
+                                        })" class="text-purple-600 hover:text-purple-800 text-sm">
+                                            <i class="fas fa-eye mr-1"></i>View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if not export_inquiries and not import_inquiries %}
+                    <div class="text-center py-12 bg-white rounded-lg border border-gray-200">
+                        <i class="fas fa-file-alt text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">No inquiries</h3>
+                        <p class="text-gray-500">No inquiries have been submitted yet.</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div x-show="activeTab === 'opportunities'" x-cloak class="space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Business Opportunities</h3>
+                        <a href="{{ url_for('main.business_opportunity') }}"
+                            class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                            <i class="fas fa-plus mr-2"></i>Add Opportunity
+                        </a>
+                    </div>
+
+                    {% if business_opportunities %}
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <div class="divide-y divide-gray-200">
+                            {% for opportunity in business_opportunities %}
+                            <div class="px-6 py-4 hover:bg-gray-50">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div
+                                            class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-briefcase text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900">{{ opportunity.full_name }}
+                                            </p>
+                                            <p class="text-sm text-gray-500">{{ opportunity.email }} • {{
+                                                opportunity.phone_number }}</p>
+                                            <p class="text-xs text-gray-400 mt-1">{{
+                                                opportunity.submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                            <p class="text-xs text-gray-600 mt-1 line-clamp-2">{{
+                                                opportunity.business_opportunity[:100] }}...</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span
+                                            class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Opportunity</span>
+                                        <button @click="viewDetails('opportunity', {
+                                            full_name: '{{ opportunity.full_name|e }}',
+                                            email: '{{ opportunity.email|e }}',
+                                            phone_number: '{{ opportunity.phone_number|e }}',
+                                            submitted_at: '{{ opportunity.submitted_at.strftime('%Y-%m-%d %H:%M')|e }}',
+                                            details: '{{ opportunity.business_opportunity|e }}'
+                                        })" class="text-green-600 hover:text-green-800 text-sm">
+                                            <i class="fas fa-eye mr-1"></i>View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-12 bg-white rounded-lg border border-gray-200">
+                        <i class="fas fa-briefcase text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">No business opportunities</h3>
+                        <p class="text-gray-500">No business opportunities have been submitted yet.</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div x-show="activeTab === 'feedback'" x-cloak class="space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-md font-semibold text-gray-900">Suggestions ({{ suggestions|length
+                                    }})</h4>
+                            </div>
+                            {% if suggestions %}
+                            <div class="divide-y divide-gray-200">
+                                {% for suggestion in suggestions %}
+                                <div class="px-6 py-4 hover:bg-gray-50">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-lightbulb text-yellow-600 text-sm"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-900">{{ suggestion.full_name }}
+                                            </p>
+                                            <p class="text-sm text-gray-500">{{ suggestion.suggestions[:100] }}...
+                                            </p>
+                                            <p class="text-xs text-gray-400 mt-1">{{
+                                                suggestion.submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                            <button @click="viewDetails('suggestion', {
+                                                full_name: '{{ suggestion.full_name }}',
+                                                email: '{{ suggestion.email }}',
+                                                phone_number: '{{ suggestion.phone_number }}',
+                                                submitted_at: '{{ suggestion.submitted_at.strftime('%Y-%m-%d %H:%M') }}',
+                                                details: '{{ suggestion.suggestions }}'
+                                            })" class="text-yellow-600 hover:text-yellow-800 text-xs mt-1">
+                                                <i class="fas fa-eye mr-1"></i>View Full
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="px-6 py-8 text-center">
+                                <i class="fas fa-lightbulb text-2xl text-gray-400 mb-2"></i>
+                                <p class="text-gray-500">No suggestions yet</p>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-md font-semibold text-gray-900">Complaints ({{ complaints|length }})
+                                </h4>
+                            </div>
+                            {% if complaints %}
+                            <div class="divide-y divide-gray-200">
+                                {% for complaint in complaints %}
+                                <div class="px-6 py-4 hover:bg-gray-50">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-exclamation-triangle text-red-600 text-sm"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-900">{{ complaint.full_name }}
+                                            </p>
+                                            <p class="text-sm text-gray-500">{{ complaint.complaints[:100] }}...</p>
+                                            <p class="text-xs text-gray-400 mt-1">{{
+                                                complaint.submitted_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                            <button @click="viewDetails('complaint', {
+                                                full_name: '{{ complaint.full_name }}',
+                                                email: '{{ complaint.email }}',
+                                                phone_number: '{{ complaint.phone_number }}',
+                                                submitted_at: '{{ complaint.submitted_at.strftime('%Y-%m-%d %H:%M') }}',
+                                                details: '{{ complaint.complaints }}'
+                                            })" class="text-red-600 hover:text-red-800 text-xs mt-1">
+                                                <i class="fas fa-eye mr-1"></i>View Full
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="px-6 py-8 text-center">
+                                <i class="fas fa-exclamation-triangle text-2xl text-gray-400 mb-2"></i>
+                                <p class="text-gray-500">No complaints yet</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="activeTab === 'settings'" x-cloak class="space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg border border-gray-200 p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Profile Settings</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                    <input type="text"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                    <input type="tel"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+                                    Update Profile
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg border border-gray-200 p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Notification Settings</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Email Notifications</p>
+                                        <p class="text-sm text-gray-500">Receive updates via email</p>
+                                    </div>
+                                    <button
+                                        class="bg-blue-600 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                        <span
+                                            class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">SMS Notifications</p>
+                                        <p class="text-sm text-gray-500">Receive updates via SMS</p>
+                                    </div>
+                                    <button
+                                        class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                        <span
+                                            class="translate-x-0 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div x-show="showModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-lg max-w-2xl w-full p-6 relative max-h-[80vh] overflow-y-auto">
+            <button @click="showModal = false"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+
+            <div class="border-b border-gray-200 pb-4 mb-4">
+                <h2 class="text-xl font-bold text-gray-900" x-text="selectedComplaint.full_name || 'No Name'"></h2>
+                <div class="flex items-center space-x-4 text-sm text-gray-500 mt-2">
+                    <span x-text="selectedComplaint.email || 'No Email'"></span>
+                    <span>•</span>
+                    <span x-text="selectedComplaint.phone_number || 'No Phone'"></span>
+                    <span>•</span>
+                    <span x-text="selectedComplaint.submitted_at || 'No Date'"></span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Details</h3>
+                    <div class="text-gray-800 whitespace-pre-line text-sm leading-relaxed"
+                        x-text="selectedComplaint.complaints || 'No details available'"></div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-4 mt-4 flex justify-end space-x-3">
+                <button @click="showModal = false" class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                    Close
+                </button>
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-download mr-2"></i>Export
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

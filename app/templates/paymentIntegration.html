@@ -1,0 +1,45 @@
+import requests
+from flask import redirect, url_for, request, session, flash
+
+PAYGLOCAL_API_URL = "https://api.payglocal.in/v1/paycollect/card" # Example endpoint
+MERCHANT_ID = "your_merchant_id"
+API_KEY = "your_api_key"
+
+@bp.route('/membership-form', methods=['GET', 'POST'])
+def membership_form():
+# ... existing code ...
+if request.method == 'POST':
+# ... handle steps 1 and 2 ...
+elif step == 3:
+# Save form data as before
+# ... your existing save logic ...
+
+# Initiate payment with PayGlocal
+personal = session.get('personalData', {})
+member_data = session.get('membershipDetails', {})
+amount = float(member_data.get('amount_paid', 0))
+email = personal.get('email')
+# ...other details as needed...
+
+payload = {
+"merchant_id": MERCHANT_ID,
+"amount": amount,
+"currency": "INR", # or as per your form
+"customer": {
+"email": email,
+# ...other customer fields...
+},
+"redirect_url": url_for('main.membership_form', step=4, _external=True)
+}
+headers = {
+"Authorization": f"Bearer {API_KEY}",
+"Content-Type": "application/json"
+}
+response = requests.post(PAYGLOCAL_API_URL, json=payload, headers=headers)
+data = response.json()
+if data.get("payment_url"):
+return redirect(data["payment_url"])
+else:
+flash("Error initiating payment. Please try again.", "error")
+return redirect(url_for('main.membership_form', step=3, member_id=member_id if is_edit else None))
+# ... existing code ...

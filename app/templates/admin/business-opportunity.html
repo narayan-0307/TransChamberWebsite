@@ -1,0 +1,246 @@
+{% extends "admin/dashboard_base.html" %}
+
+{% block title %}Business Opportunities Management{% endblock %}
+
+{% block dashboard_content %}
+<div class="flex items-center justify-between mb-6">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">Business Opportunities Management</h1>
+        <p class="mt-1 text-sm text-gray-500">Manage all business opportunity submissions</p>
+    </div>
+    <div class="flex space-x-3">
+        <button onclick="exportToCSV()"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+            <i class="fas fa-download mr-2"></i>Export CSV
+        </button>
+        <button onclick="refreshData()"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+            <i class="fas fa-sync-alt mr-2"></i>Refresh
+        </button>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-briefcase text-green-600"></i>
+                </div>
+            </div>
+            <div class="ml-4">
+                <p class="text-sm font-medium text-gray-500">Total Opportunities</p>
+                <p class="text-2xl font-bold text-gray-900">{{ business_opportunities|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-clock text-yellow-600"></i>
+                </div>
+            </div>
+            <div class="ml-4">
+                <p class="text-sm font-medium text-gray-500">Pending Review</p>
+                <p class="text-2xl font-bold text-gray-900">{{ business_opportunities|selectattr('status', 'equalto',
+                    'pending')|list|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-spinner text-blue-600"></i>
+                </div>
+            </div>
+            <div class="ml-4">
+                <p class="text-sm font-medium text-gray-500">In Progress</p>
+                <p class="text-2xl font-bold text-gray-900">{{ business_opportunities|selectattr('status', 'equalto',
+                    'in_progress')|list|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-handshake text-purple-600"></i>
+                </div>
+            </div>
+            <div class="ml-4">
+                <p class="text-sm font-medium text-gray-500">Completed</p>
+                <p class="text-2xl font-bold text-gray-900">{{ business_opportunities|selectattr('status', 'equalto',
+                    'completed')|list|length }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Business Opportunities Table -->
+<div class="bg-white shadow rounded-lg overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">All Business Opportunities</h3>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Opportunity</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for opportunity in business_opportunities %}
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ opportunity.id }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ opportunity.name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ opportunity.email }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">
+                        <div class="line-clamp-3">{{ opportunity.opportunity }}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        {% if opportunity.status == 'pending' %}
+                        <span
+                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                            Pending
+                        </span>
+                        {% elif opportunity.status == 'in_progress' %}
+                        <span
+                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                            In Progress
+                        </span>
+                        {% elif opportunity.status == 'completed' %}
+                        <span
+                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">
+                            Completed
+                        </span>
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ opportunity.created_at.strftime('%Y-%m-%d %H:%M') }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button onclick="viewOpportunity({{ opportunity.id }})"
+                            class="text-blue-600 hover:text-blue-900 mr-3">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                        <button onclick="updateStatus({{ opportunity.id }})"
+                            class="text-green-600 hover:text-green-900">
+                            <i class="fas fa-edit"></i> Update
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal for viewing opportunity details -->
+<div id="opportunityModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="opportunityDetails"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function viewOpportunity(id) {
+        fetch('/api/business-opportunities/' + id)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('opportunityDetails').innerHTML =
+                    '<h2 class="text-xl font-bold mb-4">Business Opportunity Details</h2>' +
+                    '<div class="space-y-4">' +
+                    '<div>' +
+                    '<label class="font-semibold">Name:</label>' +
+                    '<p>' + data.name + '</p>' +
+                    '</div>' +
+                    '<div>' +
+                    '<label class="font-semibold">Email:</label>' +
+                    '<p>' + data.email + '</p>' +
+                    '</div>' +
+                    '<div>' +
+                    '<label class="font-semibold">Opportunity:</label>' +
+                    '<p class="whitespace-pre-wrap">' + data.opportunity + '</p>' +
+                    '</div>' +
+                    '<div>' +
+                    '<label class="font-semibold">Status:</label>' +
+                    '<p>' + data.status + '</p>' +
+                    '</div>' +
+                    '<div>' +
+                    '<label class="font-semibold">Date:</label>' +
+                    '<p>' + data.created_at + '</p>' +
+                    '</div>' +
+                    '</div>';
+                document.getElementById('opportunityModal').style.display = 'block';
+            });
+    }
+
+    function closeModal() {
+        document.getElementById('opportunityModal').style.display = 'none';
+    }
+
+    function updateStatus(id) {
+        const newStatus = prompt('Enter new status (pending/in_progress/completed):');
+        if (newStatus) {
+            fetch('/api/business-opportunities/' + id + '/status', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: newStatus })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Error updating status');
+                    }
+                });
+        }
+    }
+
+    function exportToCSV() {
+        fetch('/api/business-opportunities/export')
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'business_opportunities.csv';
+                a.click();
+            });
+    }
+
+    function refreshData() {
+        location.reload();
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function (event) {
+        const modal = document.getElementById('opportunityModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+{% endblock %}

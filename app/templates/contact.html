@@ -1,16 +1,12 @@
 {% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
 content %}
-<div
-  class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200"
-  data-background="static/images/hero/banner.jpg"
-  style="
-    margin-top: -7rem;
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+  data-background="static/images/hero/banner.jpg" style="
     min-height: 40vh;
     height: 60vh;
     background-size: cover;
     background-position: center;
-  "
-></div>
+  "></div>
 
 <!-- tp-breadcrumb-area-end -->
 {% include 'partials/breadcrumb.html' %}
@@ -22,13 +18,8 @@ content %}
         <div class="col-lg-9 col-md-6 col-12">
           <div class="tp-contact-title-wrap mb-30">
             <span class="fw-500 fs-16 tp-text-grey-1 mb-5 d-inline-block">
-              Contact with us</span
-            >
-            <h3
-              class="mb-20 fs-xl-40 fs-sm-36 wow img-custom-anim-left"
-              data-wow-duration="1.5s"
-              data-wow-delay="0.2s"
-            >
+              Contact with us</span>
+            <h3 class="mb-20 fs-xl-40 fs-sm-36 wow img-custom-anim-left" data-wow-duration="1.5s" data-wow-delay="0.2s">
               How to you
               <span class="text-italic fw-400 tp-ff-heading">find us</span>
             </h3>
@@ -37,84 +28,71 @@ content %}
         <div class="col-lg-3 col-md-6 col-12">
           <div class="tp-contact-main-info mb-30">
             <div class="d-flex align-items-center mb-20">
-              <span class="tp-contact-main-icon mr-15">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.62 8.75027C15.19 8.75027 14.85 8.40027 14.85 7.98027C14.85 7.61027 14.48 6.84027 13.86 6.17028C13.25 5.52028 12.58 5.14028 12.02 5.14028C11.59 5.14028 11.25 4.79028 11.25 4.37028C11.25 3.95028 11.6 3.60028 12.02 3.60028C13.02 3.60028 14.07 4.14028 14.99 5.11028C15.85 6.02028 16.4 7.15027 16.4 7.97027C16.4 8.40027 16.05 8.75027 15.62 8.75027Z"
-                    fill="#1F3130"
-                  />
-                  <path
-                    d="M19.2278 8.74998C18.7978 8.74998 18.4578 8.39998 18.4578 7.97998C18.4578 4.42999 15.5678 1.55 12.0278 1.55C11.5978 1.55 11.2578 1.2 11.2578 0.779998C11.2578 0.359999 11.5978 0 12.0178 0C16.4178 0 19.9978 3.57999 19.9978 7.97998C19.9978 8.39998 19.6478 8.74998 19.2278 8.74998Z"
-                    fill="#1F3130"
-                  />
-                  <path
-                    opacity="0.4"
-                    d="M9.78998 12.21L6.51999 15.48C6.15999 15.16 5.80999 14.83 5.46999 14.49C4.43999 13.45 3.50999 12.36 2.67999 11.22C1.86 10.08 1.2 8.93998 0.719999 7.80999C0.24 6.66999 0 5.57999 0 4.53999C0 3.85999 0.12 3.20999 0.359999 2.60999C0.599999 2 0.979998 1.44 1.51 0.939998C2.15 0.309999 2.84999 0 3.58999 0C3.86999 0 4.14999 0.06 4.39999 0.18C4.65999 0.299999 4.88999 0.479999 5.06999 0.739999L7.38999 4.00999C7.56998 4.25999 7.69998 4.48999 7.78998 4.70999C7.87998 4.91999 7.92998 5.12999 7.92998 5.31999C7.92998 5.55999 7.85998 5.79999 7.71998 6.02999C7.58998 6.25999 7.39998 6.49999 7.15999 6.73999L6.39999 7.52998C6.28999 7.63998 6.23999 7.76999 6.23999 7.92998C6.23999 8.00998 6.24999 8.07998 6.26999 8.15998C6.29999 8.23998 6.32999 8.29998 6.34999 8.35998C6.52999 8.68998 6.83999 9.11998 7.27998 9.63998C7.72998 10.16 8.20998 10.69 8.72998 11.22C9.08998 11.57 9.43998 11.91 9.78998 12.21Z"
-                    fill="#1F3130"
-                  />
-                  <path
-                    d="M19.9715 16.33C19.9715 16.61 19.9215 16.9 19.8215 17.18C19.7915 17.26 19.7615 17.34 19.7215 17.42C19.5515 17.78 19.3315 18.12 19.0415 18.44C18.5515 18.98 18.0115 19.37 17.4015 19.62C17.3915 19.62 17.3815 19.63 17.3715 19.63C16.7815 19.87 16.1415 20 15.4515 20C14.4315 20 13.3415 19.76 12.1916 19.27C11.0416 18.78 9.89156 18.12 8.75156 17.29C8.36156 17 7.97156 16.71 7.60156 16.4L10.8716 13.13C11.1516 13.34 11.4016 13.5 11.6116 13.61C11.6616 13.63 11.7216 13.66 11.7916 13.69C11.8716 13.72 11.9516 13.73 12.0416 13.73C12.2116 13.73 12.3416 13.67 12.4516 13.56L13.2116 12.81C13.4615 12.56 13.7015 12.37 13.9315 12.25C14.1615 12.11 14.3915 12.04 14.6415 12.04C14.8315 12.04 15.0315 12.08 15.2515 12.17C15.4715 12.26 15.7015 12.39 15.9515 12.56L19.2615 14.91C19.5215 15.09 19.7015 15.3 19.8115 15.55C19.9115 15.8 19.9715 16.05 19.9715 16.33Z"
-                    fill="#1F3130"
-                  />
-                </svg>
-              </span>
               <div>
-                <span
-                  class="tp-text-grey-1 fw-600 fs-12 text-uppercase d-block lh-1 mb-5"
-                >
-                  Call Us Directly</span
-                >
-                <a
-                  href="tel:+(1)2246767430"
-                  class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black"
-                  >+(1) 224 676 7430</a
-                >
+                <span class="tp-text-grey-1 fw-600 fs-12 text-uppercase d-block lh-1 mb-5">
+                  Call Us Directly</span>
+                <a href="https://wa.me/919820964687" target="_blank" class="ml-5" title="WhatsApp">
+                  <i class="fa-brands fa-whatsapp" style="color: #1F3130;"></i>
+                </a>
+                <a href="tel:+919820964687" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">
+                  +91 9820964687
+                </a>
+                <br />
+                <a href="https://wa.me/919820964687" target="_blank" class="ml-5" title="WhatsApp">
+                  <i class="fa-brands fa-whatsapp" style="color: #1F3130;"></i>
+                </a>
+                <a href="tel:+919967064687" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">
+                  +91 9967064687
+                </a>
+
+                <br>
+                <a href="tel:+918082564687" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">
+                  <i class="fa-solid fa-mobile-screen-button mr-5" style="color: #1F3130;"></i>
+                  +91 8082564687
+                </a><br>
+                <a href="tel:+919152964687" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black"></a>
+                <i class="fa-solid fa-mobile-screen-button mr-5" style="color: #1F3130;"></i>
+                +91 9152964687
+                </a><br>
+                <a href="tel:+919896464684" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">
+                  <i class="fa-solid fa-mobile-screen-button mr-5" style="color: #1F3130;"></i>
+                  +91 9896464684
+                </a><br>
+                <a href="tel:+912224467647" class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">
+                  <i class="fa-solid fa-phone mr-5" style="color: #1F3130;"></i>
+                  91-22-2446-7647
+                </a>
               </div>
             </div>
             <div class="d-flex align-items-center mb-20">
               <span class="tp-contact-main-icon mr-15">
-                <svg
-                  width="20"
-                  height="18"
-                  viewBox="0 0 20 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M17.5 5C18.8807 5 20 3.88071 20 2.5C20 1.11929 18.8807 0 17.5 0C16.1193 0 15 1.11929 15 2.5C15 3.88071 16.1193 5 17.5 5Z"
-                    fill="#1F3130"
-                  />
+                    fill="#1F3130" />
                   <path
                     d="M17.5 5C18.8807 5 20 3.88071 20 2.5C20 1.11929 18.8807 0 17.5 0C16.1193 0 15 1.11929 15 2.5C15 3.88071 16.1193 5 17.5 5Z"
-                    fill="#1F3130"
-                  />
+                    fill="#1F3130" />
                   <path
                     d="M18.72 6.31001C19.35 6.11001 20 6.60002 20 7.27002V12.51C20 16.01 18 17.51 15 17.51H5C2 17.51 0 16.01 0 12.51V5.51001C0 2.01001 2 0.51001 5 0.51001H12.61C13.26 0.51001 13.7 1.11002 13.58 1.74002C13.46 2.33002 13.48 2.96002 13.66 3.61002C14.03 4.95002 15.12 6.02001 16.46 6.37001C17.25 6.57001 18.02 6.53001 18.72 6.31001Z"
-                    fill="#1F3130"
-                  />
+                    fill="#1F3130" />
                   <path
                     d="M10.0027 9.86977C9.16271 9.86977 8.31271 9.60978 7.66271 9.07978L4.53271 6.57978C4.21271 6.31978 4.15271 5.84978 4.41271 5.52978C4.67271 5.20978 5.1427 5.14978 5.4627 5.40978L8.5927 7.90978C9.3527 8.51978 10.6427 8.51978 11.4027 7.90978L12.5827 6.96978C12.9027 6.70978 13.3827 6.75977 13.6327 7.08977C13.8927 7.40977 13.8427 7.88978 13.5127 8.13978L12.3327 9.07978C11.6927 9.60978 10.8427 9.86977 10.0027 9.86977Z"
-                    fill="white"
-                  />
+                    fill="white" />
                 </svg>
               </span>
               <div>
-                <span
-                  class="tp-text-grey-1 fw-600 fs-12 text-uppercase d-block lh-1 mb-5"
-                >
-                  Need Support?</span
-                >
-                <a
-                  href="mailto:info@gmail.com"
-                  class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black"
-                  >info@gmail.com</a
-                >
+                <span class="tp-text-grey-1 fw-600 fs-12 text-uppercase d-block lh-1 mb-5">
+                  Need Support?</span>
+                <a href="https://mail.google.com/mail/?view=cm&to=info@transasianchamber.org" target="_blank"
+                  class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">
+                  info@transasianchamber.org
+                </a>
+
+                <a href="https://mail.google.com/mail/?view=cm&to=transasian.hindustaan@gmail.com" target="_blank"
+                  class="fw-600 fs-16 ls-m-2 tp-text-theme-primary underline-black">
+                  transasian.hindustaan@gmail.com
+                </a>
               </div>
             </div>
           </div>
@@ -130,33 +108,36 @@ content %}
       <div class="row">
         <div class="col-lg-4 col-12">
           <div class="mb-30">
-            <h2
-              class="mb-20 fs-40 fs-xl-35 fs-sm-30 pb-60 wow img-custom-anim-left"
-              data-wow-duration="1.5s"
-              data-wow-delay="0.2s"
-            >
+            <h2 class="mb-20 fs-40 fs-xl-35 fs-sm-30 pb-60 wow img-custom-anim-left" data-wow-duration="1.5s"
+              data-wow-delay="0.2s">
               We love to hear<br />
               from <span class="text-italic fw-400 tp-ff-heading">you</span>
             </h2>
             <div class="tp-contact-bottom-social">
               <ul class="d-flex align-items-center">
                 <li>
-                  <a href="#">
+                  <a href="https://www.facebook.com/sanjay.bhide.716" target="_blank" title="Facebook">
                     <i class="fa-brands fa-facebook-f"></i>
                   </a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="#">
                     <i class="fa-brands fa-instagram"></i>
                   </a>
-                </li>
+                </li> -->
                 <li>
-                  <a href="#">
+                  <a href="https://www.linkedin.com/company/trans-asian-chamber-of-commerce-industry-tacci/"
+                    target="_blank" title="LinkedIn">
                     <i class="fa-brands fa-linkedin-in"></i>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="https://wa.me/919820964687" target="_blank" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.youtube.com/@transasianchamberofcommerc5038" target="_blank" title="Youtube">
                     <i class="fa-brands fa-youtube"></i>
                   </a>
                 </li>
@@ -165,38 +146,44 @@ content %}
           </div>
         </div>
         <div class="col-lg-8 col-12">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          <div class="mb-4">
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}}">
+              {{message}}
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% endwith %}
+
           <div class="tp-join-form-wra tp-contact-inner-wrap mb-30">
-            <form id="contact-form" action="" method="POST">
-              <input
-                class="tp-input mb-15"
-                name="name"
-                type="text"
-                placeholder="Your full name*"
-              />
-              <input
-                class="tp-input mb-15"
-                name="email"
-                type="text"
-                placeholder="Email address*"
-              />
-              <input
-                class="tp-input mb-15"
-                name="website"
-                type="text"
-                placeholder="Your website*"
-              />
-              <textarea
-                name="message"
-                class="tp-textarea tp-input mb-10"
-                placeholder="How can we help? Fell free to write here"
-              ></textarea>
-              <button
-                type="submit"
-                class="tp-btn-xl tp-round-4 fs-16 tp-bg-theme-primary w-100 d-block tp-text-common-white hover-text-white fw-500"
-              >
+            <form id="contact-form" action="{{ url_for('main.contact_page') }}" method="POST">
+              {{ form.csrf_token }}
+              <input class="tp-input mb-15" name="name" type="text" placeholder="Your full name*" required />
+              <input class="tp-input mb-15" name="email" type="email" placeholder="Email address*" required />
+              <input class="tp-input mb-15" name="website" type="url" placeholder="Your website (optional)" />
+              <select class="tp-input mb-15" name="purpose" required
+                style="width: 100%; height: 50px; margin-bottom: 10px;">
+                <option value="" style="font-size: 2px;">Purpose of Contact*</option>
+                <option value="general_inquiry">General Inquiry</option>
+                <option value="membership">Membership Inquiry</option>
+                <option value="business_opportunity">Business/Trade Opportunity</option>
+                <option value="partnership">Partnership or Collaboration</option>
+                <option value="event_information">Event Participation or Info</option>
+                <option value="support">Technical Assistance</option>
+                <option value="media">Media or Press Request</option>
+                <option value="feedback">Feedback or Suggestions</option>
+                <option value="other">Other (please specify)</option>
+              </select>
+              <textarea name="message" class="tp-textarea tp-input mb-10"
+                placeholder="How can we help? Feel free to write here"></textarea>
+              <button type="submit"
+                class="tp-btn-xl tp-round-4 fs-16 tp-bg-theme-primary w-100 d-block tp-text-common-white hover-text-white fw-500">
                 Send your message
               </button>
-              <p class="ajax-response mt-20"></p>
+              <p class="ajax-response mt-20" style="min-height: 20px;"></p>
             </form>
           </div>
         </div>
@@ -210,11 +197,8 @@ content %}
     <div class="tp-contact-map-box responsive-map">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1885.9387487582126!2d72.834958!3d19.025119!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cf565ca045e1%3A0x7fb713676527a2f8!2sHind%20Service%20Industries!5e0!3m2!1sen!2sin!4v1749720984487!5m2!1sen!2sin"
-        style="border: 0; width: 100%; height: 100%; min-height: 300px"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+        style="border: 0; width: 100%; height: 100%; min-height: 300px" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
   <!-- map area end  -->

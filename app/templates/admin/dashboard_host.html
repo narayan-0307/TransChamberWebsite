@@ -1,0 +1,2857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard</title>
+    <!-- Font Awesome CDN (v6) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-TFzN+3HkW2x6UAgAlrC8k5iYZv5hS6RJKLkYoN0Kq1G7s7fTtWqj93B35KkA0GfQ3Iez+zV2YBJ2r3x+AKL2sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Admin Dashboard Styles */
+        .admin-dashboard {
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .admin-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 280px;
+            background: #ffffff;
+            color: #333;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
+            border-right: 1px solid #e9ecef;
+        }
+
+        .admin-sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+
+        .admin-main {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .admin-main.expanded {
+            margin-left: 0;
+        }
+
+        .admin-header {
+            background: #ffffff;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .admin-content {
+            padding: 2rem;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            text-align: center;
+            background: linear-gradient(135deg, #003366 0%, #004080 100%);
+            color: white;
+        }
+
+        .sidebar-header img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-header h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .sidebar-header p {
+            color: #e3f2fd;
+            margin: 0.5rem 0 0 0;
+            font-size: 0.85rem;
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section-title {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6c757d;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: #f8f9fa;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 0.875rem 1.5rem;
+            color: #495057;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: #f8f9fa;
+            border-left-color: #003366;
+            color: #003366;
+            text-decoration: none;
+        }
+
+        .nav-item.active {
+            background: #e3f2fd;
+            border-left-color: #003366;
+            color: #003366;
+            font-weight: 600;
+        }
+
+        .nav-item i {
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .nav-item:hover i,
+        .nav-item.active i {
+            color: #003366;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e9ecef;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #003366, #004080);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .stat-title {
+            font-size: 0.875rem;
+            color: #6c757d;
+            font-weight: 500;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, #003366, #004080);
+        }
+
+        .stat-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .stat-change {
+            font-size: 0.8rem;
+            color: #28a745;
+            margin-top: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-change.negative {
+            color: #dc3545;
+        }
+
+        .content-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9ecef;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .btn-primary-admin {
+            background: linear-gradient(135deg, #003366, #004080);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary-admin:hover {
+            background: linear-gradient(135deg, #004080, #0056b3);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 51, 102, 0.25);
+        }
+
+        .btn-secondary-admin {
+            background: #6c757d;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .btn-secondary-admin:hover {
+            background: #5a6268;
+            color: white;
+            text-decoration: none;
+        }
+
+        .table-responsive {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9ecef;
+        }
+
+        .admin-table {
+            margin: 0;
+        }
+
+        .admin-table th {
+            background: #f8f9fa;
+            border: none;
+            padding: 1.25rem 1rem;
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-table td {
+            padding: 1.25rem 1rem;
+            border: none;
+            border-bottom: 1px solid #f8f9fa;
+            vertical-align: middle;
+            color: #495057;
+        }
+
+        .admin-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 0.375rem 0.875rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.pending {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status-badge.approved {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-badge.rejected {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-badge.active {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #003366;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            background: #f8f9fa;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #003366, #004080);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+            }
+
+            .admin-sidebar.active {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-content {
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+
+            .admin-header {
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .admin-header {
+                padding: 1rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .user-info {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #003366;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Modal Styles */
+        .modal-admin {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content-admin {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid #e9ecef;
+        }
+
+        .modal-header-admin {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #dc3545;
+            background: #f8f9fa;
+        }
+
+        /* Form Styles */
+        .form-control {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #003366;
+            box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Button Groups */
+        .btn-group-admin {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .btn-sm {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
+        }
+
+        /* Card Variations */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Text Utilities */
+        .text-muted {
+            color: #6c757d !important;
+        }
+
+        .text-primary {
+            color: #003366 !important;
+        }
+
+        .text-success {
+            color: #28a745 !important;
+        }
+
+        .text-warning {
+            color: #ffc107 !important;
+        }
+
+        .text-danger {
+            color: #dc3545 !important;
+        }
+
+        /* Error message styling */
+        .text-center {
+            text-align: center !important;
+        }
+
+        .admin-table td.text-center {
+            padding: 2rem 1rem;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* File Manager Styles */
+        .image-item {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .image-item:hover {
+            border-color: #007bff !important;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .image-item.selected {
+            border-color: #007bff !important;
+            background-color: #e3f2fd;
+        }
+
+        .image-item img {
+            border-radius: 4px;
+        }
+
+        .list-group-item.active {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        /* VIP Management Styles */
+        .vip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .vip-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .vip-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .vip-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .vip-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .no-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 2px dashed #dee2e6;
+        }
+
+        .vip-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .vip-status.active {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .vip-status.inactive {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .vip-info {
+            padding: 1.5rem;
+        }
+
+        .vip-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .vip-designation {
+            color: #007bff;
+            font-weight: 500;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .vip-company {
+            color: #6c757d;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .vip-description {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0 0 1rem 0;
+        }
+
+        .vip-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .vip-actions .btn {
+            flex: 1;
+            font-size: 0.8rem;
+            padding: 0.375rem 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <div class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <img src="/static/images/logo/transLogo.png" alt="TACCI Logo">
+                <h3>Admin Panel</h3>
+                <p>Welcome, {{ current_user.username }}</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Overview
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Content Management</div>
+                    <a href="#members" class="nav-item" data-section="members">
+                        <i class="fas fa-users"></i> Members
+                    </a>
+                    <a href="#events" class="nav-item" data-section="events">
+                        <i class="fas fa-calendar-alt"></i> Events
+                    </a>
+                    <a href="#brochure" class="nav-item" data-section="brochure">
+                        <i class="fas fa-calendar-alt"></i> Download Brochure
+                    </a>
+                    <a href="#news" class="nav-item" data-section="news">
+                        <i class="fas fa-newspaper"></i> News & Articles
+                    </a>
+                    <a href="#gallery" class="nav-item" data-section="gallery">
+                        <i class="fas fa-images"></i> Gallery
+                    </a>
+                    <a href="#vip" class="nav-item" data-section="vip">
+                        <i class="fas fa-crown"></i> VIP Management
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Inquiries & Forms</div>
+                    <a href="#export-inquiries" class="nav-item" data-section="export-inquiries">
+                        <i class="fas fa-upload"></i> Export Inquiries
+                    </a>
+                    <a href="#import-inquiries" class="nav-item" data-section="import-inquiries">
+                        <i class="fas fa-download"></i> Import Inquiries
+                    </a>
+                    <a href="#business-opportunities" class="nav-item" data-section="business-opportunities">
+                        <i class="fas fa-briefcase"></i> Business Opportunities
+                    </a>
+                    <a href="#suggestions" class="nav-item" data-section="suggestions">
+                        <i class="fas fa-lightbulb"></i> Suggestions
+                    </a>
+                    <a href="#complaints" class="nav-item" data-section="complaints">
+                        <i class="fas fa-exclamation-triangle"></i> Complaints
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Event Management</div>
+                    <a href="#past-events" class="nav-item" data-section="past-events">
+                        <i class="fas fa-user-shield"></i> Past Events
+                    </a>
+                    <a href="#budget-events" class="nav-item" data-section="budget-events">
+                        <i class="fas fa-user-shield"></i> Budget Events
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <a href="#users" class="nav-item" data-section="users">
+                        <i class="fas fa-user-shield"></i> User Management
+                    </a>
+                    <a href="#settings" class="nav-item" data-section="settings">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                    <a href="{{ url_for('main.logout') }}" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-main" id="adminMain">
+            <!-- Header -->
+            <div class="admin-header">
+                <div class="d-flex align-items-center">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h4 class="mb-0 ms-3">Admin Dashboard</h4>
+                </div>
+
+                <div class="user-info">
+                    <div class="user-avatar">
+                        {{ current_user.username[0].upper() }}
+                    </div>
+                    <div class="user-details">
+                        <div class="user-name">{{ current_user.username }}</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="admin-content">
+                <!-- Dashboard Overview Section -->
+                <div id="dashboard-section" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Dashboard Overview</h2>
+                        <div>
+                            <span class="text-muted">Last updated: <span id="lastUpdated"></span></span>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card card-hover">
+                            <div class="stat-header">
+                                <h6 class="stat-title">Total Members</h6>
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <h3 class="stat-value" id="totalMembers">0</h3>
+                        </div>
+
+                        <div class="stat-card card-hover">
+                            <div class="stat-header">
+                                <h6 class="stat-title">Active Events</h6>
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                            </div>
+                            <h3 class="stat-value" id="activeEvents">0</h3>
+                            <div class="stat-change">
+                                <i class="fas fa-arrow-up"></i> +5% this week
+                            </div>
+                        </div>
+
+                        <div class="stat-card card-hover">
+                            <div class="stat-header">
+                                <h6 class="stat-title">Active Brochure</h6>
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                            </div>
+                            <h3 class="stat-value" id="activeBrochure">0</h3>
+                            <div class="stat-change">
+                                <i class="fas fa-arrow-up"></i> +5% this week
+                            </div>
+                        </div>
+
+                        <div class="stat-card card-hover">
+                            <div class="stat-header">
+                                <h6 class="stat-title">Pending Inquiries</h6>
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                            <h3 class="stat-value" id="pendingInquiries">0</h3>
+                            <div class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i> -8% this week
+                            </div>
+                        </div>
+
+                        <div class="stat-card card-hover">
+                            <div class="stat-header">
+                                <h6 class="stat-title">Total Revenue</h6>
+                                <div class="stat-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                            </div>
+                            <h3 class="stat-value" id="totalRevenue">$0</h3>
+                            <div class="stat-change">
+                                <i class="fas fa-arrow-up"></i> +15% this month
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h3 class="section-title">Recent Activity</h3>
+                                    <a href="#" class="btn-primary-admin">
+                                        <i class="fas fa-eye"></i> View All
+                                    </a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table admin-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Activity</th>
+                                                <th>User</th>
+                                                <th>Time</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentActivity">
+                                            <tr>
+                                                <td>New member registration</td>
+                                                <td>John Doe</td>
+                                                <td>2 hours ago</td>
+                                                <td><span class="status-badge approved">Approved</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Event created</td>
+                                                <td>Admin</td>
+                                                <td>4 hours ago</td>
+                                                <td><span class="status-badge active">Active</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Export inquiry submitted</td>
+                                                <td>Jane Smith</td>
+                                                <td>6 hours ago</td>
+                                                <td><span class="status-badge pending">Pending</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="content-section">
+                                <div class="section-header">
+                                    <h3 class="section-title">Quick Actions</h3>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn-primary-admin" onclick="openModal('addMember')">
+                                        <i class="fas fa-user-plus"></i> Add New Member
+                                    </button>
+                                    <button class="btn-primary-admin" onclick="openModal('addEvent')">
+                                        <i class="fas fa-calendar-plus"></i> Create Event
+                                    </button>
+                                    <button class="btn-primary-admin" onclick="openModal('addNews')">
+                                        <i class="fas fa-newspaper"></i> Publish News
+                                    </button>
+                                    <button class="btn-primary-admin" onclick="openModal('uploadImage')">
+                                        <i class="fas fa-upload"></i> Upload Image
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Members Section -->
+                <div id="members-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Member Management</h2>
+                        <button class="btn-primary-admin" onclick="openModal('addMember')">
+                            <i class="fas fa-plus"></i> Add Member
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Company</th>
+                                    <th>Email</th>
+                                    <th>Membership Type</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="membersTable">
+                                <!-- Members will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Events Section -->
+                <div id="events-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Event Management</h2>
+                        <button class="btn-primary-admin" onclick="openModal('addEvent')">
+                            <i class="fas fa-plus"></i> Add Event
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Brchure Section -->
+                <div id="brochure-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Brochure Management</h2>
+                        <div>
+                            <span class="badge bg-primary" id="brochureCount">0</span> Total Brochure Inquiries
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Company</th>
+                                    <th>Country</th>
+                                    <th>Interest</th>
+                                    <th>Submitted Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="brochureTable">
+                                <!-- Events will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Export Inquiries Section -->
+                <div id="export-inquiries-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Export Inquiries</h2>
+                        <div>
+                            <button class="btn-primary-admin" onclick="exportToCSV('export-inquiries')">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Company</th>
+                                    <th>Email</th>
+                                    <th>Product Details</th>
+                                    <th>Submitted</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="exportInquiriesTable">
+                                {% for inquiry in export_inquiries %}
+                                <tr>
+                                    <td>{{ inquiry.full_name }}</td>
+                                    <td>{{ inquiry.company_name }}</td>
+                                    <td>{{ inquiry.email }}</td>
+                                    <td>{{ inquiry.product_details[:50] }}{% if inquiry.product_details|length > 50
+                                        %}...{%
+                                        endif %}</td>
+                                    <td>{{ inquiry.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td>
+                                        <div class="btn-group-admin">
+                                            <button class="btn btn-sm btn-outline-primary"
+                                                onclick="viewDetails('export-inquiry', '{{ inquiry.id }}')">View</button>
+                                            <button class="btn btn-sm btn-outline-success"
+                                                onclick="approveInquiry('export-inquiry', '{{ inquiry.id }}')">Approve</button>
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                onclick="deleteInquiry('export-inquiry', '{{ inquiry.id }}')">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Import Inquiries Section -->
+                <div id="import-inquiries-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Import Inquiries</h2>
+                        <div>
+                            <button class="btn-primary-admin" onclick="exportToCSV('import-inquiries')">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Company</th>
+                                    <th>Email</th>
+                                    <th>Product Details</th>
+                                    <th>Submitted</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="importInquiriesTable">
+                                {% for inquiry in import_inquiries %}
+                                <tr>
+                                    <td>{{ inquiry.full_name }}</td>
+                                    <td>{{ inquiry.company_name }}</td>
+                                    <td>{{ inquiry.email }}</td>
+                                    <td>{{ inquiry.product_details[:50] }}{% if inquiry.product_details|length > 50
+                                        %}...{%
+                                        endif %}</td>
+                                    <td>{{ inquiry.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td>
+                                        <div class="btn-group-admin">
+                                            <button class="btn btn-sm btn-outline-primary"
+                                                onclick="viewDetails('import-inquiry', '{{ inquiry.id }}')">View</button>
+                                            <button class="btn btn-sm btn-outline-success"
+                                                onclick="approveInquiry('import-inquiry', '{{ inquiry.id }}')">Approve</button>
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                onclick="deleteInquiry('import-inquiry', '{{ inquiry.id }}')">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Business Opportunities Section -->
+                <div id="business-opportunities-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Business Opportunities</h2>
+                        <div>
+                            <button class="btn-primary-admin" onclick="exportToCSV('business-opportunities')">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Opportunity</th>
+                                    <th>Submitted</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="businessOpportunitiesTable">
+                                {% for opportunity in business_opportunities %}
+                                <tr>
+                                    <td>{{ opportunity.full_name }}</td>
+                                    <td>{{ opportunity.email }}</td>
+                                    <td>{{ opportunity.phone_number }}</td>
+                                    <td>{{ opportunity.business_opportunity[:50] }}{% if
+                                        opportunity.business_opportunity|length > 50 %}...{% endif %}</td>
+                                    <td>{{ opportunity.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td>
+                                        <div class="btn-group-admin">
+                                            <button class="btn btn-sm btn-outline-primary"
+                                                onclick="viewDetails('business-opportunity', '{{ opportunity.id }}')">View</button>
+                                            <button class="btn btn-sm btn-outline-success"
+                                                onclick="approveInquiry('business-opportunity', '{{ opportunity.id }}')">Approve</button>
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                onclick="deleteInquiry('business-opportunity', '{{ opportunity.id }}')">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Suggestions Section -->
+                <div id="suggestions-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Suggestions</h2>
+                        <div>
+                            <button class="btn-primary-admin" onclick="exportToCSV('suggestions')">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Suggestion</th>
+                                    <th>Submitted</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="suggestionsTable">
+                                {% for suggestion in suggestions %}
+                                <tr>
+                                    <td>{{ suggestion.full_name }}</td>
+                                    <td>{{ suggestion.email }}</td>
+                                    <td>{{ suggestion.phone_number }}</td>
+                                    <td>{{ suggestion.suggestions[:50] }}{% if suggestion.suggestions|length > 50
+                                        %}...{%
+                                        endif %}</td>
+                                    <td>{{ suggestion.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td>
+                                        <div class="btn-group-admin">
+                                            <button class="btn btn-sm btn-outline-primary"
+                                                onclick="viewDetails('suggestion', '{{ suggestion.id }}')">View</button>
+                                            <button class="btn btn-sm btn-outline-success"
+                                                onclick="approveInquiry('suggestion', '{{ suggestion.id }}')">Approve</button>
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                onclick="deleteInquiry('suggestion', '{{ suggestion.id }}')">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Complaints Section -->
+                <div id="complaints-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Complaints</h2>
+                        <div>
+                            <button class="btn-primary-admin" onclick="exportToCSV('complaints')">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Complaint</th>
+                                    <th>Submitted</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="complaintsTable">
+                                {% for complaint in complaints %}
+                                <tr>
+                                    <td>{{ complaint.full_name }}</td>
+                                    <td>{{ complaint.email }}</td>
+                                    <td>{{ complaint.phone_number }}</td>
+                                    <td>{{ complaint.complaints[:50] }}{% if complaint.complaints|length > 50 %}...{%
+                                        endif
+                                        %}</td>
+                                    <td>{{ complaint.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td>
+                                        <div class="btn-group-admin">
+                                            <button class="btn btn-sm btn-outline-primary"
+                                                onclick="viewDetails('complaint', '{{ complaint.id }}')">View</button>
+                                            <button class="btn btn-sm btn-outline-success"
+                                                onclick="approveInquiry('complaint', '{{ complaint.id }}')">Resolve</button>
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                onclick="deleteInquiry('complaint', '{{ complaint.id }}')">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Past Events Section -->
+                <div id="past-events-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Past Events</h2>
+                        <div>
+                            <button class="btn-primary-admin" onclick="openAddPastEventModal()">
+                                <i class="fas fa-plus"></i> Add Past Event
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="vip-grid" id="pastEventsGrid">
+                        <!-- Past event cards will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Budget Events Section -->
+                <div id="budget-events-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">Budget Events</h2>
+                        <div>
+                            <button class="btn-primary-admin" onclick="openAddBudgetEventModal()">
+                                <i class="fas fa-plus"></i> Add Budget Event
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="vip-grid" id="budgetEventsGrid">
+                        <!-- Budget event cards will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- VIP Management Section -->
+                <div id="vip-section" class="content-section" style="display: none;">
+                    <div class="section-header">
+                        <h2 class="section-title">VIP Management</h2>
+                        <div>
+                            <button class="btn-primary-admin" onclick="openAddVipModal()">
+                                <i class="fas fa-plus"></i> Add New VIP
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="vip-grid" id="vipGrid">
+                        <!-- VIP cards will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Past Events Modal -->
+    <div id="pastEventModal" class="modal-admin" style="display: none;">
+        <div class="modal-content-admin">
+            <div class="modal-header-admin">
+                <h4 class="modal-title" id="pastEventModalTitle">Add Past Event</h4>
+                <button class="close-modal" onclick="closePastEventModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="pastEventForm" enctype="multipart/form-data">
+                    <input type="hidden" id="pastEventId" name="past_event_id">
+                    <div class="form-group">
+                        <label for="peTitle">Title</label>
+                        <input type="text" class="form-control" id="peTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="peDate">Event Date</label>
+                        <input type="date" class="form-control" id="peDate" name="event_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="peBanner">Banner Image</label>
+                        <input type="file" class="form-control" id="peBanner" name="banner_image" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label>Gallery Images</label>
+                        <div class="d-flex gap-2 mb-2">
+                            <input type="file" class="form-control" id="gallery_images" multiple accept="image/*"
+                                onchange="handleGalleryFiles(this)">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                onclick="addSingleImage()">Add Image</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger"
+                                onclick="clearGalleryImages()">Clear All</button>
+                        </div>
+                        <small class="form-text text-muted">Add an image and write its description below. You can add
+                            multiple entries.</small>
+                        <div class="row mt-2" id="gallery-images-list"></div>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary-admin"
+                            onclick="closePastEventModal()">Cancel</button>
+                        <button type="button" class="btn-primary-admin" onclick="savePastEvent()">Save Past
+                            Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Images to Past Event Modal -->
+    <div id="pastEventImagesModal" class="modal-admin" style="display: none;">
+        <div class="modal-content-admin">
+            <div class="modal-header-admin">
+                <h4 class="modal-title">Add Images to Past Event</h4>
+                <button class="close-modal" onclick="closePastEventImagesModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="pastEventImagesForm" enctype="multipart/form-data">
+                    <input type="hidden" id="pastEventImagesEventId">
+                    <div class="form-group">
+                        <label>Gallery Images</label>
+                        <input type="file" class="form-control" id="peImagesInput" multiple accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="peImagesDescriptions">Descriptions (one per image, line by line)</label>
+                        <textarea class="form-control" id="peImagesDescriptions" rows="4"></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary-admin"
+                            onclick="closePastEventImagesModal()">Cancel</button>
+                        <button type="button" class="btn-primary-admin" onclick="addImagesToPastEvent()">Add
+                            Images</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Budget Events Modal -->
+    <div id="budgetEventModal" class="modal-admin" style="display: none;">
+        <div class="modal-content-admin">
+            <div class="modal-header-admin">
+                <h4 class="modal-title" id="budgetEventModalTitle">Add Budget Event</h4>
+                <button class="close-modal" onclick="closeBudgetEventModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="budgetEventForm" enctype="multipart/form-data">
+                    <input type="hidden" id="budgetEventId" name="budget_event_id">
+                    <div class="form-group">
+                        <label for="beTitle">Title</label>
+                        <input type="text" class="form-control" id="beTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="beDate">Event Date</label>
+                        <input type="date" class="form-control" id="beDate" name="event_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="beBanner">Banner Image</label>
+                        <input type="file" class="form-control" id="beBanner" name="banner_image" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label>Gallery Images</label>
+                        <div class="d-flex gap-2 mb-2">
+                            <input type="file" class="form-control" id="budget_gallery_images" multiple accept="image/*"
+                                onchange="handleBudgetGalleryFiles(this)">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                onclick="addSingleBudgetImage()">Add Image</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger"
+                                onclick="clearBudgetGalleryImages()">Clear All</button>
+                        </div>
+                        <small class="form-text text-muted">Add images with captions for this budget event.</small>
+                        <div class="row mt-2" id="budget-gallery-images-list"></div>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary-admin"
+                            onclick="closeBudgetEventModal()">Cancel</button>
+                        <button type="button" class="btn-primary-admin" onclick="saveBudgetEvent()">Save Budget
+                            Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Images to Budget Event Modal -->
+    <div id="budgetEventImagesModal" class="modal-admin" style="display: none;">
+        <div class="modal-content-admin">
+            <div class="modal-header-admin">
+                <h4 class="modal-title">Add Images to Budget Event</h4>
+                <button class="close-modal" onclick="closeBudgetEventImagesModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="budgetEventImagesForm" enctype="multipart/form-data">
+                    <input type="hidden" id="budgetEventImagesEventId">
+                    <div class="form-group">
+                        <label>Gallery Images</label>
+                        <input type="file" class="form-control" id="beImagesInput" multiple accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="beImagesDescriptions">Descriptions (one per image, line by line)</label>
+                        <textarea class="form-control" id="beImagesDescriptions" rows="4"></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary-admin"
+                            onclick="closeBudgetEventImagesModal()">Cancel</button>
+                        <button type="button" class="btn-primary-admin" onclick="addImagesToBudgetEvent()">Add
+                            Images</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIP Modals -->
+    <div id="vipModal" class="modal-admin" style="display: none;">
+        <div class="modal-content-admin">
+            <div class="modal-header-admin">
+                <h4 class="modal-title" id="vipModalTitle">Add New VIP</h4>
+                <button class="close-modal" onclick="closeVipModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="vipForm" enctype="multipart/form-data">
+                    <input type="hidden" id="vipId" name="vip_id">
+                    <div class="form-group">
+                        <label for="vipName">Title</label>
+                        <input type="text" class="form-control" id="vipName" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="vipDescription">Description</label>
+                        <textarea class="form-control" id="vipDescription" name="description" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="vipImage">Image</label>
+                        <input type="file" class="form-control" id="vipImage" name="image" accept="image/*">
+                        <small class="form-text text-muted">Upload an image (optional)</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="vipIsActive" name="is_active"
+                                value="true" checked>
+                            <label class="custom-control-label" for="vipIsActive">Active</label>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary-admin" onclick="closeVipModal()">Cancel</button>
+                        <button type="button" class="btn-primary-admin" onclick="saveVip()">Save VIP</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modalOverlay" class="modal-admin">
+        <div class="modal-content-admin">
+            <div class="modal-header-admin">
+                <h4 class="modal-title" id="modalTitle">Modal Title</h4>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- Modal content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/97346fd324.js" crossorigin="anonymous"></script>
+    <script>
+        // Dashboard JavaScript
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize dashboard
+            updateLastUpdated();
+            loadDashboardData();
+
+            // Mobile sidebar toggle
+            const mobileToggle = document.getElementById('mobileToggle');
+            const sidebar = document.getElementById('adminSidebar');
+            const main = document.getElementById('adminMain');
+
+            mobileToggle.addEventListener('click', function () {
+                sidebar.classList.toggle('active');
+            });
+
+            // Navigation
+            const navItems = document.querySelectorAll('.nav-item[data-section]');
+            navItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Remove active class from all nav items
+                    navItems.forEach(nav => nav.classList.remove('active'));
+
+                    // Add active class to clicked item
+                    this.classList.add('active');
+
+                    // Show corresponding section
+                    const section = this.getAttribute('data-section');
+                    showSection(section);
+                });
+            });
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function (e) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        function updateLastUpdated() {
+            const now = new Date();
+            document.getElementById('lastUpdated').textContent = now.toLocaleString();
+        }
+
+        function loadDashboardData() {
+            // Load real data from the page
+            const exportInquiriesCount = parseInt('{{ export_inquiries|length }}');
+            const importInquiriesCount = parseInt('{{ import_inquiries|length }}');
+            const businessOpportunitiesCount = parseInt('{{ business_opportunities|length }}');
+            const suggestionsCount = parseInt('{{ suggestions|length }}');
+            const complaintsCount = parseInt('{{ complaints|length }}');
+
+            const totalInquiries = exportInquiriesCount + importInquiriesCount + businessOpportunitiesCount + suggestionsCount + complaintsCount;
+
+            document.getElementById('totalMembers').textContent = '1,247'; // This would need to be updated with real member count
+            document.getElementById('activeEvents').textContent = '8'; // This would need to be updated with real event count
+
+            // Load brochure count dynamically
+            loadBrochureCount();
+            document.getElementById('pendingInquiries').textContent = totalInquiries.toString();
+            document.getElementById('totalRevenue').textContent = '$45,230'; // This would need to be updated with real revenue data
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show selected section
+            const targetSection = document.getElementById(sectionName + '-section');
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+
+            // Load section data
+            loadSectionData(sectionName);
+        }
+
+        function loadMembersData() {
+            // Simulate loading members data
+            const membersTable = document.getElementById('membersTable');
+            if (membersTable) {
+                membersTable.innerHTML = `
+                <tr>
+                    <td>John Doe</td>
+                    <td>ABC Corporation</td>
+                    <td>john@abc.com</td>
+                    <td>Premium</td>
+                    <td><span class="status-badge approved">Active</span></td>
+                    <td>
+                        <div class="btn-group-admin">
+                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            }
+        }
+
+        ////////////////////////////////////////Brochure Function //////////////////////////////////////////////////////
+        function loadBrochureData() {
+            const brochureTable = document.getElementById('brochureTable');
+            brochureTable.innerHTML = '<tr><td colspan="8" class="text-center"><div class="loading-spinner"></div> Loading Brochure...</td></tr>';
+
+            fetch('/get-brochure')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'success') {
+                        brochureTable.innerHTML = '';
+                        data.brochure.forEach(inquiry => {
+                            brochureTable.innerHTML += `
+                        <tr>
+                            <td>${inquiry.name || 'N/A'}</td>
+                            <td>${inquiry.email || 'N/A'}</td>
+                            <td>${inquiry.phone || 'N/A'}</td>
+                            <td>${inquiry.company || 'N/A'}</td>
+                            <td>${inquiry.country || 'N/A'}</td>
+                            <td>${inquiry.interest || 'N/A'}</td>
+                            <td>${inquiry.submitted_at || 'N/A'}</td>
+                            <td>
+                                <div class="btn-group-admin">
+                                    <button class="btn btn-sm btn-outline-danger delete-btn" data-id="${inquiry.id}">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                        });
+
+                        // Update the brochure count in the summary
+                        document.getElementById('brochureCount').textContent = data.brochure.length.toString();
+
+                        // Add brochure button listeners after buttons are created
+                        addBrochureButtonListeners();
+                    } else {
+                        brochureTable.innerHTML = '<tr><td colspan="8" class="text-center">Error loading brochure</td></tr>';
+                    }
+                })
+                .catch(error => {
+                    brochureTable.innerHTML = '<tr><td colspan="8" class="text-center">Error loading brochure</td></tr>';
+                });
+        }
+
+
+
+        function loadBrochureCount() {
+            fetch('/get-brochure')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'success') {
+                        document.getElementById('activeBrochure').textContent = data.brochure.length.toString();
+                        // Also update the summary count if the element exists
+                        const brochureCountElement = document.getElementById('brochureCount');
+                        if (brochureCountElement) {
+                            brochureCountElement.textContent = data.brochure.length.toString();
+                        }
+                    }
+                })
+                .catch(error => {
+                    // Error handling without console.log
+                });
+        }
+
+        ////////////////////////////////////////Brochure Function //////////////////////////////////////////////////////
+
+        function addBrochureButtonListeners() {
+            // Add delete button listeners for brochure inquiries
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const inquiryId = this.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this brochure inquiry?')) {
+                        fetch(`/delete-brochure/${inquiryId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    loadBrochureData(); // refresh table
+                                    alert('Brochure inquiry deleted successfully!');
+                                } else {
+                                    alert('Error deleting brochure inquiry: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                alert('Error deleting brochure inquiry');
+                            });
+                    }
+                });
+            });
+        }
+
+
+
+        function addEventButtonListeners() {
+            // Add delete button listeners
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const eventId = this.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this event?')) {
+                        fetch(`/delete-event/${eventId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    loadEventsData(); // refresh table
+                                    alert('Event deleted successfully!');
+                                } else {
+                                    alert('Error deleting event: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                alert('Error deleting event');
+                            });
+                    }
+                });
+            });
+
+            // Add edit button listeners
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const eventId = this.getAttribute('data-id');
+                    openEditModal(eventId);
+                });
+            });
+        }
+
+        function openEditModal(eventId) {
+            // Fetch event data first
+            fetch(`/get-event/${eventId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const event = data.event;
+                        const modal = document.getElementById('modalOverlay');
+                        const modalTitle = document.getElementById('modalTitle');
+                        const modalBody = document.getElementById('modalBody');
+
+                        modalTitle.textContent = 'Edit Event';
+                        modalBody.innerHTML = `
+                        <form id="editEventForm">
+                            <input type="hidden" id="editEventId" value="${event.id}">
+                            <div class="mb-3">
+                                <label class="form-label">Event Title</label>
+                                <input type="text" class="form-control" id="editEventTitle" value="${event.title}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Date & Time</label>
+                                <input type="datetime-local" class="form-control" id="editEventDate" value="${event.date_input}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" id="editEventLocation" value="${event.location}" required>
+                            </div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary-admin" onclick="closeModal()">Cancel</button>
+                                <button type="submit" class="btn-primary-admin">Update Event</button>
+                            </div>
+                        </form>
+                    `;
+                        modal.style.display = 'block';
+
+                        // Add form submit handler for edit
+                        document.getElementById('editEventForm').addEventListener('submit', function (e) {
+                            e.preventDefault();
+
+                            const title = document.getElementById('editEventTitle').value;
+                            const date = document.getElementById('editEventDate').value;
+                            const location = document.getElementById('editEventLocation').value;
+
+                            fetch(`/update-event/${eventId}`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                body: new URLSearchParams({ title, date, location })
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.status === 'success') {
+                                        closeModal();
+                                        loadEventsData(); // Reload table
+                                        alert('Event updated successfully!');
+                                    } else {
+                                        alert('Error: ' + data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Error updating event');
+                                });
+                        });
+                    } else {
+                        alert('Error loading event data');
+                    }
+                })
+                .catch(error => {
+                    alert('Error loading event data');
+                });
+        }
+
+        function loadSectionData(sectionName) {
+            switch (sectionName) {
+                case 'export-inquiries':
+                    // Data is already loaded via Jinja2 template
+                    break;
+                case 'import-inquiries':
+                    // Data is already loaded via Jinja2 template
+                    break;
+                case 'business-opportunities':
+                    // Data is already loaded via Jinja2 template
+                    break;
+                case 'suggestions':
+                    // Data is already loaded via Jinja2 template
+                    break;
+                case 'complaints':
+                    // Data is already loaded via Jinja2 template
+                    break;
+                case 'members':
+                    loadMembersData();
+                    break;
+                case 'events':
+                    loadEventsData();
+                    break;
+                case 'brochure':
+                    loadBrochureData();
+                    break;
+                case 'vip':
+                    loadVipData();
+                    break;
+                case 'past-events':
+                    loadPastEvents();
+                    break;
+                case 'budget-events':
+                    loadBudgetEvents();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function viewDetails(type, id) {
+            // Fetch details via AJAX
+            fetch(`/api/${type}/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    showDetailsModal(data, type);
+                })
+                .catch(error => {
+                    alert('Error loading details');
+                });
+        }
+
+        function showDetailsModal(data, type) {
+            const modal = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+
+            let title = '';
+            let content = '';
+
+            switch (type) {
+                case 'export-inquiry':
+                    title = 'Export Inquiry Details';
+                    content = `
+                        <div class="space-y-3">
+                            <div><strong>Full Name:</strong> ${data.full_name}</div>
+                            <div><strong>Company:</strong> ${data.company_name}</div>
+                            <div><strong>Email:</strong> ${data.email}</div>
+                            <div><strong>Phone:</strong> ${data.phone_number}</div>
+                            <div><strong>Country:</strong> ${data.country}</div>
+                            <div><strong>Product Quantity:</strong> ${data.product_quantity}</div>
+                            <div><strong>Product Details:</strong> ${data.product_details}</div>
+                            <div><strong>Export Requirements:</strong> ${data.export_requirements}</div>
+                            <div><strong>Submitted:</strong> ${data.submitted_at}</div>
+                        </div>
+                    `;
+                    break;
+                case 'import-inquiry':
+                    title = 'Import Inquiry Details';
+                    content = `
+                        <div class="space-y-3">
+                            <div><strong>Full Name:</strong> ${data.full_name}</div>
+                            <div><strong>Company:</strong> ${data.company_name}</div>
+                            <div><strong>Email:</strong> ${data.email}</div>
+                            <div><strong>Phone:</strong> ${data.phone_number}</div>
+                            <div><strong>Country:</strong> ${data.country}</div>
+                            <div><strong>Product Quantity:</strong> ${data.product_quantity}</div>
+                            <div><strong>Product Details:</strong> ${data.product_details}</div>
+                            <div><strong>Sender Details:</strong> ${data.sender_details}</div>
+                            <div><strong>Submitted:</strong> ${data.submitted_at}</div>
+                        </div>
+                    `;
+                    break;
+                case 'business-opportunity':
+                    title = 'Business Opportunity Details';
+                    content = `
+                        <div class="space-y-3">
+                            <div><strong>Full Name:</strong> ${data.full_name}</div>
+                            <div><strong>Email:</strong> ${data.email}</div>
+                            <div><strong>Phone:</strong> ${data.phone_number}</div>
+                            <div><strong>Business Opportunity:</strong> ${data.business_opportunity}</div>
+                            <div><strong>Submitted:</strong> ${data.submitted_at}</div>
+                        </div>
+                    `;
+                    break;
+                case 'suggestion':
+                    title = 'Suggestion Details';
+                    content = `
+                        <div class="space-y-3">
+                            <div><strong>Full Name:</strong> ${data.full_name}</div>
+                            <div><strong>Email:</strong> ${data.email}</div>
+                            <div><strong>Phone:</strong> ${data.phone_number}</div>
+                            <div><strong>Suggestion:</strong> ${data.suggestions}</div>
+                            <div><strong>Submitted:</strong> ${data.submitted_at}</div>
+                        </div>
+                    `;
+                    break;
+                case 'complaint':
+                    title = 'Complaint Details';
+                    content = `
+                        <div class="space-y-3">
+                            <div><strong>Full Name:</strong> ${data.full_name}</div>
+                            <div><strong>Email:</strong> ${data.email}</div>
+                            <div><strong>Phone:</strong> ${data.phone_number}</div>
+                            <div><strong>Complaint:</strong> ${data.complaints}</div>
+                            <div><strong>Submitted:</strong> ${data.submitted_at}</div>
+                        </div>
+                    `;
+                    break;
+            }
+
+            modalTitle.textContent = title;
+            modalBody.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        function approveInquiry(type, id) {
+            if (confirm('Are you sure you want to approve this item?')) {
+                // Implement approval logic
+                alert('Item approved successfully!');
+            }
+        }
+
+        function deleteInquiry(type, id) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                fetch(`/api/${type}/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Item deleted successfully!');
+                            location.reload();
+                        } else {
+                            alert('Error deleting item');
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error deleting item');
+                    });
+            }
+        }
+
+        function openModal(modalType) {
+            const modal = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+
+            // Set modal content based on type
+            switch (modalType) {
+                case 'addMember':
+                    modalTitle.textContent = 'Add New Member';
+                    modalBody.innerHTML = `
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Company</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Membership Type</label>
+                            <select class="form-control">
+                                <option>Basic</option>
+                                <option>Premium</option>
+                                <option>Enterprise</option>
+                            </select>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary-admin" onclick="closeModal()">Cancel</button>
+                            <button type="submit" class="btn-primary-admin">Add Member</button>
+                        </div>
+                    </form>
+                `;
+                    break;
+                case 'addEvent':
+                    modalTitle.textContent = 'Create New Event';
+                    modalBody.innerHTML = `
+                    <form id="addEventForm">
+                        <div class="mb-3">
+                            <label class="form-label">Event Title</label>
+                            <input type="text" class="form-control" id="eventTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date & Time</label>
+                            <input type="datetime-local" class="form-control" id="eventDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control" id="eventLocation" required>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary-admin" onclick="closeModal()">Cancel</button>
+                            <button type="submit" class="btn-primary-admin">Create Event</button>
+                        </div>
+                    </form>
+                `;
+                    break;
+                case 'addPastEvent':
+                    modalTitle.textContent = 'Add Past Event';
+                    modalBody.innerHTML = `
+                    <form id="addPastEventForm">
+                        <div class="mb-3">
+                            <label class="form-label">Event Title</label>
+                            <input type="text" class="form-control" id="pastEventTitle" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Morning Event</label>
+                                <input type="text" class="form-control" id="morningEvent" placeholder="Morning Event">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Afternoon Event</label>
+                                <input type="text" class="form-control" id="afternoonEvent" placeholder="Afternoon Event">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Evening Event</label>
+                                <input type="text" class="form-control" id="eveningEvent" placeholder="Evening Event">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" id="pastEventDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control" id="pastEventLocation" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" id="pastEventDescription" rows="3"></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary-admin" onclick="closeModal()">Cancel</button>
+                            <button type="submit" class="btn-primary-admin">Add Past Event</button>
+                        </div>
+                    </form>
+                `;
+                    break;
+
+                // Add more modal types as needed
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+            resetGalleryUpload();
+        }
+
+        function exportToCSV(type) {
+            // Implement CSV export functionality
+            alert('Exporting ' + type + ' to CSV...');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('modalOverlay');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        // Gallery image management
+        let selectedGalleryFiles = [];
+
+        function handleGalleryFiles(input) {
+            const files = Array.from(input.files);
+            selectedGalleryFiles = selectedGalleryFiles.concat(files);
+            updateGalleryPreview();
+            console.log(`Gallery files changed: ${files.length} new files selected, total: ${selectedGalleryFiles.length}`);
+        }
+
+        function addSingleImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function () {
+                if (this.files.length > 0) {
+                    selectedGalleryFiles.push(this.files[0]);
+                    updateGalleryPreview();
+                    console.log(`Single image added: ${this.files[0].name}, total: ${selectedGalleryFiles.length}`);
+                }
+            };
+            input.click();
+        }
+
+        function clearGalleryImages() {
+            selectedGalleryFiles = [];
+            updateGalleryPreview();
+            const input = document.getElementById('gallery_images');
+            if (input) input.value = '';
+            console.log('All gallery images cleared');
+        }
+
+        function updateGalleryPreview() {
+            const countElement = document.getElementById('gallery-count');
+            const listElement = document.getElementById('gallery-images-list');
+
+            if (countElement) countElement.textContent = selectedGalleryFiles.length;
+
+            if (listElement) {
+                listElement.innerHTML = '';
+                selectedGalleryFiles.forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const col = document.createElement('div');
+                        col.className = 'col-12 mb-3';
+                        col.innerHTML = `
+                            <div class="card p-2">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div style="width: 120px;">
+                                        <img src="${e.target.result}" alt="Preview" class="img-fluid rounded" style="height: 80px; width: 120px; object-fit: cover;">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <label class="form-label">Description for ${file.name}</label>
+                                        <textarea class="form-control" rows="2" oninput="setGalleryDescription(${index}, this.value)" placeholder="Write a description for this image..."></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-danger" onclick="removeGalleryImage(${index})"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        listElement.appendChild(col);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+        }
+
+        function removeGalleryImage(index) {
+            selectedGalleryFiles.splice(index, 1);
+            updateGalleryPreview();
+            console.log(`Removed gallery image at index ${index}, remaining: ${selectedGalleryFiles.length}`);
+        }
+
+        function resetGalleryUpload() {
+            selectedGalleryFiles = [];
+            updateGalleryPreview();
+            const input = document.getElementById('gallery_images');
+            if (input) input.value = '';
+        }
+        // Keep per-file descriptions aligned
+        const galleryDescriptions = [];
+        function setGalleryDescription(index, text) {
+            galleryDescriptions[index] = text || '';
+        }
+        // VIP Management Functions
+        function loadVipData() {
+            fetch('/admin/vip/list')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        displayVips(data.vips);
+                    } else {
+                        console.error('Error loading VIPs:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function displayVips(vips) {
+            const vipGrid = document.getElementById('vipGrid');
+            if (!vipGrid) return;
+
+            if (vips.length === 0) {
+                vipGrid.innerHTML = '<div class="text-center p-4"><p class="text-muted">No VIPs found. Add your first VIP!</p></div>';
+                return;
+            }
+
+            vipGrid.innerHTML = vips.map(vip => `
+                <div class="vip-card" data-vip-id="${vip.id}">
+                    <div class="vip-image">
+                        ${vip.image_path ? `<img src="/static/${vip.image_path.replace('static/', '')}" alt="${vip.name}" onerror="this.src='/static/images/placeholder.jpg'">` : '<div class="no-image-placeholder">No Image</div>'}
+                        <div class="vip-status ${vip.is_active ? 'active' : 'inactive'}">
+                            ${vip.is_active ? 'Active' : 'Inactive'}
+                        </div>
+                    </div>
+                    <div class="vip-info">
+                        <h4>${vip.name || 'Untitled'}</h4>
+                        ${vip.description ? `<p class="vip-description">${vip.description.substring(0, 150)}${vip.description.length > 150 ? '...' : ''}</p>` : ''}
+                        <div class="vip-actions">
+                            <button class="btn btn-sm btn-outline-primary" onclick="editVip(${vip.id})">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="deleteVip(${vip.id})">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openAddVipModal() {
+            document.getElementById('vipModalTitle').textContent = 'Add New VIP';
+            document.getElementById('vipForm').reset();
+            document.getElementById('vipId').value = '';
+            document.getElementById('vipModal').style.display = 'block';
+        }
+
+        function editVip(vipId) {
+            fetch(`/admin/vip/${vipId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const vip = data.vip;
+                        document.getElementById('vipModalTitle').textContent = 'Edit VIP';
+                        document.getElementById('vipId').value = vip.id;
+                        document.getElementById('vipName').value = vip.name || '';
+                        document.getElementById('vipDescription').value = vip.description || '';
+                        document.getElementById('vipIsActive').checked = vip.is_active;
+                        document.getElementById('vipImage').required = false; // Make image optional for editing
+                        document.getElementById('vipModal').style.display = 'block';
+                    } else {
+                        alert('Error loading VIP details: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error loading VIP details');
+                });
+        }
+
+        function saveVip() {
+            const form = document.getElementById('vipForm');
+            const formData = new FormData(form);
+            const vipId = document.getElementById('vipId').value;
+
+            const url = vipId ? '/admin/vip/update' : '/admin/vip/add';
+            const method = 'POST';
+
+            fetch(url, {
+                method: method,
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closeVipModal();
+                        loadVipData();
+                        alert(vipId ? 'VIP updated successfully!' : 'VIP added successfully!');
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error saving VIP');
+                });
+        }
+
+        function deleteVip(vipId) {
+            if (confirm('Are you sure you want to delete this VIP? This action cannot be undone.')) {
+                fetch(`/admin/vip/${vipId}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            loadVipData();
+                            alert('VIP deleted successfully!');
+                        } else {
+                            alert('Error: ' + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error deleting VIP');
+                    });
+            }
+        }
+
+        function closeVipModal() {
+            document.getElementById('vipModal').style.display = 'none';
+            document.getElementById('vipImage').required = true; // Reset image requirement
+        }
+
+        // ---------------- Past Events Admin JS ----------------
+        function openAddPastEventModal() {
+            document.getElementById('pastEventModalTitle').textContent = 'Add Past Event';
+            document.getElementById('pastEventForm').reset();
+            document.getElementById('pastEventId').value = '';
+            resetGalleryUpload();
+            document.getElementById('pastEventModal').style.display = 'block';
+        }
+
+        function closePastEventModal() {
+            document.getElementById('pastEventModal').style.display = 'none';
+            resetGalleryUpload();
+        }
+
+        function closePastEventImagesModal() {
+            document.getElementById('pastEventImagesModal').style.display = 'none';
+            document.getElementById('peImagesInput').value = '';
+            document.getElementById('peImagesDescriptions').value = '';
+        }
+
+        function loadPastEvents() {
+            fetch('/admin/past-events/list')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status !== 'success') return;
+                    const grid = document.getElementById('pastEventsGrid');
+                    if (!grid) return;
+                    if (!data.events || data.events.length === 0) {
+                        grid.innerHTML = '<div class="text-center p-4"><p class="text-muted">No past events yet. Add your first one!</p></div>';
+                        return;
+                    }
+                    grid.innerHTML = data.events.map(ev => `
+                        <div class="vip-card" data-event-id="${ev.id}">
+                            <div class="vip-image">
+                                ${ev.banner_image_path ? `<img src="${ev.banner_image_path}" alt="${ev.title}" onerror="this.src='/static/images/placeholder.jpg'">` : '<div class="no-image-placeholder">No Banner</div>'}
+                            </div>
+                            <div class="vip-info">
+                                <h4>${ev.title || 'Untitled'}</h4>
+                                <p class="text-muted">${ev.event_date || ''}</p>
+                                <div class="vip-actions">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="openEditPastEventModal(${ev.id})">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="openPastEventImagesModal(${ev.id})">
+                                        <i class="fas fa-images"></i> Add Images
+                                    </button>
+                                    <a class="btn btn-sm btn-outline-secondary" href="/past-events/${ev.id}" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i> View
+                                    </a>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deletePastEvent(${ev.id})">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                })
+                .catch(() => { });
+        }
+
+        function savePastEvent() {
+            const formEl = document.getElementById('pastEventForm');
+            const formData = new FormData();
+            formData.append('title', document.getElementById('peTitle').value);
+            formData.append('event_date', document.getElementById('peDate').value);
+            const banner = document.getElementById('peBanner').files[0];
+            if (banner) formData.append('banner_image', banner);
+
+            // Gallery images and descriptions
+            const galleryInput = document.getElementById('gallery_images');
+            const files = []; // collect from selectedGalleryFiles if populated, else from input
+            if (typeof selectedGalleryFiles !== 'undefined' && selectedGalleryFiles.length > 0) {
+                selectedGalleryFiles.forEach(f => files.push(f));
+            } else if (galleryInput && galleryInput.files) {
+                Array.from(galleryInput.files).forEach(f => files.push(f));
+            }
+            files.forEach((file, idx) => {
+                formData.append('gallery_images', file);
+                const desc = (typeof galleryDescriptions !== 'undefined' && galleryDescriptions[idx]) ? galleryDescriptions[idx] : '';
+                formData.append('gallery_descriptions', desc);
+                formData.append('gallery_orders', String(idx));
+            });
+
+            fetch('/admin/past-events/create', { method: 'POST', body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closePastEventModal();
+                        loadPastEvents();
+                        alert('Past event created successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to create past event'));
+                    }
+                })
+                .catch(() => { alert('Error creating past event'); });
+        }
+
+        function openPastEventImagesModal(eventId) {
+            document.getElementById('pastEventImagesEventId').value = String(eventId);
+            document.getElementById('pastEventImagesModal').style.display = 'block';
+        }
+
+        function addImagesToPastEvent() {
+            const eventId = document.getElementById('pastEventImagesEventId').value;
+            const files = document.getElementById('peImagesInput').files;
+            const descText = document.getElementById('peImagesDescriptions').value || '';
+            const lines = descText.split(/\r?\n/);
+
+            const formData = new FormData();
+            Array.from(files).forEach((file, idx) => {
+                formData.append('gallery_images', file);
+                formData.append('gallery_descriptions', lines[idx] || '');
+                formData.append('gallery_orders', String(idx));
+            });
+
+            fetch(`/admin/past-events/${eventId}/images`, { method: 'POST', body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closePastEventImagesModal();
+                        loadPastEvents();
+                        alert('Images added successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to add images'));
+                    }
+                })
+                .catch(() => { alert('Error adding images'); });
+        }
+
+        function deletePastEvent(eventId) {
+            if (!confirm('Are you sure you want to delete this past event? This will remove all its images.')) return;
+            fetch(`/admin/past-events/${eventId}`, { method: 'DELETE' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        loadPastEvents();
+                        alert('Past event deleted successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to delete past event'));
+                    }
+                })
+                .catch(() => { alert('Error deleting past event'); });
+        }
+
+        function openEditPastEventModal(eventId) {
+            fetch(`/admin/past-events/${eventId}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status !== 'success') { alert('Failed to load event'); return; }
+                    const ev = data.event;
+                    document.getElementById('pastEventModalTitle').textContent = 'Edit Past Event';
+                    document.getElementById('pastEventForm').reset();
+                    document.getElementById('pastEventId').value = ev.id;
+                    document.getElementById('peTitle').value = ev.title || '';
+                    document.getElementById('peDate').value = ev.event_date ? ev.event_date : '';
+                    resetGalleryUpload();
+                    document.getElementById('pastEventModal').style.display = 'block';
+                })
+                .catch(() => alert('Error loading event'));
+        }
+
+        function updatePastEvent() {
+            const eventId = document.getElementById('pastEventId').value;
+            const formData = new FormData();
+            formData.append('title', document.getElementById('peTitle').value);
+            formData.append('event_date', document.getElementById('peDate').value);
+            const banner = document.getElementById('peBanner').files[0];
+            if (banner) formData.append('banner_image', banner);
+
+            fetch(`/admin/past-events/${eventId}/update`, { method: 'POST', body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closePastEventModal();
+                        loadPastEvents();
+                        alert('Past event updated successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to update past event'));
+                    }
+                })
+                .catch(() => alert('Error updating past event'));
+        }
+
+        // Override save button to switch between create/update
+        (function hookSaveButton() {
+            const saveBtn = document.querySelector('#pastEventModal .btn-primary-admin');
+            if (!saveBtn) return;
+            saveBtn.onclick = function () {
+                const isEdit = !!document.getElementById('pastEventId').value;
+                if (isEdit) {
+                    updatePastEvent();
+                } else {
+                    savePastEvent();
+                }
+            };
+        })();
+
+        // ---------------- Budget Events Admin JS ----------------
+        function openAddBudgetEventModal() {
+            document.getElementById('budgetEventModalTitle').textContent = 'Add Budget Event';
+            document.getElementById('budgetEventForm').reset();
+            document.getElementById('budgetEventId').value = '';
+            resetBudgetGalleryUpload();
+            document.getElementById('budgetEventModal').style.display = 'block';
+        }
+
+        function closeBudgetEventModal() {
+            document.getElementById('budgetEventModal').style.display = 'none';
+            resetBudgetGalleryUpload();
+        }
+
+        function closeBudgetEventImagesModal() {
+            document.getElementById('budgetEventImagesModal').style.display = 'none';
+            document.getElementById('beImagesInput').value = '';
+            document.getElementById('beImagesDescriptions').value = '';
+        }
+
+        function loadBudgetEvents() {
+            fetch('/admin/budget-events/list')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status !== 'success') return;
+                    const grid = document.getElementById('budgetEventsGrid');
+                    if (!grid) return;
+                    if (!data.events || data.events.length === 0) {
+                        grid.innerHTML = '<div class="text-center p-4"><p class="text-muted">No budget events yet. Add your first one!</p></div>';
+                        return;
+                    }
+                    grid.innerHTML = data.events.map(ev => `
+                        <div class="vip-card" data-event-id="${ev.id}">
+                            <div class="vip-image">
+                                ${ev.banner_image_path ? `<img src="${ev.banner_image_path}" alt="${ev.title}" onerror="this.src='/static/images/placeholder.jpg'">` : '<div class="no-image-placeholder">No Banner</div>'}
+                            </div>
+                            <div class="vip-info">
+                                <h4>${ev.title || 'Untitled'}</h4>
+                                <p class="text-muted">${ev.event_date || ''}</p>
+                                <div class="vip-actions">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="openEditBudgetEventModal(${ev.id})">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="openBudgetEventImagesModal(${ev.id})">
+                                        <i class="fas fa-images"></i> Add Images
+                                    </button>
+                                    <a class="btn btn-sm btn-outline-secondary" href="/Budget-Event-Details/${ev.id}" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i> View
+                                    </a>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteBudgetEvent(${ev.id})">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                })
+                .catch(() => { });
+        }
+
+        function saveBudgetEvent() {
+            const formData = new FormData();
+            formData.append('title', document.getElementById('beTitle').value);
+            formData.append('event_date', document.getElementById('beDate').value);
+            const banner = document.getElementById('beBanner').files[0];
+            if (banner) formData.append('banner_image', banner);
+
+            const files = [];
+            const galleryInput = document.getElementById('budget_gallery_images');
+            if (typeof selectedBudgetGalleryFiles !== 'undefined' && selectedBudgetGalleryFiles.length > 0) {
+                selectedBudgetGalleryFiles.forEach(f => files.push(f));
+            } else if (galleryInput && galleryInput.files) {
+                Array.from(galleryInput.files).forEach(f => files.push(f));
+            }
+            files.forEach((file, idx) => {
+                formData.append('gallery_images', file);
+                const desc = (typeof budgetGalleryDescriptions !== 'undefined' && budgetGalleryDescriptions[idx]) ? budgetGalleryDescriptions[idx] : '';
+                formData.append('gallery_descriptions', desc);
+                formData.append('gallery_orders', String(idx));
+            });
+
+            fetch('/admin/budget-events/create', { method: 'POST', body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closeBudgetEventModal();
+                        loadBudgetEvents();
+                        alert('Budget event created successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to create budget event'));
+                    }
+                })
+                .catch(() => { alert('Error creating budget event'); });
+        }
+
+        function openBudgetEventImagesModal(eventId) {
+            document.getElementById('budgetEventImagesEventId').value = String(eventId);
+            document.getElementById('budgetEventImagesModal').style.display = 'block';
+        }
+
+        function addImagesToBudgetEvent() {
+            const eventId = document.getElementById('budgetEventImagesEventId').value;
+            const files = document.getElementById('beImagesInput').files;
+            const descText = document.getElementById('beImagesDescriptions').value || '';
+            const lines = descText.split(/\r?\n/);
+
+            const formData = new FormData();
+            Array.from(files).forEach((file, idx) => {
+                formData.append('gallery_images', file);
+                formData.append('gallery_descriptions', lines[idx] || '');
+                formData.append('gallery_orders', String(idx));
+            });
+
+            fetch(`/admin/budget-events/${eventId}/images`, { method: 'POST', body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closeBudgetEventImagesModal();
+                        loadBudgetEvents();
+                        alert('Images added successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to add images'));
+                    }
+                })
+                .catch(() => { alert('Error adding images'); });
+        }
+
+        function deleteBudgetEvent(eventId) {
+            if (!confirm('Are you sure you want to delete this budget event? This will remove all its images.')) return;
+            fetch(`/admin/budget-events/${eventId}`, { method: 'DELETE' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        loadBudgetEvents();
+                        alert('Budget event deleted successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to delete budget event'));
+                    }
+                })
+                .catch(() => { alert('Error deleting budget event'); });
+        }
+
+        function openEditBudgetEventModal(eventId) {
+            fetch(`/admin/budget-events/${eventId}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status !== 'success') { alert('Failed to load event'); return; }
+                    const ev = data.event;
+                    document.getElementById('budgetEventModalTitle').textContent = 'Edit Budget Event';
+                    document.getElementById('budgetEventForm').reset();
+                    document.getElementById('budgetEventId').value = ev.id;
+                    document.getElementById('beTitle').value = ev.title || '';
+                    document.getElementById('beDate').value = ev.event_date ? ev.event_date : '';
+                    resetBudgetGalleryUpload();
+                    document.getElementById('budgetEventModal').style.display = 'block';
+                })
+                .catch(() => alert('Error loading event'));
+        }
+
+        function updateBudgetEvent() {
+            const eventId = document.getElementById('budgetEventId').value;
+            const formData = new FormData();
+            formData.append('title', document.getElementById('beTitle').value);
+            formData.append('event_date', document.getElementById('beDate').value);
+            const banner = document.getElementById('beBanner').files[0];
+            if (banner) formData.append('banner_image', banner);
+
+            fetch(`/admin/budget-events/${eventId}/update`, { method: 'POST', body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closeBudgetEventModal();
+                        loadBudgetEvents();
+                        alert('Budget event updated successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to update budget event'));
+                    }
+                })
+                .catch(() => alert('Error updating budget event'));
+        }
+
+        // Budget gallery upload helpers
+        let selectedBudgetGalleryFiles = [];
+        const budgetGalleryDescriptions = [];
+        function handleBudgetGalleryFiles(input) {
+            const files = Array.from(input.files);
+            selectedBudgetGalleryFiles = selectedBudgetGalleryFiles.concat(files);
+            updateBudgetGalleryPreview();
+        }
+        function addSingleBudgetImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function () {
+                if (this.files.length > 0) {
+                    selectedBudgetGalleryFiles.push(this.files[0]);
+                    updateBudgetGalleryPreview();
+                }
+            };
+            input.click();
+        }
+        function clearBudgetGalleryImages() {
+            selectedBudgetGalleryFiles = [];
+            updateBudgetGalleryPreview();
+            const input = document.getElementById('budget_gallery_images');
+            if (input) input.value = '';
+        }
+        function setBudgetGalleryDescription(index, text) {
+            budgetGalleryDescriptions[index] = text || '';
+        }
+        function updateBudgetGalleryPreview() {
+            const listElement = document.getElementById('budget-gallery-images-list');
+            if (listElement) {
+                listElement.innerHTML = '';
+                selectedBudgetGalleryFiles.forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const col = document.createElement('div');
+                        col.className = 'col-12 mb-3';
+                        col.innerHTML = `
+                            <div class="card p-2">
+                                <div class="d-flex align-items-start gap-3">
+                                    <div style="width: 120px;">
+                                        <img src="${e.target.result}" alt="Preview" class="img-fluid rounded" style="height: 80px; width: 120px; object-fit: cover;">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <label class="form-label">Description for ${file.name}</label>
+                                        <textarea class="form-control" rows="2" oninput="setBudgetGalleryDescription(${index}, this.value)" placeholder="Write a description for this image..."></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-danger" onclick="removeBudgetGalleryImage(${index})"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        listElement.appendChild(col);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+        }
+        function removeBudgetGalleryImage(index) {
+            selectedBudgetGalleryFiles.splice(index, 1);
+            updateBudgetGalleryPreview();
+        }
+        function resetBudgetGalleryUpload() {
+            selectedBudgetGalleryFiles = [];
+            updateBudgetGalleryPreview();
+            const input = document.getElementById('budget_gallery_images');
+            if (input) input.value = '';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+{% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
+content %}
+<style>
+    .news-container {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    @media (min-width: 640px) {
+        .news-container {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (min-width: 900px) {
+        .news-container {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    .news-card {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        max-width: 450px;
+        margin: 0 auto;
+        transition: box-shadow 0.3s;
+    }
+
+    .news-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        border: 1px solid black;
+    }
+
+    .news-content {
+        padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+        position: relative;
+        top: -40px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        margin: 0 0.5rem;
+        border: 1px solid rgb(211, 211, 241);
+        border-radius: 3px;
+    }
+
+    .news-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #222;
+        margin-bottom: 0.5rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: color 0.3s;
+    }
+
+    .news-title:hover {
+        color: #4f46e5;
+    }
+
+    .news-desc {
+        color: #666;
+        font-size: 0.98rem;
+        margin-bottom: 0;
+        text-align: justify;
+    }
+</style>
+
+
+
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+    data-background="static/images/hero/banner.jpg" style="
+    min-height: 40vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+  "></div>
+
+{% include 'partials/breadcrumb.html' %}
+
+<div class="news-container">
+    <!-- News Card 1 -->
+    <div class="news-card news-card-1" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <a href="#" class="news-title">MSMEs Drive 'Make in Maharashtra' Vision Forward</a>
+            <p class="news-desc">Maharashtra's MSME sector is playing a central role in the
+                state's industrial push. Business leaders and entrepreneurs
+                discussed the initiative's potential to generate employment
+                and encourage innovation.</p>
+        </div>
+    </div>
+    <!-- News Card 2 -->
+    <div class="news-card news-card-2" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news1.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <a href="#" class="news-title">Kabul Beckons Indian Investors</a>
+            <p class="news-desc">The Afghanistan Trade Fair opened new doors for Indo-Afghan
+                collaboration. With a $5.5 billion trade landscape, leaders
+                urged Indian businesses to tap into textile, fruit, and
+                carpet exports. </p>
+        </div>
+    </div>
+    <!-- News Card 3 -->
+    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news2.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <a href="#" class="news-title">Ethiopia Beckons Indian Agri-Investors</a>
+            <p class="news-desc">Ethiopia's pro-investment land policies are attracting major
+                Indian agribusiness firms. Delegates discussed the future of
+                pulses, oilseeds, and cotton farming across leased farmlands
+                in the region.</p>
+        </div>
+    </div>
+
+    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news3.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <a href="#" class="news-title">Indo-Iran Cultural & Tourism Ties Strengthen</a>
+            <p class="news-desc">Iran and India reaffirm their cultural bonds through tourism
+                pacts and exchange programs. Iranian leaders praised India's
+                support and discussed new bilateral tourism routes and trade
+                potential.</p>
+        </div>
+    </div>
+
+    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news4.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <a href="#" class="news-title">TACC & IMCCI Celebrate Years of Global Diplomacy</a>
+            <p class="news-desc"> On their 15th and 20th anniversaries, TACC and IMCCI honored
+                diplomatic efforts to strengthen India's presence in Asia.
+                The event saw participation from ambassadors and global
+                dignitaries.</p>
+        </div>
+    </div>
+
+    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news5.jpeg" alt="Australian Consul General being felicitated">
+        <div class="news-content">
+            <a href="#" class="news-title">Australian Consul General Paul Murphy Felicitated</a>
+            <p class="news-desc">
+                The Australian Consul General, Mr. Paul Murphy, was warmly welcomed and honored at an event
+                hosted by the Mumbai Centre of the Indo-Australian Chamber of Commerce.
+            </p>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

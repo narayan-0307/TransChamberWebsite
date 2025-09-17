@@ -256,3 +256,6 @@ event_details_list = [
     },
     # Add more events here...
 ]
+
+def get_events():
+    return event_details_list

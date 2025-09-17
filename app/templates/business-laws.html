@@ -1,0 +1,349 @@
+{% extends "base.html" %} {% block title %} Business Laws | TACCI {% endblock %} {% block
+content %}
+
+<style>
+    .laws-container {
+        max-width: 1500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .laws-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        overflow: visible;
+        /* ensure inner collapses are not clipped */
+    }
+
+    .laws-card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .laws-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .laws-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .laws-item {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 16px;
+        background: #fff;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .laws-item i {
+        font-size: 20px;
+        color: #1d4ed8;
+        margin-top: 2px;
+    }
+
+    .laws-bullet {
+        padding-left: 18px;
+        margin-bottom: 0;
+    }
+
+    /* Fix: make sure accordion content is fully visible and readable when expanded */
+    .accordion {
+        overflow: visible;
+    }
+
+    .accordion .accordion-collapse {
+        overflow: visible;
+    }
+
+    .accordion .accordion-item {
+        background-color: #ffffff;
+    }
+
+    .accordion .accordion-body {
+        color: #0f172a !important;
+        background-color: #ffffff;
+    }
+
+    /* Scoped overrides for Bootstrap collapse inside the FAQ */
+    #lawsFAQ .accordion-collapse.collapse {
+        display: none !important;
+        visibility: visible !important;
+    }
+
+    #lawsFAQ .accordion-collapse.collapse.show {
+        display: block !important;
+        height: auto !important;
+    }
+
+    #lawsFAQ .accordion-collapse.collapsing {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    @media (max-width: 1200px) {
+        .laws-grid-3 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 992px) {
+        .laws-grid-2 {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .laws-grid-3 {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- tp-breadcrumb-area-start -->
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+    data-background="static/images/hero/banner.jpg" style="
+            min-height: 40vh;
+            height: 70vh;
+            background-size: cover;
+            background-position: center;
+          "></div>
+
+{% include 'partials/breadcrumb.html' %}
+
+<section class="pt-10 pb-10">
+    <div class="laws-container">
+        <div class="container">
+            <!-- Page intro -->
+            <div class="row justify-content-center">
+                <div class="text-center">
+                    <h1 class="tp-section-title mb-10">Business Laws & Regulatory Guide</h1>
+                    <p class="mb-0 text-muted">Curated guidance to help members comply with key business regulations,
+                        reduce risk, and operate with confidence. Content below is sample text and can be replaced with
+                        your official information.</p>
+                </div>
+            </div>
+
+            <!-- Key regulation categories -->
+            <div class="laws-card mt-40">
+                <h3 class="h5 mb-3">Key Areas of Compliance</h3>
+                <p class="text-muted mb-4">Explore major regulatory domains relevant to MSMEs, exporters, and service
+                    providers.</p>
+                <div class="laws-grid-3">
+                    <div class="laws-item">
+                        <i class="fa-light fa-building-columns"></i>
+                        <div>
+                            <h4 class="h6 mb-1">Company Formation & Governance</h4>
+                            <p class="text-muted medium mb-0">Registration types, directors' duties, annual filings, and
+                                record-keeping.</p>
+                        </div>
+                    </div>
+                    <div class="laws-item">
+                        <i class="fa-light fa-file-invoice"></i>
+                        <div>
+                            <h4 class="h6 mb-1">Taxation & GST/VAT</h4>
+                            <p class="text-muted medium mb-0">Registration thresholds, returns, invoicing, input
+                                credits, and audits.</p>
+                        </div>
+                    </div>
+                    <div class="laws-item">
+                        <i class="fa-light fa-shield-check"></i>
+                        <div>
+                            <h4 class="h6 mb-1">Licensing & Certifications</h4>
+                            <p class="text-muted medium mb-0">Trade licenses, sector approvals, ISO/quality marks, and
+                                renewals.</p>
+                        </div>
+                    </div>
+                    <div class="laws-item">
+                        <i class="fa-light fa-earth-asia"></i>
+                        <div>
+                            <h4 class="h6 mb-1">Imports, Exports & Customs</h4>
+                            <p class="text-muted medium mb-0">IEC, documentation, tariffs/NTBs, rules of origin, and
+                                FTAs.</p>
+                        </div>
+                    </div>
+                    <div class="laws-item">
+                        <i class="fa-light fa-user-shield"></i>
+                        <div>
+                            <h4 class="h6 mb-1">Labour & Workplace</h4>
+                            <p class="text-muted medium mb-0">Contracts, wages, safety, social security, and grievance
+                                redressal.</p>
+                        </div>
+                    </div>
+                    <div class="laws-item">
+                        <i class="fa-light fa-scale-balanced"></i>
+                        <div>
+                            <h4 class="h6 mb-1">Consumer Protection & IPR</h4>
+                            <p class="text-muted medium mb-0">Warranties, disclosures, fair trade, trademarks, and
+                                copyrights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two-column: Overview + Checklist -->
+            <div class="laws-grid-2 mt-40">
+                <div class="laws-card">
+                    <h3 class="h5 mb-3">Quick Overview</h3>
+                    <p class="text-muted">This page provides a high-level summary of common legal requirements for
+                        businesses operating within our jurisdiction. Replace this demo copy with your official
+                        narratives, citations, and links to relevant acts or authorities.</p>
+                    <ul class="laws-bullet text-muted medium">
+                        <li>Clearly define your entity type and registration pathway.</li>
+                        <li>Map your licensing needs by sector, location, and business model.</li>
+                        <li>Establish an internal compliance calendar for returns and renewals.</li>
+                        <li>Maintain verifiable records, policies, and training documentation.</li>
+                        <li>Engage certified advisors for tax, labour, and cross-border trade.</li>
+                    </ul>
+                </div>
+                <div class="laws-card">
+                    <h3 class="h5 mb-3">Compliance Checklist</h3>
+                    <div class="row g-2">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="fa-light fa-circle-check" style="color:#10b981;"></i>
+                                <span class="text-muted medium">Business registration complete</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="fa-light fa-circle-check" style="color:#10b981;"></i>
+                                <span class="text-muted medium">Tax IDs obtained (PAN/GST/VAT)</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="fa-light fa-circle-check" style="color:#10b981;"></i>
+                                <span class="text-muted medium">Industry licenses and NOCs</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="fa-light fa-circle-check" style="color:#10b981;"></i>
+                                <span class="text-muted medium">Employee contracts & policies</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="fa-light fa-circle-check" style="color:#10b981;"></i>
+                                <span class="text-muted medium">Health, safety & insurance</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="fa-light fa-circle-check" style="color:#10b981;"></i>
+                                <span class="text-muted medium">Export/import documentation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="laws-card mt-40">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="fa-light fa-folder-tree" style="font-size:22px; color:#0ea5e9;"></i>
+                    <h3 class="h6 mb-0">Guides & Resources</h3>
+                </div>
+                <p class="text-muted medium mb-3">Link to official portals, downloadable forms, and TACCI templates.
+                    Replace the URLs and labels as needed.</p>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <a class="btn btn-outline-secondary w-100" href="#" target="_blank">
+                            <i class="fa-regular fa-file-lines"></i> Company Registration Guide (PDF)
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-outline-secondary w-100" href="#" target="_blank">
+                            <i class="fa-solid fa-certificate"></i> Licensing Matrix (XLS)
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-outline-secondary w-100" href="#" target="_blank">
+                            <i class="fa-solid fa-earth-asia"></i> Export Compliance Checklist
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="laws-card mt-40">
+                <h3 class="h5 mb-3">Frequently Asked Questions</h3>
+                <div class="accordion" id="lawsFAQ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="q1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
+                                What licenses do I need to start a small manufacturing unit?
+                            </button>
+                        </h2>
+                        <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1"
+                            data-bs-parent="#lawsFAQ">
+                            <div class="accordion-body">This depends on your product category and location.
+                                Typical items include trade license, pollution NOC (if applicable), and quality
+                                certifications. Replace this text with your authoritative guidance.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="q2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+                                How often should I file returns and renew licenses?
+                            </button>
+                        </h2>
+                        <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#lawsFAQ">
+                            <div class="accordion-body">Create a compliance calendar covering
+                                monthly/quarterly returns and annual renewals. Add jurisdiction-specific timelines here.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="q3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#a3" aria-expanded="false" aria-controls="a3">
+                                Who can help me with export documentation and classification?
+                            </button>
+                        </h2>
+                        <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#lawsFAQ">
+                            <div class="accordion-body">Members can contact TACCI for referrals to accredited
+                                consultants and training. Insert your official contact pathway.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="row mt-40">
+                <div class="col-12">
+                    <div class="alert alert-info d-flex align-items-start gap-3 mb-0" role="alert">
+                        <i class="fa-solid fa-circle-info" style="font-size:20px; margin-top:2px;"></i>
+                        <div>
+                            <strong>Need help navigating regulations?</strong>
+                            <p class="mb-2 text-muted">Our team can guide you on compliance steps and connect you with
+                                verified experts.</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="{{ url_for('main.contact_page') }}" class="btn btn-primary">
+                                    <i class="fa-regular fa-envelope"></i> Contact Us
+                                </a>
+                                <a href="mailto:info@tacci.org" class="btn btn-outline-secondary">
+                                    <i class="fa-regular fa-at"></i> info@tacci.org
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

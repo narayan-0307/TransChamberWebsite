@@ -1,0 +1,140 @@
+{% extends "admin/auth_base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block auth_title %}Welcome Back{% endblock %}
+
+{% block auth_subtitle %}Sign in to your account{% endblock %}
+
+{% block auth_content %}
+<form method="POST" action="{{ url_for('main.login') }}" id="loginForm" novalidate>
+    <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required>
+        <div class="form-error" id="username-error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password"
+            required>
+        <div class="form-error" id="password-error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="role" class="form-label">Role</label>
+        <select name="role" id="role" class="form-input" required>
+            <option value="">Select your role</option>
+            <option value="host">Host</option>
+            <option value="member">Member</option>
+        </select>
+        <div class="form-error" id="role-error"></div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+        <i class="fas fa-sign-in-alt mr-2"></i>
+        <span id="submitText">Sign In</span>
+        <span id="loadingText" style="display: none;">
+            <i class="fas fa-spinner fa-spin mr-2"></i>Signing In...
+        </span>
+    </button>
+</form>
+
+<div class="auth-footer">
+    <p class="text-sm text-gray-600">
+        Don't have an account?
+        <a href="{{ url_for('main.register') }}" class="text-blue-600 hover:text-blue-800 font-medium">
+            Sign up here
+        </a>
+    </p>
+    <p class="text-sm text-gray-600 mt-2">
+        <a href="{{ url_for('main.forgot_password') }}" class="text-blue-600 hover:text-blue-800 font-medium">
+            Forgot your password?
+        </a>
+    </p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const loadingText = document.getElementById('loadingText');
+
+        // Clear previous errors when user starts typing
+        const inputs = form.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', function () {
+                clearFieldError(this);
+            });
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            clearAllErrors();
+
+            // Validate form
+            if (validateForm()) {
+                // Show loading state
+                submitBtn.disabled = true;
+                submitText.style.display = 'none';
+                loadingText.style.display = 'inline';
+
+                // Submit form
+                form.submit();
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            // Validate username
+            const username = document.getElementById('username');
+            if (!username.value.trim()) {
+                showFieldError(username, 'Username is required');
+                isValid = false;
+            }
+
+            // Validate password
+            const password = document.getElementById('password');
+            if (!password.value.trim()) {
+                showFieldError(password, 'Password is required');
+                isValid = false;
+            }
+
+            // Validate role
+            const role = document.getElementById('role');
+            if (!role.value) {
+                showFieldError(role, 'Please select a role');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showFieldError(field, message) {
+            field.classList.add('error');
+            const errorElement = document.getElementById(field.id + '-error');
+            if (errorElement) {
+                errorElement.textContent = message;
+            }
+        }
+
+        function clearFieldError(field) {
+            field.classList.remove('error');
+            const errorElement = document.getElementById(field.id + '-error');
+            if (errorElement) {
+                errorElement.textContent = '';
+            }
+        }
+
+        function clearAllErrors() {
+            inputs.forEach(input => {
+                clearFieldError(input);
+            });
+        }
+    });
+</script>
+{% endblock %}

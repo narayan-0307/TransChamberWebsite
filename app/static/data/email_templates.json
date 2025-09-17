@@ -1,0 +1,213 @@
+{
+  "subjects": {
+    "export": "Export Inquiry Received - TransChamber",
+    "import": "Import Inquiry Received - TransChamber",
+    "business_opportunity": "Business Opportunity Received - TransChamber",
+    "suggestions": "Suggestion Received - TransChamber",
+    "complaints": "Complaint Received - TransChamber"
+  },
+  "templates": {
+    "export": {
+      "greeting": "Dear {name},",
+      "intro": "Thank you for submitting your export inquiry to TransChamber. We have received your request and our team will review it shortly.",
+      "details_section": "**Inquiry Details:**",
+      "details": [
+        "- Inquiry ID: {inquiry_id}",
+        "- Company: {companyName}",
+        "- Product Quantity: {productQuantity}",
+        "- Country: {country}"
+      ],
+      "next_steps_section": "**What happens next?**",
+      "next_steps": [
+        "Our team will review your export requirements",
+        "We'll contact you within 2-3 business days",
+        "We'll provide guidance on export procedures and requirements",
+        "We'll connect you with relevant trade partners if needed"
+      ],
+      "about_section": "**About TransChamber:**",
+      "about_intro": "TransChamber is dedicated to promoting international trade and business opportunities. We provide:",
+      "about_services": [
+        "Export/Import guidance and support",
+        "Trade facilitation services",
+        "Business networking opportunities",
+        "Market research and analysis",
+        "Trade event organization"
+      ],
+      "contact_section": "**Contact Information:**",
+      "contact_info": [
+        "- Email: info@transchamber.com",
+        "- Phone: +91-XXXXXXXXXX",
+        "- Website: www.transchamber.com"
+      ],
+      "resources_section": "**Additional Resources:**",
+      "resources": [
+        "- Download our company brochure: [Brochure Link]",
+        "- View upcoming trade events: [Events Link]",
+        "- Learn about membership benefits: [Membership Link]"
+      ],
+      "closing": "We appreciate your interest in international trade and look forward to assisting you with your export requirements.",
+      "signature": "Best regards,\nTransChamber Team\nTrade Association Chamber of Commerce International"
+    },
+    "import": {
+      "greeting": "Dear {name},",
+      "intro": "Thank you for submitting your import inquiry to TransChamber. We have received your request and our team will review it shortly.",
+      "details_section": "**Inquiry Details:**",
+      "details": [
+        "- Inquiry ID: {inquiry_id}",
+        "- Company: {companyName}",
+        "- Product Quantity: {productQuantity}",
+        "- Country: {country}"
+      ],
+      "next_steps_section": "**What happens next?**",
+      "next_steps": [
+        "Our team will review your import requirements",
+        "We'll contact you within 2-3 business days",
+        "We'll provide guidance on import procedures and requirements",
+        "We'll connect you with relevant suppliers if needed"
+      ],
+      "about_section": "**About TransChamber:**",
+      "about_intro": "TransChamber is dedicated to promoting international trade and business opportunities. We provide:",
+      "about_services": [
+        "Import/Export guidance and support",
+        "Trade facilitation services",
+        "Business networking opportunities",
+        "Market research and analysis",
+        "Trade event organization"
+      ],
+      "contact_section": "**Contact Information:**",
+      "contact_info": [
+        "- Email: info@transchamber.com",
+        "- Phone: +91-XXXXXXXXXX",
+        "- Website: www.transchamber.com"
+      ],
+      "resources_section": "**Additional Resources:**",
+      "resources": [
+        "- Download our company brochure: [Brochure Link]",
+        "- View upcoming trade events: [Events Link]",
+        "- Learn about membership benefits: [Membership Link]"
+      ],
+      "closing": "We appreciate your interest in international trade and look forward to assisting you with your import requirements.",
+      "signature": "Best regards,\nTransChamber Team\nTrade Association Chamber of Commerce International"
+    },
+    "business_opportunity": {
+      "greeting": "Dear {name},",
+      "intro": "Thank you for sharing your business opportunity with TransChamber. We have received your proposal and our team will review it shortly.",
+      "details_section": "**Opportunity Details:**",
+      "details": [
+        "- Opportunity ID: {inquiry_id}",
+        "- Contact: {email}",
+        "- Phone: {phoneNumber}"
+      ],
+      "next_steps_section": "**What happens next?**",
+      "next_steps": [
+        "Our team will review your business opportunity",
+        "We'll contact you within 2-3 business days",
+        "We'll evaluate potential collaboration opportunities",
+        "We'll provide feedback and next steps"
+      ],
+      "about_section": "**About TransChamber:**",
+      "about_intro": "TransChamber is dedicated to promoting international trade and business opportunities. We provide:",
+      "about_services": [
+        "Business development support",
+        "Trade facilitation services",
+        "Business networking opportunities",
+        "Market research and analysis",
+        "Trade event organization"
+      ],
+      "contact_section": "**Contact Information:**",
+      "contact_info": [
+        "- Email: info@transchamber.com",
+        "- Phone: +91-XXXXXXXXXX",
+        "- Website: www.transchamber.com"
+      ],
+      "resources_section": "**Additional Resources:**",
+      "resources": [
+        "- Download our company brochure: [Brochure Link]",
+        "- View upcoming trade events: [Events Link]",
+        "- Learn about membership benefits: [Membership Link]"
+      ],
+      "closing": "We appreciate your interest in collaboration and look forward to exploring potential business opportunities together.",
+      "signature": "Best regards,\nTransChamber Team\nTrade Association Chamber of Commerce International"
+    },
+    "suggestions": {
+      "greeting": "Dear {name},",
+      "intro": "Thank you for submitting your suggestion to TransChamber. We have received your feedback and our team will review it shortly.",
+      "details_section": "**Suggestion Details:**",
+      "details": [
+        "- Suggestion ID: {inquiry_id}",
+        "- Contact: {email}",
+        "- Phone: {phoneNumber}"
+      ],
+      "next_steps_section": "**What happens next?**",
+      "next_steps": [
+        "Our team will review your suggestion",
+        "We'll contact you within 2-3 business days if needed",
+        "We'll consider your feedback for future improvements",
+        "We'll keep you updated on any related changes"
+      ],
+      "about_section": "**About TransChamber:**",
+      "about_intro": "TransChamber is dedicated to promoting international trade and business opportunities. We provide:",
+      "about_services": [
+        "Trade facilitation services",
+        "Business networking opportunities",
+        "Market research and analysis",
+        "Trade event organization",
+        "Continuous improvement based on member feedback"
+      ],
+      "contact_section": "**Contact Information:**",
+      "contact_info": [
+        "- Email: info@transchamber.com",
+        "- Phone: +91-XXXXXXXXXX",
+        "- Website: www.transchamber.com"
+      ],
+      "resources_section": "**Additional Resources:**",
+      "resources": [
+        "- Download our company brochure: [Brochure Link]",
+        "- View upcoming trade events: [Events Link]",
+        "- Learn about membership benefits: [Membership Link]"
+      ],
+      "closing": "We appreciate your valuable feedback and commitment to improving our services.",
+      "signature": "Best regards,\nTransChamber Team\nTrade Association Chamber of Commerce International"
+    },
+    "complaints": {
+      "greeting": "Dear {name},",
+      "intro": "Thank you for bringing your concern to our attention. We have received your complaint and our team will review it shortly.",
+      "details_section": "**Complaint Details:**",
+      "details": [
+        "- Complaint ID: {inquiry_id}",
+        "- Contact: {email}",
+        "- Phone: {phoneNumber}"
+      ],
+      "next_steps_section": "**What happens next?**",
+      "next_steps": [
+        "Our team will review your complaint thoroughly",
+        "We'll contact you within 2-3 business days",
+        "We'll investigate the matter and take appropriate action",
+        "We'll provide you with a resolution and follow-up"
+      ],
+      "about_section": "**About TransChamber:**",
+      "about_intro": "TransChamber is dedicated to promoting international trade and business opportunities. We provide:",
+      "about_services": [
+        "Trade facilitation services",
+        "Business networking opportunities",
+        "Market research and analysis",
+        "Trade event organization",
+        "Customer service excellence"
+      ],
+      "contact_section": "**Contact Information:**",
+      "contact_info": [
+        "- Email: info@transchamber.com",
+        "- Phone: +91-XXXXXXXXXX",
+        "- Website: www.transchamber.com"
+      ],
+      "resources_section": "**Additional Resources:**",
+      "resources": [
+        "- Download our company brochure: [Brochure Link]",
+        "- View upcoming trade events: [Events Link]",
+        "- Learn about membership benefits: [Membership Link]"
+      ],
+      "closing": "We take all complaints seriously and are committed to resolving issues promptly and professionally.",
+      "signature": "Best regards,\nTransChamber Team\nTrade Association Chamber of Commerce International"
+    }
+  }
+}
