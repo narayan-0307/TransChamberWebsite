@@ -1065,19 +1065,18 @@
 {% endif %}
 {% endwith %}
 
-<!-- <div class="coming-soon-wrapper">
+<div class="coming-soon-wrapper">
   <div class="payment-coming-container">
     <div class="icon">💳</div>
     <h1 class="payment-coming-heading">Payment Gateway Coming Soon</h1>
     <p class="payment-coming-paragraph">We are working hard to bring you a seamless payment experience. Stay tuned!</p>
   </div>
-</div> -->
+</div>
 
 
-<section class="membership-form-section">
+<!-- <section class="membership-form-section">
   <div class="membership-form-wrapper" style="border: 2px solid rgb(185, 185, 241);">
     <div class="membership-form-grid">
-      <!-- Sidebar Stepper -->
       <aside class="membership-form-sidebar">
         <ol class="stepper-list">
           <li class="step-item{% if step == 0 %} step-active{% endif %}" data-step="0">
@@ -1102,10 +1101,8 @@
           </li>
         </ol>
       </aside>
-      <!-- Form Content -->
       <div class="membership-form-content">
         {% if step == 0 %}
-        <!-- Step 0: Terms & Conditions -->
         <form method="POST"
           action="{{ url_for('main.membership_form', step=0, member_id=request.args.get('member_id')) }}"
           class="form-step">
@@ -1130,11 +1127,8 @@
               <p>8) All Life/Corporate Membership Fees are for a maximum span of <span class="font-semibold">20
                   years</span>.</p>
             </div>
-
-            <!-- Divider -->
             <div class="border-t my-4"></div>
 
-            <!-- Checkbox -->
             <div class="form-group">
               <label class="flex items-center space-x-2 text-gray-800 cursor-pointer">
                 <input type="checkbox" name="terms" required
@@ -1150,7 +1144,6 @@
         </form>
 
         {% elif step == 1 %}
-        <!-- Step 1 -->
         <form method="POST"
           action="{{ url_for('main.membership_form', step=1, member_id=request.args.get('member_id')) }}"
           class="form-step">
@@ -1183,11 +1176,6 @@
                 class="form-input" required oninvalid="showInputError(this, 'Please enter a valid email address')">
               <span class="input-error" style="color:red;display:none;"></span>
             </div>
-            <!-- <div>
-              <label class="form-label">Website</label>
-              <input type="url" name="website" placeholder="Website Link" value="{{ personalData.website }}"
-                class="form-input">
-            </div> -->
             <div>
               <label class="form-label">Website</label>
               <input type="url" name="website" placeholder="Website Link" value="{{ personalData.website }}"
@@ -1277,7 +1265,6 @@
           </div>
         </form>
         {% elif step == 2 %}
-        <!-- Step 2 -->
         <form method="POST"
           action="{{ url_for('main.membership_form', step=2, member_id=request.args.get('member_id')) }}"
           class="form-step">
@@ -1347,7 +1334,6 @@
           </div>
         </form>
         {% elif step == 3 %}
-        <!-- Step 3 -->
         <h2 class="form-title">Step 3: Review Information</h2>
         <hr class="form-divider">
         <div class="form-grid form-review-grid">
@@ -1367,7 +1353,6 @@
           </form>
         </div>
         {% elif step == 4 %}
-        <!-- Step 4 -->
         <div class="form-confirmation">
           <h2 class="form-confirm-title">🎉 Thank You!</h2>
           <p class="form-confirm-desc">Your membership form has been submitted successfully.</p>
@@ -1377,7 +1362,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <div class="bank-section-container">
   <div class="bank-transfer-box">
