@@ -11,8 +11,8 @@
 
   .card img {
     width: 100%;
-    height: 220px;
-    object-fit: cover;
+    height: 250px;
+    object-fit: fill;
     display: block;
   }
 
@@ -31,13 +31,6 @@
     color: #111827;
   }
 
-  .card-body p {
-    font-size: 14px;
-    color: #6b7280;
-    margin-bottom: 16px;
-    flex-grow: 1;
-  }
-
   .card-body a {
     text-decoration: none;
     font-size: 14px;
@@ -53,11 +46,40 @@
     color: #1e40af;
   }
 
-  /* Grid for 3 cards in a row */
+  /* Grid for cards */
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    /* default: mobile first */
     gap: 20px;
+  }
+
+  /* Tablets/iPads: 2 Cards */
+  @media (min-width: 480px) and (max-width: 768px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Laptops/Small Screens: 2 Cards */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Desktops/Large Screens: 3 Cards */
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    .card-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Extra-large Devices: 4 Cards */
+  @media (min-width: 1200px) {
+    .card-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   /* Section padding */

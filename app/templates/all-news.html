@@ -1,26 +1,47 @@
-{% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
-content %}
+{% extends "base.html" %}
+
+{% block title %} TACCI {% endblock %}
+
+{% block content %}
 <style>
     .news-container {
         max-width: 1500px;
         margin: 0 auto;
-        padding: 2rem;
+        padding: 0px 20px 0px 20px;
         display: grid;
         grid-template-columns: 1fr;
-        gap: 2rem;
+        /* Mobile (320–480px) */
+        gap: 1rem;
     }
 
-    @media (min-width: 640px) {
+    /* Tablets (480–768px): 2 cards */
+    @media (min-width: 480px) and (max-width: 767px) {
+        .news-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Small laptops (768–1024px): 2 cards */
+    @media (min-width: 768px) and (max-width: 1023px) {
         .news-container {
             grid-template-columns: 1fr 1fr;
         }
     }
 
-    @media (min-width: 900px) {
+    /* Desktops (1024–1200px): 3 cards */
+    @media (min-width: 1024px) and (max-width: 1199px) {
         .news-container {
             grid-template-columns: 1fr 1fr 1fr;
         }
     }
+
+    /* Extra-large desktops (1200px+): 3 cards */
+    @media (min-width: 1200px) {
+        .news-container {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
 
     .news-card {
         overflow: hidden;
@@ -70,17 +91,19 @@ content %}
         margin-bottom: 0;
         text-align: justify;
     }
+
+    .read-more {
+        color: #4f46e5;
+        font-size: 0.9rem;
+        cursor: pointer;
+        text-decoration: underline;
+    }
 </style>
 
-
-
-<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
-    data-background="static/images/hero/banner.jpg" style="
-    min-height: 40vh;
-    height: 60vh;
-    background-size: cover;
-    background-position: center;
-  "></div>
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200"
+    data-background="static/images/hero/banner.jpg"
+    style="min-height: 40vh; height: 60vh; background-size: cover; background-position: center;">
+</div>
 
 {% include 'partials/breadcrumb.html' %}
 
@@ -89,72 +112,112 @@ content %}
     <div class="news-card news-card-1" data-aos="fade-up" data-aos-duration="1000">
         <img class="news-image" src="/static/images/news/news.jpeg" alt="Sunset in the mountains">
         <div class="news-content">
-            <a href="#" class="news-title">MSMEs Drive 'Make in Maharashtra' Vision Forward</a>
-            <p class="news-desc">Maharashtra's MSME sector is playing a central role in the
-                state's industrial push. Business leaders and entrepreneurs
-                discussed the initiative's potential to generate employment
-                and encourage innovation.</p>
-        </div>
-    </div>
-    <!-- News Card 2 -->
-    <div class="news-card news-card-2" data-aos="fade-up" data-aos-duration="1000">
-        <img class="news-image" src="/static/images/news/news1.jpeg" alt="Sunset in the mountains">
-        <div class="news-content">
-            <a href="#" class="news-title">Kabul Beckons Indian Investors</a>
-            <p class="news-desc">The Afghanistan Trade Fair opened new doors for Indo-Afghan
-                collaboration. With a $5.5 billion trade landscape, leaders
-                urged Indian businesses to tap into textile, fruit, and
-                carpet exports. </p>
-        </div>
-    </div>
-    <!-- News Card 3 -->
-    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
-        <img class="news-image" src="/static/images/news/news2.jpeg" alt="Sunset in the mountains">
-        <div class="news-content">
-            <a href="#" class="news-title">Ethiopia Beckons Indian Agri-Investors</a>
-            <p class="news-desc">Ethiopia's pro-investment land policies are attracting major
-                Indian agribusiness firms. Delegates discussed the future of
-                pulses, oilseeds, and cotton farming across leased farmlands
-                in the region.</p>
-        </div>
-    </div>
-
-    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
-        <img class="news-image" src="/static/images/news/news3.jpeg" alt="Sunset in the mountains">
-        <div class="news-content">
-            <a href="#" class="news-title">Indo-Iran Cultural & Tourism Ties Strengthen</a>
-            <p class="news-desc">Iran and India reaffirm their cultural bonds through tourism
-                pacts and exchange programs. Iranian leaders praised India's
-                support and discussed new bilateral tourism routes and trade
-                potential.</p>
-        </div>
-    </div>
-
-    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
-        <img class="news-image" src="/static/images/news/news4.jpeg" alt="Sunset in the mountains">
-        <div class="news-content">
-            <a href="#" class="news-title">TACC & IMCCI Celebrate Years of Global Diplomacy</a>
-            <p class="news-desc"> On their 15th and 20th anniversaries, TACC and IMCCI honored
-                diplomatic efforts to strengthen India's presence in Asia.
-                The event saw participation from ambassadors and global
-                dignitaries.</p>
-        </div>
-    </div>
-
-    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
-        <img class="news-image" src="/static/images/news/news5.jpeg" alt="Australian Consul General being felicitated">
-        <div class="news-content">
-            <a href="#" class="news-title">Australian Consul General Paul Murphy Felicitated</a>
+            <h1 class="news-title">MSMEs Drive 'Make in Maharashtra' Vision Forward</h1>
             <p class="news-desc">
-                The Australian Consul General, Mr. Paul Murphy, was warmly welcomed and honored at an event
-                hosted by the Mumbai Centre of the Indo-Australian Chamber of Commerce.
+                Maharashtra's MSME sector is playing a central role in the state's industrial push. Business leaders and
+                entrepreneurs discussed the initiative's potential to generate employment and encourage innovation.
             </p>
         </div>
     </div>
 
+    <!-- News Card 2 -->
+    <div class="news-card news-card-2" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news1.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <h1 class="news-title">Kabul Beckons Indian Investors</h1>
+            <p class="news-desc">
+                The Afghanistan Trade Fair opened new doors for Indo-Afghan collaboration. With a $5.5 billion trade
+                landscape, leaders urged Indian businesses to tap into textile, fruit, and carpet exports.
+            </p>
+        </div>
+    </div>
 
+    <!-- News Card 3 -->
+    <div class="news-card news-card-3" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news2.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <h1 class="news-title">Ethiopia Beckons Indian Agri-Investors</h1>
+            <p class="news-desc">
+                Ethiopia's pro-investment land policies are attracting major Indian agribusiness firms. Delegates
+                discussed the future of pulses, oilseeds, and cotton farming across leased farmlands in the region.
+            </p>
+        </div>
+    </div>
+
+    <!-- News Card 4 -->
+    <div class="news-card news-card-4" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news3.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <h1 class="news-title">Indo-Iran Cultural & Tourism Ties Strengthen</h1>
+            <p class="news-desc">
+                Iran and India reaffirm their cultural bonds through tourism pacts and exchange programs. Iranian
+                leaders praised India's support and discussed new bilateral tourism routes and trade potential.
+            </p>
+        </div>
+    </div>
+
+    <!-- News Card 5 -->
+    <div class="news-card news-card-5" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news4.jpeg" alt="Sunset in the mountains">
+        <div class="news-content">
+            <h1 class="news-title">TACC & IMCCI Celebrate Years of Global Diplomacy</h1>
+            <p class="news-desc">
+                On their 15th and 20th anniversaries, TACC and IMCCI honored diplomatic efforts to strengthen India's
+                presence in Asia. The event saw participation from ambassadors and global dignitaries.
+            </p>
+        </div>
+    </div>
+
+    <!-- News Card 6 -->
+    <div class="news-card news-card-6" data-aos="fade-up" data-aos-duration="1000">
+        <img class="news-image" src="/static/images/news/news5.jpeg" alt="Australian Consul General being felicitated">
+        <div class="news-content">
+            <h1 class="news-title">Australian Consul General Paul Murphy Felicitated</h1>
+            <p class="news-desc">
+                The Australian Consul General, Mr. Paul Murphy, was warmly welcomed and honored at an event hosted by
+                the Mumbai Centre of the Indo-Australian Chamber of Commerce.
+            </p>
+        </div>
+    </div>
 </div>
 
+<!-- JS for auto-truncate + toggle -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const charLimit = 120; // show first 120 chars
+        const newsDescs = document.querySelectorAll(".news-desc");
 
+        newsDescs.forEach(desc => {
+            const fullText = desc.textContent.trim();
+
+            if (fullText.length > charLimit) {
+                const visibleText = fullText.slice(0, charLimit);
+                const hiddenText = fullText.slice(charLimit);
+
+                desc.innerHTML = `
+                ${visibleText}<span class="dots">...</span><span class="more-text" style="display:none;">${hiddenText}</span>
+                <a href="javascript:void(0);" class="read-more">Read more</a>
+            `;
+            }
+        });
+
+        document.querySelectorAll(".read-more").forEach(link => {
+            link.addEventListener("click", function () {
+                const moreText = this.previousElementSibling;
+                const dots = moreText.previousElementSibling;
+
+                if (moreText.style.display === "none") {
+                    moreText.style.display = "inline";
+                    dots.style.display = "none";
+                    this.textContent = "Read less";
+                } else {
+                    moreText.style.display = "none";
+                    dots.style.display = "inline";
+                    this.textContent = "Read more";
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}

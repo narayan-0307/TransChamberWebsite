@@ -20,7 +20,7 @@
     .event-banner {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: fill;
         border-radius: 10px;
         display: block;
     }
@@ -29,20 +29,7 @@
         position: absolute;
         inset: 0;
         background: rgba(17, 24, 39, 0.55);
-        /* dark overlay */
         border-radius: 10px;
-    }
-
-    .event-banner-text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #fff;
-        font-size: 36px;
-        font-weight: 700;
-        text-align: center;
-        max-width: 90%;
     }
 
     .event-title {
@@ -50,7 +37,6 @@
         font-weight: 700;
         margin: 20px 0;
         color: #111827;
-        text-align: center;
     }
 
     .event-description {
@@ -59,10 +45,40 @@
         margin-bottom: 30px;
     }
 
+    /* ✅ Responsive Grid for Cards */
     .budget-card-container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+        /* default: mobile first */
         gap: 30px;
+    }
+
+    /* Tablets/iPads: 1 Card */
+    @media (min-width: 480px) and (max-width: 768px) {
+        .budget-card-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Small Laptops: 2 Cards */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .budget-card-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Desktops: 3 Cards */
+    @media (min-width: 1024px) and (max-width: 1200px) {
+        .budget-card-container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* Extra-large: 3 Cards */
+    @media (min-width: 1200px) {
+        .budget-card-container {
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 
     .card {
@@ -98,6 +114,27 @@
         color: #374151;
         margin: 0;
         text-align: justify;
+        max-height: 80px;
+        overflow: hidden;
+        transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+
+    .budget-description.expanded {
+        max-height: 500px;
+    }
+
+    .read-more-btn {
+        background: none;
+        border: none;
+        color: #2563eb;
+        font-size: 13px;
+        cursor: pointer;
+        margin-top: 5px;
+        transition: color 0.2s ease;
+    }
+
+    .read-more-btn:hover {
+        color: #1d4ed8;
     }
 
     /* fallback card (when no images uploaded) */
@@ -112,18 +149,16 @@
     data-background="/static/images/hero/banner.jpg" style="margin-top: 0rem"></div>
 
 <div class="past-events-container pb-10">
-    <!-- Title (optional, if you want separate heading below banner) -->
-    <h1 class="event-title">{{ event.title }}</h1>
-
-    <!-- ✅ Banner with overlay text -->
+    <!-- ✅ Banner -->
     <div class="event-banner-wrapper">
         <img class="event-banner" src="{{ event.banner_image_path or '/static/images/hero/banner.jpg' }}"
             alt="Event Banner" onerror="this.src='/static/images/hero/banner.jpg'">
         <div class="event-banner-overlay"></div>
-
     </div>
 
-    <!-- 3-Card Grid -->
+    <h1 class="event-title">{{ event.title }}</h1>
+
+    <!-- ✅ Responsive Card Grid -->
     <div class="budget-card-container">
         {% for img in images %}
         <div class="card">
@@ -133,6 +168,9 @@
             </a>
             <div class="budget-card-content">
                 <p class="budget-description">{{ img.description or '' }}</p>
+                {% if img.description and img.description|length > 120 %}
+                <button class="read-more-btn">Read More</button>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
@@ -145,5 +183,20 @@
         {% endif %}
     </div>
 </div>
+
+<!-- ✅ Script for Read More/Less inside cards -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".read-more-btn");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const desc = btn.previousElementSibling;
+                desc.classList.toggle("expanded");
+                btn.textContent = desc.classList.contains("expanded") ? "Read Less" : "Read More";
+            });
+        });
+    });
+</script>
 
 {% endblock %}

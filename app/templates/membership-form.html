@@ -2,8 +2,6 @@
 {% block title %}TACCI{% endblock title %}
 {% block content %}
 
-
-
 <style>
   /* Flash Messages */
   .flash-messages-container {
@@ -50,27 +48,57 @@
     margin-right: auto;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    padding-top: 2.5rem;
+    padding-top: 1.5rem;
     padding-bottom: 2.5rem;
     min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  @media (min-width: 480px) {
+    .membership-form-section {
+      padding-top: 2rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 
   @media (min-width: 768px) {
     .membership-form-section {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
+      padding-top: 3rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
+  }
+
+  @media (min-width: 1024px) {
+    .membership-form-section {}
   }
 
   .membership-form-wrapper {
     max-width: 80rem;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     background: #fff;
     box-shadow: 0 8px 32px 0 rgba(30, 64, 175, 0.12);
-    border-radius: 1.25rem;
+    border-radius: 0.75rem;
     overflow: hidden;
+    overflow-x: hidden;
     border: 1px solid #e5e7eb;
+  }
+
+  @media (min-width: 480px) {
+    .membership-form-wrapper {
+      border-radius: 1rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .membership-form-wrapper {
+      border-radius: 1.25rem;
+    }
   }
 
   .membership-form-grid {
@@ -84,9 +112,15 @@
     }
   }
 
+  @media (min-width: 1024px) {
+    .membership-form-grid {
+      grid-template-columns: 1fr 3fr;
+    }
+  }
+
   .membership-form-sidebar {
     background: linear-gradient(to bottom, #eff6ff, #dbeafe);
-    padding: 1.5rem;
+    padding: 1rem;
     border-right: 1px solid #e5e7eb;
     display: none;
   }
@@ -94,6 +128,13 @@
   @media (min-width: 768px) {
     .membership-form-sidebar {
       display: block;
+      padding: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .membership-form-sidebar {
+      padding: 1.5rem;
     }
   }
 
@@ -344,7 +385,6 @@
   }
 
   @media (max-width: 768px) {
-
     .step-item,
     .step-circle {
       font-size: 1rem;
@@ -360,6 +400,650 @@
 
     .membership-form-grid {
       grid-template-columns: 1fr !important;
+    }
+
+    /* Fix form grid for mobile */
+    .form-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+
+    .form-grid-span-2 {
+      grid-column: span 1 !important;
+    }
+
+    /* Improve mobile form inputs */
+    .form-input {
+      width: 100% !important;
+      padding: 0.75rem 1rem !important;
+      font-size: 1rem !important;
+      border-radius: 0.5rem !important;
+      box-sizing: border-box !important;
+    }
+
+    .form-label {
+      font-size: 1rem !important;
+      margin-bottom: 0.5rem !important;
+      font-weight: 600 !important;
+    }
+
+    /* Better mobile spacing */
+    .form-actions {
+      margin-top: 2rem !important;
+      gap: 1rem !important;
+    }
+
+    .form-actions-between {
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-success {
+      width: 100% !important;
+      padding: 0.875rem 1.5rem !important;
+      font-size: 1.1rem !important;
+      text-align: center !important;
+    }
+
+    /* Fix form title on mobile */
+    .form-title {
+      font-size: 1.75rem !important;
+      margin-bottom: 1rem !important;
+    }
+  }
+
+
+  .bank-section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+  }
+
+  .bank-section-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    width: 100%;
+  }
+
+  .bank-logo-img {
+    width: 280px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .bank-details-box {
+    flex: 1;
+    padding: 2rem;
+    border: 2px solid #1d4ed8;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    text-align: left;
+    min-width: 500px;
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.1);
+  }
+
+  .bank-details-box p {
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+    color: #1e293b;
+    line-height: 1.6;
+  }
+
+  .bank-details-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .bank-details-box strong {
+    color: #1d4ed8;
+    font-weight: 700;
+  }
+
+  .bank-transfer-box {
+    width: 100%;
+  }
+
+  .bank-transfer-box h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    color: #111827;
+  }
+
+  .bank-transfer-box p {
+    font-size: 1rem;
+    color: #4b5563;
+    margin: 0;
+  }
+
+  .bank-transfer-btn {
+    margin-top: 0.5rem;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .payment-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  .payment-modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 95vw;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin: 1rem auto;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  @media (min-width: 480px) {
+    .payment-modal-content {
+      padding: 1.25rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      border: 2px solid green;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .payment-modal-content {
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 40rem;
+      border: 2px solid purple;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .payment-modal-content {
+      width: 50rem;
+      max-width: 80vw;
+      overflow-x: auto;
+      height: 70vh;
+      border: 2px solid red;
+    }
+  }
+
+  .payment-modal-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: #4b5563;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  .payment-modal-close:hover {
+    background-color: #f3f4f6;
+  }
+
+  @media (min-width: 768px) {
+    .payment-modal-close {
+      top: 0.75rem;
+      right: 0.75rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .payment-modal-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    padding-right: 2rem;
+  }
+
+  @media (min-width: 480px) {
+    .payment-modal-title {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 480px) {
+    .payment-form {
+      gap: 1rem;
+    }
+  }
+
+  .payment-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .payment-form-grid {
+      gap: 0.75rem;
+    }
+  }
+
+  .payment-form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .payment-form-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+  }
+
+  .payment-form-grid label,
+  .payment-form-row label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .payment-form-grid span,
+  .payment-form-row span {
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 480px) {
+
+    .payment-form-grid span,
+    .payment-form-row span {
+      font-size: 1rem;
+    }
+  }
+
+  .payment-form-grid input,
+  .payment-form-row input,
+  .payment-form-grid textarea,
+  .payment-form-grid select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 480px) {
+
+    .payment-form-grid input,
+    .payment-form-row input,
+    .payment-form-grid textarea,
+    .payment-form-grid select {
+      font-size: 1rem;
+    }
+  }
+
+  .payment-form-grid textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .payment-form-submit {
+    width: 100%;
+    background: #2563eb;
+    color: #fff;
+    padding: 0.6rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s;
+  }
+
+  .payment-form-submit:hover {
+    background: #1d4ed8;
+  }
+
+  @media (min-width: 480px) {
+    .payment-form-submit {
+      padding: 0.7rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Bank section responsive styles */
+  @media (max-width: 1024px) {
+    .bank-section-container {
+      padding: 1.5rem 1rem;
+    }
+    
+    .bank-section-row {
+      gap: 2rem;
+    }
+    
+    .bank-logo-img {
+      width: 240px;
+    }
+    
+    .bank-details-box {
+      min-width: 450px;
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .bank-section-row {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .bank-logo-img {
+      width: 200px;
+      order: 1;
+    }
+
+    .bank-details-box {
+      order: 2;
+      min-width: unset;
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .bank-details-box p {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .bank-section-container {
+      padding: 1rem 0.5rem;
+    }
+    
+    .bank-logo-img {
+      width: 180px;
+    }
+    
+    .bank-details-box {
+      padding: 1.25rem;
+    }
+    
+    .bank-details-box p {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .bank-section-container {
+      padding: 1rem 0.25rem;
+    }
+    
+    .bank-logo-img {
+      width: 160px;
+    }
+    
+    .bank-details-box {
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    
+    .bank-details-box p {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bank-logo-img {
+      width: 140px;
+    }
+    
+    .bank-details-box {
+      padding: 0.75rem;
+    }
+    
+    .bank-details-box p {
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+  }
+
+  /* Additional mobile improvements for very small screens */
+  @media (max-width: 600px) {
+    .membership-form-section {
+      padding: 1rem 0.5rem !important;
+    }
+
+    .membership-form-wrapper {
+      margin: 0.5rem !important;
+      border-radius: 0.5rem !important;
+    }
+
+    .membership-form-content {
+      padding: 1rem !important;
+    }
+
+    .form-title {
+      font-size: 1.5rem !important;
+      text-align: center !important;
+    }
+
+    .form-grid {
+      gap: 1.25rem !important;
+    }
+
+    .form-label {
+      font-size: 1rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+
+    .form-input {
+      padding: 0.875rem 1rem !important;
+      font-size: 1rem !important;
+      border: 2px solid #1d4ed8 !important;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-success {
+      padding: 1rem 1.5rem !important;
+      font-size: 1.1rem !important;
+      border-radius: 0.5rem !important;
+    }
+  }
+
+  /* Form responsive styles for very small screens */
+  @media (max-width: 480px) {
+    .membership-form-section {
+      padding: 0.5rem 0.25rem !important;
+    }
+
+    .membership-form-wrapper {
+      margin: 0.25rem !important;
+      border-radius: 0.5rem !important;
+    }
+
+    .membership-form-content {
+      padding: 0.75rem !important;
+    }
+
+    .form-title {
+      font-size: 1.4rem !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .form-grid {
+      gap: 1rem !important;
+    }
+
+    .form-label {
+      font-size: 0.95rem !important;
+      margin-bottom: 0.4rem !important;
+    }
+
+    .form-input {
+      padding: 0.75rem 0.875rem !important;
+      font-size: 0.95rem !important;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-success {
+      padding: 0.875rem 1.25rem !important;
+      font-size: 1rem !important;
+    }
+
+    .step-item .step-circle {
+      width: 1.8rem;
+      height: 1.8rem;
+      font-size: 1rem;
+    }
+
+    /* Improve help text on mobile */
+    .form-help {
+      font-size: 0.85rem !important;
+      margin-top: 0.25rem !important;
+    }
+
+    /* Better error message styling on mobile */
+    .input-error {
+      font-size: 0.9rem !important;
+      margin-top: 0.25rem !important;
+    }
+
+    /* Fix Terms & Conditions section on mobile */
+    .max-w-3xl {
+      margin: 1rem 0 !important;
+      padding: 1rem !important;
+    }
+
+    .space-y-3 p {
+      font-size: 0.9rem !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.75rem !important;
+    }
+
+    .form-group {
+      margin-top: 1rem !important;
+    }
+
+    .form-group label {
+      font-size: 0.95rem !important;
+      line-height: 1.4 !important;
+    }
+  }
+
+  /* Additional responsive styles for all screen sizes */
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .form-actions {
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+  }
+
+  /* Improve flash messages responsiveness */
+  @media (max-width: 480px) {
+    .flash-messages-container {
+      top: 0.5rem;
+      right: 0.5rem;
+      left: 0.5rem;
+      z-index: 100;
+    }
+
+    .flash-message {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Wrapper class for full-screen background */
+  .coming-soon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .payment-coming-container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+  }
+
+  .payment-coming-heading {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  .payment-coming-paragraph {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #ddd;
+  }
+
+
+  .icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: #ff6b6b;
+  }
+
+  @media (max-width: 600px) {
+    .payment-coming-heading {
+      font-size: 2rem;
+    }
+
+    .payment-coming-paragraph {
+      font-size: 1rem;
     }
   }
 </style>
@@ -380,6 +1064,15 @@
 </div>
 {% endif %}
 {% endwith %}
+
+<!-- <div class="coming-soon-wrapper">
+  <div class="payment-coming-container">
+    <div class="icon">💳</div>
+    <h1 class="payment-coming-heading">Payment Gateway Coming Soon</h1>
+    <p class="payment-coming-paragraph">We are working hard to bring you a seamless payment experience. Stay tuned!</p>
+  </div>
+</div> -->
+
 
 <section class="membership-form-section">
   <div class="membership-form-wrapper" style="border: 2px solid rgb(185, 185, 241);">
@@ -686,128 +1379,26 @@
   </div>
 </section>
 
-<div style="max-width: 1100px; margin: 0 auto;">
+<div class="bank-section-container">
+  <div class="bank-transfer-box">
+    <!-- Row: logo (left) + bank details (right) -->
+    <div class="bank-section-row">
+      <img src="/static/images/logo/bank-logo.png" alt="Bank Logo" class="bank-logo-img">
 
-  <!-- Row: logo (left) + button or bank details (right) -->
-  <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-    <img src="/static/images/logo/bank-logo.png" alt="Bank Logo" style="width: 500px; height: 500px;">
-
-    {% if bank_details %}
-    <div
-      style="display: flex; align-items: center; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 8px; background-color: #f9fafb; text-align: left;">
-      <div>
-        <p style="margin: 0 0 4px 0;"><strong>Mode of Payment:</strong> {{ bank_details["Mode of Payment"] }}</p>
-        <p style="margin: 0 0 4px 0;"><strong>Account Name:</strong> {{ bank_details["Account Name"] }}</p>
-        <p style="margin: 0 0 4px 0;"><strong>Account Number:</strong> {{ bank_details["Account Number"] }}</p>
-        <p style="margin: 0 0 4px 0;"><strong>Name of Bank:</strong> {{ bank_details["Name of Bank"] }}</p>
-        <p style="margin: 0 0 4px 0;"><strong>Branch:</strong> {{ bank_details["Branch"] }}</p>
-        <p style="margin: 0 0 4px 0;"><strong>IFSC (Domestic Transfer):</strong> {{ bank_details.get('ifsc_domestic',
-          bank_details.get('For transfer within the country IFSC code')) }}</p>
-        <p style="margin: 0;"><strong>SWIFT (International Transfer):</strong> {{
-          bank_details.get('swift_international', bank_details.get('For international Transfer code will be')) }}</p>
-      </div>
-
-    </div>
-    {% else %}
-    <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 420px; gap: 0.5rem;">
-      <h3 style="font-size: 2.2rem; font-weight: bold; margin: 0; color: #111827;">Bank Transfer Option</h3>
-      <p style="font-size: 0.95rem; color: #4b5563; margin: 0;">You can pay directly through our bank account. Please
-        click below to proceed.</p>
-      <button onclick="document.getElementById('paymentModal').style.display='flex'"
-        style="margin-top: 0.5rem; color: #2563eb; font-weight: 600; text-decoration: underline; background: none; border: none; cursor: pointer;">
-        Click here
-      </button>
-    </div>
-    {% endif %}
-  </div>
-
-</div>
-
-<!-- Modal -->
-<div id="paymentModal"
-  style="display: none; position: fixed; inset: 0; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
-  <div
-    style="background: #fff; border-radius: 12px; padding: 1.5rem; width: 50rem; max-width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.2); position: relative; margin-top:60px">
-
-    <!-- Close button -->
-    <button onclick="document.getElementById('paymentModal').style.display='none'"
-      style="position: absolute; top: 8px; right: 8px; color: #4b5563; background: none; border: none; font-size: 18px; cursor: pointer;">
-      ✕
-    </button>
-
-    <h2 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem;">Fill Payment Form</h2>
-
-    <form method="POST" action="{{ url_for('main.payment') }}" style="display: flex; flex-direction: column; gap: 1rem;">
-      <!-- Hidden fields to satisfy existing backend -->
-      <input type="hidden" name="name" id="hidden_name">
-      <input type="hidden" name="amount" value="0">
-
-      <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem;">
-        <label style="display: flex; flex-direction: column; gap: 0.25rem;">
-          <span style="font-weight: 600; color: #374151;">Name of Applicant</span>
-          <input id="application_name" name="application_name" type="text" placeholder="Enter full name" required
-            style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
-        </label>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-          <label style="display: flex; flex-direction: column; gap: 0.25rem;">
-            <span style="font-weight: 600; color: #374151;">Phone Number</span>
-            <input type="tel" name="phone" placeholder="e.g. +91 98765 43210" required
-              style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
-          </label>
-          <label style="display: flex; flex-direction: column; gap: 0.25rem;">
-            <span style="font-weight: 600; color: #374151;">Email ID</span>
-            <input type="email" name="email" placeholder="name@example.com" required
-              style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
-          </label>
+      <div class="bank-details-box">
+        <div>
+          <p><strong>Mode of Payment:</strong> Bank to Bank Transfer</p>
+          <p><strong>Account Name:</strong> Trans Asian Chamber of Commerce & Industry</p>
+          <p><strong>Account Number:</strong> 012204301990164</p>
+          <p><strong>Name of Bank:</strong> The Cosmos Co. Operative Bank Ltd</p>
+          <p><strong>Branch:</strong> Dadar</p>
+          <p><strong>IFSC (Domestic Transfer):</strong> COSB0000012</p>
+          <p><strong>SWIFT (International Transfer):</strong> COSDINBB0000012</p>
         </div>
-
-        <label style="display: flex; flex-direction: column; gap: 0.25rem;">
-          <span style="font-weight: 600; color: #374151;">Address</span>
-          <textarea name="address" rows="3" placeholder="Street, City, State, ZIP"
-            style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px; resize: vertical;"></textarea>
-        </label>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-          <label style="display: flex; flex-direction: column; gap: 0.25rem;">
-            <span style="font-weight: 600; color: #374151;">Country</span>
-            <input type="text" id="country" name="country" placeholder="Your country"
-              style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
-          </label>
-          <label style="display: flex; flex-direction: column; gap: 0.25rem;">
-            <span style="font-weight: 600; color: #374151;">Nationality</span>
-            <input type="text" name="nationality" placeholder="Your nationality"
-              style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
-          </label>
-        </div>
-
-        <label style="display: flex; flex-direction: column; gap: 0.25rem;">
-          <span style="font-weight: 600; color: #374151;">Membership Type</span>
-          <select name="membership_type" required
-            style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px; background: #fff;">
-            <option value="" disabled selected>Select a Membership Type</option>
-            <option value="Individual">Life Members</option>
-            <option value="Corporate">Patron Members</option>
-            <option value="Student">Corporate Patron Members</option>
-            <option value="Lifetime">Corporate Life Members</option>
-            <option value="Lifetime">Yearly Associates</option>
-            <option value="Lifetime">Corporate Yearly Associates</option>
-            <option value="Lifetime">Association Members</option>
-            <option value="Lifetime">Senior Life Members</option>
-            <option value="Lifetime">Honorary Members</option>
-          </select>
-        </label>
       </div>
-
-      <button type="submit"
-        style="width: 100%; background: #2563eb; color: #fff; padding: 0.5rem; border-radius: 6px; font-weight: 600; cursor: pointer;">
-        Submit
-      </button>
-    </form>
-
+    </div>
   </div>
 </div>
-
 
 
 <script>

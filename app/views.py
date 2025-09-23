@@ -548,6 +548,10 @@ def reset_password(token):
     return render_template('admin/reset_password.html', token=token)
 
 @bp.route('/')
+def action_page():
+    return render_template('action-page.html')
+
+@bp.route('/home')
 def home():
     # events = Event.query.order_by(Event.date.asc()).all()
     # Fetch active VIPs ordered by display_order
@@ -758,8 +762,8 @@ def export_enqury():
             db.session.rollback()
             return render_template('export-inqury.html', show_modal=True, 
                                message="An error occurred while submitting the form. Please try again.")
-    
-    breadcrumbs = [("Home", "/"), ("Trade", "/Trade"), ("Export Enquiry", None)]
+
+    breadcrumbs = [("Home", "/"), ("Trade", ""), ("Export Inquiry", None)]
     return render_template('export-inqury.html', crumbs=breadcrumbs)
 
 
@@ -1187,55 +1191,13 @@ def membership_types():
 
 @bp.route('/membership-benefit')
 def membership_benefit():
-    breadcrumbs = [("Home", "/"), ("Membership", ""), ("Membership Type", None)]
+    breadcrumbs = [("Home", "/"), ("Membership", ""), ("Membership Benefit", None)]
     return render_template('membership-benefit.html', crumbs=breadcrumbs)
 
-@bp.route("/bank-transfer", methods=["GET", "POST"])
+@bp.route("/bank-transfer", methods=["GET"])
 def payment():
-    bank_details = None
-    if request.method == "POST":
-        # Read new structured fields from the modal form
-        name = request.form.get("name")  # hidden, mirrors application_name
-        application_name = request.form.get("application_name") or name
-        phone_number = request.form.get("phone")
-        email = request.form.get("email")
-        address = request.form.get("address")
-        country = request.form.get("country")
-        nationality = request.form.get("nationality")
-        membership_type = request.form.get("membership_type")
-        amount = request.form.get("amount")
-
-        # Save to DB
-        inquiry = BankToBankTransfer(
-            name=name or application_name,
-            application_name=application_name,
-            phone_number=phone_number,
-            email=email,
-            address=address,
-            country=country,
-            nationality=nationality,
-            membership_type=membership_type,
-            amount=float(amount) if amount else None,
-        )
-        db.session.add(inquiry)
-        db.session.commit()
-
-        # Bank details after form submission
-        bank_details = {
-            "Mode of Payment": "Bank to Bank Transfer",
-            "Account Name": "Trans Asian Chamber of Commerce & Industry",
-            "Account Number": "012204301990164",
-            "Name of Bank": "The Cosmos Co. Operative Bank Ltd",
-            "Branch": "Dadar",
-            # Original verbose keys
-            "For transfer within the country IFSC code": "COSB0000012",
-            "For international Transfer code will be": "COSDINBB0000012",
-            # Simple duplicates for reliable template access
-            "ifsc_domestic": "COSB0000012",
-            "swift_international": "COSDINBB0000012",
-        }
-
-    return render_template("membership-form.html", bank_details=bank_details)
+    # We now always display the bank details directly without requiring form submission
+    return render_template("membership-form.html")
 
 @bp.route('/membership-form', methods=['GET', 'POST'])
 def membership_form():
@@ -1415,7 +1377,8 @@ def thank_you():
 
 @bp.route('/demo-past-events')
 def demo_past_event():
-    return render_template("demo-past-event.html")
+    breadcrumbs = [("Home", "/"), ("Past Events", None)]
+    return render_template("demo-past-event.html", breadcrumbs=breadcrumbs )
 
 @bp.route('/past-events')
 def past_event_page():
@@ -1423,7 +1386,8 @@ def past_event_page():
     past_event = PastEvent.query.order_by(PastEvent.event_date.is_(None), PastEvent.event_date.desc(), PastEvent.created_at.desc()).first()
     images = past_event.images if past_event else []
     sidebar_events = PastEvent.query.order_by(PastEvent.event_date.is_(None), PastEvent.event_date.desc(), PastEvent.created_at.desc()).all()
-    return render_template("past-events.html", past_event=past_event, past_event_images=images, sidebar_events=sidebar_events)
+    breadcrumbs = [("Home", "/"), ("Past Events", None)]
+    return render_template("past-events.html", past_event=past_event, past_event_images=images, sidebar_events=sidebar_events, breadcrumbs=breadcrumbs)
 
 
 @bp.route('/past-events/<int:past_event_id>')

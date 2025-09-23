@@ -1,13 +1,51 @@
+# Virtual environments
 venv/
 env/
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Databases (SQLite fallback, not MySQL)
 *.db
 *.sqlite3
+
+# Flask instance folder (secrets, configs)
 instance/
+
+# Environment variables
 .env
+
+# Migration cache (but keep migration scripts!)
+migrations/versions/__pycache__/
+
+# Node / frontend
 node_modules/
 dist/
 build/
+
+# Logs & temp files
+*.log
+*.pot
+*.mo
+*.pid
+*.seed
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Pytest / coverage
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.pytest_cache/
+
+# IDE files
+.vscode/
+.idea/
+*.iml

@@ -320,7 +320,6 @@
 
   .mobile-menu-overlay.active {
     opacity: 1;
-    visibility: visible;
   }
 </style>
 
@@ -397,12 +396,12 @@
                 <li class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle">Events</a>
                   <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('main.upcoming_page') }}" class="dropdown-link">Upcoming Events</a></li>
                     <li><a href="{{ url_for('main.past_event_page') }}" class="dropdown-link">Past Events</a></li>
                     <li><a href="{{ url_for('main.budget_event') }}" class="dropdown-link">Budget
                         Events</a></li>
                     <!-- <li><a href="blog-sidebar.html" class="dropdown-link">Trade Delegations</a></li>
                       <li><a href="blog-details.html" class="dropdown-link">Webinars & Conferences</a></li> -->
-                    <li><a href="{{ url_for('main.upcoming_page') }}" class="dropdown-link">Upcoming Events</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -506,7 +505,7 @@
                       <ul class="tp-submenu submenu" role="menu"
                         style="display: none; background: #f8f9fa; padding-left: 20px;">
                         <li role="menuitem" style="border-bottom: 1px solid #eee;">
-                          <a href="{{ url_for('main.membership_benefit') }}"
+                          <a href="{{ url_for('main.membership_types') }}"
                             style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Membership
                             types</a>
                         </li>
@@ -514,20 +513,6 @@
                           <a href="{{ url_for('main.membership_benefit') }}"
                             style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Member
                             Benefits</a>
-                        </li>
-                        <li role="menuitem" style="border-bottom: 1px solid #eee;">
-                          <a href="blog-details.html"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Categories</a>
-                        </li>
-                        <li role="menuitem" style="border-bottom: 1px solid #eee;">
-                          <a href="blog-details.html"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Member
-                            Directory</a>
-                        </li>
-                        <li role="menuitem">
-                          <a href="{{ url_for('main.membership_form') }}"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Apply/Renew</a>
-                        </li>
                       </ul>
                     </li>
                     <li class="has-dropdown" style="border-bottom: 1px solid #eee;">
@@ -540,20 +525,22 @@
                       <ul class="tp-submenu submenu" role="menu"
                         style="display: none; background: #f8f9fa; padding-left: 20px;">
                         <li role="menuitem" style="border-bottom: 1px solid #eee;">
-                          <a href="{{ url_for('main.all_events_page') }}"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Events</a>
-                        </li>
-                        <li role="menuitem" style="border-bottom: 1px solid #eee;">
                           <a href="{{ url_for('main.upcoming_page') }}"
                             style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Upcoming
                             Events</a>
                         </li>
-                        <li role="menuitem" style="border-bottom: 1px solid #eee;">
-                          <a href="{{ url_for('main.budget_event', event_id=1) }}"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Budget
+
+                        <li role="menuitem">
+                          <a href="{{ url_for('main.past_event_page') }}"
+                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Past
                             Events</a>
                         </li>
                         <li role="menuitem" style="border-bottom: 1px solid #eee;">
+                          <a href="{{ url_for('main.budget_event') }}"
+                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Budget
+                            Events</a>
+                        </li>
+                        <!-- <li role="menuitem" style="border-bottom: 1px solid #eee;">
                           <a href="blog-sidebar.html"
                             style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Trade
                             Delegations</a>
@@ -562,22 +549,15 @@
                           <a href="blog-details.html"
                             style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Webinars &
                             Conferences</a>
-                        </li>
-                        <li role="menuitem">
-                          <a href="blog-details.html"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Past
-                            Events</a>
-                        </li>
+                        </li> -->
                       </ul>
                     </li>
                     <li class="has-dropdown" style="border-bottom: 1px solid #eee;">
-                      <a href="#" aria-haspopup="true" aria-expanded="false"
+                      <a href="{{ url_for('main.news') }}" aria-haspopup="true" aria-expanded="false"
                         style="display: block; padding: 15px 20px; color: #333; text-decoration: none; position: relative;">
                         News
-                        <span class="dropdown-arrow"
-                          style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); transition: transform 0.3s;">▼</span>
                       </a>
-                      <ul class="tp-submenu submenu" role="menu"
+                      <!-- <ul class="tp-submenu submenu" role="menu"
                         style="display: none; background: #f8f9fa; padding-left: 20px;">
                         <li role="menuitem" style="border-bottom: 1px solid #eee;">
                           <a href="blog.html"
@@ -598,7 +578,7 @@
                             style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Media
                             Coverage</a>
                         </li>
-                      </ul>
+                      </ul> -->
                     </li>
                     <li class="has-dropdown" style="border-bottom: 1px solid #eee;">
                       <a href="#" aria-haspopup="true" aria-expanded="false"
@@ -610,27 +590,32 @@
                       <ul class="tp-submenu submenu" role="menu"
                         style="display: none; background: #f8f9fa; padding-left: 20px;">
                         <li role="menuitem" style="border-bottom: 1px solid #eee;">
-                          <a href="blog.html"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Export/Import</a>
+                          <a href="{{ url_for('main.export_enqury') }}"
+                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Export
+                            Enquries</a>
                         </li>
                         <li role="menuitem" style="border-bottom: 1px solid #eee;">
-                          <a href="blog-sidebar.html"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Investment
-                            Zones</a>
+                          <a href="{{ url_for('main.import_enqury') }}"
+                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Import
+                            Enquries</a>
                         </li>
                         <li role="menuitem" style="border-bottom: 1px solid #eee;">
-                          <a href="blog-details.html"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Trade
-                            Enquiry</a>
+                          <a href="{{ url_for('main.business_opportunity') }}"
+                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Other
+                            Business
+                            Opportunity</a>
                         </li>
                         <li role="menuitem">
-                          <a href="blog-details.html"
-                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Business
-                            Matching</a>
+                          <a href="{{ url_for('main.suggestions') }}"
+                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Suggestions</a>
+                        </li>
+                        <li role="menuitem">
+                          <a href="{{ url_for('main.complaints') }}"
+                            style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Complaints</a>
                         </li>
                       </ul>
                     </li>
-                    <li class="has-dropdown" style="border-bottom: 1px solid #eee;">
+                    <!-- <li class="has-dropdown" style="border-bottom: 1px solid #eee;">
                       <a href="#" aria-haspopup="true" aria-expanded="false"
                         style="display: block; padding: 15px 20px; color: #333; text-decoration: none; position: relative;">
                         Resources
@@ -659,7 +644,7 @@
                             style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Publications</a>
                         </li>
                       </ul>
-                    </li>
+                    </li> -->
                     <li>
                       <a href="{{ url_for('main.contact_page') }}"
                         style="display: block; padding: 15px 20px; color: #333; text-decoration: none;">Contact</a>
