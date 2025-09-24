@@ -11,3 +11,10 @@ instance/
 node_modules/
 dist/
 build/
+
+# Additional caches and build artifacts
+.mypy_cache/
+.pytest_cache/
+
+# Tailwind CSS output
+app/static/css/output.css
