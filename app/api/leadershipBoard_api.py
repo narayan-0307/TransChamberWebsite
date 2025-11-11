@@ -26,7 +26,7 @@ data = {
         id: 3,
       "name": "Dr. Mohammaed Ali Patankar",
       "role": "A To Z Diagnostic Centre, Marine Lines (E)",
-      "designation": "Former President Hindustan Chapter, TACCI",
+      "designation": "Former President Hindustaan Chapter, TACCI",
       "image": "/static/images/advisors/ma_patankar.jpeg",
       "social": {
         "linkedin": "#",
@@ -45,7 +45,7 @@ data = {
     {
       id: 5,
       "name": "Shri. Paresh Mehta",
-      "role": "Honorary Consul Of Nicaragua in Mumbai, Hindustan",
+      "role": "Honorary Consul Of Nicaragua in Mumbai, Hindustaan",
       "designation": "",
       "image": "/static/images/advisors/paresh_mehta.jpeg",
       "social": {
@@ -55,7 +55,7 @@ data = {
     {
       id: 6,
       "name": "Shri. Sunil Khanna",
-      "role": "Honorary Consul of Estonia in Mumbai, Hindustan",
+      "role": "Honorary Consul of Estonia in Mumbai, Hindustaan",
       "designation": "",
       "image": "/static/images/advisors/sunil_mehta.jpeg",
       "social": {
@@ -65,7 +65,7 @@ data = {
     {
       id: 7,
       "name": "Shri. Dilip Dandekar",
-      "role": "Honorary Consul of Mongolia in Mumbai, Hindustan",
+      "role": "Honorary Consul of Mongolia in Mumbai, Hindustaan",
       "designation": "",
       "image": "/static/images/advisors/dilip_dandekar.jpeg",
       "social": {
@@ -75,7 +75,7 @@ data = {
     {
       id: 8,
       "name": "Shri. Ramakant Khalap",
-      "role": "Former Union Minister, Hindustan Government",
+      "role": "Former Union Minister, Hindustaan Government",
       "designation": "",
       "image": "/static/images/advisors/ramakant-khalap.jpg",
       "social": {
@@ -111,7 +111,7 @@ data = {
     {
       id:3,
       "name": "Shri. Anand Dharadhar",
-      "role": "Advisor, HDFC Bank, Hindustan",
+      "role": "Advisor, HDFC Bank, Hindustaan",
       "designation": "President Of IMCCI",
       "image": "/static/images/icons/male.jpg",
       "social": {
@@ -123,7 +123,7 @@ data = {
       id:4,
       "name": "Shri. Uday Naik",
       "role": "",
-      "designation": "Senior Executive President, TACCI",
+      "designation": "Executive President, TACCI",
       "image": "/static/images/workingTeam/uday_naik.JPG",
       "social": {
         "linkedin": "#",
@@ -133,7 +133,7 @@ data = {
     {
       id:5,
       "name": "Dr. Arun D. Sawant",
-      "role": "Former Vice Chacellor University of Rajasthan, Hindustan",
+      "role": "Former Vice Chacellor University of Rajasthan, Hindustaan",
       "designation": "Vice President, Education Committee",
       "image": "/static/images/workingTeam/arun_sawant.jpeg",
       "social": {
@@ -144,7 +144,7 @@ data = {
     {
       id:6,
       "name": "Hon. Ramadas Athawale",
-      "role": "Member of Rajyasabha, Hindustan",
+      "role": "Minister for State, Social Justice and Empowerment, Hindustaan Government",
       "designation": "Vice President, Social Justice",
       "image": "/static/images/workingTeam/ramdas_athawale.jpg",
       "social": {
@@ -155,7 +155,7 @@ data = {
     {
       id:7,
       "name": "Hon. Dr. Neelam Gorhe",
-      "role": "Deputy Chair Person, Legislative Council, Maharashtra, Hindustan",
+      "role": "Deputy Chair Person, Legislative Council, Maharashtra, Hindustaan",
       "designation": "Vice President, Women Empowerment", 
       "image": "/static/images/workingTeam/neelam_gorhe.jpeg",
       "social": {
@@ -167,7 +167,7 @@ data = {
       id:8,
       "name": "Shri. Raj Purohit",
       "role": "",
-      "designation": "Vice President, Government Relations",
+      "designation": "M.L.A. and ex. Minister, Maharashtra, Hindustaan",
       "image": "/static/images/workingTeam/raaj_purohit.jpeg",
       "social": {
         "linkedin": "#",
@@ -190,7 +190,7 @@ data = {
       "name": "Shri. Narayan B. Shetty",
       "role": "",
       "designation": "Vice President, Hospitality Industry",
-      "image": "/static/images/icons/male.jpg",
+      "image": "/static/images/workingTeam/narayan_shetty.jpg",
       "social": {
         "linkedin": "#",
       }
@@ -233,7 +233,7 @@ data = {
       id:14,
       "name": "Shri. Kedar Choudhary",
       "role": "",
-      "designation": "Vice President, Western Hindustan Region",
+      "designation": "Vice President, Western Hindustaan Region",
       "image": "/static/images/workingTeam/kedar_chaudhari.jpeg",
       "social": {
         "linkedin": "#",
@@ -255,7 +255,7 @@ data = {
       id:16,
       "name": "Shri. Dr. Chandrakant Pandav",
       "role": "",
-      "designation": "Vice President, Northern Hindustan Region",
+      "designation": "Vice President, Northern Hindustaan Region",
       "image": "/static/images/workingTeam/chandrakant_pandav.jpeg",
       "social": {
         "linkedin": "#",
@@ -535,7 +535,7 @@ data = {
 
     {
       id: 16,
-      "name": "Shri. Subhash Matwani",
+      "name": "Shri. Subhash Motwani",
       "role": "",
       "designation": "Chairman, Tourism Committee",
       "image": "/static/images/committee/subhash_matwani.JPG",
@@ -577,7 +577,7 @@ data = {
       "name": "Shri. D.T. Dewale",
       "role": "",
       "designation": "Chairman, Enviroment Committee",
-      "image": "/static/images/icons/male.jpg",
+  "image": "/static/images/committee/d.t.dewale.jpg",
       "social": {
         "facebook": "#",
         "linkedin": "#",
@@ -603,7 +603,7 @@ data = {
       "name": "Shri. AkshayKumar Thakkar",
       "role": "",
       "designation": "In-Charge, Gujrat State",
-      "image": "/static/images/about/image1.jpg",
+      "image": "/static/images/committee/akshaykumar_thakkar.jpg",
       "social": {
         "facebook": "#",
         "linkedin": "#",
@@ -639,10 +639,10 @@ data = {
 
     {
       id: 24,
-      "name": "Shri. Girish Karandikar",
+      "name": "Shri. Girish Karandelikar",
       "role": "",
       "designation": "ISO Committee",
-      "image": "/static/images/icons/male.jpg",
+      "image": "/static/images/committee/girish_karandikar.jpg",
       "social": {
         "facebook": "#",
         "linkedin": "#",
@@ -665,9 +665,9 @@ data = {
 
     {
       id: 26,
-      "name": "Shrinivas Khalap",
+      "name": "Shri. Shrinivas Khalap",
       "role": "",
-      "designation": "Co In-charge, Goa State",
+      "designation": "In-charge, Goa State",
       "image": "/static/images/icons/male.jpg",
       "social": {
         "facebook": "#",
@@ -693,7 +693,7 @@ data = {
       id: 28,
       "name": "Capt. Nitin Dhond",
       "role": "",
-      "designation": "Co-Chair Person, Events Committee",
+      "designation": "Chairman, Shipping Committee",
       "image": "/static/images/committee/nitin_dhond.jpeg",
       "social": {
         "facebook": "#",
@@ -730,6 +730,7 @@ data = {
         "instagram": "#"
       }
     },
+
     {
       id: 2,
       "name": "Dr. Sanjay Bhide",

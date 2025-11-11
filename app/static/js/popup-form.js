@@ -21,10 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 
-    // Here you can add your form submission logic
-    // For example, sending data to your backend
-    console.log("Form submitted:", data);
-
     // Show success message
     const successMessage = document.createElement("div");
     successMessage.className = "success-message";

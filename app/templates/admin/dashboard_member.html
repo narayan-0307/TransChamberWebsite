@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Member Dashboard - TACCI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/static/css/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -65,8 +65,8 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-500">Total Inquiries</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ export_inquiries|length +
-                            import_inquiries|length }}</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ (export_inquiries|length if export_inquiries else
+                            0) + (import_inquiries|length if import_inquiries else 0) }}</p>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,8 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-500">Business Opportunities</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ business_opportunities|length }}</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ business_opportunities|length if
+                            business_opportunities else 0 }}</p>
                     </div>
                 </div>
             </div>
@@ -94,7 +95,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-500">Suggestions</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ suggestions|length }}</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ suggestions|length if suggestions else 0 }}</p>
                     </div>
                 </div>
             </div>
@@ -108,7 +109,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-500">Complaints</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ complaints|length }}</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ complaints|length if complaints else 0 }}</p>
                     </div>
                 </div>
             </div>
@@ -138,10 +139,6 @@
                         class="py-4 px-1 border-b-2 font-medium text-sm">
                         <i class="fas fa-comments mr-2"></i>Feedback ({{ suggestions|length + complaints|length }})
                     </button>
-                    <a href="{{ url_for('main.admin_past_events') }}"
-                        class="py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                        <i class="fas fa-history mr-2"></i>Past Events
-                    </a>
                     <button @click="activeTab = 'settings'"
                         :class="activeTab === 'settings' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
                         class="py-4 px-1 border-b-2 font-medium text-sm">

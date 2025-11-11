@@ -1,37 +1,95 @@
 {% extends "base.html" %} {% block title %} TACCI {% endblock %} {% block
 content %}
-<div
-  class="tp-breadcrumb-area tp-breadcrumb-spacing bg-position pt-200 h-[60vh]"
-  data-background="static/images/hero/banner.jpg"
-  style="margin-top: -7rem"
-></div>
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+  data-background="static/images/hero/banner.jpg" style="
+    min-height: 40vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+  "></div>
 
 {% include 'partials/breadcrumb.html' %}
 
-<section
-  class="bg-cover bg-center bg-no-repeat"
-  style="background-image: url('/static/images/benefit-bg.png')"
->
-  <div class="max-w-6xl mx-auto px-6 py-16" style="margin-bottom: 2rem">
-    <!-- Header -->
-    <div class="mb-12 mt-8 text-center" style="margin-top: 2rem">
-      <div class="max-w-2xl mx-auto">
-        <h2 class="text-lg font-semibold text-gray-900 mb-2">
-          Company OF TACCI
-        </h2>
-        <p class="text-sm text-gray-600">
-          Benefits of joining the Trans Asian Chamber of Commerce & Industry
-        </p>
-      </div>
-    </div>
+<div class="tp-success-section-title-wrap text-center" data-aos="fade-up" data-aos-duration="1000">
+  <style>
+    /* Scoped responsive styles for the membership heading */
+    .tp-success-section-title-wrap h2 {
+      font-size: 1.4rem;
+      /* base */
+      line-height: 1.15;
+      margin-bottom: 1.6rem;
+      font-weight: 600;
+    }
 
+    .tp-success-section-title-wrap .tp-section-subtitle {
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .65rem;
+    }
+
+    /* Make the emphasized second line not force a break; let wrapping happen naturally */
+    .tp-success-section-title-wrap .tp-ff-heading {
+      font-style: italic;
+      font-weight: 400;
+      display: inline;
+    }
+
+    /* Breakpoints */
+    @media (min-width: 640px) {
+      .tp-success-section-title-wrap h2 {
+        font-size: 1.6rem;
+      }
+
+      .tp-success-section-title-wrap .tp-section-subtitle {
+        font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .tp-success-section-title-wrap h2 {
+        font-size: 2rem;
+      }
+
+      .tp-success-section-title-wrap .tp-section-subtitle {
+        font-size: 1.05rem;
+      }
+    }
+
+    /* Prevent the svg + text from wrapping awkwardly on very small screens */
+    @media (max-width: 420px) {
+      .tp-success-section-title-wrap .tp-section-subtitle svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .tp-success-section-title-wrap h2 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+  <span
+    class="tp-section-subtitle fs-sm-30 fw-500 tp-text-grey-1 d-flex align-items-center justify-content-center gap-2 mb-10">
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1.7 10.2C1.2325 10.2 0.832431 10.0334 0.4998 9.7002C0.1666 9.36759 0 8.9675 0 8.5C0 8.0325 0.1666 7.63215 0.4998 7.29895C0.832431 6.96635 1.2325 6.8 1.7 6.8C2.1675 6.8 2.56757 6.96635 2.9002 7.29895C3.2334 7.63215 3.4 8.0325 3.4 8.5C3.4 8.9675 3.2334 9.36759 2.9002 9.7002C2.56757 10.0334 2.1675 10.2 1.7 10.2ZM3.1025 15.045L1.9125 13.855L5.61 10.1575L6.8 11.3475L3.1025 15.045ZM5.6525 6.8L1.955 3.1025L3.145 1.9125L6.8425 5.61L5.6525 6.8ZM8.5 17C8.0325 17 7.63241 16.8337 7.2998 16.5011C6.9666 16.1679 6.8 15.7675 6.8 15.3C6.8 14.8325 6.9666 14.4321 7.2998 14.099C7.63241 13.7663 8.0325 13.6 8.5 13.6C8.9675 13.6 9.36785 13.7663 9.70105 14.099C10.0337 14.4321 10.2 14.8325 10.2 15.3C10.2 15.7675 10.0337 16.1679 9.70105 16.5011C9.36785 16.8337 8.9675 17 8.5 17ZM8.5 3.4C8.0325 3.4 7.63241 3.2334 7.2998 2.9002C6.9666 2.56757 6.8 2.1675 6.8 1.7C6.8 1.2325 6.9666 0.83215 7.2998 0.49895C7.63241 0.166319 8.0325 0 8.5 0C8.9675 0 9.36785 0.166319 9.70105 0.49895C10.0337 0.83215 10.2 1.2325 10.2 1.7C10.2 2.1675 10.0337 2.56757 9.70105 2.9002C9.36785 3.2334 8.9675 3.4 8.5 3.4ZM11.3475 6.8425L10.1575 5.61L13.8975 1.9125L15.0875 3.1025L11.3475 6.8425ZM13.8975 15.045L10.2 11.3475L11.39 10.1575L15.0875 13.855L13.8975 15.045ZM15.3 10.2C14.8325 10.2 14.4321 10.0334 14.099 9.7002C13.7663 9.36759 13.6 8.9675 13.6 8.5C13.6 8.0325 13.7663 7.63215 14.099 7.29895C14.4321 6.96635 14.8325 6.8 15.3 6.8C15.7675 6.8 16.1679 6.96635 16.5011 7.29895C16.8337 7.63215 17 8.0325 17 8.5C17 8.9675 16.8337 9.36759 16.5011 9.7002C16.1679 10.0334 15.7675 10.2 15.3 10.2Z"
+        fill="#1F3130" />
+    </svg>
+    Benefits Of Membership
+  </span>
+  <h2 class="mb-25 fs-sm-30 wow img-custom-anim-top" data-wow-duration="1.5s" data-wow-delay="0.2s">
+    Benefits of joining the Trans Asian Chamber of
+    <span class="tp-text-grey-1 text-italic fw-400 tp-ff-heading"> Commerce & Industry</span>
+  </h2>
+</div>
+
+<section class="bg-cover bg-center bg-no-repeat" style="background-image: url('/static/images/benefit-bg.png')">
+  <div class="max-w-7xl mx-auto px-6 py-16" style="margin-bottom: 2rem">
     <!-- Benefits Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm">
       <!-- 1. Genuine partnerships for Export, Import, and Technology Transfers -->
-      <div
-        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
-        style="padding: 10px 15px"
-      >
+      <div class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]" style="padding: 10px 15px">
         <div>
           <p class="mt-1 text-gray-600">
             Genuine partnerships for Export, Import, and Technology Transfers
@@ -39,25 +97,14 @@ content %}
         </div>
         <div class="text-blue-500 mt-1">
           <!-- Globe/Exchange icon -->
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM2.05 11h19.9M12 2.05v19.9"
-            />
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM2.05 11h19.9M12 2.05v19.9" />
           </svg>
         </div>
       </div>
 
       <!-- 2. Establishing international connections -->
-      <div
-        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
-        style="padding: 10px 15px"
-      >
+      <div class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]" style="padding: 10px 15px">
         <div>
           <p class="mt-1 text-gray-600">
             Establishing international connections.
@@ -65,26 +112,16 @@ content %}
         </div>
         <div class="text-blue-500 mt-1 ml-auto">
           <!-- Link/network icon -->
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            style="margin-left: 12rem"
-          >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            style="margin-left: 12rem">
             <path
-              d="M10 14a5 5 0 017.07 0l1.41 1.41a5 5 0 01-7.07 7.07l-1.41-1.41M14 10a5 5 0 00-7.07 0L5.5 11.5a5 5 0 007.07 7.07l1.43-1.43"
-            />
+              d="M10 14a5 5 0 017.07 0l1.41 1.41a5 5 0 01-7.07 7.07l-1.41-1.41M14 10a5 5 0 00-7.07 0L5.5 11.5a5 5 0 007.07 7.07l1.43-1.43" />
           </svg>
         </div>
       </div>
 
       <!-- 3. Legitimate overseas business trade inquiries -->
-      <div
-        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
-        style="padding: 10px 15px"
-      >
+      <div class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]" style="padding: 10px 15px">
         <div>
           <p class="mt-1 text-gray-600">
             Legitimate overseas business trade inquiries facilitated by
@@ -93,25 +130,14 @@ content %}
         </div>
         <div class="text-blue-500 mt-1">
           <!-- Document/Search icon -->
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M21 21l-4.35-4.35M11 4h10M4 7h16M4 10h10M4 13h10M4 16h10M4 19h6"
-            />
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 21l-4.35-4.35M11 4h10M4 7h16M4 10h10M4 13h10M4 16h10M4 19h6" />
           </svg>
         </div>
       </div>
 
       <!-- 4. Delegations from various nations advocating for trade -->
-      <div
-        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
-        style="padding: 10px 15px"
-      >
+      <div class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]" style="padding: 10px 15px">
         <div>
           <p class="mt-1 text-gray-600">
             Delegations from various nations actively advocating for trade
@@ -120,23 +146,14 @@ content %}
         </div>
         <div class="text-blue-500 mt-1">
           <!-- Flag/people icon -->
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M9 3v18M9 3h10l-2 4 2 4H9M5 9h.01M5 13h.01M5 17h.01" />
           </svg>
         </div>
       </div>
 
       <!-- 5. Chamber arranges delegations to explore trade -->
-      <div
-        class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]"
-        style="padding: 10px 15px"
-      >
+      <div class="flex items-start gap-4 border-2 border-[#1c96c5] rounded-[15px]" style="padding: 10px 15px">
         <div>
           <p class="mt-1 text-gray-600">
             The chamber arranges delegations to explore trade prospects in
@@ -145,13 +162,7 @@ content %}
         </div>
         <div class="text-blue-500 mt-1">
           <!-- Airplane/navigation icon -->
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M10.5 13.5l7-7M9 21l1.5-7.5 7-7L3 10.5 9 21z" />
           </svg>
         </div>

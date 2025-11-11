@@ -1,0 +1,495 @@
+/* Action Page Custom CSS Styles */
+/* This file contains all custom styles for the action-page.html */
+
+/* CSS Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Utility Classes - Custom alternatives to Tailwind CSS */
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.space-x-3 > * + * {
+  margin-left: 0.75rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+/* Color Classes */
+.text-white {
+  color: white;
+}
+
+.text-blue-100 {
+  color: #dbeafe;
+}
+
+.text-blue-400 {
+  color: #60a5fa;
+}
+
+/* Typography Classes */
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+/* Custom Gradient Text */
+.gradient-text {
+  background: linear-gradient(to right, #60a5fa, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Animation Classes */
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Responsive Typography */
+@media (min-width: 768px) {
+  .md-text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+  .md-text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+/* Main Page Styles */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.world-map-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  transition: all 0.8s ease;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(30, 58, 138, 0.7),
+    rgba(59, 130, 246, 0.5),
+    rgba(6, 182, 212, 0.7)
+  );
+  backdrop-filter: blur(1px);
+  transition: all 0.8s ease;
+}
+
+/* Header Styles */
+.header-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.8s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-section.hidden {
+  opacity: 0;
+  transform: translateY(-100px);
+  pointer-events: none;
+}
+
+/* Action Button Styles */
+.action-button {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.8s ease;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
+  animation: float 6s ease-in-out infinite;
+  opacity: 1;
+  visibility: visible;
+}
+
+.action-button:hover {
+  background: rgba(30, 58, 138, 0.9);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(30, 58, 138, 0.4);
+  border-color: rgba(59, 130, 246, 0.6);
+}
+
+.action-button.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8) translateY(50px);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Main Title Styles */
+.main-title {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  z-index: 50;
+  transition: all 0.8s ease;
+  opacity: 1;
+}
+
+.main-title.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50px);
+}
+
+/* Instruction Panel Styles */
+.instruction-panel {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: glow 2s ease-in-out infinite alternate;
+  transition: all 0.8s ease;
+  opacity: 1;
+}
+
+.instruction-panel.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(50px);
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+/* Particle Animation Styles */
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(59, 130, 246, 0.6);
+  border-radius: 50%;
+  animation: particle-float 8s linear infinite;
+  transition: all 0.8s ease;
+  opacity: 1;
+}
+
+.particle.hidden {
+  opacity: 0;
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Video Overlay Styles */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85); /* slightly see-through black */
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-overlay.show {
+  display: flex;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2001; /* ✅ ensures the video is above overlay background */
+  position: relative;
+}
+
+/* Skip Button Styles */
+.skip-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  z-index: 2001;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.skip-button.show {
+  display: block;
+}
+
+.skip-button:hover {
+  background: rgba(239, 68, 68, 0.8);
+  transform: scale(1.05);
+}
+
+/* Button Position Classes */
+.btn-business {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.btn-export {
+  top: 35%;
+  left: 25%;
+  animation-delay: 0.5s;
+}
+
+.btn-ventures {
+  top: 55%;
+  left: 18%;
+  animation-delay: 1s;
+}
+
+.btn-tech {
+  top: 65%;
+  left: 35%;
+  animation-delay: 1.5s;
+}
+
+.btn-education {
+  top: 70%;
+  left: 50%;
+  animation-delay: 2s;
+}
+
+.btn-policy {
+  top: 25%;
+  right: 25%;
+  animation-delay: 2.5s;
+}
+
+.btn-culture {
+  top: 40%;
+  right: 20%;
+  animation-delay: 3s;
+}
+
+.btn-legal {
+  top: 55%;
+  right: 15%;
+  animation-delay: 3.5s;
+}
+
+.btn-networking {
+  top: 30%;
+  right: 8%;
+  animation-delay: 4s;
+}
+
+.btn-digital {
+  top: 60%;
+  left: 60%;
+  animation-delay: 4.5s;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+
+  .text-xl {
+    font-size: 1rem;
+  }
+
+  .action-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .instruction-panel {
+    bottom: 20px;
+    padding: 15px 20px;
+    margin: 0 20px;
+  }
+
+  .btn-business,
+  .btn-export,
+  .btn-ventures,
+  .btn-tech,
+  .btn-education,
+  .btn-policy,
+  .btn-culture,
+  .btn-legal,
+  .btn-networking,
+  .btn-digital {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin: 10px;
+    display: inline-block;
+  }
+}
+
+/* Additional Animation for Enhanced User Experience */
+.action-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-button:active {
+  transform: scale(0.95);
+}
+
+/* Focus styles for accessibility */
+.action-button:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.8);
+  outline-offset: 2px;
+}
+
+.skip-button:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.8);
+  outline-offset: 2px;
+}

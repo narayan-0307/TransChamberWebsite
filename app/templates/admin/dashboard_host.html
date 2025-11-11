@@ -750,6 +750,348 @@
             margin-top: 1rem;
         }
 
+        /* Enhanced Gallery Management Styles */
+        .gallery-upload-section {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #f8f9fa;
+        }
+
+        .drag-drop-area {
+            position: relative;
+            border: 2px dashed #ced4da;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drag-drop-area:hover,
+        .drag-drop-area.drag-over {
+            border-color: #007bff;
+            background: #e3f2fd;
+        }
+
+        .drag-drop-content h5 {
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-progress {
+            margin-top: 1rem;
+        }
+
+        .gallery-preview-container {
+            max-height: 600px;
+            overflow-y: auto;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #ffffff;
+        }
+
+        .gallery-item-card {
+            position: relative;
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-item-card:hover {
+            border-color: #007bff;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .gallery-item-card.editing {
+            border-color: #28a745;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
+        }
+
+        .gallery-item-header {
+            position: relative;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        .gallery-item-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item-controls {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .gallery-item-order {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .gallery-item-body {
+            padding: 1rem;
+        }
+
+        .gallery-item-filename {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .gallery-description-textarea {
+            resize: vertical;
+            min-height: 60px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 0.5rem;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .gallery-description-textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .gallery-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .gallery-grid-view .gallery-item-card {
+            margin-bottom: 1rem;
+        }
+
+        .gallery-list-view .gallery-item-card {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-list-view .gallery-item-header {
+            width: 150px;
+            height: 80px;
+            flex-shrink: 0;
+        }
+
+        .gallery-list-view .gallery-item-body {
+            flex: 1;
+            padding: 0.75rem;
+        }
+
+        .gallery-sort-indicator {
+            color: #007bff;
+            margin-left: 0.5rem;
+        }
+
+        .badge-info {
+            background-color: #17a2b8;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        /* Image Status Indicators */
+        .image-status {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .image-status.new {
+            background: #28a745;
+            color: white;
+        }
+
+        .image-status.edited {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .image-status.existing {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .image-status.error {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .gallery-item-card {
+                margin-bottom: 0.5rem;
+            }
+
+            .gallery-item-header {
+                height: 100px;
+            }
+
+            .gallery-actions {
+                flex-wrap: wrap;
+            }
+
+            .drag-drop-area {
+                padding: 1rem;
+                min-height: 100px;
+            }
+
+            .vip-actions {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .vip-actions .btn {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .gallery-management-toolbar .d-flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .gallery-management-toolbar .btn {
+                font-size: 0.8rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .admin-sidebar {
+                transform: translateX(-100%);
+            }
+
+            .modal-content-admin {
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+            }
+
+            .gallery-upload-section {
+                padding: 0.5rem;
+            }
+
+            .drag-drop-area {
+                padding: 1rem 0.5rem;
+                min-height: 80px;
+            }
+
+            .gallery-preview-container {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Enhanced button styles */
+        .btn-danger-admin {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+
+        .btn-danger-admin:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+            color: white;
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Success animations */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
         .vip-actions .btn {
             flex: 1;
             font-size: 0.8rem;
@@ -1391,18 +1733,66 @@
                         <input type="file" class="form-control" id="peBanner" name="banner_image" accept="image/*">
                     </div>
                     <div class="form-group">
-                        <label>Gallery Images</label>
-                        <div class="d-flex gap-2 mb-2">
-                            <input type="file" class="form-control" id="gallery_images" multiple accept="image/*"
-                                onchange="handleGalleryFiles(this)">
-                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                onclick="addSingleImage()">Add Image</button>
-                            <button type="button" class="btn btn-sm btn-outline-danger"
-                                onclick="clearGalleryImages()">Clear All</button>
+                        <label>Gallery Images <span class="badge badge-info" id="gallery-count">0</span>/30</label>
+                        <div class="gallery-upload-section">
+                            <!-- Drag and Drop Area -->
+                            <div class="drag-drop-area" id="dragDropArea" ondrop="handleDrop(event)"
+                                ondragover="allowDrop(event)" ondragleave="removeDragOver(event)">
+                                <div class="drag-drop-content">
+                                    <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                    <h5>Drag & Drop Images Here</h5>
+                                    <p class="text-muted">or click to browse files</p>
+                                    <input type="file" class="form-control" id="gallery_images" multiple
+                                        accept="image/*" onchange="handleGalleryFiles(this)"
+                                        style="position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer;">
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-flex gap-2 mt-3 mb-2">
+                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="addSingleImage()">
+                                    <i class="fas fa-plus"></i> Add Single Image
+                                </button>
+                                <button type="button" class="btn btn-outline-success btn-sm" onclick="addBulkImages()">
+                                    <i class="fas fa-images"></i> Add Bulk Images (Up to 30)
+                                </button>
+                                <button type="button" class="btn btn-outline-warning btn-sm"
+                                    onclick="sortGalleryImages()">
+                                    <i class="fas fa-sort"></i> Sort Images
+                                </button>
+                                <button type="button" class="btn btn-outline-danger btn-sm"
+                                    onclick="clearGalleryImages()">
+                                    <i class="fas fa-trash"></i> Clear All
+                                </button>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div class="upload-progress" id="uploadProgress" style="display: none;">
+                                <div class="progress mb-2">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                </div>
+                                <small class="text-muted" id="progressText">Preparing images...</small>
+                            </div>
                         </div>
-                        <small class="form-text text-muted">Add an image and write its description below. You can add
-                            multiple entries.</small>
-                        <div class="row mt-2" id="gallery-images-list"></div>
+
+                        <!-- Gallery Preview with Enhanced Features -->
+                        <div class="gallery-preview-container mt-3">
+                            <div class="gallery-header d-flex justify-content-between align-items-center mb-3"
+                                style="display: none !important;" id="galleryHeader">
+                                <h6 class="mb-0">Image Gallery Preview</h6>
+                                <div class="gallery-actions">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        onclick="toggleGalleryView()">
+                                        <i class="fas fa-th" id="viewToggleIcon"></i> Grid View
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary"
+                                        onclick="previewGallery()">
+                                        <i class="fas fa-eye"></i> Preview
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row" id="gallery-images-list"></div>
+                        </div>
                     </div>
                     <div class="text-end">
                         <button type="button" class="btn btn-secondary-admin"
@@ -1440,6 +1830,130 @@
                             Images</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Image Editor Modal -->
+    <div id="imageEditorModal" class="modal-admin" style="display: none;">
+        <div class="modal-content-admin" style="max-width: 800px;">
+            <div class="modal-header-admin">
+                <h4 class="modal-title">Edit Image Details</h4>
+                <button class="close-modal" onclick="closeImageEditorModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="image-preview-container mb-3">
+                            <img id="editImagePreview" src="" alt="Image Preview"
+                                style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px;">
+                        </div>
+                        <div class="image-info">
+                            <small class="text-muted">
+                                <strong>File:</strong> <span id="editImageFilename"></span><br>
+                                <strong>Size:</strong> <span id="editImageSize"></span><br>
+                                <strong>Type:</strong> <span id="editImageType"></span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <form id="imageEditForm">
+                            <input type="hidden" id="editImageIndex">
+                            <input type="hidden" id="editImageEventId">
+                            <input type="hidden" id="editImageId">
+
+                            <div class="form-group">
+                                <label for="editImageDescription">Description</label>
+                                <textarea class="form-control" id="editImageDescription" rows="5"
+                                    placeholder="Enter a detailed description for this image..."></textarea>
+                                <small class="form-text text-muted">This description will be shown to visitors viewing
+                                    the gallery.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editImageOrder">Display Order</label>
+                                <input type="number" class="form-control" id="editImageOrder" min="1"
+                                    placeholder="Order position">
+                                <small class="form-text text-muted">Lower numbers appear first in the gallery.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Replace Image (Optional)</label>
+                                <input type="file" class="form-control" id="editImageReplace" accept="image/*">
+                                <small class="form-text text-muted">Select a new image to replace the current
+                                    one.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label class="mb-0">Actions</label>
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-outline-warning"
+                                            onclick="rotateImage()">
+                                            <i class="fas fa-undo"></i> Rotate
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-info"
+                                            onclick="previewImageChanges()">
+                                            <i class="fas fa-eye"></i> Preview
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-end mt-3">
+                    <button type="button" class="btn btn-secondary-admin"
+                        onclick="closeImageEditorModal()">Cancel</button>
+                    <button type="button" class="btn btn-danger-admin" onclick="deleteImageFromEditor()"
+                        id="deleteImageBtn">
+                        <i class="fas fa-trash"></i> Delete Image
+                    </button>
+                    <button type="button" class="btn-primary-admin" onclick="saveImageChanges()">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Management Modal -->
+    <div id="galleryManagementModal" class="modal-admin" style="display: none;">
+        <div class="modal-content-admin" style="max-width: 95%; max-height: 95%;">
+            <div class="modal-header-admin">
+                <h4 class="modal-title">Gallery Management - <span id="galleryEventTitle">Event</span></h4>
+                <button class="close-modal" onclick="closeGalleryManagementModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+                <div class="gallery-management-toolbar mb-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="selectAllImages()">
+                                <i class="fas fa-check-square"></i> Select All
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="deselectAllImages()">
+                                <i class="fas fa-square"></i> Deselect All
+                            </button>
+                            <button type="button" class="btn btn-outline-warning btn-sm" onclick="bulkEditSelected()">
+                                <i class="fas fa-edit"></i> Bulk Edit
+                            </button>
+                            <button type="button" class="btn btn-outline-danger btn-sm"
+                                onclick="deleteSelectedImages()">
+                                <i class="fas fa-trash"></i> Delete Selected
+                            </button>
+                        </div>
+                        <div>
+                            <span class="badge badge-info" id="selectedImageCount">0 selected</span>
+                            <span class="badge badge-secondary" id="totalImageCount">0 total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="galleryManagementGrid">
+                    <!-- Gallery items will be loaded here -->
+                </div>
             </div>
         </div>
     </div>
@@ -2185,90 +2699,713 @@
                 closeModal();
             }
         }
-        // Gallery image management
+
+        // Enhanced Gallery Management Variables
         let selectedGalleryFiles = [];
+        let galleryDescriptions = [];
+        let galleryEditMode = false;
+        let maxGalleryImages = 30;
+        let currentViewMode = 'grid'; // 'grid' or 'list'
 
         function handleGalleryFiles(input) {
             const files = Array.from(input.files);
+            const remainingSlots = maxGalleryImages - selectedGalleryFiles.length;
+
+            if (files.length > remainingSlots) {
+                alert(`You can only add ${remainingSlots} more images. Maximum limit is ${maxGalleryImages} images.`);
+                files.splice(remainingSlots);
+            }
+
             selectedGalleryFiles = selectedGalleryFiles.concat(files);
             updateGalleryPreview();
+            updateGalleryCount();
             console.log(`Gallery files changed: ${files.length} new files selected, total: ${selectedGalleryFiles.length}`);
         }
 
         function addSingleImage() {
+            if (selectedGalleryFiles.length >= maxGalleryImages) {
+                alert(`Maximum limit of ${maxGalleryImages} images reached.`);
+                return;
+            }
+
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
             input.onchange = function () {
                 if (this.files.length > 0) {
                     selectedGalleryFiles.push(this.files[0]);
+                    galleryDescriptions.push(''); // Add empty description
                     updateGalleryPreview();
+                    updateGalleryCount();
                     console.log(`Single image added: ${this.files[0].name}, total: ${selectedGalleryFiles.length}`);
                 }
             };
             input.click();
         }
 
-        function clearGalleryImages() {
-            selectedGalleryFiles = [];
-            updateGalleryPreview();
-            const input = document.getElementById('gallery_images');
-            if (input) input.value = '';
-            console.log('All gallery images cleared');
+        function addBulkImages() {
+            if (selectedGalleryFiles.length >= maxGalleryImages) {
+                alert(`Maximum limit of ${maxGalleryImages} images reached.`);
+                return;
+            }
+
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.multiple = true;
+            const remainingSlots = maxGalleryImages - selectedGalleryFiles.length;
+
+            input.onchange = function () {
+                const files = Array.from(this.files);
+                if (files.length > remainingSlots) {
+                    alert(`You can only add ${remainingSlots} more images. Selecting first ${remainingSlots} files.`);
+                    files.splice(remainingSlots);
+                }
+
+                // Show progress for bulk upload
+                showUploadProgress(files.length);
+
+                files.forEach((file, index) => {
+                    selectedGalleryFiles.push(file);
+                    galleryDescriptions.push(''); // Add empty description
+
+                    // Update progress
+                    setTimeout(() => {
+                        updateProgressBar((index + 1) / files.length * 100, `Processing ${index + 1}/${files.length} files...`);
+                        if (index === files.length - 1) {
+                            hideUploadProgress();
+                            updateGalleryPreview();
+                            updateGalleryCount();
+                        }
+                    }, index * 100); // Stagger the updates
+                });
+
+                console.log(`Bulk images added: ${files.length}, total: ${selectedGalleryFiles.length}`);
+            };
+            input.click();
         }
 
-        function updateGalleryPreview() {
-            const countElement = document.getElementById('gallery-count');
-            const listElement = document.getElementById('gallery-images-list');
+        function clearGalleryImages() {
+            if (selectedGalleryFiles.length === 0) return;
 
-            if (countElement) countElement.textContent = selectedGalleryFiles.length;
-
-            if (listElement) {
-                listElement.innerHTML = '';
-                selectedGalleryFiles.forEach((file, index) => {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const col = document.createElement('div');
-                        col.className = 'col-12 mb-3';
-                        col.innerHTML = `
-                            <div class="card p-2">
-                                <div class="d-flex align-items-start gap-3">
-                                    <div style="width: 120px;">
-                                        <img src="${e.target.result}" alt="Preview" class="img-fluid rounded" style="height: 80px; width: 120px; object-fit: cover;">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <label class="form-label">Description for ${file.name}</label>
-                                        <textarea class="form-control" rows="2" oninput="setGalleryDescription(${index}, this.value)" placeholder="Write a description for this image..."></textarea>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-sm btn-danger" onclick="removeGalleryImage(${index})"><i class="fas fa-trash"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        listElement.appendChild(col);
-                    };
-                    reader.readAsDataURL(file);
-                });
+            if (confirm('Are you sure you want to clear all images? This action cannot be undone.')) {
+                selectedGalleryFiles = [];
+                galleryDescriptions = [];
+                updateGalleryPreview();
+                updateGalleryCount();
+                const input = document.getElementById('gallery_images');
+                if (input) input.value = '';
+                console.log('All gallery images cleared');
             }
         }
 
-        function removeGalleryImage(index) {
-            selectedGalleryFiles.splice(index, 1);
+        function updateGalleryCount() {
+            const countElement = document.getElementById('gallery-count');
+            if (countElement) {
+                countElement.textContent = selectedGalleryFiles.length;
+                countElement.className = selectedGalleryFiles.length >= maxGalleryImages ? 'badge badge-danger' : 'badge badge-info';
+            }
+        }
+
+        function updateGalleryPreview() {
+            const listElement = document.getElementById('gallery-images-list');
+            const headerElement = document.getElementById('galleryHeader');
+
+            if (!listElement) return;
+
+            if (selectedGalleryFiles.length === 0) {
+                listElement.innerHTML = '<div class="col-12 text-center text-muted py-4"><i class="fas fa-images fa-2x mb-2"></i><br>No images selected</div>';
+                headerElement.style.display = 'none';
+                return;
+            }
+
+            headerElement.style.display = 'flex';
+            listElement.innerHTML = '';
+
+            selectedGalleryFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const col = document.createElement('div');
+                    col.className = currentViewMode === 'grid' ? 'col-lg-6 col-md-12 mb-3' : 'col-12 mb-2';
+
+                    const currentDescription = galleryDescriptions[index] || '';
+
+                    col.innerHTML = `
+                        <div class="gallery-item-card" data-index="${index}">
+                            <div class="gallery-item-header">
+                                <img src="${e.target.result}" alt="Preview">
+                                <div class="gallery-item-order">#${index + 1}</div>
+                                <div class="gallery-item-controls">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="editGalleryImage(${index})" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-warning" onclick="moveGalleryImage(${index}, 'up')" title="Move Up" ${index === 0 ? 'disabled' : ''}>
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-warning" onclick="moveGalleryImage(${index}, 'down')" title="Move Down" ${index === selectedGalleryFiles.length - 1 ? 'disabled' : ''}>
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="removeGalleryImage(${index})" title="Remove">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <div class="image-status new">NEW</div>
+                            </div>
+                            <div class="gallery-item-body">
+                                <div class="gallery-item-filename">${file.name}</div>
+                                <textarea class="gallery-description-textarea" 
+                                         placeholder="Enter description for this image..." 
+                                         oninput="setGalleryDescription(${index}, this.value)"
+                                         rows="2">${currentDescription}</textarea>
+                                <div class="gallery-actions mt-2">
+                                    <small class="text-muted">Size: ${formatFileSize(file.size)}</small>
+                                    <span class="ms-auto">
+                                        <button type="button" class="btn btn-sm btn-outline-success" onclick="saveGalleryImageDescription(${index})">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    listElement.appendChild(col);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function editGalleryImage(index) {
+            const card = document.querySelector(`[data-index="${index}"]`);
+            if (!card) return;
+
+            card.classList.toggle('editing');
+            const textarea = card.querySelector('.gallery-description-textarea');
+            if (textarea) {
+                textarea.focus();
+                textarea.select();
+            }
+        }
+
+        function moveGalleryImage(index, direction) {
+            const newIndex = direction === 'up' ? index - 1 : index + 1;
+
+            if (newIndex < 0 || newIndex >= selectedGalleryFiles.length) return;
+
+            // Swap files and descriptions
+            [selectedGalleryFiles[index], selectedGalleryFiles[newIndex]] = [selectedGalleryFiles[newIndex], selectedGalleryFiles[index]];
+            [galleryDescriptions[index], galleryDescriptions[newIndex]] = [galleryDescriptions[newIndex], galleryDescriptions[index]];
+
             updateGalleryPreview();
-            console.log(`Removed gallery image at index ${index}, remaining: ${selectedGalleryFiles.length}`);
+            console.log(`Moved image from position ${index} to ${newIndex}`);
+        }
+
+        function removeGalleryImage(index) {
+            if (confirm('Are you sure you want to remove this image?')) {
+                selectedGalleryFiles.splice(index, 1);
+                galleryDescriptions.splice(index, 1);
+                updateGalleryPreview();
+                updateGalleryCount();
+                console.log(`Removed gallery image at index ${index}, remaining: ${selectedGalleryFiles.length}`);
+            }
+        }
+
+        function saveGalleryImageDescription(index) {
+            const card = document.querySelector(`[data-index="${index}"]`);
+            if (!card) return;
+
+            card.classList.remove('editing');
+            const statusElement = card.querySelector('.image-status');
+            if (statusElement) {
+                statusElement.textContent = 'SAVED';
+                statusElement.className = 'image-status edited';
+            }
+
+            // Show success animation
+            const saveBtn = card.querySelector('.btn-outline-success');
+            if (saveBtn) {
+                const originalText = saveBtn.innerHTML;
+                saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved';
+                saveBtn.classList.replace('btn-outline-success', 'btn-success');
+
+                setTimeout(() => {
+                    saveBtn.innerHTML = originalText;
+                    saveBtn.classList.replace('btn-success', 'btn-outline-success');
+                }, 1500);
+            }
         }
 
         function resetGalleryUpload() {
             selectedGalleryFiles = [];
+            galleryDescriptions = [];
             updateGalleryPreview();
+            updateGalleryCount();
             const input = document.getElementById('gallery_images');
             if (input) input.value = '';
+            hideUploadProgress();
         }
-        // Keep per-file descriptions aligned
-        const galleryDescriptions = [];
+
         function setGalleryDescription(index, text) {
             galleryDescriptions[index] = text || '';
+
+            // Mark as edited
+            const card = document.querySelector(`[data-index="${index}"]`);
+            if (card) {
+                const statusElement = card.querySelector('.image-status');
+                if (statusElement && statusElement.textContent !== 'SAVED') {
+                    statusElement.textContent = 'EDITING';
+                    statusElement.className = 'image-status edited';
+                }
+            }
+        }
+
+        function toggleGalleryView() {
+            currentViewMode = currentViewMode === 'grid' ? 'list' : 'grid';
+            const icon = document.getElementById('viewToggleIcon');
+            const btn = icon.closest('button');
+
+            if (currentViewMode === 'grid') {
+                icon.className = 'fas fa-th';
+                btn.innerHTML = '<i class="fas fa-th"></i> Grid View';
+            } else {
+                icon.className = 'fas fa-list';
+                btn.innerHTML = '<i class="fas fa-list"></i> List View';
+            }
+
+            updateGalleryPreview();
+        }
+
+        function sortGalleryImages() {
+            if (selectedGalleryFiles.length === 0) return;
+
+            const sortOptions = [
+                { value: 'name', text: 'Sort by Name (A-Z)' },
+                { value: 'name-desc', text: 'Sort by Name (Z-A)' },
+                { value: 'size', text: 'Sort by Size (Smallest First)' },
+                { value: 'size-desc', text: 'Sort by Size (Largest First)' },
+                { value: 'type', text: 'Sort by File Type' }
+            ];
+
+            const sortType = prompt(`Choose sorting option:\n${sortOptions.map((opt, i) => `${i + 1}. ${opt.text}`).join('\n')}\n\nEnter number (1-${sortOptions.length}):`);
+
+            if (!sortType || sortType < 1 || sortType > sortOptions.length) return;
+
+            const selectedOption = sortOptions[sortType - 1];
+            sortGalleryBy(selectedOption.value);
+        }
+
+        function sortGalleryBy(type) {
+            const combined = selectedGalleryFiles.map((file, index) => ({
+                file,
+                description: galleryDescriptions[index] || '',
+                index
+            }));
+
+            combined.sort((a, b) => {
+                switch (type) {
+                    case 'name':
+                        return a.file.name.localeCompare(b.file.name);
+                    case 'name-desc':
+                        return b.file.name.localeCompare(a.file.name);
+                    case 'size':
+                        return a.file.size - b.file.size;
+                    case 'size-desc':
+                        return b.file.size - a.file.size;
+                    case 'type':
+                        return a.file.type.localeCompare(b.file.type);
+                    default:
+                        return 0;
+                }
+            });
+
+            selectedGalleryFiles = combined.map(item => item.file);
+            galleryDescriptions = combined.map(item => item.description);
+
+            updateGalleryPreview();
+            console.log(`Gallery sorted by: ${type}`);
+        }
+
+        function previewGallery() {
+            if (selectedGalleryFiles.length === 0) {
+                alert('No images to preview');
+                return;
+            }
+
+            // Create preview modal
+            const modal = document.createElement('div');
+            modal.className = 'modal-admin';
+            modal.style.display = 'block';
+            modal.innerHTML = `
+                <div class="modal-content-admin" style="max-width: 90%; max-height: 90%;">
+                    <div class="modal-header-admin">
+                        <h4>Gallery Preview (${selectedGalleryFiles.length} images)</h4>
+                        <button class="close-modal" onclick="this.closest('.modal-admin').remove()">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                        <div class="row">
+                            ${selectedGalleryFiles.map((file, index) => `
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div class="card">
+                                        <div style="height: 200px; overflow: hidden;">
+                                            <img src="${URL.createObjectURL(file)}" 
+                                                 alt="Preview ${index + 1}" 
+                                                 style="width: 100%; height: 100%; object-fit: cover;">
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="card-title">Image ${index + 1}</h6>
+                                            <p class="card-text small text-muted">${file.name}</p>
+                                            ${galleryDescriptions[index] ? `<p class="card-text">${galleryDescriptions[index]}</p>` : '<p class="card-text text-muted">No description</p>'}
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Drag and Drop functionality
+        function allowDrop(event) {
+            event.preventDefault();
+            event.currentTarget.classList.add('drag-over');
+        }
+
+        function removeDragOver(event) {
+            event.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            event.currentTarget.classList.remove('drag-over');
+
+            const files = Array.from(event.dataTransfer.files).filter(file => file.type.startsWith('image/'));
+            const remainingSlots = maxGalleryImages - selectedGalleryFiles.length;
+
+            if (files.length === 0) {
+                alert('Please drop image files only.');
+                return;
+            }
+
+            if (files.length > remainingSlots) {
+                alert(`You can only add ${remainingSlots} more images. Selecting first ${remainingSlots} files.`);
+                files.splice(remainingSlots);
+            }
+
+            selectedGalleryFiles = selectedGalleryFiles.concat(files);
+            files.forEach(() => galleryDescriptions.push(''));
+
+            updateGalleryPreview();
+            updateGalleryCount();
+            console.log(`Dropped ${files.length} files, total: ${selectedGalleryFiles.length}`);
+        }
+
+        // Progress bar functions
+        function showUploadProgress(totalFiles) {
+            const progressContainer = document.getElementById('uploadProgress');
+            if (progressContainer) {
+                progressContainer.style.display = 'block';
+                updateProgressBar(0, `Preparing to process ${totalFiles} files...`);
+            }
+        }
+
+        function updateProgressBar(percentage, text) {
+            const progressBar = document.querySelector('#uploadProgress .progress-bar');
+            const progressText = document.getElementById('progressText');
+
+            if (progressBar) {
+                progressBar.style.width = percentage + '%';
+                progressBar.textContent = Math.round(percentage) + '%';
+            }
+
+            if (progressText) {
+                progressText.textContent = text;
+            }
+        }
+
+        function hideUploadProgress() {
+            const progressContainer = document.getElementById('uploadProgress');
+            if (progressContainer) {
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                }, 500);
+            }
+        }
+
+        // Utility functions
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Enhanced Image Editor Functions
+        function openImageEditor(imageId, eventId, imagePath, description, displayOrder) {
+            document.getElementById('editImageId').value = imageId || '';
+            document.getElementById('editImageEventId').value = eventId || '';
+            document.getElementById('editImageDescription').value = description || '';
+            document.getElementById('editImageOrder').value = displayOrder || '';
+            document.getElementById('editImagePreview').src = imagePath || '';
+
+            // Show modal
+            document.getElementById('imageEditorModal').style.display = 'block';
+        }
+
+        function closeImageEditorModal() {
+            document.getElementById('imageEditorModal').style.display = 'none';
+            document.getElementById('imageEditForm').reset();
+        }
+
+        function saveImageChanges() {
+            const imageId = document.getElementById('editImageId').value;
+            const eventId = document.getElementById('editImageEventId').value;
+            const description = document.getElementById('editImageDescription').value;
+            const displayOrder = document.getElementById('editImageOrder').value;
+            const replaceFile = document.getElementById('editImageReplace').files[0];
+
+            const formData = new FormData();
+            formData.append('description', description);
+            if (displayOrder) formData.append('display_order', displayOrder);
+            if (replaceFile) formData.append('image_file', replaceFile);
+
+            const url = imageId ? `/admin/past-events/images/${imageId}` : `/admin/past-events/${eventId}/images`;
+            const method = imageId ? 'PUT' : 'POST';
+
+            fetch(url, { method, body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closeImageEditorModal();
+                        loadPastEvents(); // Refresh the events list
+                        alert('Image updated successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to update image'));
+                    }
+                })
+                .catch(() => alert('Error updating image'));
+        }
+
+        function deleteImageFromEditor() {
+            const imageId = document.getElementById('editImageId').value;
+            if (!imageId) {
+                alert('No image to delete');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to delete this image? This action cannot be undone.')) {
+                return;
+            }
+
+            fetch(`/admin/past-events/images/${imageId}`, { method: 'DELETE' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closeImageEditorModal();
+                        loadPastEvents(); // Refresh the events list
+                        alert('Image deleted successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to delete image'));
+                    }
+                })
+                .catch(() => alert('Error deleting image'));
+        }
+
+        function rotateImage() {
+            const img = document.getElementById('editImagePreview');
+            const currentRotation = img.style.transform.match(/rotate\((\d+)deg\)/);
+            const rotation = currentRotation ? (parseInt(currentRotation[1]) + 90) % 360 : 90;
+            img.style.transform = `rotate(${rotation}deg)`;
+        }
+
+        function previewImageChanges() {
+            const description = document.getElementById('editImageDescription').value;
+            const replaceFile = document.getElementById('editImageReplace').files[0];
+
+            if (replaceFile) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('editImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(replaceFile);
+            }
+
+            // Show preview of description
+            if (description) {
+                alert(`Description Preview:\n"${description}"`);
+            }
+        }
+
+        // Gallery Management Functions
+        function openGalleryManagement(eventId, eventTitle) {
+            document.getElementById('galleryEventTitle').textContent = eventTitle;
+            document.getElementById('galleryManagementModal').style.display = 'block';
+            loadGalleryManagementImages(eventId);
+        }
+
+        function closeGalleryManagementModal() {
+            document.getElementById('galleryManagementModal').style.display = 'none';
+        }
+
+        function loadGalleryManagementImages(eventId) {
+            fetch(`/admin/past-events/${eventId}/images`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        displayGalleryManagementImages(data.images);
+                        updateImageCounts(data.images.length);
+                    } else {
+                        console.error('Failed to load images:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading gallery images:', error);
+                });
+        }
+
+        function displayGalleryManagementImages(images) {
+            const grid = document.getElementById('galleryManagementGrid');
+            if (!images || images.length === 0) {
+                grid.innerHTML = '<div class="col-12 text-center text-muted py-4"><i class="fas fa-images fa-2x mb-2"></i><br>No images found</div>';
+                return;
+            }
+
+            grid.innerHTML = images.map(img => `
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                    <div class="gallery-management-item" data-image-id="${img.id}">
+                        <div class="form-check position-absolute" style="top: 10px; left: 10px; z-index: 2;">
+                            <input class="form-check-input image-checkbox" type="checkbox" value="${img.id}" onchange="updateSelectedCount()">
+                        </div>
+                        <div class="image-container" style="height: 150px; overflow: hidden; border-radius: 8px;">
+                            <img src="${img.image_path}" alt="Gallery Image" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" 
+                                 onclick="openImageEditor('${img.id}', '${img.past_event_id}', '${img.image_path}', '${img.description || ''}', '${img.display_order || ''}')">
+                        </div>
+                        <div class="image-details mt-2">
+                            <small class="text-muted d-block">Order: ${img.display_order || 'Not set'}</small>
+                            <small class="text-truncate d-block" title="${img.description || 'No description'}">${img.description || 'No description'}</small>
+                        </div>
+                        <div class="image-actions mt-2">
+                            <button class="btn btn-sm btn-outline-primary" onclick="openImageEditor('${img.id}', '${img.past_event_id}', '${img.image_path}', '${img.description || ''}', '${img.display_order || ''}')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="deleteGalleryImage('${img.id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectAllImages() {
+            document.querySelectorAll('.image-checkbox').forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            updateSelectedCount();
+        }
+
+        function deselectAllImages() {
+            document.querySelectorAll('.image-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            updateSelectedCount();
+        }
+
+        function updateSelectedCount() {
+            const selected = document.querySelectorAll('.image-checkbox:checked').length;
+            document.getElementById('selectedImageCount').textContent = `${selected} selected`;
+        }
+
+        function updateImageCounts(total) {
+            document.getElementById('totalImageCount').textContent = `${total} total`;
+        }
+
+        function bulkEditSelected() {
+            const selectedIds = Array.from(document.querySelectorAll('.image-checkbox:checked')).map(cb => cb.value);
+            if (selectedIds.length === 0) {
+                alert('Please select at least one image to edit.');
+                return;
+            }
+
+            const newDescription = prompt('Enter new description for selected images (leave empty to keep current):');
+            const newOrder = prompt('Enter starting order number for selected images (leave empty to keep current):');
+
+            if (newDescription === null && newOrder === null) return; // User cancelled
+
+            const promises = selectedIds.map((imageId, index) => {
+                const formData = new FormData();
+                if (newDescription !== null && newDescription !== '') {
+                    formData.append('description', newDescription);
+                }
+                if (newOrder !== null && newOrder !== '') {
+                    formData.append('display_order', parseInt(newOrder) + index);
+                }
+
+                return fetch(`/admin/past-events/images/${imageId}`, { method: 'PUT', body: formData });
+            });
+
+            Promise.all(promises)
+                .then(responses => Promise.all(responses.map(r => r.json())))
+                .then(results => {
+                    const failed = results.filter(r => r.status !== 'success');
+                    if (failed.length === 0) {
+                        alert('All selected images updated successfully!');
+                        loadPastEvents(); // Refresh
+                        closeGalleryManagementModal();
+                    } else {
+                        alert(`${results.length - failed.length} images updated successfully, ${failed.length} failed.`);
+                    }
+                })
+                .catch(() => alert('Error updating images'));
+        }
+
+        function deleteSelectedImages() {
+            const selectedIds = Array.from(document.querySelectorAll('.image-checkbox:checked')).map(cb => cb.value);
+            if (selectedIds.length === 0) {
+                alert('Please select at least one image to delete.');
+                return;
+            }
+
+            if (!confirm(`Are you sure you want to delete ${selectedIds.length} selected images? This action cannot be undone.`)) {
+                return;
+            }
+
+            const promises = selectedIds.map(imageId =>
+                fetch(`/admin/past-events/images/${imageId}`, { method: 'DELETE' })
+            );
+
+            Promise.all(promises)
+                .then(responses => Promise.all(responses.map(r => r.json())))
+                .then(results => {
+                    const failed = results.filter(r => r.status !== 'success');
+                    if (failed.length === 0) {
+                        alert('All selected images deleted successfully!');
+                        loadPastEvents(); // Refresh
+                        closeGalleryManagementModal();
+                    } else {
+                        alert(`${results.length - failed.length} images deleted successfully, ${failed.length} failed.`);
+                    }
+                })
+                .catch(() => alert('Error deleting images'));
+        }
+
+        function deleteGalleryImage(imageId) {
+            if (!confirm('Are you sure you want to delete this image?')) return;
+
+            fetch(`/admin/past-events/images/${imageId}`, { method: 'DELETE' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Reload the gallery management view
+                        const eventId = document.getElementById('galleryEventTitle').textContent;
+                        loadGalleryManagementImages(eventId);
+                        alert('Image deleted successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to delete image'));
+                    }
+                })
+                .catch(() => alert('Error deleting image'));
         }
         // VIP Management Functions
         function loadVipData() {
@@ -2438,21 +3575,28 @@
                         <div class="vip-card" data-event-id="${ev.id}">
                             <div class="vip-image">
                                 ${ev.banner_image_path ? `<img src="${ev.banner_image_path}" alt="${ev.title}" onerror="this.src='/static/images/placeholder.jpg'">` : '<div class="no-image-placeholder">No Banner</div>'}
+                                <div class="vip-status ${ev.image_count > 0 ? 'active' : 'inactive'}">
+                                    ${ev.image_count || 0} Images
+                                </div>
                             </div>
                             <div class="vip-info">
                                 <h4>${ev.title || 'Untitled'}</h4>
                                 <p class="text-muted">${ev.event_date || ''}</p>
-                                <div class="vip-actions">
-                                    <button class="btn btn-sm btn-outline-primary" onclick="openEditPastEventModal(${ev.id})">
+                                <small class="text-info">Created: ${new Date(ev.created_at).toLocaleDateString()}</small>
+                                <div class="vip-actions mt-2">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="openEditPastEventModal(${ev.id})" title="Edit Event Details">
                                         <i class="fas fa-edit"></i> Edit
                                     </button>
-                                    <button class="btn btn-sm btn-outline-primary" onclick="openPastEventImagesModal(${ev.id})">
-                                        <i class="fas fa-images"></i> Add Images
+                                    <button class="btn btn-sm btn-outline-success" onclick="openGalleryManagement(${ev.id}, '${ev.title}')" title="Manage Gallery">
+                                        <i class="fas fa-images"></i> Gallery
                                     </button>
-                                    <a class="btn btn-sm btn-outline-secondary" href="/past-events/${ev.id}" target="_blank">
+                                    <button class="btn btn-sm btn-outline-info" onclick="openPastEventImagesModal(${ev.id})" title="Add More Images">
+                                        <i class="fas fa-plus"></i> Add Images
+                                    </button>
+                                    <a class="btn btn-sm btn-outline-secondary" href="/past-events/${ev.id}" target="_blank" title="View Public Page">
                                         <i class="fas fa-external-link-alt"></i> View
                                     </a>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="deletePastEvent(${ev.id})">
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deletePastEvent(${ev.id})" title="Delete Event">
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
                                 </div>
@@ -2559,9 +3703,191 @@
                     document.getElementById('peTitle').value = ev.title || '';
                     document.getElementById('peDate').value = ev.event_date ? ev.event_date : '';
                     resetGalleryUpload();
+
+                    // Load existing images for editing
+                    loadExistingImagesForEdit(eventId);
+
                     document.getElementById('pastEventModal').style.display = 'block';
                 })
                 .catch(() => alert('Error loading event'));
+        }
+
+        // Function to load existing images when editing an event
+        function loadExistingImagesForEdit(eventId) {
+            fetch(`/admin/past-events/${eventId}/images`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success' && data.images.length > 0) {
+                        displayExistingImagesInGallery(data.images);
+                        updateGalleryCount();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading existing images:', error);
+                });
+        }
+
+        // Function to display existing images in the gallery preview for editing
+        function displayExistingImagesInGallery(images) {
+            const listElement = document.getElementById('gallery-images-list');
+            const headerElement = document.getElementById('galleryHeader');
+
+            if (!listElement || images.length === 0) return;
+
+            headerElement.style.display = 'flex';
+            listElement.innerHTML = '';
+
+            // Clear any selected new files since we're showing existing images
+            selectedGalleryFiles = [];
+            galleryDescriptions = [];
+
+            images.forEach((img, index) => {
+                const col = document.createElement('div');
+                col.className = currentViewMode === 'grid' ? 'col-lg-6 col-md-12 mb-3' : 'col-12 mb-2';
+
+                col.innerHTML = `
+                    <div class="gallery-item-card existing-image" data-image-id="${img.id}" data-index="${index}">
+                        <div class="gallery-item-header">
+                            <img src="${img.image_path}" alt="Existing Image" style="width: 100%; height: 120px; object-fit: cover;">
+                            <div class="gallery-item-order">#${img.display_order || index + 1}</div>
+                            <div class="gallery-item-controls">
+                                <button type="button" class="btn btn-sm btn-success" onclick="editExistingImage('${img.id}', '${img.image_path}', '${img.description || ''}', '${img.display_order || index + 1}')" title="Edit Image">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteExistingImage('${img.id}', ${index})" title="Delete Image">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                            <div class="image-status existing">EXISTING</div>
+                        </div>
+                        <div class="gallery-item-body">
+                            <div class="gallery-item-filename">Existing Image ${index + 1}</div>
+                            <textarea class="gallery-description-textarea" 
+                                     placeholder="Enter description for this image..." 
+                                     onchange="updateExistingImageDescription('${img.id}', this.value)"
+                                     rows="2">${img.description || ''}</textarea>
+                            <div class="gallery-actions mt-2">
+                                <small class="text-muted">Created: ${new Date(img.created_at).toLocaleDateString()}</small>
+                                <span class="ms-auto">
+                                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="saveExistingImageDescription('${img.id}', ${index})">
+                                        <i class="fas fa-save"></i> Update
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listElement.appendChild(col);
+            });
+
+            // Update the gallery count to show existing images
+            const countElement = document.getElementById('gallery-count');
+            if (countElement) {
+                countElement.textContent = images.length;
+                countElement.className = 'badge badge-info';
+            }
+        }
+
+        // Function to edit individual existing image
+        function editExistingImage(imageId, imagePath, description, displayOrder) {
+            // Use the enhanced image editor modal
+            openImageEditor(imageId, null, imagePath, description, displayOrder);
+        }
+
+        // Function to update description of existing image
+        function updateExistingImageDescription(imageId, description) {
+            // Store the change but don't save yet - wait for user to click Update
+            const card = document.querySelector(`[data-image-id="${imageId}"]`);
+            if (card) {
+                const statusElement = card.querySelector('.image-status');
+                if (statusElement) {
+                    statusElement.textContent = 'MODIFIED';
+                    statusElement.className = 'image-status edited';
+                }
+            }
+        }
+
+        // Function to save existing image description
+        function saveExistingImageDescription(imageId, index) {
+            const card = document.querySelector(`[data-image-id="${imageId}"]`);
+            if (!card) return;
+
+            const textarea = card.querySelector('.gallery-description-textarea');
+            const description = textarea.value;
+
+            const formData = new FormData();
+            formData.append('description', description);
+
+            // Add loading state
+            const saveBtn = card.querySelector('.btn-outline-primary');
+            const originalText = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            saveBtn.disabled = true;
+
+            fetch(`/admin/past-events/images/${imageId}`, { method: 'PUT', body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Update status
+                        const statusElement = card.querySelector('.image-status');
+                        if (statusElement) {
+                            statusElement.textContent = 'SAVED';
+                            statusElement.className = 'image-status existing';
+                        }
+
+                        // Show success animation
+                        saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved';
+                        saveBtn.classList.replace('btn-outline-primary', 'btn-success');
+
+                        setTimeout(() => {
+                            saveBtn.innerHTML = originalText;
+                            saveBtn.classList.replace('btn-success', 'btn-outline-primary');
+                            saveBtn.disabled = false;
+                        }, 2000);
+
+                        showSuccessMessage('Image description updated successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to update image'));
+                        saveBtn.innerHTML = originalText;
+                        saveBtn.disabled = false;
+                    }
+                })
+                .catch(() => {
+                    alert('Error updating image description');
+                    saveBtn.innerHTML = originalText;
+                    saveBtn.disabled = false;
+                });
+        }
+
+        // Function to delete existing image
+        function deleteExistingImage(imageId, index) {
+            if (!confirm('Are you sure you want to delete this image? This action cannot be undone.')) {
+                return;
+            }
+
+            fetch(`/admin/past-events/images/${imageId}`, { method: 'DELETE' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Remove the image card from display
+                        const card = document.querySelector(`[data-image-id="${imageId}"]`);
+                        if (card) {
+                            card.remove();
+                        }
+
+                        // Update count
+                        const countElement = document.getElementById('gallery-count');
+                        if (countElement) {
+                            const currentCount = parseInt(countElement.textContent) - 1;
+                            countElement.textContent = currentCount;
+                        }
+
+                        showSuccessMessage('Image deleted successfully!');
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to delete image'));
+                    }
+                })
+                .catch(() => alert('Error deleting image'));
         }
 
         function updatePastEvent() {
@@ -2850,6 +4176,99 @@
             updateBudgetGalleryPreview();
             const input = document.getElementById('budget_gallery_images');
             if (input) input.value = '';
+        }
+
+        // Initialize the enhanced gallery system
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set up drag and drop area click handler
+            const dragDropArea = document.getElementById('dragDropArea');
+            if (dragDropArea) {
+                dragDropArea.addEventListener('click', function () {
+                    document.getElementById('gallery_images').click();
+                });
+            }
+
+            // Initialize gallery count display
+            updateGalleryCount();
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function (e) {
+                // Ctrl+Shift+G to open gallery management (when event is selected)
+                if (e.ctrlKey && e.shiftKey && e.key === 'G') {
+                    const selectedEvent = document.querySelector('.vip-card.selected');
+                    if (selectedEvent) {
+                        const eventId = selectedEvent.dataset.eventId;
+                        const eventTitle = selectedEvent.querySelector('h4').textContent;
+                        openGalleryManagement(eventId, eventTitle);
+                    }
+                }
+
+                // ESC to close modals
+                if (e.key === 'Escape') {
+                    const modals = document.querySelectorAll('.modal-admin[style*="display: block"]');
+                    modals.forEach(modal => modal.style.display = 'none');
+                }
+            });
+
+            // Add click handlers for event card selection
+            document.addEventListener('click', function (e) {
+                const eventCard = e.target.closest('.vip-card');
+                if (eventCard && !e.target.closest('.vip-actions')) {
+                    // Remove previous selection
+                    document.querySelectorAll('.vip-card.selected').forEach(card => {
+                        card.classList.remove('selected');
+                    });
+                    // Add selection to clicked card
+                    eventCard.classList.add('selected');
+                }
+            });
+
+            // Load initial data
+            loadPastEvents();
+
+            console.log('Enhanced Past Events Management System initialized successfully!');
+            console.log('Features enabled: Drag & Drop, Bulk Upload (30 images), Individual Image Editing, Gallery Management');
+        });
+
+        // Add visual feedback for successful operations
+        function showSuccessMessage(message, duration = 3000) {
+            const toast = document.createElement('div');
+            toast.className = 'alert alert-success position-fixed';
+            toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            toast.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <span>${message}</span>
+                    <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+                </div>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, duration);
+        }
+
+        function showErrorMessage(message, duration = 5000) {
+            const toast = document.createElement('div');
+            toast.className = 'alert alert-danger position-fixed';
+            toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            toast.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    <span>${message}</span>
+                    <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+                </div>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, duration);
         }
     </script>
 </body>

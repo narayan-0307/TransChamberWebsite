@@ -549,7 +549,18 @@ def reset_password(token):
 
 @bp.route('/')
 def action_page():
-    return render_template('action-page.html')
+    # Provide a cache-busting version based on the video's mtime so browsers
+    # load the updated file when it is replaced with the same name.
+    video_path = os.path.join(current_app.root_path, 'static', 'videos', 'main-video.mp4')
+    video_version = ''
+    try:
+        if os.path.exists(video_path):
+            video_version = str(int(os.path.getmtime(video_path)))
+    except Exception:
+        # If anything goes wrong, leave video_version empty — non-fatal
+        video_version = ''
+
+    return render_template('action-page.html', video_version=video_version)
 
 @bp.route('/home')
 def home():
@@ -558,10 +569,45 @@ def home():
     vips = VIP.query.filter_by(is_active=True).order_by(VIP.display_order.asc(), VIP.created_at.desc()).all()
     return render_template('home.html', vips=vips)
 
+@bp.route('/tacci-action')
+def tacci_action():
+    breadcrumbs = [("Home", "/"), ("TACCI Action", None)]
+    return render_template('tacci_action.html', crumbs=breadcrumbs)
+
 @bp.route('/about')
 def about():
     breadcrumbs = [("Home", "/"), ("About", None)]
     return render_template('about.html', crumbs=breadcrumbs)
+
+@bp.route('/silver-jubilee')
+def silver_jubilee():
+    breadcrumbs = [("Home", "/"), ("Silver Jubilee", None)]
+
+    # Collect image files from the silver_jubilee static folder
+    base_folder = os.path.join(current_app.root_path, 'static', 'images', 'silver_jubilee')
+    images = []
+    afternoon_images = []
+    evening_images = []
+
+    try:
+        # Afternoon folder
+        afternoon_folder = os.path.join(base_folder, 'afternoon')
+        if os.path.exists(afternoon_folder):
+            for fname in sorted(os.listdir(afternoon_folder)):
+                if allowed_file(fname):
+                    afternoon_images.append(url_for('static', filename=f'images/silver_jubilee/afternoon/{fname}'))
+
+        # Evening folder
+        evening_folder = os.path.join(base_folder, 'evening')
+        if os.path.exists(evening_folder):
+            for fname in sorted(os.listdir(evening_folder)):
+                if allowed_file(fname):
+                    evening_images.append(url_for('static', filename=f'images/silver_jubilee/evening/{fname}'))
+
+    except Exception as e:
+        print(f"Error listing silver_jubilee images: {e}")
+
+    return render_template('silver_jubilee_gallery.html', crumbs=breadcrumbs, images=images, afternoon_images=afternoon_images, evening_images=evening_images)
 
 @bp.route('/policy-documents')
 def policy_documents():
@@ -1177,7 +1223,7 @@ def delete_brochure(brochure_id):
 
 @bp.route('/leadership-board')
 def leadership_board():
-    breadcrumbs = [("Home", "/"), ("About", "/about"), ("Governing Councils", None)]
+    breadcrumbs = [("Home", "/"), ("About", "/about"), ("Governing Council", None)]
     return render_template('leadership_board.html', members=data, crumbs=breadcrumbs)
 
 @bp.route('/our-team')
@@ -1382,10 +1428,11 @@ def demo_past_event():
 
 @bp.route('/past-events')
 def past_event_page():
-    # Load latest past event with its images for public page without altering layout
-    past_event = PastEvent.query.order_by(PastEvent.event_date.is_(None), PastEvent.event_date.desc(), PastEvent.created_at.desc()).first()
+    # Load latest past event and sidebar list with newest-first ordering (by created_at)
+    # Use created_at.desc() as the primary ordering so newly added events show first.
+    past_event = PastEvent.query.order_by(PastEvent.created_at.desc()).first()
     images = past_event.images if past_event else []
-    sidebar_events = PastEvent.query.order_by(PastEvent.event_date.is_(None), PastEvent.event_date.desc(), PastEvent.created_at.desc()).all()
+    sidebar_events = PastEvent.query.order_by(PastEvent.created_at.desc()).all()
     breadcrumbs = [("Home", "/"), ("Past Events", None)]
     return render_template("past-events.html", past_event=past_event, past_event_images=images, sidebar_events=sidebar_events, breadcrumbs=breadcrumbs)
 
@@ -1394,7 +1441,8 @@ def past_event_page():
 def past_event_detail(past_event_id):
     # Render same layout for a specific past event
     past_event = PastEvent.query.get_or_404(past_event_id)
-    sidebar_events = PastEvent.query.order_by(PastEvent.event_date.is_(None), PastEvent.event_date.desc(), PastEvent.created_at.desc()).all()
+    # Ensure sidebar shows newest first
+    sidebar_events = PastEvent.query.order_by(PastEvent.created_at.desc()).all()
     return render_template("past-events.html", past_event=past_event, past_event_images=past_event.images, sidebar_events=sidebar_events)
 
 
@@ -1498,14 +1546,19 @@ def admin_list_past_events():
     if current_user.role not in ['host', 'member']:
         return jsonify({'status': 'error', 'message': 'Access denied'}), 403
 
-    events = PastEvent.query.order_by(PastEvent.event_date.is_(None), PastEvent.event_date.desc(), PastEvent.created_at.desc()).all()
+    # Admin listing: show newest past events first
+    events = PastEvent.query.order_by(PastEvent.created_at.desc()).all()
     data = []
     for ev in events:
+        image_count = PastEventImage.query.filter_by(past_event_id=ev.id).count()
         data.append({
             'id': ev.id,
             'title': ev.title,
             'event_date': ev.event_date.isoformat() if ev.event_date else None,
-            'banner_image_path': ev.banner_image_path
+            'banner_image_path': ev.banner_image_path,
+            'image_count': image_count,
+            'created_at': ev.created_at.isoformat() if ev.created_at else None,
+            'updated_at': ev.updated_at.isoformat() if ev.updated_at else None
         })
     return jsonify({'status': 'success', 'events': data})
 
@@ -1552,6 +1605,41 @@ def admin_delete_past_event(event_id):
         db.session.rollback()
         print(f"Error deleting past event {event_id}: {e}")
         return jsonify({'status': 'error', 'message': 'Failed to delete past event'}), 500
+
+
+@bp.route('/admin/past-events/<int:event_id>/images', methods=['GET'])
+@login_required
+@validate_session
+def admin_get_past_event_images(event_id):
+    if current_user.role not in ['host', 'member']:
+        return jsonify({'status': 'error', 'message': 'Access denied'}), 403
+    try:
+        ev = PastEvent.query.get_or_404(event_id)
+        images = PastEventImage.query.filter_by(past_event_id=event_id).order_by(PastEventImage.display_order, PastEventImage.created_at).all()
+        
+        images_data = []
+        for img in images:
+            images_data.append({
+                'id': img.id,
+                'past_event_id': img.past_event_id,
+                'image_path': img.image_path,
+                'description': img.description,
+                'display_order': img.display_order,
+                'created_at': img.created_at.isoformat() if img.created_at else None
+            })
+        
+        return jsonify({
+            'status': 'success',
+            'images': images_data,
+            'event': {
+                'id': ev.id,
+                'title': ev.title,
+                'event_date': ev.event_date.isoformat() if ev.event_date else None
+            }
+        })
+    except Exception as e:
+        print(f"Error getting images for past event {event_id}: {e}")
+        return jsonify({'status': 'error', 'message': 'Failed to get images'}), 500
 
 
 @bp.route('/admin/past-events/<int:event_id>/images', methods=['POST'])
@@ -2018,9 +2106,9 @@ def event_detail_page(event_id):
 
 
 
-@bp.route('/upcoming-event')
-def upcoming_page():
-    return render_template("upcoming-event.html")
+# @bp.route('/upcoming-event')
+# def upcoming_page():
+#     return render_template("upcoming-event.html")
 
 @bp.route('/Budget-Event')
 def budget_event():
@@ -2537,3 +2625,52 @@ def test_config():
         'status': 'success',
         'config': config_info
     })
+
+@bp.route('/robots.txt')
+def robots_txt():
+    """Serve robots.txt file"""
+    return send_file('static/robots.txt', mimetype='text/plain')
+
+@bp.route('/googlec52e364d952bd226.html')
+def google_verification():
+    """Serve Google Search Console verification file"""
+    return send_file('static/googlec52e364d952bd226.html', mimetype='text/html')
+
+
+from flask import Response
+import xml.etree.ElementTree as ET
+
+@bp.route('/sitemap.xml')
+def dynamic_sitemap():
+    """Generate dynamic sitemap with real-time URLs"""
+    
+    urlset = ET.Element('urlset')
+    urlset.set('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
+    
+    # Add static pages
+    pages = [
+        ('main.home', '1.0', 'weekly'),
+        ('main.about', '0.8', 'monthly'),
+        ('main.membership_benefit', '0.8', 'monthly'),
+        ('main.membership_types', '0.8', 'monthly'),
+        ('main.contact_page', '0.7', 'monthly'),
+        # Add more pages here, e.g., for /membership-types
+    ]
+    
+    for route, priority, changefreq in pages:
+        url = ET.SubElement(urlset, 'url')
+        ET.SubElement(url, 'loc').text = url_for(route, _external=True)
+        ET.SubElement(url, 'lastmod').text = datetime.now().strftime('%Y-%m-%d')
+        ET.SubElement(url, 'changefreq').text = changefreq
+        ET.SubElement(url, 'priority').text = priority
+    
+    return Response(ET.tostring(urlset, encoding='unicode'), mimetype='application/xml')
+
+
+@bp.route('/aboutus')
+def redirect_aboutus():
+    return redirect('/about', code=301)
+
+@bp.route('/conference')
+def redirect_conference():
+    return redirect('/home', code=301)

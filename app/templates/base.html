@@ -4,9 +4,22 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>{% block title %}TACCI{% endblock %}</title>
-  <meta name="description" content="" />
+  <meta name="description"
+    content="Join TACCI for global networking, trade promotion, and business growth across 70+ countries.">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    /* Prevent horizontal scrollbar from elements using 100vw or wide fixed widths */
+    html,
+    body {
+      overflow-x: hidden;
+    }
+  </style>
+
+  <meta name="google-site-verification" content="bGQfLjefaV3vCn1OV-g274XZzcREUmem_ZwpTZTjqJY" />
+
+
+  <link rel="canonical" href="https://www.transasianchamber.org/home">
 
   <!-- Place favicon.ico in the root directory -->
   <link rel="shortcut icon" type="image/x-icon" href="/static/images/logo/transLogo.png" />
@@ -42,7 +55,70 @@
 
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" /> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-  
+
+
+
+  <!-- Add these blocks to base.html head section -->
+  <title>{% block title %}TACCI | Trans Asian Chamber of Commerce & Industry{% endblock %}</title>
+  <meta name="description"
+    content="{% block meta_description %}Join TACCI for global networking, trade promotion, and business growth across 70+ countries.{% endblock %}" />
+  <meta name="keywords"
+    content="{% block meta_keywords %}TACCI, Trans Asian Chamber, international trade, business networking, global commerce, Asia trade, export import, business partnerships{% endblock %}" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}{{ self.meta_description() }}{% endblock %}" />
+  <meta property="og:image"
+    content="{% block og_image %}{{ url_for('static', filename='images/logo/transLogo.png', _external=True) }}{% endblock %}" />
+  <meta property="og:url" content="{% block og_url %}{{ request.url }}{% endblock %}" />
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+  <meta property="og:site_name" content="Trans Asian Chamber of Commerce & Industry" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{% block twitter_title %}{{ self.og_title() }}{% endblock %}" />
+  <meta name="twitter:description" content="{% block twitter_description %}{{ self.og_description() }}{% endblock %}" />
+  <meta name="twitter:image" content="{% block twitter_image %}{{ self.og_image() }}{% endblock %}" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Trans Asian Chamber of Commerce & Industry",
+  "alternateName": "TACCI",
+  "url": "https://www.transasianchamber.org",
+  "logo": "https://www.transasianchamber.org/static/images/logo/transLogo.png",
+  "foundingDate": "1999",
+  "description": "Premier international trade organization fostering business partnerships across Asia and beyond",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "url": "https://www.transasianchamber.org/contact"
+  },
+  "sameAs": [
+    "https://www.facebook.com/sanjay.bhide.716",
+    "https://www.linkedin.com/company/trans-asian-chamber-of-commerce-industry-tacci/"
+  ]
+}
+</script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PL2PDV5DP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-1PL2PDV5DP');
+  </script>
+
 </head>
 
 <body>

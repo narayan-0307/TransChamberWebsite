@@ -1,0 +1,20 @@
+nohup: ignoring input
+[2025-11-11 08:37:33 +0000] [1263879] [INFO] Starting gunicorn 23.0.0
+[2025-11-11 08:37:33 +0000] [1263879] [INFO] Listening at: http://127.0.0.1:8000 (1263879)
+[2025-11-11 08:37:33 +0000] [1263879] [INFO] Using worker: sync
+[2025-11-11 08:37:33 +0000] [1263883] [INFO] Booting worker with pid: 1263883
+[2025-11-11 08:37:33 +0000] [1263884] [INFO] Booting worker with pid: 1263884
+[2025-11-11 08:43:37 +0000] [1263879] [INFO] Handling signal: hup
+[2025-11-11 08:43:37 +0000] [1263879] [INFO] Hang up: Master
+[2025-11-11 08:43:37 +0000] [1264203] [INFO] Booting worker with pid: 1264203
+[2025-11-11 08:43:37 +0000] [1264204] [INFO] Booting worker with pid: 1264204
+[2025-11-11 08:43:37 +0000] [1263884] [INFO] Worker exiting (pid: 1263884)
+[2025-11-11 08:43:37 +0000] [1263883] [INFO] Worker exiting (pid: 1263883)
+[2025-11-11 08:43:38 +0000] [1263879] [ERROR] Worker (pid:1263883) was sent SIGTERM!
+[2025-11-11 08:47:59 +0000] [1263879] [INFO] Handling signal: hup
+[2025-11-11 08:47:59 +0000] [1263879] [INFO] Hang up: Master
+[2025-11-11 08:47:59 +0000] [1264682] [INFO] Booting worker with pid: 1264682
+[2025-11-11 08:47:59 +0000] [1264204] [INFO] Worker exiting (pid: 1264204)
+[2025-11-11 08:47:59 +0000] [1264683] [INFO] Booting worker with pid: 1264683
+[2025-11-11 08:47:59 +0000] [1264203] [INFO] Worker exiting (pid: 1264203)
+[2025-11-11 08:47:59 +0000] [1263879] [ERROR] Worker (pid:1264203) was sent SIGTERM!

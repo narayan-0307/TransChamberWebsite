@@ -1,196 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    /* Minimal full-viewport video + overlay */
+    .action-video-wrap {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        background: #000;
+    }
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Interactive Airplane Video</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    .action-video-wrap video {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        display: block;
+    }
+
+    .action-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        /* raised so overlay is always on top */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+    }
+
+    .action-overlay__card {
+        pointer-events: auto;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 14px 18px;
+        border-radius: 10px;
+        backdrop-filter: blur(4px);
+        font-size: 1rem;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    /* animated click-hand */
+    .click-hand {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        background: rgba(96, 165, 250, 0.12);
+        color: #60a5fa;
+        transform-origin: center;
+        animation: hand-bounce 1.2s ease-in-out infinite;
+    }
+
+    .click-hand i,
+    .click-hand svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .click-hand svg {
+        fill: #60a5fa;
+    }
+
+    @keyframes hand-bounce {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 1
         }
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: sans-serif;
-            background: black;
+        50% {
+            transform: translateY(8px) scale(0.98);
+            opacity: 0.95
         }
 
-        .video-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
+        100% {
+            transform: translateY(0) scale(1);
+            opacity: 1
+        }
+    }
+
+    @media (max-width:640px) {
+        .action-overlay__card {
+            font-size: 0.95rem;
+            padding: 12px 14px;
         }
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .click-hand {
+            width: 46px;
+            height: 46px;
         }
 
-        .city-button {
-            position: absolute;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            border: none;
-            padding: 10px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-            z-index: 2;
-            transition: background 0.3s ease;
+        .click-hand i,
+        .click-hand svg {
+            width: 18px;
+            height: 18px;
         }
-
-        .city-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Positioning icons arbitrarily across the screen */
-        .btn1 {
-            top: 20%;
-            left: 10%;
-        }
-
-        .btn2 {
-            top: 35%;
-            left: 25%;
-        }
-
-        .btn3 {
-            top: 50%;
-            left: 18%;
-        }
-
-        .btn4 {
-            top: 65%;
-            left: 30%;
-        }
-
-        .btn5 {
-            top: 15%;
-            left: 50%;
-        }
-
-        .btn6 {
-            top: 70%;
-            left: 45%;
-        }
-
-        .btn7 {
-            top: 30%;
-            left: 70%;
-        }
-
-        .btn8 {
-            top: 60%;
-            left: 65%;
-        }
-
-        .btn9 {
-            top: 40%;
-            left: 80%;
-        }
-
-        .btn10 {
-            top: 55%;
-            left: 90%;
-        }
-
-        #airplane {
-            position: absolute;
-            width: 80px;
-            top: 100%;
-            left: -100px;
-            z-index: 2;
-            opacity: 0;
-            transition: transform 2s ease-out, top 2s ease-out, left 2s ease-out,
-                opacity 0.5s;
-        }
-
-        .fly {
-            top: 20%;
-            left: 110%;
-            opacity: 1;
-            transform: rotate(45deg);
-        }
-    </style>
-</head>
-
-<body>
-    <div class="video-container">
-        <video id="myVideo" preload="auto" playsinline width="640" height="360">
-            <source src="{{ url_for('static', filename='videos/video.mp4') }}" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video>
+    }
+</style>
 
 
-        <!-- Floating City Buttons -->
-        <button class="city-button btn1">
-            <i class="fa-solid fa-briefcase"></i> Business
-        </button>
-        <button class="city-button btn2">
-            <i class="fa-solid fa-ship"></i> Export
-        </button>
-        <button class="city-button btn3">
-            <i class="fa-solid fa-users"></i> Ventures
-        </button>
-        <button class="city-button btn4">
-            <i class="fa-solid fa-microchip"></i> Tech
-        </button>
-        <button class="city-button btn5">
-            <i class="fa-solid fa-gavel"></i> Policy
-        </button>
-        <button class="city-button btn6">
-            <i class="fa-solid fa-book-open"></i> Education
-        </button>
-        <button class="city-button btn7">
-            <i class="fa-solid fa-globe-asia"></i> Culture
-        </button>
-        <button class="city-button btn8">
-            <i class="fa-solid fa-laptop-code"></i> Digital
-        </button>
-        <button class="city-button btn9">
-            <i class="fa-solid fa-balance-scale"></i> Legal
-        </button>
-        <button class="city-button btn10">
-            <i class="fa-solid fa-handshake"></i> Networking
-        </button>
+<div class="action-video-wrap" id="actionVideoWrap">
+    <video id="actionBgVideo" preload="metadata" playsinline muted>
+        <source
+            src="{{ url_for('static', filename='videos/main-video.mp4') }}{% if video_version %}?v={{ video_version }}{% endif %}"
+            type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+</div>
 
-        <!-- Airplane Icon (animated) -->
-        <img src="airplane.png" id="airplane" alt="Airplane" />
+<div class="action-overlay" id="actionOverlay">
+    <div class="action-overlay__card" id="overlayCard">
+        <span class="click-hand" aria-hidden="true">
+            <!-- Inline SVG fallback hand icon (shows even if Font Awesome isn't loaded) -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path
+                    d="M9 2a1 1 0 0 1 1 1v6h1.5a1.5 1.5 0 0 1 1.45 1.03L13.9 12l.6 2.4A3 3 0 0 0 18 17h-3.5l-1.3 3.9A1 1 0 0 1 12.3 22H11a1 1 0 0 1-.95-.68L8 15H7a2 2 0 0 1-2-2V6a4 4 0 0 1 4-4z" />
+            </svg>
+        </span>
+        <div>Click anywhere on this page to return to the homepage.</div>
     </div>
+</div>
 
-    <script>
-        const video = document.getElementById("myVideo");
-        const buttons = document.querySelectorAll(".city-button");
-        const airplane = document.getElementById("airplane");
+<script>
+    (function () {
+        const video = document.getElementById('actionBgVideo');
+        const overlay = document.getElementById('actionOverlay');
+        let started = false;
 
-        buttons.forEach((button) => {
-            button.addEventListener("click", () => {
-                // Hide all buttons
-                buttons.forEach((btn) => (btn.style.display = "none"));
+        function startPlayback() {
+            if (started) return; started = true;
+            try { video.muted = false; const p = video.play(); if (p && p.catch) p.catch(() => { }); } catch (e) { /* ignore */ }
+            overlay.style.transition = 'opacity .5s ease'; overlay.style.opacity = '0'; setTimeout(() => overlay.remove(), 600);
+        }
 
-                // Animate airplane
-                airplane.classList.add("fly");
+        // Click anywhere to play (don't block clicks on devtools or inputs)
+        document.addEventListener('click', function (e) { startPlayback(); }, { once: false });
+        document.addEventListener('keydown', function (e) { if (e.code === 'Space' || e.code === 'Enter') startPlayback(); });
 
-                // Play video
-                video.play();
-            });
+        // Hide native controls (keep UI minimal)
+        try { video.controls = false; } catch (e) { }
+
+        // when video ends, redirect to home
+        video.addEventListener('ended', function () {
+            try { window.location.href = '{{ url_for("main.home") }}'; } catch (e) { window.location.href = '/'; }
         });
-
-        video.addEventListener("ended", () => {
-            window.location.href = "http://127.0.0.1:5000/home";
-        });
-    </script>
-</body>
-
-</html>
+    })();
+</script>

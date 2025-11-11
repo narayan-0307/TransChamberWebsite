@@ -54,17 +54,18 @@
         "trade facilitation": "Our trade facilitation services help businesses navigate international trade regulations and establish successful trade relationships."
     },
     "contact": {
-        "how to contact": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Friday, 9 AM to 5 PM.",
-        "contact": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Friday, 9 AM to 5 PM.",
-        "reach": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Friday, 9 AM to 5 PM.",
-        "get in touch": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Friday, 9 AM to 5 PM.",
-        "office location": "Our main office is located in [City, Country]. We also have regional offices across Asia.",
-        "location": "Our main office is located in [City, Country]. We also have regional offices across Asia.",
-        "address": "Our main office is located in [City, Country]. We also have regional offices across Asia.",
-        "email": "You can email us at info@transasianchamber.org",
-        "phone": "For general inquiries, please call our main office at [Phone Number]",
-        "call": "For general inquiries, please call our main office at [Phone Number]",
-        "office hours": "Our office hours are Monday to Friday, 9 AM to 5 PM."
+        "how to contact": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Saturday, 10 AM to 8 PM.",
+        "contact": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Saturday, 10 AM to 8 PM.",
+        "reach": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Saturday, 10 AM to 8 PM.",
+        "get in touch": "You can reach us through our website's contact form, email, or phone. Our office hours are Monday to Saturday, 10 AM to 8 PM.",
+        "office location": "Our main office is located at 301, Hind Service Industrial Estate, Jaambhekar Maharaj Path, Dadar Chowpatty, Mumbai - 400028, Maharashtra, Hindustaan.",
+        "location": "Our main office is located at 301, Hind Service Industrial Estate, Jaambhekar Maharaj Path, Dadar Chowpatty, Mumbai - 400028, Maharashtra, Hindustaan.",
+        "address": "Our main office is located at 301, Hind Service Industrial Estate, Jaambhekar Maharaj Path, Dadar Chowpatty, Mumbai - 400028, Maharashtra, Hindustaan.",
+        "email": "You can email us at transasian.hindustaan@gmail.com",
+        "phone": "For general inquiries, please call our main office at +91 9820964687",
+        "call": "For general inquiries, please call our main office at +91 9820964687",
+        "office hours": "Our office hours are Monday to Saturday, 10 AM to 8 PM.",
+        "map link": "https://www.google.com/maps?q=301,+Hind+Service+Industrial+Estate,+Jaambhekar+Maharaj+Path,+Dadar+Chowpatty,+Mumbai,+Maharashtra+400028"
     },
     "general": {
         "thank you": "You're welcome! Is there anything else I can help you with?",

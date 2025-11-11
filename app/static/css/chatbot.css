@@ -109,7 +109,6 @@
 }
 
 @keyframes bounce {
-
   0%,
   100% {
     transform: translateY(0);
@@ -180,4 +179,45 @@
     height: 1.25rem !important;
     width: 1.25rem !important;
   }
+}
+
+/* Chat link styling: blue links and underline on hover for readability */
+.message-bubble.bot a {
+  color: #2563eb; /* blue */
+  text-decoration: none;
+}
+/* Styled map link used by chatbot JS */
+.chatbot-map-link {
+  color: #007bff; /* bootstrap primary blue */
+  text-decoration: none;
+}
+.chatbot-map-link:hover,
+.chatbot-map-link:focus {
+  text-decoration: underline;
+  color: #0056b3; /* slightly darker on hover for contrast */
+}
+
+.message-bubble.bot a:hover,
+.message-bubble.bot a:focus {
+  text-decoration: underline;
+  color: #1e40af; /* slightly darker blue on hover */
+}
+
+/* Make the chatbot map link rules more specific so they override the generic
+   .message-bubble.bot a rules above. This ensures the special map link uses
+   the desired blue and gets an underline on hover/focus. */
+.message-bubble.bot a.chatbot-map-link {
+  color: #007bff; /* bootstrap primary blue */
+  text-decoration: none;
+}
+.message-bubble.bot a.chatbot-map-link:hover,
+.message-bubble.bot a.chatbot-map-link:focus {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Ensure links in user bubbles remain visible (lighter blue on dark background) */
+.message-bubble.user a {
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: underline;
 }

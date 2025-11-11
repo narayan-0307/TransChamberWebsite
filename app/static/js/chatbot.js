@@ -2,13 +2,13 @@ let responses = null;
 // Removed hasAutoOpened and auto-open logic
 
 // Load responses when the page loads
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await fetch('/static/data/chatbot_responses.json');
+    const response = await fetch("/static/data/chatbot_responses.json");
     responses = await response.json();
     // Removed setTimeout for auto-opening chat
   } catch (error) {
-    console.error('Error loading chatbot responses:', error);
+    console.error("Error loading chatbot responses:", error);
   }
 });
 
@@ -44,7 +44,25 @@ function createMessageElement(message, isUser = false) {
   bubble.className = `message-bubble ${isUser ? "user" : "bot"}`;
 
   const content = document.createElement("div");
-  content.textContent = message;
+  // Render message as HTML but make sure plain URLs become clickable links
+  // If message is already HTML (contains '<a' or '<br'), assume it's safe to set as-is
+  if (typeof message === "string") {
+    let safeMessage = message;
+
+    // If the message does not already contain anchor tags, convert plain URLs to links
+    if (!/\<a\s/i.test(safeMessage)) {
+      // Simple URL regex (matches http(s)://...)
+      const urlRegex = /(https?:\/\/[^\s"'<>]+)/g;
+      safeMessage = safeMessage.replace(urlRegex, function (url) {
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+      });
+    }
+
+    content.innerHTML = safeMessage;
+  } else {
+    // fallback
+    content.textContent = String(message);
+  }
 
   const time = document.createElement("div");
   time.className = `message-time ${isUser ? "user" : "bot"}`;
@@ -93,7 +111,11 @@ function findBestMatch(input, section) {
 
     // Check for word matches
     for (const word of words) {
-      if (keyWords.some(keyWord => keyWord.includes(word) || word.includes(keyWord))) {
+      if (
+        keyWords.some(
+          (keyWord) => keyWord.includes(word) || word.includes(keyWord)
+        )
+      ) {
         score += 10;
       }
     }
@@ -117,7 +139,8 @@ function findBestMatch(input, section) {
 }
 
 function getBotResponse(userInput) {
-  if (!responses) return "I'm having trouble connecting. Please try again later.";
+  if (!responses)
+    return "I'm having trouble connecting. Please try again later.";
 
   const input = userInput.toLowerCase().trim();
 
@@ -128,19 +151,80 @@ function getBotResponse(userInput) {
 
   // Check each section for matches
   const sections = [
-    { name: 'about', keywords: ['about', 'trans', 'chamber', 'what', 'who', 'do', 'organization'] },
-    { name: 'membership', keywords: ['member', 'join', 'benefit', 'fee', 'cost', 'type'] },
-    { name: 'events', keywords: ['event', 'conference', 'seminar', 'register', 'calendar', 'schedule'] },
-    { name: 'services', keywords: ['service', 'offer', 'matchmaking', 'research', 'consulting', 'trade'] },
-    { name: 'contact', keywords: ['contact', 'reach', 'location', 'address', 'email', 'phone', 'call'] },
-    { name: 'general', keywords: ['thank', 'bye', 'help', 'not sure', 'confused'] }
+    {
+      name: "about",
+      keywords: [
+        "about",
+        "trans",
+        "chamber",
+        "what",
+        "who",
+        "do",
+        "organization",
+      ],
+    },
+    {
+      name: "membership",
+      keywords: ["member", "join", "benefit", "fee", "cost", "type"],
+    },
+    {
+      name: "events",
+      keywords: [
+        "event",
+        "conference",
+        "seminar",
+        "register",
+        "calendar",
+        "schedule",
+      ],
+    },
+    {
+      name: "services",
+      keywords: [
+        "service",
+        "offer",
+        "matchmaking",
+        "research",
+        "consulting",
+        "trade",
+      ],
+    },
+    {
+      name: "contact",
+      keywords: [
+        "contact",
+        "reach",
+        "location",
+        "address",
+        "email",
+        "phone",
+        "call",
+      ],
+    },
+    {
+      name: "general",
+      keywords: ["thank", "bye", "help", "not sure", "confused"],
+    },
   ];
 
   // First, check if any section keywords are in the input
   for (const section of sections) {
-    if (section.keywords.some(keyword => input.includes(keyword))) {
+    if (section.keywords.some((keyword) => input.includes(keyword))) {
       const match = findBestMatch(input, responses[section.name]);
       if (match) {
+        // If this is a contact/address response, and a map link exists, append it
+        if (section.name === "contact" && typeof match === "string") {
+          // Try to find a map link in responses.contact
+          const contactSection = responses.contact || {};
+          const mapLink =
+            contactSection["map link"] ||
+            contactSection["map_link"] ||
+            contactSection.maplink;
+          if (mapLink) {
+            // Return address with map link on a new line; add a class for styling
+            return `${match} <br><a class="chatbot-map-link" href="${mapLink}" target="_blank" rel="noopener noreferrer">View on map</a>`;
+          }
+        }
         return match;
       }
     }

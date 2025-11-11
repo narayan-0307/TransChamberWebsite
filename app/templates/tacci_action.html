@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+{% block title %}TACCI{% endblock %}
+{% block content %}
+
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+    data-background="static/images/hero/banner.jpg" style="
+    min-height: 40vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+  "></div>
+
+{% include 'partials/breadcrumb.html' %}
+
+
+<!-- TACCI in Action — Video Showcase -->
+<section class="tacci-action pt-12 pb-20">
+    <div class="container max-w-6xl mx-auto px-6 text-center">
+        <h1 class="tacci-action__title tp-ff-heading tp-text-grey-1 fw-600 mb-6">TACCI in Action — 25 Years of Impact
+        </h1>
+        <p class="text-gray-600 mb-8">A short documentary showcasing our milestones, delegations, and events over the
+            past 25 years.</p>
+
+        <div class="tacci-action__player-wrapper mx-auto" style="max-width: 1100px;">
+            <div class="tacci-action__player" tabindex="0">
+                <video id="tacciVideo" class="tacci-action__video" crossorigin="anonymous" preload="metadata"
+                    playsinline muted controlsList="nodownload" tabindex="0" role="button"
+                    aria-label="TACCI action video">
+                    <source src="{{ url_for('static', filename='videos/tacci_action.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- Overlay controls -->
+                <button class="tacci-action__overlay-play" id="overlayPlay" aria-label="Play video">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button class="tacci-action__overlay-full" id="overlayFull" aria-label="Toggle fullscreen">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </button>
+
+                <!-- Custom control bar (visible below video) -->
+                <div class="tacci-action__controls" aria-label="Video controls">
+                    <div class="tacci-action__controls-left">
+                        <button class="tacci-action__btn" id="playBtn" aria-label="Play/Pause"><i
+                                class="fa-solid fa-play"></i></button>
+                        <button class="tacci-action__btn" id="muteBtn" aria-label="Mute/Unmute"><i
+                                class="fa-solid fa-volume-high"></i></button>
+                    </div>
+
+                    <div class="tacci-action__progress-wrap" id="progressWrap">
+                        <div class="tacci-action__progress" id="progressBar" role="slider" aria-valuemin="0"
+                            aria-valuemax="100" tabindex="0">
+                            <div class="tacci-action__progress-filled" id="progressFilled"></div>
+                        </div>
+                    </div>
+
+                    <div class="tacci-action__controls-right">
+                        <div class="tacci-action__time"><span id="currentTime">0:00</span> / <span
+                                id="duration">0:00</span></div>
+                        <select id="speedSelect" class="tacci-action__speed" aria-label="Playback speed">
+                            <option value="0.5">0.5x</option>
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>1x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="2">2x</option>
+                        </select>
+                        <button class="tacci-action__btn" id="fullscreenBtn" aria-label="Fullscreen"><i
+                                class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-3">Tip: Hover to reveal controls. Click the fullscreen icon for best
+                experience.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .tacci-action__title {
+        font-size: 2rem;
+    }
+
+    .tacci-action__player {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .tacci-action__video {
+        width: 100%;
+        height: 70vh;
+        display: block;
+        background: #000;
+        /* allow clicks to reach the video element (overlay buttons are still clickable) */
+        pointer-events: auto;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .tacci-action__overlay-play,
+    .tacci-action__overlay-full {
+        position: absolute;
+        z-index: 30;
+        border: none;
+        background: rgba(31, 49, 48, 0.6);
+        color: #fff;
+        padding: 12px 14px;
+        border-radius: 9999px;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: transform .15s ease, opacity .15s ease;
+    }
+
+    /* Force overlay and video pointer behavior so video clicks reach the video element */
+    .tacci-action__player {
+        z-index: 0 !important;
+    }
+
+    .tacci-action__video {
+        z-index: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    .tacci-action__overlay-play {
+        z-index: 2 !important;
+        pointer-events: auto !important;
+    }
+
+    .tacci-action__overlay-full {
+        z-index: 2 !important;
+        pointer-events: auto !important;
+    }
+
+    .tacci-action__player.playing .tacci-action__overlay-play {
+        pointer-events: none !important;
+    }
+
+    .tacci-action__overlay-play {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        font-size: 1.6rem;
+    }
+
+    .tacci-action__overlay-full {
+        right: 12px;
+        bottom: 12px;
+        transform: translateY(0);
+        font-size: 1rem;
+    }
+
+    /* Hide overlay when video is playing */
+    .tacci-action__player.playing .tacci-action__overlay-play {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.9);
+        pointer-events: none;
+    }
+
+    /* Make controls visible on hover/focus */
+    .tacci-action__player:hover .tacci-action__overlay-full,
+    .tacci-action__player:focus-within .tacci-action__overlay-full {
+        opacity: 1;
+    }
+
+    .tacci-action__overlay-full {
+        opacity: .92;
+    }
+
+    /* Custom control bar styles */
+    .tacci-action__controls {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.02);
+        color: #fff;
+    }
+
+    .tacci-action__controls-left {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .tacci-action__controls-right {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .tacci-action__btn {
+        background: rgba(31, 49, 48, 0.75);
+        color: #fff;
+        border: none;
+        padding: 8px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .tacci-action__btn i {
+        font-size: 1rem;
+    }
+
+    .tacci-action__progress-wrap {
+        flex: 1 1 40%;
+        padding: 0 10px;
+    }
+
+    .tacci-action__progress {
+        width: 100%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .tacci-action__progress-filled {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0%;
+        background: linear-gradient(90deg, #1f3130, #3aa0a0);
+        border-radius: 6px;
+    }
+
+    .tacci-action__time {
+        font-size: 0.9rem;
+        color: #cbd5db;
+        min-width: 90px;
+        text-align: right;
+    }
+
+    .tacci-action__speed {
+        background: rgba(255, 255, 255, 0.03);
+        color: black;
+        padding: 6px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    @media (max-width: 640px) {
+        .tacci-action__title {
+            font-size: 1.4rem;
+        }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+        .tacci-action__title {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        const player = document.querySelector('.tacci-action__player');
+        const video = document.getElementById('tacciVideo');
+        const overlayPlay = document.getElementById('overlayPlay');
+        const overlayFull = document.getElementById('overlayFull');
+
+        const playBtn = document.getElementById('playBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressFilled = document.getElementById('progressFilled');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const speedSelect = document.getElementById('speedSelect');
+
+        if (!video || !player) return;
+
+        // Initialize
+        video.muted = true;
+        video.preload = 'metadata';
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function updatePlayStateUI() {
+            const playing = !video.paused && !video.ended;
+            player.classList.toggle('playing', playing);
+            const icon = playing ? 'fa-pause' : 'fa-play';
+            [overlayPlay, playBtn].forEach(btn => { if (btn) btn.querySelector('i').className = `fa-solid ${icon}`; });
+        }
+
+        // Update mute button UI
+        function updateMuteUI() {
+            if (!muteBtn) return;
+            const cls = video.muted ? 'fa-volume-xmark' : 'fa-volume-high';
+            const i = muteBtn.querySelector('i');
+            if (i) i.className = `fa-solid ${cls}`;
+        }
+
+        // Toggle play/pause; if starting playback, ensure video is unmuted so user hears audio
+        function togglePlay() {
+            if (video.paused) {
+                // user-initiated play should unmute for audible playback
+                if (video.muted) {
+                    video.muted = false;
+                    updateMuteUI();
+                }
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        [overlayPlay, playBtn].forEach(btn => {
+            if (!btn) return;
+            btn.addEventListener('click', function () { togglePlay(); updatePlayStateUI(); });
+        });
+
+        video.addEventListener('play', updatePlayStateUI);
+        video.addEventListener('pause', updatePlayStateUI);
+
+        // Mute/unmute
+        muteBtn.addEventListener('click', function () {
+            video.muted = !video.muted;
+            updateMuteUI();
+        });
+
+        // Update duration
+        video.addEventListener('loadedmetadata', function () {
+            durationEl.textContent = formatTime(video.duration);
+        });
+
+        // Progress updates
+        video.addEventListener('timeupdate', function () {
+            const pct = (video.currentTime / video.duration) * 100;
+            progressFilled.style.width = `${pct || 0}%`;
+            currentTimeEl.textContent = formatTime(video.currentTime);
+        });
+
+        // Seek by clicking progress bar
+        function seek(e) {
+            const rect = progressBar.getBoundingClientRect();
+            const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+            const pct = Math.max(0, Math.min(1, x / rect.width));
+            video.currentTime = pct * video.duration;
+        }
+
+        let isSeeking = false;
+        progressBar.addEventListener('mousedown', e => { isSeeking = true; seek(e); });
+        window.addEventListener('mousemove', e => { if (isSeeking) seek(e); });
+        window.addEventListener('mouseup', () => { if (isSeeking) isSeeking = false; });
+
+        // Keyboard control for progress (left/right arrow)
+        progressBar.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') { video.currentTime = Math.max(0, video.currentTime - 5); }
+            if (e.key === 'ArrowRight') { video.currentTime = Math.min(video.duration, video.currentTime + 5); }
+        });
+
+        // Playback speed
+        speedSelect.addEventListener('change', function () { video.playbackRate = Number(this.value || 1); });
+
+        // Fullscreen
+        function toggleFullscreen(elem) {
+            if (document.fullscreenElement) document.exitFullscreen(); else elem.requestFullscreen().catch(() => { });
+        }
+
+        // Allow clicking the video itself to toggle play/pause for better discoverability
+        try {
+            video.addEventListener('click', function () { togglePlay(); updatePlayStateUI(); });
+        } catch (e) {
+            // ignore if video isn't available
+        }
+
+        fullscreenBtn.addEventListener('click', function () { toggleFullscreen(player); });
+        overlayFull.addEventListener('click', function () { toggleFullscreen(player); });
+
+        // Initial UI state
+        updatePlayStateUI();
+        updateMuteUI();
+
+        // Accessibility: space toggles play/pause when player focused
+        player.addEventListener('keydown', function (e) { if (e.code === 'Space') { e.preventDefault(); togglePlay(); updatePlayStateUI(); } });
+    })();
+</script>
+
+{% endblock %}

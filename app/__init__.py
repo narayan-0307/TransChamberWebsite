@@ -32,6 +32,9 @@ def create_app(config_class=Config):
         
     from app.views import bp
     app.register_blueprint(bp)
+
+    # filepath: /var/www/TransChamberWebsite/app/__init__.py
+    app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50 MB
     
     return app
 

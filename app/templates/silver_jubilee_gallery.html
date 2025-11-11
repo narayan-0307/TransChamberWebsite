@@ -1,0 +1,934 @@
+{% extends "base.html" %}
+
+{% block title %}Silver Jubilee{% endblock %}
+
+{% block content %}
+
+
+<style>
+    /* Page-scoped gallery styles: masonry using CSS columns */
+    .sj-gallery-wrap {
+        padding: 10px 0;
+    }
+
+    /* Default: mobile (1 card) */
+    .sj-gallery {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 24px;
+        max-width: 1400px;
+        margin: 0 auto;
+        align-items: start;
+    }
+
+    .sj-card {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Thumbnail wrapper: fixes the visible height/ratio of each card's image
+       so tall portrait photos don't expand the card. Uses aspect-ratio when
+       supported and falls back to a fixed height. */
+    .sj-thumb {
+        width: 100%;
+        height: 160px;
+        /* fallback for older browsers */
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        background: #f6f6f6;
+        display: block;
+    }
+
+    .sj-thumb img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        /* crop to fill the box while preserving ratio */
+        object-position: center center;
+    }
+
+    .sj-card .meta {
+        padding: 12px;
+        background: #fff;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .jubilee-container {
+        text-align: center;
+        text-align: center;
+    }
+
+    .jubilee-container h1 {
+        font-size: 2.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .jubilee-container p {
+        color: #666;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* Responsive breakpoints per requirements */
+    /* Tablets (480–768px): 3 cards */
+    @media (min-width: 480px) and (max-width: 768px) {
+        .sj-gallery {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* Small laptops (768–1024px): 4 cards */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .sj-gallery {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    /* Desktops (1024–1200px): 5 cards */
+    @media (min-width: 1025px) and (max-width: 1199px) {
+        .sj-gallery {
+            grid-template-columns: repeat(5, 1fr);
+        }
+    }
+
+    /* Extra-large (1200px+): 5 cards */
+    @media (min-width: 1200px) {
+        .sj-gallery {
+            grid-template-columns: repeat(5, 1fr);
+        }
+    }
+
+    /* Make gallery images clickable */
+    .sj-card {
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .sj-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Lightbox Modal Styles */
+    .lightbox-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 9999;
+        overflow: hidden;
+    }
+
+    .lightbox-modal.active {
+        display: block;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 10001;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: background 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .lightbox-swiper-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lightbox-swiper {
+        width: 90%;
+        height: 90%;
+        max-width: 1400px;
+    }
+
+    .lightbox-swiper .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+    }
+
+    .lightbox-swiper .swiper-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        user-select: none;
+    }
+
+    .lightbox-swiper .swiper-button-next,
+    .lightbox-swiper .swiper-button-prev {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.2);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        transition: background 0.3s ease;
+    }
+
+    .lightbox-swiper .swiper-button-next:hover,
+    .lightbox-swiper .swiper-button-prev:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .lightbox-swiper .swiper-button-next:after,
+    .lightbox-swiper .swiper-button-prev:after {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .lightbox-swiper .swiper-pagination {
+        bottom: 20px;
+    }
+
+    .lightbox-swiper .swiper-pagination-bullet {
+        background: #fff;
+        opacity: 0.5;
+        width: 10px;
+        height: 10px;
+    }
+
+    .lightbox-swiper .swiper-pagination-bullet-active {
+        background: #ff6b35;
+        opacity: 1;
+    }
+
+    /* Image counter */
+    .lightbox-counter {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+        color: #fff;
+        font-size: 18px;
+        z-index: 10001;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 25px;
+    }
+
+    @media (max-width: 768px) {
+        .lightbox-swiper {
+            width: 95%;
+            height: 80%;
+        }
+
+        .lightbox-swiper .swiper-button-next,
+        .lightbox-swiper .swiper-button-prev {
+            width: 45px;
+            height: 45px;
+        }
+
+        .lightbox-swiper .swiper-button-next:after,
+        .lightbox-swiper .swiper-button-prev:after {
+            font-size: 18px;
+        }
+
+        .lightbox-close {
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .lightbox-counter {
+            top: 10px;
+            left: 15px;
+            font-size: 14px;
+            padding: 8px 15px;
+        }
+    }
+
+    /* Professional Video Player Styles */
+    .sj-video-section {
+        padding: 25px 0;
+    }
+
+    .video-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    .video-player-container {
+        position: relative;
+        background: #000;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+    }
+
+    .video-player-container:hover {
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .sj-video {
+        width: 100%;
+        height: 70vh;
+        display: block;
+        background: #000;
+        object-fit: contain;
+        cursor: pointer;
+    }
+
+    .sj-video::-webkit-media-controls-panel {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+    }
+
+    /* Fullscreen video styling */
+    .video-player-container:fullscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .video-player-container:fullscreen .sj-video {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+    }
+
+    /* Firefox fullscreen */
+    .video-player-container:-moz-full-screen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .video-player-container:-moz-full-screen .sj-video {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+    }
+
+    /* Safari/Webkit fullscreen */
+    .video-player-container:-webkit-full-screen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .video-player-container:-webkit-full-screen .sj-video {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+    }
+
+    /* MS Edge fullscreen */
+    .video-player-container:-ms-fullscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .video-player-container:-ms-fullscreen .sj-video {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+    }
+
+    /* Custom overlay controls */
+    .sj-overlay-play,
+    .sj-overlay-full {
+        position: absolute;
+        z-index: 30;
+        border: none;
+        background: rgba(31, 49, 48, 0.6);
+        color: #fff;
+        padding: 12px 14px;
+        border-radius: 9999px;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .sj-overlay-play {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        font-size: 1.6rem;
+        z-index: 2;
+        pointer-events: auto;
+    }
+
+    .sj-overlay-full {
+        right: 12px;
+        bottom: 72px;
+        transform: translateY(0);
+        font-size: 1rem;
+        z-index: 2;
+        opacity: .92;
+        pointer-events: auto;
+    }
+
+    /* Hide overlay when video is playing */
+    .video-player-container.playing .sj-overlay-play {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.9);
+        pointer-events: none;
+    }
+
+    .video-player-container:hover .sj-overlay-full,
+    .video-player-container:focus-within .sj-overlay-full {
+        opacity: 1;
+    }
+
+    /* Custom control bar */
+    .sj-controls {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.85);
+        color: #fff;
+    }
+
+    .sj-controls-left,
+    .sj-controls-right {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .sj-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: none;
+        padding: 8px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .sj-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .sj-btn i {
+        font-size: 1rem;
+    }
+
+    .sj-progress-wrap {
+        flex: 1 1 40%;
+        padding: 0 10px;
+    }
+
+    .sj-progress {
+        width: 100%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .sj-progress-filled {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0%;
+        background: linear-gradient(90deg, #ff6b35, #f7931e);
+        border-radius: 6px;
+    }
+
+    .sj-time {
+        font-size: 0.9rem;
+        color: #cbd5db;
+        min-width: 90px;
+        text-align: right;
+    }
+
+    .sj-speed {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .sj-speed:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .video-wrap {
+            max-width: 100%;
+            padding: 0 20px;
+        }
+
+        .sj-video {
+            height: 60vh;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .sj-video-section {
+            padding: 40px 0;
+        }
+
+        .video-wrap {
+            padding: 0 15px;
+        }
+
+        .video-player-container {
+            border-radius: 10px;
+        }
+
+        .sj-video {
+            height: 50vh;
+        }
+
+        .sj-controls {
+            gap: 8px;
+            padding: 10px 8px;
+        }
+
+        .sj-btn {
+            padding: 6px 8px;
+        }
+
+        .sj-time {
+            font-size: 0.8rem;
+            min-width: 80px;
+        }
+
+        .sj-overlay-play {
+            font-size: 1.4rem;
+        }
+
+        .sj-overlay-full {
+            bottom: 62px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .sj-video-section {
+            padding: 30px 0;
+        }
+
+        .video-wrap {
+            padding: 0 12px;
+        }
+
+        .video-player-container {
+            border-radius: 8px;
+        }
+
+        .sj-video {
+            height: 40vh;
+        }
+
+        .sj-controls {
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .sj-progress-wrap {
+            flex: 1 1 100%;
+            order: -1;
+            padding: 0 0 8px 0;
+        }
+
+        .sj-time {
+            font-size: 0.75rem;
+        }
+    }
+</style>
+
+<div class="tp-breadcrumb-area custom-hero tp-breadcrumb-spacing bg-position pt-200 "
+    data-background="static/images/hero/banner.jpg" style="
+    min-height: 40vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+  "></div>
+
+<!-- tp-breadcrumb-area-end -->
+{% include 'partials/breadcrumb.html' %}
+
+<section class="sj-gallery-wrap">
+
+    <div class="jubilee-container container text-center">
+        <h1>Silver Jubilee Photo Archive</h1>
+        <p>
+            A curated collection of photographs commemorating the
+            Trans Asian Chamber’s 25th anniversary <br> moments, guests, and milestones captured across the celebration.
+        </p>
+    </div>
+</section>
+
+<!-- Video highlight section: custom video player -->
+<section class="sj-video-section" aria-label="Silver Jubilee Highlights Video">
+    <div class="video-wrap container">
+        <div class="video-player-container" tabindex="0">
+            <video id="sjVideo" class="sj-video" preload="metadata" playsinline muted controlsList="nodownload"
+                tabindex="0">
+                <source src="/static/videos/silver_jubilee_highlights.mp4?v=2" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+
+            <!-- Overlay controls -->
+            <button class="sj-overlay-play" id="sjOverlayPlay" aria-label="Play video">
+                <i class="fa-solid fa-play"></i>
+            </button>
+            <button class="sj-overlay-full" id="sjOverlayFull" aria-label="Toggle fullscreen">
+                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+            </button>
+
+            <!-- Custom control bar -->
+            <div class="sj-controls" aria-label="Video controls">
+                <div class="sj-controls-left">
+                    <button class="sj-btn" id="sjPlayBtn" aria-label="Play/Pause">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                    <button class="sj-btn" id="sjMuteBtn" aria-label="Mute/Unmute">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+
+                <div class="sj-progress-wrap" id="sjProgressWrap">
+                    <div class="sj-progress" id="sjProgressBar" role="slider" aria-valuemin="0" aria-valuemax="100"
+                        tabindex="0">
+                        <div class="sj-progress-filled" id="sjProgressFilled"></div>
+                    </div>
+                </div>
+
+                <div class="sj-controls-right">
+                    <div class="sj-time">
+                        <span id="sjCurrentTime">0:00</span> / <span id="sjDuration">0:00</span>
+                    </div>
+                    <select id="sjSpeedSelect" class="sj-speed" aria-label="Playback speed">
+                        <option value="0.5">0.5x</option>
+                        <option value="0.75">0.75x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2x</option>
+                    </select>
+                    <button class="sj-btn" id="sjFullscreenBtn" aria-label="Fullscreen">
+                        <i class="fa-solid fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Afternoon Session -->
+{% if afternoon_images and afternoon_images|length > 0 %}
+<section class="sj-gallery-wrap" style="margin-top:5px;">
+    <div class="container text-center" style="margin-bottom:16px;">
+        <h2 style="font-size:1.8rem; margin-bottom:8px;">Afternoon Session</h2>
+    </div>
+    <div class="sj-gallery">
+        {% for img in afternoon_images %}
+        <div class="sj-card" onclick="openLightbox({{ loop.index0 }})">
+            <div class="sj-thumb">
+                <img src="{{ img }}" alt="Afternoon image {{ loop.index }}" loading="lazy" />
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Evening Session -->
+{% if evening_images and evening_images|length > 0 %}
+<section class="sj-gallery-wrap" style="margin-top:25px;">
+    <div class="container text-center" style="margin-bottom:16px;">
+        <h2 style="font-size:1.8rem; margin-bottom:8px;">Evening Session</h2>
+    </div>
+    <div class="sj-gallery">
+        {% for img in evening_images %}
+        <div class="sj-card" onclick="openLightbox({{ afternoon_images|length + loop.index0 }})">
+            <div class="sj-thumb">
+                <img src="{{ img }}" alt="Evening image {{ loop.index }}" loading="lazy" />
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightboxModal">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    <div class="lightbox-swiper-container">
+        <div class="swiper lightbox-swiper">
+            <div class="swiper-wrapper">
+                {% if afternoon_images %}
+                {% for img in afternoon_images %}
+                <div class="swiper-slide">
+                    <img src="{{ img }}" alt="Silver Jubilee - Afternoon {{ loop.index }}" />
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% if evening_images %}
+                {% for img in evening_images %}
+                <div class="swiper-slide">
+                    <img src="{{ img }}" alt="Silver Jubilee - Evening {{ loop.index }}" />
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- <div class="swiper-pagination"></div> -->
+        </div>
+    </div>
+</div>
+
+<script>
+    let lightboxSwiper;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize lightbox swiper
+        lightboxSwiper = new Swiper('.lightbox-swiper', {
+            loop: false,
+            keyboard: {
+                enabled: true,
+                onlyInViewport: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            zoom: {
+                maxRatio: 3,
+            },
+            on: {
+                slideChange: function () {
+                    updateCounter();
+                }
+            }
+        });
+
+        // Silver Jubilee video player controls
+        const player = document.querySelector('.video-player-container');
+        const video = document.getElementById('sjVideo');
+        const overlayPlay = document.getElementById('sjOverlayPlay');
+        const overlayFull = document.getElementById('sjOverlayFull');
+        const playBtn = document.getElementById('sjPlayBtn');
+        const muteBtn = document.getElementById('sjMuteBtn');
+        const fullscreenBtn = document.getElementById('sjFullscreenBtn');
+        const progressBar = document.getElementById('sjProgressBar');
+        const progressFilled = document.getElementById('sjProgressFilled');
+        const currentTimeEl = document.getElementById('sjCurrentTime');
+        const durationEl = document.getElementById('sjDuration');
+        const speedSelect = document.getElementById('sjSpeedSelect');
+
+        if (!video || !player) return;
+
+        // Initialize
+        video.muted = true;
+        video.preload = 'metadata';
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function updatePlayStateUI() {
+            const playing = !video.paused && !video.ended;
+            player.classList.toggle('playing', playing);
+            const icon = playing ? 'fa-pause' : 'fa-play';
+            [overlayPlay, playBtn].forEach(btn => {
+                if (btn) btn.querySelector('i').className = `fa-solid ${icon}`;
+            });
+        }
+
+        function updateMuteUI() {
+            if (!muteBtn) return;
+            const cls = video.muted ? 'fa-volume-xmark' : 'fa-volume-high';
+            const i = muteBtn.querySelector('i');
+            if (i) i.className = `fa-solid ${cls}`;
+        }
+
+        function togglePlay() {
+            if (video.paused) {
+                if (video.muted) {
+                    video.muted = false;
+                    updateMuteUI();
+                }
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        [overlayPlay, playBtn].forEach(btn => {
+            if (!btn) return;
+            btn.addEventListener('click', function () {
+                togglePlay();
+                updatePlayStateUI();
+            });
+        });
+
+        video.addEventListener('play', updatePlayStateUI);
+        video.addEventListener('pause', updatePlayStateUI);
+
+        // Mute/unmute
+        muteBtn.addEventListener('click', function () {
+            video.muted = !video.muted;
+            updateMuteUI();
+        });
+
+        // Update duration
+        video.addEventListener('loadedmetadata', function () {
+            durationEl.textContent = formatTime(video.duration);
+        });
+
+        // Progress updates
+        video.addEventListener('timeupdate', function () {
+            const pct = (video.currentTime / video.duration) * 100;
+            progressFilled.style.width = `${pct || 0}%`;
+            currentTimeEl.textContent = formatTime(video.currentTime);
+        });
+
+        // Seek by clicking progress bar
+        function seek(e) {
+            const rect = progressBar.getBoundingClientRect();
+            const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+            const pct = Math.max(0, Math.min(1, x / rect.width));
+            video.currentTime = pct * video.duration;
+        }
+
+        let isSeeking = false;
+        progressBar.addEventListener('mousedown', e => {
+            isSeeking = true;
+            seek(e);
+        });
+        window.addEventListener('mousemove', e => {
+            if (isSeeking) seek(e);
+        });
+        window.addEventListener('mouseup', () => {
+            if (isSeeking) isSeeking = false;
+        });
+
+        // Keyboard control for progress
+        progressBar.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') {
+                video.currentTime = Math.max(0, video.currentTime - 5);
+            }
+            if (e.key === 'ArrowRight') {
+                video.currentTime = Math.min(video.duration, video.currentTime + 5);
+            }
+        });
+
+        // Playback speed
+        speedSelect.addEventListener('change', function () {
+            video.playbackRate = Number(this.value || 1);
+        });
+
+        // Fullscreen
+        function toggleFullscreen(elem) {
+            if (document.fullscreenElement) document.exitFullscreen();
+            else elem.requestFullscreen().catch(() => { });
+        }
+
+        // Click video to toggle play/pause
+        video.addEventListener('click', function () {
+            togglePlay();
+            updatePlayStateUI();
+        });
+
+        fullscreenBtn.addEventListener('click', function () {
+            toggleFullscreen(player);
+        });
+        overlayFull.addEventListener('click', function () {
+            toggleFullscreen(player);
+        });
+
+        // Initial UI state
+        updatePlayStateUI();
+        updateMuteUI();
+
+        // Accessibility: space toggles play/pause
+        player.addEventListener('keydown', function (e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                togglePlay();
+                updatePlayStateUI();
+            }
+        });
+    });
+
+    function openLightbox(index) {
+        const modal = document.getElementById('lightboxModal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        if (lightboxSwiper) {
+            lightboxSwiper.slideTo(index, 0);
+            updateCounter();
+        }
+    }
+
+    function closeLightbox() {
+        const modal = document.getElementById('lightboxModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function updateCounter() {
+        const counter = document.getElementById('lightboxCounter');
+        if (lightboxSwiper) {
+            const current = lightboxSwiper.realIndex + 1;
+            const total = lightboxSwiper.slides.length;
+            counter.textContent = `${current} / ${total}`;
+        }
+    }
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+
+    // Close modal when clicking outside the image
+    document.getElementById('lightboxModal').addEventListener('click', function (e) {
+        if (e.target === this) {
+            closeLightbox();
+        }
+    });
+</script>
+
+{% endblock %}

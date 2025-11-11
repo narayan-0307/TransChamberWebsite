@@ -4,55 +4,246 @@
 
 {% block auth_title %}Welcome Back{% endblock %}
 
-{% block auth_subtitle %}Sign in to your account{% endblock %}
+{% block auth_subtitle %}Sign in to your account to continue{% endblock %}
 
 {% block auth_content %}
 <form method="POST" action="{{ url_for('main.login') }}" id="loginForm" novalidate>
     <div class="form-group">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required>
+        <label for="username" class="form-label">
+            <i class="fas fa-user mr-2"></i>Username
+        </label>
+        <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required
+            autocomplete="username">
         <div class="form-error" id="username-error"></div>
     </div>
 
     <div class="form-group">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password"
-            required>
+        <label for="password" class="form-label">
+            <i class="fas fa-lock mr-2"></i>Password
+        </label>
+        <div class="input-group">
+            <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password"
+                required autocomplete="current-password">
+            <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                <i class="fas fa-eye" id="password-eye"></i>
+            </button>
+        </div>
         <div class="form-error" id="password-error"></div>
     </div>
 
     <div class="form-group">
-        <label for="role" class="form-label">Role</label>
+        <label for="role" class="form-label">
+            <i class="fas fa-user-tag mr-2"></i>Role
+        </label>
         <select name="role" id="role" class="form-input" required>
             <option value="">Select your role</option>
-            <option value="host">Host</option>
-            <option value="member">Member</option>
+            <option value="host">
+                <i class="fas fa-crown"></i> Host
+            </option>
+            <option value="member">
+                <i class="fas fa-users"></i> Member
+            </option>
         </select>
         <div class="form-error" id="role-error"></div>
     </div>
 
+    <div class="form-group">
+        <label class="checkbox-container">
+            <input type="checkbox" id="remember_me" name="remember_me">
+            <span class="checkbox-checkmark"></span>
+            <span class="checkbox-text">Remember me for 30 days</span>
+        </label>
+    </div>
+
     <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
-        <i class="fas fa-sign-in-alt mr-2"></i>
-        <span id="submitText">Sign In</span>
+        <span id="submitText">
+            <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+        </span>
         <span id="loadingText" style="display: none;">
-            <i class="fas fa-spinner fa-spin mr-2"></i>Signing In...
+            <div class="loading-spinner mr-2"></div>Signing In...
         </span>
     </button>
 </form>
 
 <div class="auth-footer">
-    <p class="text-sm text-gray-600">
+    <p>
         Don't have an account?
-        <a href="{{ url_for('main.register') }}" class="text-blue-600 hover:text-blue-800 font-medium">
-            Sign up here
+        <a href="{{ url_for('main.register') }}">
+            Create account
         </a>
     </p>
-    <p class="text-sm text-gray-600 mt-2">
-        <a href="{{ url_for('main.forgot_password') }}" class="text-blue-600 hover:text-blue-800 font-medium">
+    <p>
+        <a href="{{ url_for('main.forgot_password') }}">
             Forgot your password?
         </a>
     </p>
 </div>
+
+<style>
+    /* Enhanced Login Styles */
+    .input-group {
+        position: relative;
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #999;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .password-toggle:hover {
+        color: var(--primary-color);
+        background: rgba(30, 60, 114, 0.1);
+    }
+
+    /* Custom Checkbox */
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: var(--dark-gray);
+        margin-bottom: 0;
+    }
+
+    .checkbox-container input[type="checkbox"] {
+        display: none;
+    }
+
+    .checkbox-checkmark {
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--medium-gray);
+        border-radius: 4px;
+        margin-right: 8px;
+        position: relative;
+        transition: var(--transition);
+        background: var(--white);
+    }
+
+    .checkbox-container:hover .checkbox-checkmark {
+        border-color: var(--primary-color);
+    }
+
+    .checkbox-container input[type="checkbox"]:checked+.checkbox-checkmark {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        border-color: var(--primary-color);
+    }
+
+    .checkbox-container input[type="checkbox"]:checked+.checkbox-checkmark::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 1px;
+        width: 5px;
+        height: 9px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    .checkbox-text {
+        font-weight: 500;
+    }
+
+    /* Social Login */
+    .social-login {
+        margin-top: 20px;
+    }
+
+    .divider {
+        text-align: center;
+        position: relative;
+        margin: 18px 0;
+    }
+
+    .divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--medium-gray);
+    }
+
+    .divider span {
+        background: var(--white);
+        padding: 0 12px;
+        color: #999;
+        font-size: 0.8rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .social-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 12px;
+        border: 2px solid var(--medium-gray);
+        border-radius: var(--border-radius);
+        background: var(--white);
+        color: var(--dark-gray);
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .social-btn:hover {
+        border-color: var(--primary-color);
+        background: var(--light-gray);
+        transform: translateY(-1px);
+    }
+
+    .google-btn:hover {
+        border-color: #db4437;
+        color: #db4437;
+    }
+
+    .microsoft-btn:hover {
+        border-color: #0078d4;
+        color: #0078d4;
+    }
+
+    /* Form Enhancement */
+    .form-label i {
+        color: var(--primary-color);
+        width: 16px;
+    }
+
+    .form-input:focus+.password-toggle {
+        color: var(--primary-color);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 480px) {
+        .social-buttons {
+            grid-template-columns: 1fr;
+        }
+
+        .social-btn {
+            font-size: 0.85rem;
+            padding: 10px 12px;
+        }
+    }
+</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -67,6 +258,15 @@
             input.addEventListener('input', function () {
                 clearFieldError(this);
             });
+
+            // Add focus animations
+            input.addEventListener('focus', function () {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+
+            input.addEventListener('blur', function () {
+                this.parentElement.style.transform = 'scale(1)';
+            });
         });
 
         form.addEventListener('submit', function (e) {
@@ -80,10 +280,16 @@
                 // Show loading state
                 submitBtn.disabled = true;
                 submitText.style.display = 'none';
-                loadingText.style.display = 'inline';
+                loadingText.style.display = 'inline-flex';
+                submitBtn.style.opacity = '0.8';
 
-                // Submit form
-                form.submit();
+                // Add subtle animation
+                submitBtn.style.transform = 'scale(0.98)';
+
+                // Submit form after a brief delay for UX
+                setTimeout(() => {
+                    form.submit();
+                }, 500);
             }
         });
 
@@ -95,12 +301,18 @@
             if (!username.value.trim()) {
                 showFieldError(username, 'Username is required');
                 isValid = false;
+            } else if (username.value.trim().length < 3) {
+                showFieldError(username, 'Username must be at least 3 characters');
+                isValid = false;
             }
 
             // Validate password
             const password = document.getElementById('password');
             if (!password.value.trim()) {
                 showFieldError(password, 'Password is required');
+                isValid = false;
+            } else if (password.value.length < 6) {
+                showFieldError(password, 'Password must be at least 6 characters');
                 isValid = false;
             }
 
@@ -116,14 +328,17 @@
 
         function showFieldError(field, message) {
             field.classList.add('error');
+            field.parentElement.style.animation = 'shake 0.5s ease-in-out';
             const errorElement = document.getElementById(field.id + '-error');
             if (errorElement) {
                 errorElement.textContent = message;
+                errorElement.style.animation = 'slideDown 0.3s ease';
             }
         }
 
         function clearFieldError(field) {
             field.classList.remove('error');
+            field.parentElement.style.animation = '';
             const errorElement = document.getElementById(field.id + '-error');
             if (errorElement) {
                 errorElement.textContent = '';
@@ -136,5 +351,36 @@
             });
         }
     });
+
+    // Password toggle function
+    function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        const eye = document.getElementById(fieldId + '-eye');
+
+        if (field.type === 'password') {
+            field.type = 'text';
+            eye.classList.remove('fa-eye');
+            eye.classList.add('fa-eye-slash');
+        } else {
+            field.type = 'password';
+            eye.classList.remove('fa-eye-slash');
+            eye.classList.add('fa-eye');
+        }
+    }
+
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+    @keyframes shake {
+        0%, 20%, 40%, 60%, 80%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    }
+    
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+`;
+    document.head.appendChild(style);
 </script>
 {% endblock %}

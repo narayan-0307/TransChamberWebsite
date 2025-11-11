@@ -8,7 +8,7 @@
             <div class="flex items-center space-x-4">
               <!-- Logo -->
               <div class="tpoffcanvas__logo">
-                <a href="/">
+                <a href="{{ url_for('main.home') }}">
                   <img src="/static/images/logo/transLogo.png" alt="logo" class="w-[140px]" />
                 </a>
               </div>
@@ -66,10 +66,14 @@
             <div class="tp-footer-menu">
               <ul>
                 <li><a href="/about">About us</a></li>
+                <li class="nav-item">
+                  <a href="{{ url_for('main.silver_jubilee') }}">Silver Jubilee</a>
+                </li>
                 <li><a href="/membership-types">Membership Types</a></li>
                 <li><a href="/my-gallery">Gallery</a></li>
-                <li><a href="/leadership-board">Governing Councils</a></li>
+                <li><a href="/leadership-board">Governing Council</a></li>
                 <li><a href="/membership-benefit">Membership Benefits</a></li>
+
               </ul>
             </div>
           </div>
@@ -77,7 +81,7 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="tp-footer-widget mb-40">
             <h5 class="fw-500 fs-24 tp-text-common-white mb-25">
-              Trades
+              Trade Enquiries
             </h5>
             <div class="tp-footer-menu">
               <ul>
@@ -94,19 +98,20 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6 col-sm-6">
+        <div class="col-lg-2 col-md-6 col-sm-6" style="width: 24%;">
           <div class="tp-footer-widget tp-footer-meinus mb-40">
             <h5 class="fw-500 fs-24 tp-text-common-white mb-25">Contact Us</h5>
             <div class="tp-footer-menu">
               <ul>
-                <li>
-                  <a href="#">301 Hind Service Industrial Estate, Jaambhekar Marg, Dadar
-                    Chowpatty, <br />
-                    Mumbai - 400028</a>
+                <li style="color: #ffffff;">
+                  301, Hind Service Industrial Estate, Jaambhekar Maharaj Path,
+                  <br />Dadar Chowpatty, Mumbai - 400028,
+                  <br />Maharashtra, Hindustaan.
                 </li>
-                <li><a href="#">Phone: 9820964687</a></li>
-                <li><a href="#">info@transasianchamber.org</a></li>
-                <li><a href="#">transasian.hindustaan@gmail.com</a></li>
+                <!-- <li><span style="color: #fff;">Phone: +91 9820964687</span></li> -->
+                <li><span style="color: #fff;">WhatsApp Number: +91 9967064687 <br /> +91 9820964687</span></li>
+                <li><span style="color: #fff;">info@transasianchamber.org</span></li>
+                <li><span style="color: #fff;">transasian.hindustaan@gmail.com</span></li>
               </ul>
             </div>
           </div>

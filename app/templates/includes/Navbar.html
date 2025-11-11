@@ -281,6 +281,30 @@
     }
   }
 
+  /* Custom breakpoint override: activate hamburger (mobile menu) at <=1250px
+     and show desktop nav only above 1250px. This overrides Bootstrap utility
+     classes so the hamburger appears at the requested width. */
+  @media (max-width: 1250px) {
+    .desktop-nav {
+      display: none !important;
+    }
+
+    .tp-header-sidebar-menu {
+      display: flex !important;
+    }
+  }
+
+  @media (min-width: 1251px) {
+    .desktop-nav {
+      display: flex !important;
+      align-items: center;
+    }
+
+    .tp-header-sidebar-menu {
+      display: none !important;
+    }
+  }
+
   @media (max-width: 768px) {
     .responsive-navbar-wrapper {
       padding: 0 45px 0 10px;
@@ -352,7 +376,7 @@
         <div class="container container-1690 responsive-navbar-container">
           <div class="responsive-navbar-wrapper">
             <div class="responsive-navbar-logo">
-              <a href="/" class="d-flex align-items-center">
+              <a href="{{ url_for('main.home') }}" class="d-flex align-items-center">
                 <img src="/static/images/logo/transLogo.png" alt="Trans Asian Chamber of Commerce & Industry Logo"
                   style="height: 35px; width: auto;" />
                 <div class="logo-name"
@@ -368,8 +392,17 @@
               <nav class="main-navigation">
                 <ul class="nav-menu">
                   <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
+                    <a href="{{ url_for('main.home') }}" class="nav-link">Home</a>
                   </li>
+
+                  <li class="nav-item">
+                    <a href="{{ url_for('main.tacci_action') }}" class="nav-link">TACCI Action</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{ url_for('main.silver_jubilee') }}" class="nav-link">Silver Jubilee</a>
+                  </li>
+
                   <li class="nav-item dropdown">
                     <a href="{{ url_for('main.about') }}" class="nav-link dropdown-toggle">About</a>
                     <ul class="dropdown-menu">
@@ -377,7 +410,7 @@
                       <!-- <li><a href="{{ url_for('main.mvh') }}" class="dropdown-link">Vision, Mission, Code of Conduct</a> -->
                   </li>
                   <!-- <li><a href="{{ url_for('main.about_me') }}" class="dropdown-link">Founder</a></li> -->
-                  <li><a href="{{ url_for('main.leadership_board') }}" class="dropdown-link">Governing Councils</a>
+                  <li><a href="{{ url_for('main.leadership_board') }}" class="dropdown-link">Governing Council</a>
                   </li>
                   <!-- <li><a href="service-details.html" class="dropdown-link">Committees & Working Groups</a></li> -->
                   <li><a href="{{ url_for('main.myGallery') }}" class="dropdown-link">Gallery</a></li>
@@ -396,7 +429,8 @@
                 <li class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle">Events</a>
                   <ul class="dropdown-menu">
-                    <li><a href="{{ url_for('main.upcoming_page') }}" class="dropdown-link">Upcoming Events</a></li>
+                    {# <li><a href="{{ url_for('main.upcoming_page') }}" class="dropdown-link">Upcoming Events</a></li>
+                    #}
                     <li><a href="{{ url_for('main.past_event_page') }}" class="dropdown-link">Past Events</a></li>
                     <li><a href="{{ url_for('main.budget_event') }}" class="dropdown-link">Budget
                         Events</a></li>
@@ -457,6 +491,18 @@
                       <a href="/" aria-current="page"
                         style="display: block; padding: 15px 20px; color: #333; text-decoration: none;">Home</a>
                     </li>
+
+                    <li style="border-bottom: 1px solid #eee;">
+                      <a href="{{ url_for('main.tacci_action') }}" aria-current="page"
+                        style="display: block; padding: 15px 20px; color: #333; text-decoration: none;">TACCI Action</a>
+                    </li>
+
+                    <li style="border-bottom: 1px solid #eee;">
+                      <a href="{{ url_for('main.silver_jubilee') }}" aria-current="page"
+                        style="display: block; padding: 15px 20px; color: #333; text-decoration: none;">Silver
+                        Jubilee</a>
+                    </li>
+
                     <li class="has-dropdown" style="border-bottom: 1px solid #eee;">
                       <a href="#" aria-haspopup="true" aria-expanded="false"
                         style="display: block; padding: 15px 20px; color: #333; text-decoration: none; position: relative;">
@@ -524,11 +570,11 @@
                       </a>
                       <ul class="tp-submenu submenu" role="menu"
                         style="display: none; background: #f8f9fa; padding-left: 20px;">
-                        <li role="menuitem" style="border-bottom: 1px solid #eee;">
+                        {# <li role="menuitem" style="border-bottom: 1px solid #eee;">
                           <a href="{{ url_for('main.upcoming_page') }}"
                             style="display: block; padding: 10px 20px; color: #555; text-decoration: none;">Upcoming
                             Events</a>
-                        </li>
+                        </li> #}
 
                         <li role="menuitem">
                           <a href="{{ url_for('main.past_event_page') }}"
