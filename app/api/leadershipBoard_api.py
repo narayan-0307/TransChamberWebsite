@@ -668,7 +668,7 @@ data = {
       "name": "Shri. Shrinivas Khalap",
       "role": "",
       "designation": "In-charge, Goa State",
-      "image": "/static/images/icons/male.jpg",
+      "image": "/static/images/committee/shrinivas_khalap.jpeg",
       "social": {
         "facebook": "#",
         "linkedin": "#",
